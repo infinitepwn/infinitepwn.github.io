@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>crypto | C++ note blog</title><meta name="author" content="Linear"><meta name="copyright" content="Linear"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="SSHCTF复现 一、Cignin 审阅代码 123456789101112131415161718192021222324252627282930313233343536373839404142from Crypto.Util.number import getPrime, getRandomNBitInteger, GCD, bytes_to_long, long_to_bytes, i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="crypto">
+<meta property="og:url" content="http://example.com/2024/12/03/crypto/index.html">
+<meta property="og:site_name" content="C++ note blog">
+<meta property="og:description" content="SSHCTF复现 一、Cignin 审阅代码 123456789101112131415161718192021222324252627282930313233343536373839404142from Crypto.Util.number import getPrime, getRandomNBitInteger, GCD, bytes_to_long, long_to_bytes, i">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/head.png">
+<meta property="article:published_time" content="2024-12-03T09:31:40.000Z">
+<meta property="article:modified_time" content="2024-12-07T13:34:38.840Z">
+<meta property="article:author" content="Linear">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "crypto",
+  "url": "http://example.com/2024/12/03/crypto/",
+  "image": "http://example.com/img/head.png",
+  "datePublished": "2024-12-03T09:31:40.000Z",
+  "dateModified": "2024-12-07T13:34:38.840Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Linear",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/12/03/crypto/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'crypto',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">C++ note blog</span></a><a class="nav-page-title" href="/"><span class="site-name">crypto</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">crypto</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-07T13:34:38.840Z" title="更新于 2024-12-07 21:34:38">2024-12-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="sshctf复现">SSHCTF复现</h2>
+<h3 id="一cignin">一、Cignin</h3>
+<p>审阅代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, getRandomNBitInteger, GCD, bytes_to_long, long_to_bytes, inverse</span><br><span class="line"><span class="comment"># 从左至右依次为：获取随机素数，获取随机数，求最大公因数，把字节串转化为整数，?，??</span></span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"><span class="comment">#从我的秘密文件读取flag (｡･∀･)ﾉﾞ</span></span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line"><span class="comment"># 获取一个随机的素数p，2 ** 511 &lt; p &lt; 2**512</span></span><br><span class="line"></span><br><span class="line">key1 = getRandomNBitInteger(<span class="number">510</span>)</span><br><span class="line"><span class="comment"># 获取一个随机数key1，2 ** 510 &lt;= key1 &lt; 2**511</span></span><br><span class="line">k1 = GCD(key1, p)</span><br><span class="line"><span class="comment"># 求得key1与p的最大公因数k1</span></span><br><span class="line"><span class="keyword">while</span> k1 != <span class="number">1</span>:</span><br><span class="line">    <span class="comment"># 如果k1不为1就重新生成key1，直到k1=1为止</span></span><br><span class="line">    key1 = getRandomNBitInteger(<span class="number">510</span>)</span><br><span class="line">    k1 = GCD(key1, p)</span><br><span class="line"></span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line"><span class="comment"># 获取一个随机的素数q，2 ** 511 &lt; q &lt; 2**512</span></span><br><span class="line">r = getPrime(<span class="number">512</span>)</span><br><span class="line"><span class="comment"># 获取一个随机的素数r，2 ** 511 &lt; r &lt; 2**512</span></span><br><span class="line">pq = p * q</span><br><span class="line">pr = p * r</span><br><span class="line"></span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"><span class="comment"># bytes_to_long: 把flag转换成一个数字 long_to_bytes: ?</span></span><br><span class="line"><span class="keyword">assert</span> m &lt; p</span><br><span class="line">c = key1 * m % p</span><br><span class="line"><span class="comment"># inverse(key1, m)??? 这是干什么用的？</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行输出</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;pq = &#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;pr = &#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;key1 = &#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;c = &#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行之后的输出结果（不带#）</span></span><br><span class="line"><span class="comment"># pq = 95335514384477102921914880645523312314551764084545353732125344318748440781921409528656750340465048450873641324163684554908678634612614854846153727222988913246690753793342116602249522901540246205677130840085690090507475634999875449169508989789792778991822437306287229297619031309249887217239825200402614169477</span></span><br><span class="line"><span class="comment"># pr = 83170556754792608499522599295945208677740398025939816095678503274842882863085971213696436520116811821167689099199181887911288989991236862941270637593872357542358344429187203786289218114048719268816433647183371081115314086799829183725889194600136154180550505914504092774917550378777616935574150766582418401919</span></span><br><span class="line"><span class="comment"># key1 = 1815332310692959722079719287682035135436193723471510790633767519267852027715492947622183479412553655593402053631984747623463532425360709886333479756258771</span></span><br><span class="line"><span class="comment"># c = 7663398722454750069504917762139567925472794669643220581791261878874020057253732586064966446627697787340129518240235100726610062051040328793255309589363044</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>首先思考一下加密方式</p>
+<p>原文是flag，通过将字节转化为数字，预处理得到了m，接下来对m加密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = bytes_to_long(flag)</span><br></pre></td></tr></table></figure>
+<p>注意到</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = key1 * m % p</span><br></pre></td></tr></table></figure>
+<p>也就是说 <span class="math display">\[
+c \equiv key_1 \cdot m \pmod p
+\]</span> c就是加密完后的密文，而c是已知的</p>
+<p>所以想要获得m</p>
+<p>只需 <span class="math display">\[
+m \equiv c \cdot key_1^{-1} \pmod {p}
+\]</span> 接下来研究key1，p</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">key1 = getRandomNBitInteger(<span class="number">510</span>)</span><br><span class="line">k1 = GCD(key1, p)</span><br><span class="line"><span class="keyword">while</span> k1 != <span class="number">1</span>:</span><br><span class="line">    key1 = getRandomNBitInteger(<span class="number">510</span>)</span><br><span class="line">    k1 = GCD(key1, p)</span><br></pre></td></tr></table></figure>
+<p>p是随机生成的一个质数，然后求key1和p的最大公因数k1，只要k1不等于1，就重新生成key1，知道最大公因数为1，即key1和p互质</p>
+<p>当然p本来就是素数，这里是保证key1不是p的倍数，不然乘法逆元就是0了</p>
+<p>看最后输出，key1是已知的</p>
+<p>那么问题就是，如何求p？</p>
+<p>接着看代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line">r = getPrime(<span class="number">512</span>)</span><br><span class="line"></span><br><span class="line">pq = p * q</span><br><span class="line">pr = p * r</span><br></pre></td></tr></table></figure>
+<p>用了q和r来包装p，但实际上p，q，r都是素数</p>
+<p>那么问题就很简单了，p其实就是pq和pr的最大公因数，因为r和q无法再分解</p>
+<p>如此我们就可以求出p</p>
+<p>最后，我们发现 <span class="math display">\[
+m \equiv c \cdot key_1^{-1} \pmod {p}
+\]</span>
+这里是同余式，不是等式，这意味着m有很多种可能，那么，如何确定m呢</p>
+<p>注意到前面没注意到的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> m &lt; p</span><br></pre></td></tr></table></figure>
+<p>我们知道，既然m&lt;p，那么m肯定就是p剩余系中的一员，那么就唯一确定了，所以我们可以改成等号
+<span class="math display">\[
+m = c\cdot key_1^{-1} \, mod \,p
+\]</span> 接下来编写脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, getRandomNBitInteger, GCD, bytes_to_long, long_to_bytes, inverse</span><br><span class="line">p = GCD(pq,pr)</span><br><span class="line">key1_reverse = inverse(key1,p)</span><br><span class="line">m = key1_reverse*c % p</span><br><span class="line">flag = long_to_bytes(m)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line">//略去了数据</span><br></pre></td></tr></table></figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733403410269.png"
+alt="QQ_1733403410269" />
+<figcaption aria-hidden="true">QQ_1733403410269</figcaption>
+</figure>
+<p>顺利拿到flag</p>
+<h3 id="二那些年我们回不去的高中">二、那些年我们回不去的高中</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">seed = bytes_to_long(flag)</span><br><span class="line">length = seed.bit_length()  <span class="comment"># 获取flag的比特长度</span></span><br><span class="line"></span><br><span class="line">a = getPrime(length)  <span class="comment"># 生成一个质数</span></span><br><span class="line">b = getPrime(length)</span><br><span class="line">n = getPrime(length)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LCG</span>:  <span class="comment"># 定义一个线性同余方法，这在流密码中非常常见</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, seed, a, b, m</span>):</span><br><span class="line">        <span class="variable language_">self</span>.seed = seed</span><br><span class="line">        <span class="variable language_">self</span>.a = a</span><br><span class="line">        <span class="variable language_">self</span>.b = b</span><br><span class="line">        <span class="variable language_">self</span>.m = m</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.seed = (<span class="variable language_">self</span>.a * <span class="variable language_">self</span>.seed + <span class="variable language_">self</span>.b) % <span class="variable language_">self</span>.m  <span class="comment"># %代表取余运算</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.seed</span><br><span class="line"></span><br><span class="line">output = LCG(seed,a,b,n)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">X = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">    X.append(output.generate())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(X)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [501703164187727593372086617867820775456087116973803177493056499659541663323648141342, 588570139178177903469397590501943620116342393885942360550862964969352002291929424363, 281288751483961707537843637123525401743207710687915446596777100280426354065682466598, 708630045321869837332690288467686858089241520599961393972627696864846490047335283152, 617760266061827494900234244317578273827012112398951944819885279778802094330162298986, 582339788000363908505329608524344152188117615320106374975826324585744504851890511392, 464350381227895694762238017820210700124036397474288280979171731271972152812326936434, 700113189863625606052428819353013479770013349556839010525937280035214960593210834267, 297999975221722883051371519872929722820468919503138239372943643127953303752090457827, 430341672209611662248307670923151910167956476359422263144893048677080004653164743208, 460073745617710704882011225918367146104675274578389756609734664622901134531533506103, 49148337480243238428702153477716219171955569981781804422896650463115099990185605400, 407543451256962771490839827900881983067818016125482377582428472354879514769376849429, 705607461091761568312628429851760151122922894142295561710017367535229113548353611219, 303896878070823060682972069288939857221694611065703393870745518740733186747272460699, 94538219020324153981912258631379561507072012683868872199747433327946415994346697063]</span></span><br></pre></td></tr></table></figure>
+<p>首先寻找预处理方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seed = bytes_to_long(flag)</span><br></pre></td></tr></table></figure>
+<p>flag被转化为seed，因此需要对seed解密</p>
+<p>接着生成了三个质数abn</p>
+<p>定义了一个LCG类，初始化变量，外界的n，变成了m</p>
+<p>观察函数generate</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">generate</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.seed = (<span class="variable language_">self</span>.a * <span class="variable language_">self</span>.seed + <span class="variable language_">self</span>.b) % <span class="variable language_">self</span>.m  <span class="comment"># %代表取余运算</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.seed</span><br></pre></td></tr></table></figure>
+<p>输入seed，获得一个新的seed <span class="math display">\[
+seed = a\cdot seed + b \pmod{m}
+\]</span> 惊喜的发现，这些参数我们一个都不知道</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">    X.append(output.generate())</span><br></pre></td></tr></table></figure>
+<p>接着循环了16次，产生了16次种子</p>
+<p>换而言之，我们需要利用这十六个种子，求出一开始的种子</p>
+<p>不妨设，一开始的seed为x1，然后我们写成数列的形式 <span
+class="math display">\[
+已知x_2,x_3,...x_{17},x_{n+1}=ax_n+b\mod m,求x_1
+\]</span> 接着来看算法的关键 <span class="math display">\[
+x_{n+1}=ax_n + b \mod m
+\]</span>
+这里面a，b，m都是未知的，b好处理，因为在常数的位置，两个式子相减就能消掉</p>
+<p>考虑 <span class="math display">\[
+x_{n+2}-x_{n+1}=a(x_{n+1}-x_{n}) \mod m
+\]</span> 这时候，我们以<span
+class="math inline">\(x_{n+1}-x_{n}\)</span>作为一个新数列，那么这时候只剩下两个未知数了</p>
+<p>设<span class="math inline">\(y_n =x_{n+1}-x_n\)</span></p>
+<p>那么<span class="math inline">\(y_{n+1}=ay_n \mod m\)</span></p>
+<p>这是一个等比数列，但是mod m实在是棘手，想办法去掉 <span
+class="math display">\[
+ay_n = km + y_{n+1} \\ y_{n+1} = ay_n - km
+\]</span>
+有道是，解决不了问题，就创造一个更大的问题，虽然解决了mod看着很烦人的bug，但是也引入了一个不确定的因素，k</p>
+<p>这个k，有点棘手，不过，m是不变的，此时不禁回想起Cignin中的pq，pr，由于m是一个质数，如果两个k没有公因数的话，那么m就是它们的最大公因数，但是问题又来了，不知道a，km也求不出来，这是条死路</p>
+<p>还是回溯到前面 <span class="math display">\[
+y_{n+1}=ay_n \mod m \\
+y_{n+2}=ay_{n+1} \mod m
+\]</span>
+说到等比数列，等比中项就是一个有趣的性质，那么，对于这个同余的等比数列，是否有着等比中项呢，可以一试
+<span class="math display">\[
+y_{n+2}y_n \equiv ay_ny_{n+1} \equiv y_{n+1}^2 \mod m
+\]</span>
+这就非常amazing了，a消失了，那么此时此刻，只剩下m这一个未知数</p>
+<p>把同余式写成等式 <span class="math display">\[
+y_{n+1}^2 = y_ny_{n+2} + km
+\]</span> 那么这个km就可以求了，但是，我们还是无法保证这一点</p>
+<blockquote>
+<p>如果两个k没有公因数的话，那么m就是它们的最大公因数</p>
+</blockquote>
+<p>不过，既然给了16个输出，那么应该是有很大概率，两个k互质的，开始编写脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">x = [题目里给的，这里不给出来，占屏幕位置]</span><br><span class="line">y = []</span><br><span class="line">km = []</span><br><span class="line">possiblem = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">15</span>):</span><br><span class="line">    y.append(x[i+<span class="number">1</span>]-x[i])</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">13</span>):</span><br><span class="line">    km.append(y[j+<span class="number">1</span>]*y[j+<span class="number">1</span>]-y[j]*y[j+<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">if</span> j &gt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> isPrime(GCD(km[j],km[j-<span class="number">1</span>])): </span><br><span class="line">            possiblem.append(GCD(km[j],km[j-<span class="number">1</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">set</span>(possiblem))</span><br></pre></td></tr></table></figure>
+<p>这样我们就得到了可能为m的possiblem</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="number">806536416592172553610576820929035771259966759658252966602497687137948425844604582503</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>只有一个，这非常好，既然m求出来了，那么就可以求a了 <span
+class="math display">\[
+a \equiv y_{n+1}y_{n}^{-1} \mod m
+\]</span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = y[<span class="number">1</span>]*inverse(y[<span class="number">0</span>],m) % m</span><br></pre></td></tr></table></figure>
+<p>我们先考虑求出a之后如何解决 <span class="math display">\[
+x_2 - x_3 \equiv a(x_1 - x_2) \pmod m \\ x_1 \equiv a^{-1}(x_2-x_3) +
+x_2 \pmod m
+\]</span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_1 = (x[<span class="number">0</span>] + inverse(a,m)*(x[<span class="number">0</span>]-x[<span class="number">1</span>])) % m </span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(x_1))</span><br></pre></td></tr></table></figure>
+<p>这已经能得出答案，不过，这是一个同余式，理论上来说，x1可能性应该很多，那么，如何排除其他可能性呢</p>
+<p>前面我们忽略一处细节</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">length = seed.bit_length()  <span class="comment"># 获取flag的比特长度</span></span><br><span class="line"></span><br><span class="line">a = getPrime(length)  <span class="comment"># 生成一个质数</span></span><br><span class="line">b = getPrime(length)</span><br><span class="line">n = getPrime(length)</span><br></pre></td></tr></table></figure>
+<p>由于n或者说m，他是介于<span class="math inline">\(2^{length-1}\to
+2^{length}\)</span>之间的，而seed的比特长度是length，说明seed的最高位是length-1，因为第一位是0，m有很大的概率大于seed，当seed小于m时，seed模m就是seed本身，因此得到了正确的答案</p>
+<p>但是倒是也有可能seed大于m，但不可能大于m的两倍，所以我们可以再print一个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(long_to_bytes(x_1+m))</span><br></pre></td></tr></table></figure>
+<p>但本题已无必要</p>
+<p>最后脚本如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line">x = [<span class="number">501703164187727593372086617867820775456087116973803177493056499659541663323648141342</span>, <span class="number">588570139178177903469397590501943620116342393885942360550862964969352002291929424363</span>, <span class="number">281288751483961707537843637123525401743207710687915446596777100280426354065682466598</span>, <span class="number">708630045321869837332690288467686858089241520599961393972627696864846490047335283152</span>, <span class="number">617760266061827494900234244317578273827012112398951944819885279778802094330162298986</span>, <span class="number">582339788000363908505329608524344152188117615320106374975826324585744504851890511392</span>, <span class="number">464350381227895694762238017820210700124036397474288280979171731271972152812326936434</span>, <span class="number">700113189863625606052428819353013479770013349556839010525937280035214960593210834267</span>, <span class="number">297999975221722883051371519872929722820468919503138239372943643127953303752090457827</span>, <span class="number">430341672209611662248307670923151910167956476359422263144893048677080004653164743208</span>, <span class="number">460073745617710704882011225918367146104675274578389756609734664622901134531533506103</span>, <span class="number">49148337480243238428702153477716219171955569981781804422896650463115099990185605400</span>, <span class="number">407543451256962771490839827900881983067818016125482377582428472354879514769376849429</span>, <span class="number">705607461091761568312628429851760151122922894142295561710017367535229113548353611219</span>, <span class="number">303896878070823060682972069288939857221694611065703393870745518740733186747272460699</span>, <span class="number">94538219020324153981912258631379561507072012683868872199747433327946415994346697063</span>]</span><br><span class="line">y = []</span><br><span class="line">km = []</span><br><span class="line">possiblem = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">15</span>):</span><br><span class="line">    y.append(x[i+<span class="number">1</span>]-x[i])</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">13</span>):</span><br><span class="line">    km.append(y[j+<span class="number">1</span>]*y[j+<span class="number">1</span>]-y[j]*y[j+<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">if</span> j &gt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> isPrime(GCD(km[j],km[j-<span class="number">1</span>])): </span><br><span class="line">            possiblem.append(GCD(km[j],km[j-<span class="number">1</span>]))</span><br><span class="line">m = possiblem[<span class="number">0</span>]</span><br><span class="line">a = y[<span class="number">1</span>]*inverse(y[<span class="number">0</span>],m) % m</span><br><span class="line">x_1 = (x[<span class="number">0</span>] + inverse(a,m)*(x[<span class="number">0</span>]-x[<span class="number">1</span>])) % m </span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(x_1))</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Linear</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/12/03/crypto/">http://example.com/2024/12/03/crypto/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">C++ note blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/12/03/picbed/" title="picturebed"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">picturebed</div></div><div class="info-2"><div class="info-item-1">图床搭建过程 一、为什么要搭建图床 起因在于，在本地编写markdown文件时，我们的图片都是保存在自己的电脑本地的，typora编辑器根据本地路径，寻找图片，但是，当我们把markdown上传到博客网站或者论坛时，本地的图片无法访问 因此需要使用网络路径，来上传我们的图片，这就需要用一个网站来存储图片 不过， 郑学长已经提供了他的图床，感谢前人栽树，因此本文接下来的内容没有什么意义 而且，github十分不稳定，上传的图片有时加载不出来 不过，由于我投入了时间搭建图床，出于沉没成本，我选择写一下搭建过程 二、用github(貌似Gitee也行？)仓库实现图床功能 1.注册github账号 首先，注册一个github账号 不过，国内github网站虽然可以访问，但十分不稳定，使用steam++(Watt Toolkit)，可以加快访问速度 2.创建一个仓库 注册完后   QQ_1733405553001  选择your...</div></div></div></a><a class="pagination-related" href="/2024/12/03/webwp/" title="webwp"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">webwp</div></div><div class="info-2"><div class="info-item-1">攻防世界wp 一、攻防世界 - get_post- 简单 拿到题目，要求使用get方式提交变量 直接?a=1即可   QQ_1733374132565  但是地址栏无法直接post请求 此时切换火狐浏览器，使用hackbar插件   QQ_1733374299858  post b=2 直接获得flag 二、攻防世界 - view_source - 简单   QQ_1733374415954  根据问题描述，应该要查看网页的源代码，但是鼠标右键被禁用了，左键也不行 但是我们有键盘   QQ_1733374469344  使用F12快捷键即可 三、攻防世界 - disabled_button -...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Linear</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Linear Algebra & C++</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sshctf%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">SSHCTF复现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80cignin"><span class="toc-number">1.1.</span> <span class="toc-text">一、Cignin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E5%9B%9E%E4%B8%8D%E5%8E%BB%E7%9A%84%E9%AB%98%E4%B8%AD"><span class="toc-number">1.2.</span> <span class="toc-text">二、那些年我们回不去的高中</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/06/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" title="无标题">无标题</a><time datetime="2024-12-06T06:01:50.963Z" title="发表于 2024-12-06 14:01:50">2024-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/picbed/" title="picturebed">picturebed</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/crypto/" title="crypto">crypto</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/webwp/" title="webwp">webwp</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/string/" title="string">string</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Linear</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
