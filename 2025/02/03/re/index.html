@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>reverse | C++ note blog</title><meta name="author" content="Linear"><meta name="copyright" content="Linear"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="b@se64 wp打开压缩包，获得一个可执行文件，用IDA pro打开  shift+F12打开函数列表，发现start函数  发现调用了140001154()函数  进而找到14000184E函数  是一个比较简单的字符串比较函数，下面那个疑似base64编码 但是解码之后好像没什么含义  发现还有一个1400016D0函数  让GPT审阅一下，其实就是base64进行了偏移的变体 他顺便把解密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="reverse">
+<meta property="og:url" content="http://example.com/2025/02/03/re/index.html">
+<meta property="og:site_name" content="C++ note blog">
+<meta property="og:description" content="b@se64 wp打开压缩包，获得一个可执行文件，用IDA pro打开  shift+F12打开函数列表，发现start函数  发现调用了140001154()函数  进而找到14000184E函数  是一个比较简单的字符串比较函数，下面那个疑似base64编码 但是解码之后好像没什么含义  发现还有一个1400016D0函数  让GPT审阅一下，其实就是base64进行了偏移的变体 他顺便把解密">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/head.png">
+<meta property="article:published_time" content="2025-02-03T12:12:00.000Z">
+<meta property="article:modified_time" content="2025-02-04T14:03:03.447Z">
+<meta property="article:author" content="Linear">
+<meta property="article:tag" content="CTF re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "reverse",
+  "url": "http://example.com/2025/02/03/re/",
+  "image": "http://example.com/img/head.png",
+  "datePublished": "2025-02-03T12:12:00.000Z",
+  "dateModified": "2025-02-04T14:03:03.447Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Linear",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/02/03/re/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'reverse',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">C++ note blog</span></a><a class="nav-page-title" href="/"><span class="site-name">reverse</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">reverse</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-03T12:12:00.000Z" title="发表于 2025-02-03 20:12:00">2025-02-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-04T14:03:03.447Z" title="更新于 2025-02-04 22:03:03">2025-02-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/reverse/">reverse</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h4 id="b-se64-wp"><a href="#b-se64-wp" class="headerlink" title="b@se64 wp"></a>b@se64 wp</h4><p>打开压缩包，获得一个可执行文件，用IDA pro打开</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250201163713098.png" alt="image-20250201163713098"></p>
+<p>shift+F12打开函数列表，发现start函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250201163749480.png" alt="image-20250201163749480"></p>
+<p>发现调用了140001154()函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250201163914388.png" alt="image-20250201163914388"></p>
+<p>进而找到14000184E函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250201163937213.png" alt="image-20250201163937213"></p>
+<p>是一个比较简单的字符串比较函数，下面那个疑似base64编码</p>
+<p>但是解码之后好像没什么含义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250201164017808.png" alt="image-20250201164017808"></p>
+<p>发现还有一个1400016D0函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250201164048310.png" alt="image-20250201164048310"></p>
+<p>让GPT审阅一下，其实就是base64进行了偏移的变体</p>
+<p>他顺便把解密代码也写了…，于是拿到flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">custom_base64_decode</span>(<span class="params">encoded_str</span>):</span><br><span class="line">    decoded_bytes = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(encoded_str), <span class="number">4</span>):</span><br><span class="line">        <span class="keyword">if</span> i + <span class="number">4</span> &gt; <span class="built_in">len</span>(encoded_str):</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># 防止越界</span></span><br><span class="line"></span><br><span class="line">        c1 = <span class="built_in">ord</span>(encoded_str[i]) - <span class="number">61</span></span><br><span class="line">        c2 = <span class="built_in">ord</span>(encoded_str[i+<span class="number">1</span>]) - <span class="number">61</span></span><br><span class="line">        c3 = <span class="built_in">ord</span>(encoded_str[i+<span class="number">2</span>]) - <span class="number">61</span></span><br><span class="line">        c4 = <span class="built_in">ord</span>(encoded_str[i+<span class="number">3</span>]) - <span class="number">61</span></span><br><span class="line"></span><br><span class="line">        b1 = (c1 &lt;&lt; <span class="number">2</span>) | (c2 &gt;&gt; <span class="number">4</span>)</span><br><span class="line">        b2 = ((c2 &amp; <span class="number">0xF</span>) &lt;&lt; <span class="number">4</span>) | (c3 &gt;&gt; <span class="number">2</span>)</span><br><span class="line">        b3 = ((c3 &amp; <span class="number">0x3</span>) &lt;&lt; <span class="number">6</span>) | c4</span><br><span class="line"></span><br><span class="line">        decoded_bytes.append(b1)</span><br><span class="line">        <span class="keyword">if</span> c3 != <span class="number">0</span>:</span><br><span class="line">            decoded_bytes.append(b2)</span><br><span class="line">        <span class="keyword">if</span> c4 != <span class="number">0</span>:</span><br><span class="line">            decoded_bytes.append(b3)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(decoded_bytes).decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 硬编码的 `Str2` 值：</span></span><br><span class="line">encoded_flag = <span class="string">"QcRaMcBdITjEJB&gt;MSRzKIrZ\\SPJ&gt;QbyoPpErTpNkVBzeJB&gt;MSRypZ`JOSSMqSTq="</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行解码：</span></span><br><span class="line">decoded_flag = custom_base64_decode(encoded_flag)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"FLAG:"</span>, decoded_flag)</span><br><span class="line"><span class="comment">#FLAG: RedBag1{H4PPY_N3W_Y3AR_2O25_4nd_h4PPY_3v3RYd4Y}</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Linear</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/03/re/">http://example.com/2025/02/03/re/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">C++ note blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CTF-re/">CTF re</a></div><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/" title="春秋GAME WP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">春秋GAME WP</div></div><div class="info-2"><div class="info-item-1">春秋GAME          WRITEUP一、个人信息个人名称：infinite 个人排名:647 二、解题情况  三、解题过程一、简单算术操作内容：拿到文件， 1ys~xdg/m@]mjkz@vl@z~lf&gt;b 给了这一串东西，显然经过加密了，题目提示异或，考虑先转化为二进制 使用文本转二进制工具[(https://uutool.cn/txt2bin/)，转换得到， 11111001 1110011 1111110 1111000 1100100 1100111 101111 1101101 1000000 1011101 1101101 1101010 1101011 1111010 1000000 1110110 1101100 1000000 1111010 1111110 1101100 1100110 111110 1100010 明文应该含有flag，将这flag四个字符转为二进制 11100110 1101100 1100001 1100111 根据异或的提示，反推密钥  1100110\oplus key =...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Linear</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Linear Algebra & C++</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#b-se64-wp"><span class="toc-number">1.</span> <span class="toc-text">b@se64 wp</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/03/re/" title="reverse">reverse</a><time datetime="2025-02-03T12:12:00.000Z" title="发表于 2025-02-03 20:12:00">2025-02-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/" title="春秋GAME WP">春秋GAME WP</a><time datetime="2025-01-17T08:53:00.000Z" title="发表于 2025-01-17 16:53:00">2025-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/20/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" title="微分方程">微分方程</a><time datetime="2024-12-20T12:12:00.000Z" title="发表于 2024-12-20 20:12:00">2024-12-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/picbed/" title="picturebed">picturebed</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/crypto/" title="crypto">crypto</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Linear</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
