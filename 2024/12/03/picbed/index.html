@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>picturebed | C++ note blog</title><meta name="author" content="Linear"><meta name="copyright" content="Linear"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="图床搭建过程 一、为什么要搭建图床 起因在于，在本地编写markdown文件时，我们的图片都是保存在自己的电脑本地的，typora编辑器根据本地路径，寻找图片，但是，当我们把markdown上传到博客网站或者论坛时，本地的图片无法访问 因此需要使用网络路径，来上传我们的图片，这就需要用一个网站来存储图片 不过， 郑学长已经提供了他的图床，感谢前人栽树，因此本文接下来的内容没有什么意义">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>picturebed | C++ note blog</title><meta name="author" content="Linear"><meta name="copyright" content="Linear"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="图床搭建过程一、为什么要搭建图床起因在于，在本地编写markdown文件时，我们的图片都是保存在自己的电脑本地的，typora编辑器根据本地路径，寻找图片，但是，当我们把markdown上传到博客网站或者论坛时，本地的图片无法访问 因此需要使用网络路径，来上传我们的图片，这就需要用一个网站来存储图片 不过， 郑学长已经提供了他的图床，感谢前人栽树，因此本文接下来的内容没有什么意义 而且，githu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="picturebed">
 <meta property="og:url" content="http://example.com/2024/12/03/picbed/index.html">
 <meta property="og:site_name" content="C++ note blog">
-<meta property="og:description" content="图床搭建过程 一、为什么要搭建图床 起因在于，在本地编写markdown文件时，我们的图片都是保存在自己的电脑本地的，typora编辑器根据本地路径，寻找图片，但是，当我们把markdown上传到博客网站或者论坛时，本地的图片无法访问 因此需要使用网络路径，来上传我们的图片，这就需要用一个网站来存储图片 不过， 郑学长已经提供了他的图床，感谢前人栽树，因此本文接下来的内容没有什么意义">
+<meta property="og:description" content="图床搭建过程一、为什么要搭建图床起因在于，在本地编写markdown文件时，我们的图片都是保存在自己的电脑本地的，typora编辑器根据本地路径，寻找图片，但是，当我们把markdown上传到博客网站或者论坛时，本地的图片无法访问 因此需要使用网络路径，来上传我们的图片，这就需要用一个网站来存储图片 不过， 郑学长已经提供了他的图床，感谢前人栽树，因此本文接下来的内容没有什么意义 而且，githu">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/head.png">
 <meta property="article:published_time" content="2024-12-03T09:31:40.000Z">
@@ -160,193 +160,78 @@
   isHighlightShrink: false,
   isToc: true,
   isShuoshuo: false
-}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">C++ note blog</span></a><a class="nav-page-title" href="/"><span class="site-name">picturebed</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">picturebed</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-07T13:34:21.065Z" title="更新于 2024-12-07 21:34:21">2024-12-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="图床搭建过程">图床搭建过程</h2>
-<h3 id="一为什么要搭建图床">一、为什么要搭建图床</h3>
-<p>起因在于，在本地编写markdown文件时，我们的图片都是保存在自己的电脑本地的，typora编辑器根据本地路径，寻找图片，但是，当我们把markdown上传到博客网站或者论坛时，本地的图片无法访问</p>
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">C++ note blog</span></a><a class="nav-page-title" href="/"><span class="site-name">picturebed</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">picturebed</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-07T13:34:21.065Z" title="更新于 2024-12-07 21:34:21">2024-12-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="图床搭建过程"><a href="#图床搭建过程" class="headerlink" title="图床搭建过程"></a>图床搭建过程</h2><h3 id="一、为什么要搭建图床"><a href="#一、为什么要搭建图床" class="headerlink" title="一、为什么要搭建图床"></a>一、为什么要搭建图床</h3><p>起因在于，在本地编写markdown文件时，我们的图片都是保存在自己的电脑本地的，typora编辑器根据本地路径，寻找图片，但是，当我们把markdown上传到博客网站或者论坛时，本地的图片无法访问</p>
 <p>因此需要使用网络路径，来上传我们的图片，这就需要用一个网站来存储图片</p>
-<p>不过，<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733405699025.png"
-alt="QQ_1733405699025" /></p>
+<p>不过，<img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733405699025.png" alt="QQ_1733405699025"></p>
 <p>郑学长已经提供了他的图床，感谢前人栽树，<del>因此本文接下来的内容没有什么意义</del></p>
 <p>而且，github十分不稳定，上传的图片有时加载不出来</p>
 <p>不过，由于我投入了时间搭建图床，出于沉没成本，我选择写一下搭建过程</p>
-<h3
-id="二用github貌似gitee也行仓库实现图床功能">二、用github(貌似Gitee也行？)仓库实现图床功能</h3>
-<h3 id="注册github账号">1.注册github账号</h3>
-<p>首先，注册一个github账号</p>
-<p>不过，国内github网站虽然可以访问，但十分不稳定，使用steam++(Watt
-Toolkit)，可以加快访问速度</p>
-<h3 id="创建一个仓库">2.创建一个仓库</h3>
-<p>注册完后</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733405553001.png"
-alt="QQ_1733405553001" />
-<figcaption aria-hidden="true">QQ_1733405553001</figcaption>
-</figure>
+<h3 id="二、用github-貌似Gitee也行？-仓库实现图床功能"><a href="#二、用github-貌似Gitee也行？-仓库实现图床功能" class="headerlink" title="二、用github(貌似Gitee也行？)仓库实现图床功能"></a>二、用github(貌似Gitee也行？)仓库实现图床功能</h3><h3 id="1-注册github账号"><a href="#1-注册github账号" class="headerlink" title="1.注册github账号"></a>1.注册github账号</h3><p>首先，注册一个github账号</p>
+<p>不过，国内github网站虽然可以访问，但十分不稳定，使用steam++(Watt Toolkit)，可以加快访问速度</p>
+<h3 id="2-创建一个仓库"><a href="#2-创建一个仓库" class="headerlink" title="2.创建一个仓库"></a>2.创建一个仓库</h3><p>注册完后</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733405553001.png" alt="QQ_1733405553001"></p>
 <p>选择your repositories</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733405846715.png"
-alt="QQ_1733405846715" />
-<figcaption aria-hidden="true">QQ_1733405846715</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733405846715.png" alt="QQ_1733405846715"></p>
 <p>new一个仓库</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406045528.png"
-alt="QQ_1733406045528" />
-<figcaption aria-hidden="true">QQ_1733406045528</figcaption>
-</figure>
-<p>在repository name上，填写仓库名字，比如image，选择public,add a readme
-file</p>
-<h3 id="配置token">3、配置token</h3>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406122007.png"
-alt="QQ_1733406122007" />
-<figcaption aria-hidden="true">QQ_1733406122007</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406045528.png" alt="QQ_1733406045528"></p>
+<p>在repository name上，填写仓库名字，比如image，选择public,add a readme file</p>
+<h3 id="3、配置token"><a href="#3、配置token" class="headerlink" title="3、配置token"></a>3、配置token</h3><p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406122007.png" alt="QQ_1733406122007"></p>
 <p>拖到下面选择developer settings</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406233471.png"
-alt="QQ_1733406233471" />
-<figcaption aria-hidden="true">QQ_1733406233471</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406316510.png"
-alt="QQ_1733406316510" />
-<figcaption aria-hidden="true">QQ_1733406316510</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406233471.png" alt="QQ_1733406233471"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406316510.png" alt="QQ_1733406316510"></p>
 <p>按照如图所示创建token</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406340479.png"
-alt="QQ_1733406340479" />
-<figcaption aria-hidden="true">QQ_1733406340479</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406340479.png" alt="QQ_1733406340479"></p>
 <p>需要输入密码</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406387887.png"
-alt="QQ_1733406387887" />
-<figcaption aria-hidden="true">QQ_1733406387887</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406387887.png" alt="QQ_1733406387887"></p>
 <p>note随便写，期限可以选择30天，但是等到期之后，需要重新修改</p>
 <p>选择repo</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406433971.png"
-alt="QQ_1733406433971" />
-<figcaption aria-hidden="true">QQ_1733406433971</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406433971.png" alt="QQ_1733406433971"></p>
 <p>然后就得到了token，中间那一大坨，<strong>记得保存，如果忘记了需要重新创建</strong></p>
 <p>接下来github上的操作就结束了</p>
-<h3 id="三picgo上的配置">三、picgo上的配置</h3>
-<h4 id="下载picgo">1、下载picgo</h4>
-<p>这个山大镜像站有</p>
-<p><a
-target="_blank" rel="noopener" href="https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo/v2.3.1/">v2.3.1</a></p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406649152.png"
-alt="QQ_1733406649152" />
-<figcaption aria-hidden="true">QQ_1733406649152</figcaption>
-</figure>
+<h3 id="三、picgo上的配置"><a href="#三、picgo上的配置" class="headerlink" title="三、picgo上的配置"></a>三、picgo上的配置</h3><h4 id="1、下载picgo"><a href="#1、下载picgo" class="headerlink" title="1、下载picgo"></a>1、下载picgo</h4><p>这个山大镜像站有</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo/v2.3.1/">v2.3.1</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406649152.png" alt="QQ_1733406649152"></p>
 <p>选择64位的下载，安装之后</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406670000.png"
-alt="QQ_1733406670000" />
-<figcaption aria-hidden="true">QQ_1733406670000</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406670000.png" alt="QQ_1733406670000"></p>
 <p>就来到了这个画面</p>
-<h4 id="配置github图床">2、配置github图床</h4>
-<p>选择图床设置，github图床</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406705246.png"
-alt="QQ_1733406705246" />
-<figcaption aria-hidden="true">QQ_1733406705246</figcaption>
-</figure>
+<h4 id="2、配置github图床"><a href="#2、配置github图床" class="headerlink" title="2、配置github图床"></a>2、配置github图床</h4><p>选择图床设置，github图床</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406705246.png" alt="QQ_1733406705246"></p>
 <p>新建一个图床</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406766272.png"
-alt="QQ_1733406766272" />
-<figcaption aria-hidden="true">QQ_1733406766272</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406766272.png" alt="QQ_1733406766272"></p>
 <p>图床配置名随便填</p>
-<p>仓库名写自己的github账号名字/仓库名字</p>
+<p>仓库名写自己的github账号名字&#x2F;仓库名字</p>
 <p>分支名，默认是main</p>
 <p>token，将刚刚得到的token复制上去</p>
 <p>存储路径，可以不写</p>
 <p>自定义域名，这个就重要了，前面我就因为这个问题，无法上传图片，网上有的域名已经失效了</p>
 <p>可以使用这个</p>
-<p>https://cdn.jsdelivr.net/gh/账号名字/仓库名</p>
-<p>其实就是gh/后面加上<strong>设定仓库名里填的</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/%E8%B4%A6%E5%8F%B7%E5%90%8D%E5%AD%97/%E4%BB%93%E5%BA%93%E5%90%8D">https://cdn.jsdelivr.net/gh/账号名字/仓库名</a></p>
+<p>其实就是gh&#x2F;后面加上<strong>设定仓库名里填的</strong></p>
 <p>设置完之后</p>
 <p>我们回到上传区</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406982872.png"
-alt="QQ_1733406982872" />
-<figcaption aria-hidden="true">QQ_1733406982872</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733406982872.png" alt="QQ_1733406982872"></p>
 <p>尝试拖拽一个图片上传，发现失败，原因是</p>
-<p><strong>开启了steam++</strong>！！</p>
+<p>**开启了steam++**！！</p>
 <p>把加速器关掉</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407059923.png"
-alt="QQ_1733407059923" />
-<figcaption aria-hidden="true">QQ_1733407059923</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407059923.png" alt="QQ_1733407059923"></p>
 <p>就会发现上传成功</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407097315.png"
-alt="QQ_1733407097315" />
-<figcaption aria-hidden="true">QQ_1733407097315</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407097315.png" alt="QQ_1733407097315"></p>
 <p>这时候就可以在github上找到上传的图片了</p>
 <p>至此，picgo也配置完了</p>
 <p>但是，我们总不能一个一个上传，还需要配置typora</p>
-<h3 id="四typora的配置">四、typora的配置</h3>
-<h4 id="首先下载typora">1、首先，下载typora</h4>
-<h4 id="点击文件偏好设置">2、点击文件，偏好设置</h4>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407171342.png"
-alt="QQ_1733407171342" />
-<figcaption aria-hidden="true">QQ_1733407171342</figcaption>
-</figure>
+<h3 id="四、typora的配置"><a href="#四、typora的配置" class="headerlink" title="四、typora的配置"></a>四、typora的配置</h3><h4 id="1、首先，下载typora"><a href="#1、首先，下载typora" class="headerlink" title="1、首先，下载typora"></a>1、首先，下载typora</h4><h4 id="2、点击文件，偏好设置"><a href="#2、点击文件，偏好设置" class="headerlink" title="2、点击文件，偏好设置"></a>2、点击文件，偏好设置</h4><p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407171342.png" alt="QQ_1733407171342"></p>
 <p>选择图像栏目</p>
 <p>上传服务设定选择picgoapp</p>
 <p>picgo路径，选择自己安装的路径</p>
 <p>配置完后，</p>
 <p>点击验证图片上传选项</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407256261.png"
-alt="QQ_1733407256261" />
-<figcaption aria-hidden="true">QQ_1733407256261</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733407256261.png" alt="QQ_1733407256261"></p>
 <p>发现验证成功</p>
 <p>然后，就配置完毕了</p>
-<h3 id="五使用">五、使用</h3>
-<p>当你写完markdown文件之后，选择格式</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/f072b7ffae0aecbbf3b4c03a125e6316.jpg"
-alt="f072b7ffae0aecbbf3b4c03a125e6316" />
-<figcaption
-aria-hidden="true">f072b7ffae0aecbbf3b4c03a125e6316</figcaption>
-</figure>
+<h3 id="五、使用"><a href="#五、使用" class="headerlink" title="五、使用"></a>五、使用</h3><p>当你写完markdown文件之后，选择格式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/f072b7ffae0aecbbf3b4c03a125e6316.jpg" alt="f072b7ffae0aecbbf3b4c03a125e6316"></p>
 <p>上传所有本地图片，然后，等待picgo上传完成</p>
-<p>f072b7ffae0aecbbf3b4c03a125e6316](https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/f072b7ffae0aecbbf3b4c03a125e6316.jpg</p>
+<p>f072b7ffae0aecbbf3b4c03a125e6316](<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/f072b7ffae0aecbbf3b4c03a125e6316.jpg">https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/f072b7ffae0aecbbf3b4c03a125e6316.jpg</a></p>
 <p>然后就发现图片变成了这种格式，接着</p>
 <p>直接把markdown复制到论坛或者博客上，即可</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Linear</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/12/03/picbed/">http://example.com/2024/12/03/picbed/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">C++ note blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/12/06/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">微分方程 一、微分方程的一些基本概念 一般地，含有未知函数导数或者微分的方程叫做微分方程，未知函数是一元函数式称为常微分方程 二、一阶微分方程的定义 \[ F(x,y,y&#39;)=0 \] 三、一阶微分方程的分类 可分离变量的微分方程 齐次微分方程 一阶线性微分方程 伯努利方程 四、可分离变量的微分方程 def \(形如\frac{dy}{dx}=f(x)g(y)\)的方程称为可分离变量的微分方程 \[ \frac{dy}{g(y)} = f(x)dx \\两边积分得: \int{\frac{dy}{g(y)}=\int{f(x)}dx}+C \\由此得到微分方程的通解(C为任意常数) \] Example \[ \frac{dy}{dx} = \frac{x}{y} \] 解： \[ ydy = xdx \\ 两边积分得 \int{ydy} = \int{xdx} \\ \frac{1}{2}y^2=\frac{1}{2}x^2 +C_0 \\ y^2 = x^2 + C \] Example...</div></div></div></a><a class="pagination-related" href="/2024/12/03/crypto/" title="crypto"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">crypto</div></div><div class="info-2"><div class="info-item-1">SSHCTF复现 一、Cignin 审阅代码 123456789101112131415161718192021222324252627282930313233343536373839404142from Crypto.Util.number import getPrime, getRandomNBitInteger, GCD, bytes_to_long, long_to_bytes, inverse# 从左至右依次为：获取随机素数，获取随机数，求最大公因数，把字节串转化为整数，?，??from secret import flag#从我的秘密文件读取flag (｡･∀･)ﾉﾞp = getPrime(512)# 获取一个随机的素数p，2 ** 511 &lt; p &lt; 2**512key1 = getRandomNBitInteger(510)# 获取一个随机数key1，2 ** 510 &lt;= key1 &lt; 2**511k1 = GCD(key1, p)# 求得key1与p的最大公因数k1while k1 != 1:    #...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Linear</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Linear Algebra & C++</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">图床搭建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A"><span class="toc-number">1.1.</span> <span class="toc-text">一、为什么要搭建图床</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%94%A8github%E8%B2%8C%E4%BC%BCgitee%E4%B9%9F%E8%A1%8C%E4%BB%93%E5%BA%93%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%BA%8A%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.</span> <span class="toc-text">二、用github(貌似Gitee也行？)仓库实现图床功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8Cgithub%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.3.</span> <span class="toc-text">1.注册github账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">2.创建一个仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEtoken"><span class="toc-number">1.5.</span> <span class="toc-text">3、配置token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89picgo%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">三、picgo上的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDpicgo"><span class="toc-number">1.6.1.</span> <span class="toc-text">1、下载picgo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgithub%E5%9B%BE%E5%BA%8A"><span class="toc-number">1.6.2.</span> <span class="toc-text">2、配置github图床</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9Btypora%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.</span> <span class="toc-text">四、typora的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E4%B8%8B%E8%BD%BDtypora"><span class="toc-number">1.7.1.</span> <span class="toc-text">1、首先，下载typora</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E6%96%87%E4%BB%B6%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.7.2.</span> <span class="toc-text">2、点击文件，偏好设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E4%BD%BF%E7%94%A8"><span class="toc-number">1.8.</span> <span class="toc-text">五、使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/06/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" title="无标题">无标题</a><time datetime="2024-12-06T06:01:50.963Z" title="发表于 2024-12-06 14:01:50">2024-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/picbed/" title="picturebed">picturebed</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/crypto/" title="crypto">crypto</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/webwp/" title="webwp">webwp</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/03/string/" title="string">string</a><time datetime="2024-12-03T09:31:40.000Z" title="发表于 2024-12-03 17:31:40">2024-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Linear</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Linear</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/12/03/picbed/">http://example.com/2024/12/03/picbed/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">C++ note blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/12/06/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">微分方程一、微分方程的一些基本概念一般地，含有未知函数导数或者微分的方程叫做微分方程，未知函数是一元函数式称为常微分方程 二、一阶微分方程的定义$$F(x,y,y’)&#x3D;0$$ 三、一阶微分方程的分类可分离变量的微分方程 齐次微分方程 一阶线性微分方程 伯努利方程 四、可分离变量的微分方程def $形如\frac{dy}{dx}&#x3D;f(x)g(y)$的方程称为可分离变量的微分方程$$\frac{dy}{g(y)} &#x3D; f(x)dx\两边积分得: \int{\frac{dy}{g(y)}&#x3D;\int{f(x)}dx}+C\由此得到微分方程的通解(C为任意常数)$$Example$$\frac{dy}{dx} &#x3D; \frac{x}{y}$$解：$$ydy &#x3D; xdx \ 两边积分得\int{ydy} &#x3D; \int{xdx}\ \frac{1}{2}y^2&#x3D;\frac{1}{2}x^2 +C_0\ y^2 &#x3D; x^2 +...</div></div></div></a><a class="pagination-related" href="/2024/12/03/crypto/" title="crypto"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">crypto</div></div><div class="info-2"><div class="info-item-1">SSHCTF复现一、Cignin审阅代码 123456789101112131415161718192021222324252627282930313233343536373839404142from Crypto.Util.number import getPrime, getRandomNBitInteger, GCD, bytes_to_long, long_to_bytes, inverse# 从左至右依次为：获取随机素数，获取随机数，求最大公因数，把字节串转化为整数，?，??from secret import flag#从我的秘密文件读取flag (｡･∀･)ﾉﾞp = getPrime(512)# 获取一个随机的素数p，2 ** 511 &lt; p &lt; 2**512key1 = getRandomNBitInteger(510)# 获取一个随机数key1，2 ** 510 &lt;= key1 &lt; 2**511k1 = GCD(key1, p)# 求得key1与p的最大公因数k1while k1 != 1:    #...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Linear</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Linear Algebra & C++</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">图床搭建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A"><span class="toc-number">1.1.</span> <span class="toc-text">一、为什么要搭建图床</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%94%A8github-%E8%B2%8C%E4%BC%BCGitee%E4%B9%9F%E8%A1%8C%EF%BC%9F-%E4%BB%93%E5%BA%93%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%BA%8A%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.</span> <span class="toc-text">二、用github(貌似Gitee也行？)仓库实现图床功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B3%A8%E5%86%8Cgithub%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.3.</span> <span class="toc-text">1.注册github账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">2.创建一个仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AEtoken"><span class="toc-number">1.5.</span> <span class="toc-text">3、配置token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81picgo%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">三、picgo上的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BDpicgo"><span class="toc-number">1.6.1.</span> <span class="toc-text">1、下载picgo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AEgithub%E5%9B%BE%E5%BA%8A"><span class="toc-number">1.6.2.</span> <span class="toc-text">2、配置github图床</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81typora%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.</span> <span class="toc-text">四、typora的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%A6%96%E5%85%88%EF%BC%8C%E4%B8%8B%E8%BD%BDtypora"><span class="toc-number">1.7.1.</span> <span class="toc-text">1、首先，下载typora</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E7%82%B9%E5%87%BB%E6%96%87%E4%BB%B6%EF%BC%8C%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.7.2.</span> <span class="toc-text">2、点击文件，偏好设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BD%BF%E7%94%A8"><span class="toc-number">1.8.</span> <span class="toc-text">五、使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/01/re/" title="无标题">无标题</a><time datetime="2025-02-01T08:36:24.602Z" title="发表于 2025-02-01 16:36:24">2025-02-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/17/%E6%98%A5%E7%A7%8B%E8%B5%9BWP/" title="无标题">无标题</a><time datetime="2025-01-17T05:58:56.768Z" title="发表于 2025-01-17 13:58:56">2025-01-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/29/%E6%95%B0%E7%94%B5%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="无标题">无标题</a><time datetime="2024-12-29T12:29:06.409Z" title="发表于 2024-12-29 20:29:06">2024-12-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/28/%E6%95%B0%E7%94%B5%E7%AC%AC%E4%BA%94%E7%AB%A0%E4%BD%9C%E4%B8%9A/" title="无标题">无标题</a><time datetime="2024-12-28T05:48:38.907Z" title="发表于 2024-12-28 13:48:38">2024-12-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/14/%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="无标题">无标题</a><time datetime="2024-12-14T06:35:06.515Z" title="发表于 2024-12-14 14:35:06">2024-12-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Linear</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
