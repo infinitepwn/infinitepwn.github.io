@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++ note blog | C++ note blog</title><meta name="author" content="Linear"><meta name="copyright" content="Linear"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="数据结构与算法笔记 一、概论 1.数据结构 2.算法 3.前置知识：类模板 二、线性表(父类) 定义：线性表是由元素组成的一种有限且有序的序列 特征：元素间满足一对一的关系，所有元素排成现行序列 二元组B&#x3D;(K,R) \[ K&#x3D;\{k_0,k_1,..,k_{n-1}\} \] \(k_0\)称称为开始结点，最后一个是终止结点，n称为线性表的长度，n&#x3D;0为空表 具有反对称性(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ note blog">
+<meta property="og:url" content="http://example.com/2025/03/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="C++ note blog">
+<meta property="og:description" content="数据结构与算法笔记 一、概论 1.数据结构 2.算法 3.前置知识：类模板 二、线性表(父类) 定义：线性表是由元素组成的一种有限且有序的序列 特征：元素间满足一对一的关系，所有元素排成现行序列 二元组B&#x3D;(K,R) \[ K&#x3D;\{k_0,k_1,..,k_{n-1}\} \] \(k_0\)称称为开始结点，最后一个是终止结点，n称为线性表的长度，n&#x3D;0为空表 具有反对称性(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/head.png">
+<meta property="article:published_time" content="2025-03-27T12:21:40.057Z">
+<meta property="article:modified_time" content="2025-03-27T12:21:14.502Z">
+<meta property="article:author" content="Linear">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://example.com/2025/03/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/",
+  "image": "http://example.com/img/head.png",
+  "datePublished": "2025-03-27T12:21:40.057Z",
+  "dateModified": "2025-03-27T12:21:14.502Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Linear",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/03/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++ note blog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">C++ note blog</span></a><a class="nav-page-title" href="/"><span class="site-name">C++ note blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-27T12:21:40.057Z" title="发表于 2025-03-27 20:21:40">2025-03-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-27T12:21:14.502Z" title="更新于 2025-03-27 20:21:14">2025-03-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="数据结构与算法笔记">数据结构与算法笔记</h1>
+<h2 id="一概论">一、概论</h2>
+<h3 id="数据结构">1.数据结构</h3>
+<h3 id="算法">2.算法</h3>
+<h3 id="前置知识类模板">3.前置知识：类模板</h3>
+<h2 id="二线性表父类">二、线性表(父类)</h2>
+<p>定义：线性表是由元素组成的一种有限且有序的序列</p>
+<p>特征：元素间满足一对一的关系，所有元素排成现行序列</p>
+<p>二元组B=(K,R) <span class="math display">\[
+K=\{k_0,k_1,..,k_{n-1}\}
+\]</span> <span
+class="math inline">\(k_0\)</span>称称为开始结点，最后一个是终止结点，n称为线性表的长度，n=0为空表</p>
+<p>具有反对称性(每个元素至多一个前驱和后继)和传递性</p>
+<p>节点集K中有一个唯一的开始结点，没有前驱，有唯一后继</p>
+<p>有限集K存在唯一的终止结点，有唯一前驱，但没有后继</p>
+<p>顺序表链表等涉及的数据类型案例如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">List</span>&#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">append</span><span class="params">(<span class="type">const</span> T value)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> p,<span class="type">const</span> T value)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">delete</span><span class="params">(<span class="type">const</span> <span class="type">int</span> p)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">getValue</span><span class="params">(<span class="type">const</span> <span class="type">int</span> p,T&amp; value)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">getPos</span><span class="params">(<span class="type">int</span> &amp; p,<span class="type">const</span> T value)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="顺序表子类">1.顺序表（子类）</h3>
+<p>我们可以继承线性表的类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">arrList</span> : <span class="keyword">public</span> List&lt;T&gt;</span><br></pre></td></tr></table></figure>
+<p>按照数组存储的（存储空间连续）</p>
+<p>逻辑结构和物理结构类似，都是线性的</p>
+<p>如果设<span
+class="math inline">\(loc(k_0)=b\)</span>,每个元素占用L个存储单位 <span
+class="math display">\[
+loc(k_i) = b + i\times L
+\]</span> 顺序表的插入</p>
+<p>把对应位置腾出来，之前每个元素往后移动一位</p>
+<p>就是把后面的都挤下去</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">bool</span> List&lt;T&gt;::<span class="built_in">insert</span>(<span class="type">const</span> <span class="type">int</span> p, <span class="type">const</span> T value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (Curlen &gt;= maxSize || p&lt;<span class="number">0</span> || p &gt; curlen) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">/*检查顺序表是否溢出，插入位置是否合法*/</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = curlen; i &gt; p; i--) &#123;</span><br><span class="line">        data[i] = data[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    data[p] = value;</span><br><span class="line">    curLen++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>删除也是类似</p>
+<p>时间复杂度都是O(n)</p>
+<h3 id="链表">2.链表</h3>
+<p>逻辑结构也是线性，但是是按照指针来存储的（链式）</p>
+<p>单链表常常引入一个头结点，作为表头，避免对空表的处理（操作方便），和后续操作统一，不然第一个是把地址给指针，第二个却是给结构体里的一个成员</p>
+<p>我们一般把头结点和尾结点的指针写在一起</p>
+<p>时间复杂度源于寻找元素</p>
+<h2 id="三栈与队列">三、栈与队列</h2>
+<p>栈是限定仅在表尾进行插入和删除操作的线性表</p>
+<p>允许插入和删除的那一端叫做栈顶top</p>
+<p>另一端叫做栈底bottom</p>
+<p>不含任何数据元素的栈叫做空栈</p>
+<p>栈是后进后出的线性表，LIFO结构</p>
+<p>顺序栈以尾部作为栈顶，链表栈以首元素为栈顶</p>
+<p>(让push和pop操作时间复杂度在O(1))</p>
+<p>维护一个单调栈</p>
+<h2 id="四串">四、串</h2>
+<h3 id="传统模式匹配">1.传统模式匹配</h3>
+<p>考虑主字符串</p>
+<p>a b a b a c a b a c a b a b</p>
+<p>子字符串</p>
+<p>a b a c a b ab</p>
+<p>判断子字符串是否在主字符串中，一个简单的思路是求出主字符串和子字符串长度一样的字符串，然后判断是否相等</p>
+<p>思路就是遍历主字符串的首字母，然后往后延长，让长度和子字符串一样，然后判断是否相等</p>
+<p>我们考虑两个指标i和j，i遍历主串，j遍历子串</p>
+<p>比较s1[i+j]和s2[j]，如果一样就继续，不一样直接让i下一个、</p>
+<h3 id="kmp算法">2.KMP算法</h3>
+<h3
+id="利用已经匹配的进行跳转"><strong>利用已经匹配的进行跳转</strong></h3>
+<p>由于子字符串中可能有重复的内容</p>
+<p>也就是前缀和后缀相等，这使得我们可以省略一些遍历的步骤，比如i可以直接跳好几个</p>
+<p>子字符串有什么样的结构可以简化呢？</p>
+<p>就是子字符串前面的k个和从后面往前数k个，如果一样的话</p>
+<p>其实就是利用主字符串的尾部，如果能和子字符串的头部一样，就可以省一些子字符串的遍历</p>
+<p>比如说abba，前面有a，后面也有a，那么比如说主字符串是abbc</p>
+<p>这时候我们其实比对到abbc了，也就是说主字符串跑到第4位</p>
+<p>由于在j=3的时候失败了，所以也就是说j=2的时候，主字符串末尾是b，而子字符串头是a，这个压根没有一样的，所以必须要重新比了，让j=0，i++</p>
+<p>再考虑一个例子abacab，主字符串是abacac，在j=5的时候出问题了，然后我们看j=4，从他往前看，只有一个a和前缀a一样，所以这时候应该让j=1，i++</p>
+<p>我们把j的变化存入一个next数组就可以了，这个实际上和主字符串是没有关系的，只和子字符串有关</p>
+<p>也就是说</p>
+<p>如果j=0就出问题的话，那就和前面暴力一样了，直接i+1开始比就行了，那我们就要让j=0和i+1去比，所以让next[j]
+= -1,然后后面+一下就变成0了</p>
+<p>next[j] = -1</p>
+<p>然后如果有前缀和后缀可以匹配，那这就好办了，有多少个一样，就让j从哪里开始就行了
+<span class="math display">\[
+next[j] = \max\{k|P_0P_1...P_{k-1} = P_{j-k+1}...P_{j-1}\}
+\]</span> 然后如果没有可以匹配的呢，那就让j=0重新开始</p>
+<h3 id="next数组的优化nextval">next数组的优化nextval</h3>
+<p>而next向量是可以优化的，因为如果第j个跳转之后，和第j个还是一样的话，那其实可以直接再跳转一次，可以省略这一步再比较</p>
+<p>换而言之。假设next[j] =
+P[j],因为j不匹配，所以next[j]肯定也不匹配，所以可以再next</p>
+<p>换而言之，直接令next[j] = next[next[j]]就可以了</p>
+<p><strong>一个问题，需不需要考虑多次跳转？即使省略了一步跳转，有没有可能跳转之后还是一样的？</strong></p>
+<p>实际上不用考虑，因为跳转之后的k肯定在j前面，而k已经被优化了，所以我们跳一步就已经是最佳的了</p>
+<h2 id="五二叉树">五、二叉树</h2>
+<p>前面链表，每一个节点后继只有一个节点，但是如果一个结点后继有多个结点，但是每个结点只有一个前驱，那这就构成一个树状的结构，然后如果最多只有两个后继结点，那就是二叉树</p>
+<p>两个后继结点分左子树和右子树</p>
+<p><strong>结点拥有的子树数称为结点的度，度为0的结点称为叶子结点</strong></p>
+<p>二叉树有五种形态</p>
+<p>空二叉树</p>
+<p>只有一个根结点</p>
+<p>有左子树无右子树</p>
+<p>有右子树无左子树</p>
+<p>左右子树都有</p>
+<p>二叉树又可以分为满二叉树，完全二叉树</p>
+<p><strong>满二叉树：</strong></p>
+<p><strong>所有分支结点都有左子树和右子树，并且所有叶子都在同一层</strong></p>
+<p><strong>完全二叉树：</strong></p>
+<p><strong>对每个结点编号后，编号为i的结点与同样满二叉树中结点在二叉树位置中完全相同，称为完全二叉树</strong></p>
+<p>扩充二叉树：</p>
+<p>把空的子树补上，假设补了m个子树</p>
+<p>那么此时连接的线数是n+m-1</p>
+<p>又因为补完之后，每个结点都有两个子树了，所以有2n个线数</p>
+<p>所以 <span class="math display">\[
+n+m - 1= 2n
+\]</span> 得 <span class="math display">\[
+m = n+1
+\]</span>
+从扩充的二叉树的根到每个外部结点（没扩充之前的结点）的路径的长度之和称为外部路径长度E</p>
+<p>扩充的二叉树从根到每个内部节点的路径长度之和为内部路径长度I</p>
+<p>有关系 <span class="math display">\[
+E = I+2n
+\]</span> 每个内部节点贡献两个子树，所以+2n</p>
+<h3 id="二叉树的性质">二叉树的性质</h3>
+<p>计算深度 <span class="math display">\[
+h = [\log_2{(n+1)}]
+\]</span> 因为 <span class="math display">\[
+2^{h-1} - 1 &lt; n \leq 2^{h} - 1\\
+2^{h-1} &lt; n+1 \leq 2^{h}
+\]</span></p>
+<h2 id="五哈希表">五、哈希表</h2>
+<p>可以用散列函数，生成每个值对应的地址，直接根据散列地址，可以在O(1)内查到元素，比如两数之和</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums,<span class="type">int</span> target)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; hashtable; #创建hash表</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;nums.<span class="built_in">size</span>();++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">auto</span> it = hashtable.<span class="built_in">find</span>(target - nums[i]) #查找</span><br><span class="line">			<span class="keyword">if</span> (it != hashtable.<span class="built_in">end</span>()) <span class="comment">/*如果有直接返回，不然就把i加入哈希表*/</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">return</span>(it-&gt;second,i)</span><br><span class="line">			&#125;</span><br><span class="line">			hahshtable[nums[i]] = i;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="keyword">return</span> &#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Linear</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/03/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">http://example.com/2025/03/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">C++ note blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/24/hash/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">1.Prime 签到题就没做出来 本来以为是枚举，因为p，q都只由3,7构成，而且有773位，感觉这样的素数，是相当稀疏的 感觉没几个，然后跑了半个小时，也没出来 然后想到猜几位，比如n末尾是9，p,q末尾肯定是33，或者77 然后当时觉得这样时间复杂度太高，没往下想 于是看了wp，原来用DFS就行，算法没学好还是吃亏，学习了一下 123456789101112def dfs(p, q):    l = len(p)    if l == 773:        plist.append(p)    else:        pp = int(p)        qq = int(q)        if pp * qq % 10 ** l == n % 10 ** l:            dfs(&#x27;3&#x27; + p, &#x27;7&#x27; + q)            dfs(&#x27;3&#x27; + p, &#x27;3&#x27; + q)            dfs(&#x27;7&#x27; + p,...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Linear</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Linear Algebra & C++</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">数据结构与算法笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E6%A6%82%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text">一、概论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%B1%BB%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.前置知识：类模板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%88%B6%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">二、线性表(父类)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%AD%90%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.顺序表（子类）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.链表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97"><span class="toc-number">1.3.</span> <span class="toc-text">三、栈与队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E4%B8%B2"><span class="toc-number">1.4.</span> <span class="toc-text">四、串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.传统模式匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kmp%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.KMP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%B7%B2%E7%BB%8F%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BF%9B%E8%A1%8C%E8%B7%B3%E8%BD%AC"><span class="toc-number">1.4.3.</span> <span class="toc-text">利用已经匹配的进行跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#next%E6%95%B0%E7%BB%84%E7%9A%84%E4%BC%98%E5%8C%96nextval"><span class="toc-number">1.4.4.</span> <span class="toc-text">next数组的优化nextval</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.5.</span> <span class="toc-text">五、二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text">二叉树的性质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">1.6.</span> <span class="toc-text">五、哈希表</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="无标题">无标题</a><time datetime="2025-03-27T12:21:40.057Z" title="发表于 2025-03-27 20:21:40">2025-03-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/24/hash/" title="无标题">无标题</a><time datetime="2025-03-24T12:40:41.667Z" title="发表于 2025-03-24 20:40:41">2025-03-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/23/cryptohack/" title="无标题">无标题</a><time datetime="2025-03-23T14:30:21.050Z" title="发表于 2025-03-23 22:30:21">2025-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/22/nctf/" title="无标题">无标题</a><time datetime="2025-03-22T04:09:43.891Z" title="发表于 2025-03-22 12:09:43">2025-03-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/16/hgame/" title="无标题">无标题</a><time datetime="2025-03-16T12:23:53.044Z" title="发表于 2025-03-16 20:23:53">2025-03-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Linear</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
