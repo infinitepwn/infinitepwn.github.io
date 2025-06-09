@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>infinite_blog | infinite_blog</title><meta name="author" content="infinite"><meta name="copyright" content="infinite"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="外排序 由于内存有限，我们需要把外存的数据分成好几段，然后把这些段数据分别排序 这些已排序的段称为顺串 假设有m个顺串，每次对k个顺串进行归并 那么需要归并\(\log_k m\)次，为了提高效率，一个是降低顺串的个数，另一个就是增加归并的k 1.置换选择排序 假设我们有超过内存的数据要进行排序，假设内存为c，那么每次得到长度为c的初始顺串 那么，有没有办法增加顺串的长度呢，可ff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="infinite_blog">
+<meta property="og:url" content="http://infinitepwn.github.io/2025/06/02/%E5%A4%96%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="infinite_blog">
+<meta property="og:description" content="外排序 由于内存有限，我们需要把外存的数据分成好几段，然后把这些段数据分别排序 这些已排序的段称为顺串 假设有m个顺串，每次对k个顺串进行归并 那么需要归并\(\log_k m\)次，为了提高效率，一个是降低顺串的个数，另一个就是增加归并的k 1.置换选择排序 假设我们有超过内存的数据要进行排序，假设内存为c，那么每次得到长度为c的初始顺串 那么，有没有办法增加顺串的长度呢，可ff">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://infinitepwn.github.io/img/head.png">
+<meta property="article:published_time" content="2025-06-02T13:25:48.708Z">
+<meta property="article:modified_time" content="2025-06-08T14:33:39.921Z">
+<meta property="article:author" content="infinite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://infinitepwn.github.io/img/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://infinitepwn.github.io/2025/06/02/%E5%A4%96%E6%8E%92%E5%BA%8F/",
+  "image": "http://infinitepwn.github.io/img/head.png",
+  "datePublished": "2025-06-02T13:25:48.708Z",
+  "dateModified": "2025-06-08T14:33:39.921Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "infinite",
+      "url": "http://infinitepwn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://infinitepwn.github.io/2025/06/02/%E5%A4%96%E6%8E%92%E5%BA%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'infinite_blog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">infinite_blog</span></a><a class="nav-page-title" href="/"><span class="site-name">infinite_blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-02T13:25:48.708Z" title="发表于 2025-06-02 21:25:48">2025-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-08T14:33:39.921Z" title="更新于 2025-06-08 22:33:39">2025-06-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="外排序">外排序</h1>
+<p>由于内存有限，我们需要把外存的数据分成好几段，然后把这些段数据分别排序</p>
+<p><strong>这些已排序的段称为顺串</strong></p>
+<p>假设有m个顺串，每次对k个顺串进行归并</p>
+<p>那么需要归并<span class="math inline">\(\log_k
+m\)</span>次，为了提高效率，一个是降低顺串的个数，另一个就是增加归并的k</p>
+<h2 id="置换选择排序">1.置换选择排序</h2>
+<p>假设我们有超过内存的数据要进行排序，假设内存为c，那么每次得到长度为c的初始顺串
+那么，有没有办法增加顺串的长度呢，可ff以考虑用堆来实现
+假设我们要求从小到大排序，那么维护一个长度为c的最小堆，可以得到多长的顺序串呢？
+每次取堆顶的时候，如果堆顶元素大于已经在输出缓存区的元素，那么就可以取，否则我们就不应该取，这样会破坏已经有序的输出缓存区，那么这时候，我们就只能取堆中剩下的元素，
+我们把不能取的那个元素丢到最后，然后继续维护堆，这时候堆的长度为c-1，直到有c个都不能取的元素
+由于取每个元素大于输出缓存区的元素的概率是1/2,那么这个顺串的期望长度是2c
+这样就扩大了读取的顺串长度，平均扩大了两倍</p>
+<p>用到的堆</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//堆其实就是一个顺序存放的二叉树</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Minheap</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="type">int</span>* heap;</span><br><span class="line">	<span class="type">int</span> Maxsize;</span><br><span class="line">	<span class="type">int</span> size;</span><br><span class="line">	<span class="built_in">Minheap</span>(<span class="type">int</span> heapsize)</span><br><span class="line">	&#123;</span><br><span class="line">		size = <span class="number">0</span>;</span><br><span class="line">		Maxsize = heapsize;</span><br><span class="line">		heap = <span class="keyword">new</span> <span class="type">int</span>[Maxsize];</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">Minheap</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span>[]heap;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Siftup</span><span class="params">(<span class="type">int</span> index)</span> <span class="comment">//适用于添加元素的时候，调整添加元素的那一条路径</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">while</span> (index &gt; <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> parent = (index - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (heap[index] &gt;= heap[parent]) <span class="keyword">break</span>;</span><br><span class="line">			<span class="built_in">swap</span>(heap[index], heap[parent]);</span><br><span class="line">			index = parent;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//调整堆（使用于删除元素的时候，向下调整）</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Siftdown</span><span class="params">(<span class="type">int</span> index)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">while</span> (index &lt; size / <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> lchild = index * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">			<span class="type">int</span> rchild = index * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">			<span class="type">int</span> smallest = lchild;</span><br><span class="line">			<span class="keyword">if</span> (lchild &lt; size &amp;&amp; rchild &lt; size)</span><br><span class="line">			&#123;</span><br><span class="line">				smallest = heap[lchild] &lt; heap[rchild] ? lchild : rchild;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (heap[index] &gt; heap[smallest]) <span class="built_in">swap</span>(heap[index], heap[smallest]);</span><br><span class="line">			index = smallest;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> val)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (size == Maxsize) <span class="keyword">return</span>;</span><br><span class="line">		heap[size] = val;</span><br><span class="line">		<span class="built_in">Siftup</span>(size);</span><br><span class="line">		size++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>实现堆之后，就可以介绍我们的置换选择算法了</p>
+<p>置换选择算法的步骤包括</p>
+<p>1.初始化堆</p>
+<p>假设内存大小是ram个int</p>
+<p>这时候要分类，如果读取的数据小于等于ram个，那么直接就是内排序了，直接堆排序</p>
+<p>如果读取的数据大于ram，那么就先读取ram个数据，初始化最小堆</p>
+<p>2.继续读取，直到堆为空</p>
+<p>此时已经有一个堆顶，就是ram中最小的，我们输出，那么这时候堆空出一个</p>
+<p>我们继续读取，分两种情况</p>
+<p>如果下一个元素大于等于输出缓存区的，那么就可以进堆，我们直接放到堆顶，然后往下调整，因为这时候堆顶空了，直接放在堆顶是最方便的</p>
+<p>如果小于的话，不能进堆，因为这样就会破坏有序结构，但是我们总不能把这个数据丢了吧，所以只能把堆的大小缩小一个，然后把这个元素放到最后，然后我们把最后一个元素放到堆顶，为什么是最后一个元素呢，我们主要是不想破坏已经形成堆的子树，所以我们要选择叶子结点放到堆顶，那叶子结点很多，为什么是最后一个呢，因为如果选择其他叶子节点，为了保持完全二叉树的顺序结构，就需要把后面的补上去，比如选择6这个位置，如果放到堆顶，那5-7之间就断开了，这样就需要把7后面的都往左平移一个，这就需要很大的开销，所以选择最后一个是最好的</p>
+<p>那么总有一天堆会为空，那么这时候，我们就完成了一个顺串，而新的这些元素又填满了ram，我们调整一下堆，这就又回到了步骤1</p>
+<h2 id="二路归并">2.二路归并</h2>
+<p>经过前面的选择置换排序，我们得到了若干个有序的顺串</p>
+<p>那么，如何将这些顺串合并呢？</p>
+<p>一个简单的思路是，每次从比较这些顺串的第一个，选最小的，然后不断循环</p>
+<p>但这样无疑非常耗时，假设有m个顺串，那么选第一个最小的就需要m-1次比较，最坏的情况是顺串本来就排好顺序，那么假设第一个顺串有<span
+class="math inline">\(m_1\)</span>个元素，则前<span
+class="math inline">\(m_1\)</span>个全是从第一个取的，顺串个数没有变少，所以每个都要<span
+class="math inline">\(m-1\)</span>次比较，总共需要 <span
+class="math display">\[
+m_1(m-1)+m_2(m-2)+...+m_{m-1} = m^2-m_m -m_1-2m_2-...
+\]</span> 由于 <span class="math display">\[
+m_1+m_2+...+m_m = m
+\]</span> 所以 <span class="math display">\[
+m\leq m_1+2m_2+...+mm_m \leq m^2
+\]</span> 那么 <span class="math display">\[
+m^2-m_m-(m^2-mm_m)\leq m^2-m_m -m_1-2m_2-... \leq m^2-m_m-(m-mm_m)
+\]</span> 即 <span class="math display">\[
+(m-1)m_m \leq m^2-m_m -m_1-2m_2-... \leq (m-1)(m+m_m)
+\]</span> 显然时间复杂度是<span
+class="math inline">\(O(m^2)\)</span>，和顺串的个数平方有关，如果我们考虑的是总个数n的话，假设有k个顺串</p>
+<p>那么时间复杂度就是<span class="math inline">\(O(kn)\)</span>
+显然n大于k，不过这样看上去有比<span
+class="math inline">\(k^2\)</span>小的错觉</p>
+<p>那么这样显然不好，我们可以考虑两两合并</p>
+<p>假设两个顺串的长度为m_1,m_2</p>
+<p>那么合并的时间复杂度就是<span
+class="math inline">\(O(\min\{m_1,m_2\})\)</span></p>
+<p>那么这样的话，每个元素都经过了<span class="math inline">\(\log
+k\)</span>次移动，所以时间复杂度来到了<span
+class="math inline">\(O(n\log k)\)</span></p>
+<p>然后合并完的会进入下一轮，那么这就是一个带权重的路径问题</p>
+<p>我们可以用Huffman树，让长度长的尽量在上层</p>
+<p>这样就可以优化到<span
+class="math inline">\(O(n\log_k)\)</span>,而且常数比上面的小</p>
+<h2 id="三k路归并-选择树">三、k路归并-选择树</h2>
+<p>由于二路归并的轮数比较多，需要多次读取硬盘，可以</p>
+<p>提高每次归并的个数</p>
+<p>我们思考一下，比较n个数，一共需要n-1次两两比较，</p>
+<p>败者树是一个完全二叉树，如果有n个叶子结点，那么就有n-1个内部结点</p>
+<p>那么显然，我们可以把内部节点作为比较结果，n个叶子结点是比较的对象</p>
+<p>我们用Data数组存放叶子结点，Loser数组存放败方（也就是内部结点）</p>
+<p>我们要用Loser数组的第0个存放最后的结果，所以两个数组的长度都是n</p>
+<p>显然Data数组的结点索引加上n-1,就是二叉树里的位置</p>
+<p>那么它的父节点就是 <span class="math display">\[
+[\frac{i+n-1}{2}]
+\]</span> 但是又由于开头那个0，所以加上1，那也就是 <span
+class="math display">\[
+[\frac{i+n}{2}]
+\]</span> 首先先初始化一个败者树</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">adjust</span><span class="params">(<span class="type">int</span> index)</span> <span class="comment">//调整index所在路径</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> parent = (index + Segmentnum) / <span class="number">2</span>;</span><br><span class="line">	<span class="comment">//即使是败者树，我们也要维护赢者</span></span><br><span class="line">	<span class="type">int</span> winner = index;</span><br><span class="line">	<span class="keyword">while</span> (parent &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (Loser[parent] == <span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">swap</span>(winner, Loser[parent]);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;<span class="comment">//初始化直接让输者是自己就行</span></span><br><span class="line">		<span class="keyword">else</span> <span class="comment">//比较当前index的数据和输者的数据，如果更大，由于我们默认index是赢者，所以交换一下就行了</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (Data[winner].<span class="built_in">front</span>() &gt; Data[Loser[parent]].<span class="built_in">front</span>())</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">swap</span>(winner, Loser[parent]);</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;</span><br><span class="line">		parent /= <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Loser[<span class="number">0</span>] = winner; <span class="comment">//注意这个winner只是从0-index的winner，不过只要我们把index遍历一遍</span></span><br><span class="line">	<span class="comment">//就是全局的winner了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类比堆，初始化本身其实也是一种调整，所以我们假设我们已经有一个败者树</p>
+<p>如果一个发生变化，如何调整回复败者树的结构？</p>
+<p>显然我们顺着变化的index往上调整就是了，因为只影响了这条路径，winner记录当前的胜者</p>
+<p>先假设变化的那个值是胜者，然后和父节点比，如果输了就交换</p>
+<p>从这里也可以看出败者树比堆的比较次数少，因为堆要和兄弟节点和父节点比，需要比两次</p>
+<p>同时胜者树因为需要维护胜者，无论输赢，都需要更新父节点，因为我不知道之前的父节点赢得是谁，发生变化之后，如果比父节点小，如果父节点是原来的这个节点，那我不能确定此时他是否还是胜者，如果父节点是兄弟节点，也就是兄弟节点胜出，那么此时胜者不需要改变，但是我不知道这个父节点到底是谁，所有我都得更新，败者树只要比败者强，就不更新，无论之前的败者是谁，败者树有1/2的概率不需要更新父节点</p>
+<p>所以败者树显然是最佳选择</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://infinitepwn.github.io">infinite</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://infinitepwn.github.io/2025/06/02/%E5%A4%96%E6%8E%92%E5%BA%8F/">http://infinitepwn.github.io/2025/06/02/%E5%A4%96%E6%8E%92%E5%BA%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://infinitepwn.github.io" target="_blank">infinite_blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/06/07/Lattice/" title="苦读格密码-lattice"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">苦读格密码-lattice</div></div><div class="info-2"><div class="info-item-1">对格的理解还是太肤浅了，这里加强一下理论学习 一、格的定义 首先介绍一些基本概念 中的内积 定义欧几里得范数  为了研究整数集里的问题 假设在中有n个线性无关的向量，m&gt;n 则  就是说只考虑向量的整系数线性组合，这在平面内会生成很多离散的点，实现了分割平面  长得就像晶胞一样（Crystal) 基本平行多面体（Fundamental Parallelepiped） 给定基，我们可以定义一个基本平行多面体：  这个平行多面体可以看作格的“最小重复单元”，类似于晶体的“晶胞”。 需要遍历0到1，以覆盖这个晶胞  这些向量称为格L的基，m是维数，n是格L的秩 格基可以写成一个矩阵  不同的基可以生成同一个格，不过，我们可以用晶胞作为每个格的区分标准，那么我们考察这个晶胞的体积，因为行列式本身就是对空间的拉伸程度，那我们计算这个晶胞体积，其实就是格的行列式  但是如果不满秩呢？  那其实好像也能用每个线段长度来定义这个晶胞 换而言之，我们只计算n维子空间上的晶胞大小就行了，这个其实就是  比如这里行列式是，那么这个间隔就是 Kernal...</div></div></div></a><a class="pagination-related" href="/2025/05/30/z3%E7%9A%84%E4%BD%BF%E7%94%A8/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">z3的使用 在crypto中，经常会遇到某些带有限制的方程，有一些可以用线性代数的语言翻译，但有些则不行，比如与运算或运算，没办法简单用线性代数求解，那么这时候就需要z3 一、求解带不等式的方程 声明变量 1x = Int(&#x27;x&#x27;) solve可以解决方程 12345from z3 import *x = Int(&#x27;x&#x27;)y = Int(&#x27;y&#x27;)solve(x &gt; 2, y &lt; 10, x + 2*y == 7)  可以解决这样的方程问题 二、求解非多项式约束，例如位运算 假设我们有一个方程： 1(x &amp; 0xFF) ^ (x &gt;&gt; 8) == 0x37 其中 x 是一个 16 位的变量（即 0 ≤ x &lt; 65536），我们希望找到满足条件的 x。 1234567891011121314151617from z3 import *# 创建 16 位变量x = BitVec(&#x27;x&#x27;, 16)  # 16-bit 变量#...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">infinite</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Crypto && Algorithm</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%96%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">外排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1.置换选择排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E8%B7%AF%E5%BD%92%E5%B9%B6"><span class="toc-number">1.2.</span> <span class="toc-text">2.二路归并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89k%E8%B7%AF%E5%BD%92%E5%B9%B6-%E9%80%89%E6%8B%A9%E6%A0%91"><span class="toc-number">1.3.</span> <span class="toc-text">三、k路归并-选择树</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/09/Coppersmith%E5%BD%92%E7%BA%B3/" title="Coppersmith归纳">Coppersmith归纳</a><time datetime="2025-06-09T08:05:22.000Z" title="发表于 2025-06-09 16:05:22">2025-06-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/09/%E9%80%92%E5%BD%92%E5%92%8C%E8%BF%AD%E4%BB%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" title="递归和迭代的区别">递归和迭代的区别</a><time datetime="2025-06-09T08:00:59.000Z" title="发表于 2025-06-09 16:00:59">2025-06-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/08/HASH%E5%87%BD%E6%95%B0/" title="苦读密码学引论--hash">苦读密码学引论--hash</a><time datetime="2025-06-08T07:44:00.000Z" title="发表于 2025-06-08 15:44:00">2025-06-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/08/1.lcgp/" title="H&amp;NCTF2025-crypto">H&amp;NCTF2025-crypto</a><time datetime="2025-06-08T07:43:40.000Z" title="发表于 2025-06-08 15:43:40">2025-06-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/07/Lattice/" title="苦读格密码-lattice">苦读格密码-lattice</a><time datetime="2025-06-07T01:05:00.000Z" title="发表于 2025-06-07 09:05:00">2025-06-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By infinite</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
