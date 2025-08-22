@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Certification | infinite_blog</title><meta name="author" content="infinite"><meta name="copyright" content="infinite"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="JWT（JSON Web Tokens） JavaScript 对象签名和加密 (JOSE) 是一个框架，指定了在 Internet 上安全传输信息的方式。它最著名的是 JSON Web 令牌 (JWT)，用于在网站或应用程序上对自己进行授权。JWT 通常在您通过输入用户名和密码对自己进行身份验证后，通过在浏览器中存储您的“登录会话”来做到这一点。换句话说，网站会为您提供包含您的用户 I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Certification">
+<meta property="og:url" content="http://infinitepwn.github.io/post/20250716142324.html">
+<meta property="og:site_name" content="infinite_blog">
+<meta property="og:description" content="JWT（JSON Web Tokens） JavaScript 对象签名和加密 (JOSE) 是一个框架，指定了在 Internet 上安全传输信息的方式。它最著名的是 JSON Web 令牌 (JWT)，用于在网站或应用程序上对自己进行授权。JWT 通常在您通过输入用户名和密码对自己进行身份验证后，通过在浏览器中存储您的“登录会话”来做到这一点。换句话说，网站会为您提供包含您的用户 I">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://infinitepwn.github.io/img/head.png">
+<meta property="article:published_time" content="2025-07-16T06:23:24.000Z">
+<meta property="article:modified_time" content="2025-07-29T06:08:24.989Z">
+<meta property="article:author" content="infinite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://infinitepwn.github.io/img/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Certification",
+  "url": "http://infinitepwn.github.io/post/20250716142324.html",
+  "image": "http://infinitepwn.github.io/img/head.png",
+  "datePublished": "2025-07-16T06:23:24.000Z",
+  "dateModified": "2025-07-29T06:08:24.989Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "infinite",
+      "url": "http://infinitepwn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://infinitepwn.github.io/post/20250716142324.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Certification',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/xxx.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">infinite_blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Certification</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Certification</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-16T06:23:24.000Z" title="发表于 2025-07-16 14:23:24">2025-07-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-29T06:08:24.989Z" title="更新于 2025-07-29 14:08:24">2025-07-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="jwtjson-web-tokens">JWT（JSON Web Tokens）</h1>
+<p>JavaScript 对象签名和加密 (JOSE) 是一个框架，指定了在 Internet
+上安全传输信息的方式。它最著名的是 JSON Web 令牌
+(JWT)，用于在网站或应用程序上对自己进行授权。JWT
+通常在您通过输入用户名和密码对自己进行身份验证后，通过在浏览器中存储您的“登录会话”来做到这一点。换句话说，网站会为您提供包含您的用户
+ID 的 JWT，可以将其呈现给网站以证明您是谁，而无需再次登录。JWT
+看起来是这样的：</p>
+<blockquote>
+<p>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmbGFnIjoiY3J5cHRve2p3dF9jb250ZW50c19jYW5fYmVfZWFzaWx5X3ZpZXdlZH0iLCJ1c2VyIjoiQ3J5cHRvIE1jSGFjayIsImV4cCI6MjAwNTAzMzQ5M30.shKSmZfgGVvd2OSB2CGezzJ3N6WAULo3w9zCl_T47KQ</p>
+</blockquote>
+<p>你可以识别它，因为它是被分割成三个部分（由.分隔）的base64编码数据：报头、有效载荷和签名。实际上，这是一种base64编码的变体，其中的+和/已经被不同的特殊字符替换，因为它们可能会导致URL出现问题。一些开发人员认为JWT编码就像加密一样，所以他们将敏感数据放入token中，但是这是错误的</p>
+<figure>
+<img src="https://cryptohack.org/static/img/jwt-usage.png"
+alt="diagram showing JWT usage" />
+<figcaption aria-hidden="true">diagram showing JWT usage</figcaption>
+</figure>
+<p>传统的会话存储方式是使用会话ID
+cookie。在您登录网站后，后端（服务器）会为您创建一个会话对象，而您的浏览器（客户端）则会得到一个标识该对象的cookie。当您向网站发送请求时，您的浏览器会自动将会话ID
+cookie发送到后端服务器，后端服务器使用该ID在自己的内存中找到您的会话，从而授权您执行操作。JWT的工作方式不同。登录后，服务器会将整个会话对象以JWT的形式发送到您的网络浏览器，其中包含描述您的用户名、权限和其他信息的键值对的负载。其中还包括使用服务器的私钥创建的签名，旨在防止您篡改负载。您的网络浏览器会将token保存到本地存储中。</p>
+<p><strong>JWT（JSON Web Token）</strong>
+是一种用于认证和信息交换的紧凑型令牌，通常通过 HTTP 请求头中的
+<strong><em>Authorization</em></strong> 字段传递。</p>
+<p>示例：在请求头中添加 JWT</p>
+<p>以下是如何将 JWT 添加到 HTTP 请求头的示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 Fetch API 发送带有 JWT 的请求</span></span><br><span class="line"></span><br><span class="line">const token = <span class="string">&quot;your-jwt-token&quot;</span>;</span><br><span class="line"></span><br><span class="line">fetch(<span class="string">&quot;https://api.example.com/protected-resource&quot;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">method<span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">headers<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">&quot;Authorization&quot;</span><span class="punctuation">:</span> `Bearer $<span class="punctuation">&#123;</span>token<span class="punctuation">&#125;</span>`<span class="punctuation">,</span> <span class="comment">// 将 JWT 放入 Authorization 字段</span></span><br><span class="line"></span><br><span class="line"><span class="attr">&quot;Content-Type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;application/json&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#125;</span>)</span><br><span class="line"></span><br><span class="line">then(response =&gt; response.json())</span><br><span class="line"></span><br><span class="line">then(data =&gt; console.log(data))</span><br><span class="line"></span><br><span class="line">catch(error =&gt; console.error(<span class="string">&quot;Error:&quot;</span><span class="punctuation">,</span> error));</span><br></pre></td></tr></table></figure>
+<h2 id="jwt构成"><strong>JWT构成</strong></h2>
+<p>　　JWT就是一段字符串，由三段base64URL编码构成，将这三段信息文本用
+<code>.</code>链接一起就构成了Jwt字符串。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span><br></pre></td></tr></table></figure>
+<h3 id="header">1.Header</h3>
+<p>Let's look at JWT algorithms. The first part of a JWT is the JOSE
+header, and when you decode it, looks like this:</p>
+<blockquote>
+<p>{"typ":"JWT","alg":"HS256"}</p>
+</blockquote>
+<p>注意这里如果顺序相反，得到的签名是不一样的，比如alg放前面</p>
+<p>所以如果和题目生成的不一样，加个sort_headers</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">encoded = jwt.encode(&#123;<span class="string">&#x27;username&#x27;</span>: username, <span class="string">&#x27;admin&#x27;</span>: <span class="literal">False</span>&#125;, SECRET_KEY, algorithm=<span class="string">&#x27;HS256&#x27;</span>,sort_headers=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>但注意，如果alg被篡改成“none"，那么就无需验证签名了！</strong></p>
+<h1 id="jwt-attack">JWT attack</h1>
+<h2 id="none攻击">1.None攻击</h2>
+<p>将header中的alg改成none，然后签名随便就行了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">session = &#123;<span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;admin&#x27;</span>: <span class="literal">True</span>&#125;</span><br><span class="line">token = jwt.encode(session,key=<span class="literal">None</span>,algorithm=<span class="string">&quot;none&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(token)</span><br><span class="line"><span class="comment">#eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1c2VybmFtZSI6ImFkbWluIiwiYWRtaW4iOnRydWV9.</span></span><br></pre></td></tr></table></figure>
+<p>第二个点后面没东西，随便填个123都行</p>
+<h2 id="使用jwt_tool爆破hs256密钥">2.使用jwt_tool爆破HS256密钥</h2>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python jwt_tool.py eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiYWRtaW4iOmZhbHNlfQ.-Rn2Yjl7gjPxDf2SIkyo_76iR_Yp-dA-E500-kS95NE -C -d rockyou.txt      </span><br></pre></td></tr></table></figure>
+<p>C:/.jwt_tool/jwtconf.ini Original JWT:</p>
+<p>[+] secret is the CORRECT key! You can tamper/fuzz the token contents
+(-T/-I) and sign it using: python3 jwt_tool.py [options here] -S hs256
+-p "secret"</p>
+<h1 id="数字证书格式">数字证书格式</h1>
+<h2 id="pem">PEM</h2>
+<p>PEM 以 <code>-----BEGIN</code> 开头，以 <code>-----END</code>
+结尾，中间包含 ASN.1 格式的数据。ASN.1 是经过 base64
+转码的二进制数据。<a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail">Wikipedia</a>
+上有完整 PEM 文件的例子。</p>
+<p>用 Python 3 和 PyCryptodome 库可以与 PEM
+文件交互并提取相关数据。例如我们想提取出模数 <code>n</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line">from Crypto.PublicKey import RSA</span><br><span class="line"></span><br><span class="line">with open(&quot;certificate.pem&quot;,&quot;r&quot;) as f:</span><br><span class="line">    key = RSA.import_key(f.read())</span><br><span class="line">    print(key.n)</span><br></pre></td></tr></table></figure>
+<h2 id="der">DER</h2>
+<p>DER 是 ASN.1 类型的二进制编码。后缀 <code>.cer</code> 或
+<code>.crt</code> 的证书通常包含 DER 格式的数据，但 Windows 也可能会接受
+PEM 格式的数据。</p>
+<p>我们可以用 <code>openssl</code> 将 PEM 文件转化为 DER 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -inform DER -in certificate.der &gt; certificate.pem</span><br></pre></td></tr></table></figure>
+<p>现在问题被简化成了如何读取 PEM 文件，所以我们可以重复使用上一小节中的
+Python 代码。</p>
+<h2 id="其他格式转换">其他格式转换</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -outform der -in certificate.pem -out certificate.der</span><br><span class="line">openssl x509 -inform der -in certificate.cer -out certificate.pem</span><br></pre></td></tr></table></figure>
+<p>## Web <img
+src="/api/media?hash=1423f5a1baf0ee8f33d20df693981bea2d21a81bab2edaac259bfbe3e8e2d4c4"
+alt="image.png" /> ## PWN <img
+src="/api/media?hash=e545bf21da325a44b05d7f16acad53f9ad31109b6378f33f63576286e01feca5"
+alt="image.png" /></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://infinitepwn.github.io">infinite</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://infinitepwn.github.io/post/20250716142324.html">http://infinitepwn.github.io/post/20250716142324.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://infinitepwn.github.io" target="_blank">infinite_blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/post/20250717095946.html" title="signature"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">signature</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/post/20250713235451.html" title="有向图笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">有向图笔记</div></div><div class="info-2"><div class="info-item-1">Robin定理 要证明命题：“如果一个无向图 \(G\) 有一个强定向（strong orientation），那么 \(G\) 是 2-边连通的（2-edge-connected）”，我们可以从反证法来理解。 我们首先澄清几个术语：  定义澄清  强定向（strong orientation）：将无向图 \(G\) 的每条边赋予一个方向，得到有向图 \(D\)，使得 \(D\) 是强连通的（即对于任意两个顶点 \(u,v\)，都存在一条从 \(u\) 到 \(v\) 的有向路径）。 2-边连通图（2-edge-connected graph）：一个无向图 \(G\) 中没有“桥”（bridge）。也就是说，删除任意一条边，图仍然连通。   反证思路 假设 \(G\) 有一个强定向，但它不是 2-edge-connected。也就是说，\(G\) 存在一条桥（bridge）\(e\)。我们将通过这条桥的性质来得出矛盾。 桥的性质：  如果一条边 \(e = \{u,v\}\) 是桥，那么删除它会把图 \(G\) 分成两个连通块，记作...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">infinite</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Crypto && Algorithm</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jwtjson-web-tokens"><span class="toc-number">1.</span> <span class="toc-text">JWT（JSON Web Tokens）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jwt%E6%9E%84%E6%88%90"><span class="toc-number">1.1.</span> <span class="toc-text">JWT构成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#header"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.Header</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jwt-attack"><span class="toc-number">2.</span> <span class="toc-text">JWT attack</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#none%E6%94%BB%E5%87%BB"><span class="toc-number">2.1.</span> <span class="toc-text">1.None攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8jwt_tool%E7%88%86%E7%A0%B4hs256%E5%AF%86%E9%92%A5"><span class="toc-number">2.2.</span> <span class="toc-text">2.使用jwt_tool爆破HS256密钥</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">数字证书格式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pem"><span class="toc-number">3.1.</span> <span class="toc-text">PEM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#der"><span class="toc-number">3.2.</span> <span class="toc-text">DER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text">其他格式转换</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250820184437.html" title="无标题">无标题</a><time datetime="2025-08-20T10:44:37.005Z" title="发表于 2025-08-20 18:44:37">2025-08-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250817171300.html" title="无标题">无标题</a><time datetime="2025-08-17T09:13:00.028Z" title="发表于 2025-08-17 17:13:00">2025-08-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250815004542.html" title="无标题">无标题</a><time datetime="2025-08-14T16:45:42.873Z" title="发表于 2025-08-15 00:45:42">2025-08-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250805224803.html" title="lsfr">lsfr</a><time datetime="2025-08-05T14:48:03.000Z" title="发表于 2025-08-05 22:48:03">2025-08-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250729140815.html" title="RSA相关总结">RSA相关总结</a><time datetime="2025-07-29T06:08:15.000Z" title="发表于 2025-07-29 14:08:15">2025-07-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By infinite</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

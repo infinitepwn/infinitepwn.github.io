@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>infinite_blog | infinite_blog</title><meta name="author" content="infinite"><meta name="copyright" content="infinite"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="gmssl使用 命令行功能 从2.4版开始，GmSSL提供了sm2、sm2utl命令用于SM2相关的计算。 生成SM2私钥 1$ gmssl sm2 -genkey -sms4 -out sm2.pem 将SM2私钥整数值转换为PEM格式的私钥 1$ gmssl sm2 -inform text -out sm2.pem 导出SM2公钥 1$ gmssl sm2 -in sm2.p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="infinite_blog">
+<meta property="og:url" content="http://infinitepwn.github.io/post/20250719084454.html">
+<meta property="og:site_name" content="infinite_blog">
+<meta property="og:description" content="gmssl使用 命令行功能 从2.4版开始，GmSSL提供了sm2、sm2utl命令用于SM2相关的计算。 生成SM2私钥 1$ gmssl sm2 -genkey -sms4 -out sm2.pem 将SM2私钥整数值转换为PEM格式的私钥 1$ gmssl sm2 -inform text -out sm2.pem 导出SM2公钥 1$ gmssl sm2 -in sm2.p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://infinitepwn.github.io/img/head.png">
+<meta property="article:published_time" content="2025-07-19T00:44:54.149Z">
+<meta property="article:modified_time" content="2025-07-19T03:41:10.150Z">
+<meta property="article:author" content="infinite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://infinitepwn.github.io/img/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://infinitepwn.github.io/post/20250719084454.html",
+  "image": "http://infinitepwn.github.io/img/head.png",
+  "datePublished": "2025-07-19T00:44:54.149Z",
+  "dateModified": "2025-07-19T03:41:10.150Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "infinite",
+      "url": "http://infinitepwn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://infinitepwn.github.io/post/20250719084454.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'infinite_blog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/xxx.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(/img/preview.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">infinite_blog</span></a><a class="nav-page-title" href="/"><span class="site-name">infinite_blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无标题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-19T00:44:54.149Z" title="发表于 2025-07-19 08:44:54">2025-07-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-19T03:41:10.150Z" title="更新于 2025-07-19 11:41:10">2025-07-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="gmssl使用">gmssl使用</h1>
+<h2 id="命令行功能">命令行功能</h2>
+<p>从2.4版开始，GmSSL提供了<code>sm2</code>、<code>sm2utl</code>命令用于SM2相关的计算。</p>
+<h3 id="生成sm2私钥">生成SM2私钥</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2 -genkey -sms4 -out sm2.pem</span><br></pre></td></tr></table></figure>
+<h3
+id="将sm2私钥整数值转换为pem格式的私钥">将SM2私钥整数值转换为PEM格式的私钥</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2 -inform text -out sm2.pem</span><br></pre></td></tr></table></figure>
+<h3 id="导出sm2公钥">导出SM2公钥</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2 -in sm2.pem -pubout -out sm2Pub.pem</span><br></pre></td></tr></table></figure>
+<h3 id="显示sm2私钥的z值">显示SM2私钥的Z值</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2 -genzid -in sm2.pem -id Alice -noout</span><br></pre></td></tr></table></figure>
+<h3 id="计算带z值的杂凑值">计算带Z值的杂凑值</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2utl -dgst -in msg.txt -pubin -inkey sm2Pub.pem -id Alice</span><br></pre></td></tr></table></figure>
+<h3 id="对消息签名">对消息签名</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2utl -sign -in msg.txt -inkey sm2.pem -id Alice -out sig.der</span><br><span class="line">$ gmssl sm2utl -verify -in msg.txt -sigfile sig.der -pubin -in sm2Pub.pem -id Alice</span><br></pre></td></tr></table></figure>
+<p>注意，sm2utl是对消息签名，因此支持输入为任意长的消息。pkeyutl也可以进行SM2签名，但是输入是消息的杂凑值</p>
+<h3 id="加密解密">加密解密</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2utl -encrypt -in msg.txt -pubin -inkey sm2Pub.pem -out enced.der</span><br><span class="line">$ gmssl sm2utl -decrypt -in enced.der -inkey sm2.pem</span><br></pre></td></tr></table></figure>
+<h3 id="和pkeyutl交互">和pkeyutl交互</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl sm2utl -dgst -in msg.txt -pubin -inkey sm2Pub.pem -id Alice -out msg.sm3</span><br><span class="line">$ gmssl sm2utl -sign -in msg.txt -inkey sm2.pem -id Alice -out sm2.sig</span><br><span class="line">$ gmssl pkeyutl -verify -pkeyopt ec_scheme:sm2 -in msg.sm3 -sigfile sm2.sig -pubin -inkey sm2Pub.pem</span><br><span class="line">$ gmssl pkeyutl -sign -pkeyopt ec_scheme:sm2 -in msg.sm3 -inkey sm2.pem -out sm2.sig</span><br><span class="line">$ gmssl sm2utl -verify -in msg.txt -sigfile sm2.sig -pubin -inkey sm2Pub.pem -id Alice</span><br><span class="line">$ gmssl sm2utl -encrypt -in msg.txt -pubin -inkey sm2Pub.pem -out enced.der</span><br><span class="line">$ gmssl pkeyutl -decrypt -pkeyopt ec_scheme:sm2 -pkeyopt ec_encrypt_param:sm3 -in enced.der -inkey sm2.pem</span><br><span class="line">$ gmssl pkeyutl -encrypt -pkeyopt ec_scheme:sm2 -pkeyopt ec_encrypt_param:sm3 -in msg.txt -pubin -inkey sm2Pub.pem -out enced.der</span><br><span class="line">$ gmssl sm2utl -decrypt -in enced.der -inkey sm2.pem</span><br></pre></td></tr></table></figure>
+<h2 id="sm2数字签名">SM2数字签名</h2>
+<p>SM2数字签名方案中被签名的杂凑值不仅仅是消息的杂凑值，而是签名者身份信息串联上消息的杂凑值，其中签名者身份信息是签名者的可辨别标识字串、椭圆曲线方程系数、生成元和签名者公钥串联后字串的杂凑值。SM2标准中并未说明签名者的可辨别标识字串格式及获得方式，应用可以采用X.509证书中的Subject字段、CN
+(CommonName)或自行规定。</p>
+<h3 id="sm2参数选择">SM2参数选择</h3>
+<p>SM2标准中规定采用256比特的椭圆曲线域参数，并采用256比特的密码杂凑算法，并规定某些步骤中须采用SM3。GmSSL的实现支持灵活的参数设定，并支持内置的所有密码杂凑算法，因此应用可以选择安全程度更高的椭圆曲线域参数和密码杂凑算法，如521比特的域参数和SHA-512算法。</p>
+<h2 id="sm2公钥加密">SM2公钥加密</h2>
+<p>SM2公钥加密算法国密公钥加密标准之一，由国家密码管理局与2010年12月公布。SM2公钥加密是一种椭圆曲线公钥加密方案，具体规范可参考《SM2椭圆曲线公钥密码算法
+第4部分：公钥加密算法》文本。</p>
+<p>SM2公钥加密适用于加密长度较短的数据，如会话密钥和消息报文。SM2公钥加密不仅对数据加密，还提供防篡改的特性，即被篡改的或伪造的密文可以在解密的过程中被检查发现，因此通过SM2公钥加密的消息无需格外的校验机制。消息经过SM2公钥加密后长度会增加不到100字节的长度，加密方在准备缓冲区时需要加以留意。</p>
+<p>GmSSL提供了SM2公钥加密的实现。应用应优先通过EVP
+API调用SM2公钥加密的功能，具体接口使用方法请参考手册页中的<code>EVP_PKEY_encrypt(3)</code>、<code>EVP_PKEY_decrypt(3)</code>等相关函数。</p>
+<h3 id="密文编码问题">密文编码问题</h3>
+<p>SM2密文由C1、C2、C3三部分构成，如何对SM2密文进行编码在已经公布的两个标准中有所不同，在早期公布的《SM2椭圆曲线公钥密码算法
+第4部分：公钥加密算法》中，SM2密文中的三部分依次输出，没有采用如Tag-Length-Value形式的编码，我们称其为Plain编码。在之后公布的GM/T国标中，SM2密文采用ASN.1/DER方式编码。</p>
+<p>GmSSL通过<code>SM2_CIPHERTEXT_VALUE</code>对象来表示密文数据结构，函数<code>SM2_do_encrypt()</code>和<code>SM2_do_decrypt()</code>可以生成<code>SM2_CIPHERTEXT_VALUE</code>对象及对其解密，函数<code>SM2_CIPHERTEXT_VALUE_encode()</code>和<code>SM2_CIPHERTEXT_VALUE_decode()</code>实现该对象的Plain编解码。GmSSL预计还会通过函数<code>i2d_SM2_CIPHERTEXT_VALUE()</code>和<code>d2i_SM2_CIPHERTEXT_VALUE()</code>实现该密文对象的ASN.1/DER编解码，以支持最新的GM/T国密标准。</p>
+<p>GmSSL的<code>SM2_encrypt()</code>和<code>SM2_decrypt()</code>在加解密的同时也完成<code>SM2_CIPHERTEXT_VALUE</code>对象的编解码。目前采用Plain编解码，在相应功能完成后会替换为ASN.1/DER编码方案。</p>
+<h2 id="sm2密钥交换">SM2密钥交换</h2>
+<h2 id="推荐椭圆曲线参数">推荐椭圆曲线参数</h2>
+<p>在椭圆曲线密码应用中，通信双方需要预先商定一组称为椭圆曲线域参数的系统参数。椭圆曲线域参数生成需要大量的计算，耗时较长，一旦生成之后可以长期、广泛地使用，因此通常由可信的机构经过反复生成不同的椭圆曲线域参数并挑选出安全性和性能俱佳的公布为标准(推荐参数)，椭圆曲线密码库和应用则会以硬编码的方式内置这些参数。</p>
+<p>SM2标准中给出了一个推荐的256比特的素数域椭圆曲线域参数，GmSSL内置了这个椭圆曲线域参数，命名为<code>sm2p256v1</code>。通过GmSSL命令行可以显示该域参数的详细内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl ecparam -text -noout -name sm2p256v1 -param_enc explicit</span><br></pre></td></tr></table></figure>
+<p>通过<code>ecparam</code>命令可以生成该域参数上的SM2公私钥对。注意，SM2公私要钥对就是标准的椭圆曲线公私要钥对，即可以用于SM2数字签名、密钥交换和公钥加密，也可以用于ECDSA数字签名、ECDH密钥交换和ECIES公钥加密。生成密钥对的命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl ecparam -genkey -name sm2p256v1 -out sm2key.pem</span><br></pre></td></tr></table></figure>
+<p>如果用户希望在其他支持椭圆曲线密码(但不支持SM2推荐域参数)的密码库或应用中使用这条曲线，可以通过<code>ecparam</code>命令将该域参数导出为标准的PEM格式文件，并导入到目标应用中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gmssl ecparam -name sm2p256v1 -param_enc explicit -out sm2p256v1.pem</span><br></pre></td></tr></table></figure>
+<h2 id="编程访问sm2推荐椭圆曲线参数">编程访问SM2推荐椭圆曲线参数</h2>
+<p>GmSSL内置的SM2推荐曲线可以通过NID
+<code>NID_sm2p256v1</code>或者字符串<code>"sm2p256v1"</code>索引，在编程时可以通过<code>NID_sm2p256v1</code>生成域参数<code>EC_GROUP</code>对象或者该曲线上的密钥对象<code>EC_KEY</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;openssl/ec&gt;</span><br><span class="line"></span><br><span class="line">EC_GROUP *sm2p256v1 = EC_GROUP_new_by_curve_name(NID_sm2p256v1);</span><br><span class="line">EC_KEY *sm2key = EC_KEY_new_by_curve_name(NID_sm2p256v1);</span><br></pre></td></tr></table></figure>
+<h2 id="sm2测试椭圆曲线域参数">SM2测试椭圆曲线域参数</h2>
+<p>SM2标准文本中提供了四个测试用椭圆曲线域参数：</p>
+<ul>
+<li>192比特素数域椭圆曲线域参数（sm2p192test)</li>
+<li>256比特素数域椭圆曲线域参数（sm2p256test)</li>
+<li>193比特二进制域椭圆曲线域参数 (sm2b193test)</li>
+<li>257比特二进制域椭圆曲线域参数 (sm2b257test)</li>
+</ul>
+<p><code>crypto/sm2/sm2test.c</code>中提供了这四个参数的定义及生成<code>EC_GROUP</code>对象的代码，应用如果希望使用上述四个参数，可以直接从<code>sm2test.c</code>测试文件中复制相应代码。</p>
+<h2 id="sm2-推荐曲线">SM2 推荐曲线</h2>
+<figure>
+<img src="https://muzipiao.github.io/gmdocs/img/gmobjc-sm2-intro4.png"
+alt="推荐曲线" />
+<figcaption aria-hidden="true">推荐曲线</figcaption>
+</figure>
+<ul>
+<li>p：椭圆曲线在质数 p 的有限域 Fp 上的点集合；</li>
+<li>a：椭圆曲线参数 a 的值；</li>
+<li>b：椭圆曲线参数 b 的值;</li>
+<li>n：取值范围，随机整数 d 的取值范围 ；</li>
+<li>Gx：基点的 x 坐标值，类似于点 P 的 x 坐标值；</li>
+<li>Gy：基点的 y 坐标值，类似于点 P 的 y 坐标值。</li>
+</ul>
+<h2 id="sm2-加密">SM2 加密</h2>
+<p>SM2 加密结果长度是可预测的：对于长度为 n 字节的明文，加密后密文长度为
+字节。</p>
+<p><strong>加密过程</strong>：</p>
+<figure>
+<img src="https://muzipiao.github.io/gmdocs/img/gmobjc-sm2-intro5.png"
+alt="sm2加密" />
+<figcaption aria-hidden="true">sm2加密</figcaption>
+</figure>
+<p>设椭圆曲线为推荐曲线，公钥 Q，原文比特串 M，klen 为 M
+的比特长度；</p>
+<ol type="1">
+<li>计算随机椭圆曲线点 ，k 是随机数，G为基点，计算出的倍点 C1 为 64
+字节；</li>
+<li>校验公钥 Q，计算椭圆曲线点 ，h为余因子，若S 为无穷点，退出；</li>
+<li>计算椭圆曲线点 ，获取 x2，y2；</li>
+<li>计算 ，，若 t 为全 0 比特串，则返回步骤 1，KDF是 SM2
+的密钥派生函数;</li>
+<li>计算 ，对明文加密，C2 是真正的密文，长度和原文相同；</li>
+<li>计算 ，生成杂凑值，用来效验数据，长度 32 字节；</li>
+<li>输出密文 ，C 为密文结果。</li>
+</ol>
+<p>注意</p>
+<ul>
+<li>OpenSSL 的实现使用 ASN.1 编码，因此密文长度可能不固定</li>
+<li>由于使用随机数，每次加密结果都不相同</li>
+</ul>
+<h2 id="sm2-解密">SM2 解密</h2>
+<figure>
+<img src="https://muzipiao.github.io/gmdocs/img/gmobjc-sm2-intro6.png"
+alt="sm2解密" />
+<figcaption aria-hidden="true">sm2解密</figcaption>
+</figure>
+<p>SM2 解密就是逆流程走一遍，注意 OpenSSL 解密要求传入的密文是 ASN1
+编码的。</p>
+<p>设椭圆曲线为推荐曲线 私钥 d，密文 C（），klen 为密文中 C2
+的比特长度。</p>
+<ol type="1">
+<li>从 C 中取出比特串 C1（密文 C 的前 64 字节），将 C1
+的数据类型转换为椭圆曲线上的点，验证 C1
+是否满足椭圆曲线方程，若不满足则报错并退出;</li>
+<li>计算椭圆曲线点 ，若 S 是无穷远点，则报错并退出；</li>
+<li>计算，将坐标 x2、y2 的数据类型转换为比特串；</li>
+<li>计算 ，，若 t 为全 0 比特串，则报错并退出；</li>
+<li>从 C 中取出比特串 C2，计算 ；</li>
+<li>计算 ，从 C 中取出比特串 C3（密文 C 的后 32 字节），若
+，则报错并退出；</li>
+<li>输出明文 M'，M' 就是解密后的明文。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://infinitepwn.github.io">infinite</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://infinitepwn.github.io/post/20250719084454.html">http://infinitepwn.github.io/post/20250719084454.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://infinitepwn.github.io" target="_blank">infinite_blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/post/20250729140815.html" title="RSA相关总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">RSA相关总结</div></div><div class="info-2"><div class="info-item-1">RSA简介 1.encrypt 生成两个大素数p,q 计算 \[ N = pq \] 作为模数，计算Euler函数 \[ \phi(N) = (p-1)(q-1) \] 然后随机生成公钥e,满足 \[ gcd(e,\phi(N)) = 1 \] 当N，e公开作为公钥之后 任何人都可以用公钥加密 \[ c = m^e \mod N \] 2.decrypt 计算私钥 \[ d = e^{-1} \mod \phi(N) \] 解密 \[ m = c^d \mod N \] 只有拥有私钥d的人可以解密 但是，往往由于参数生成不当，RSA可以被破解 相关数论算法 1.Eculid算法 用一个递归很容易实现 123456def eculid(x,y):    r =  x % y     if r == 0:        return y    else:        return eculid(y,r) 时间复杂度是O(\(log^2_2x\)) 2.Extend Eculid算法 也是递归 123456def...</div></div></div></a><a class="pagination-related" href="/post/20250717173419.html" title="sm4"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">sm4</div></div><div class="info-2"><div class="info-item-1">SM4 CBC-MAC是指基于SM4算法使用CBC（Cipher...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">infinite</div><div class="author-info-description">人生若只若初见，何事秋风悲画扇</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Crypto && Algorithm</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gmssl%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">gmssl使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text">命令行功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90sm2%E7%A7%81%E9%92%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">生成SM2私钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86sm2%E7%A7%81%E9%92%A5%E6%95%B4%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%E4%B8%BApem%E6%A0%BC%E5%BC%8F%E7%9A%84%E7%A7%81%E9%92%A5"><span class="toc-number">1.1.2.</span> <span class="toc-text">将SM2私钥整数值转换为PEM格式的私钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BAsm2%E5%85%AC%E9%92%A5"><span class="toc-number">1.1.3.</span> <span class="toc-text">导出SM2公钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BAsm2%E7%A7%81%E9%92%A5%E7%9A%84z%E5%80%BC"><span class="toc-number">1.1.4.</span> <span class="toc-text">显示SM2私钥的Z值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%B8%A6z%E5%80%BC%E7%9A%84%E6%9D%82%E5%87%91%E5%80%BC"><span class="toc-number">1.1.5.</span> <span class="toc-text">计算带Z值的杂凑值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%B6%88%E6%81%AF%E7%AD%BE%E5%90%8D"><span class="toc-number">1.1.6.</span> <span class="toc-text">对消息签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86"><span class="toc-number">1.1.7.</span> <span class="toc-text">加密解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8Cpkeyutl%E4%BA%A4%E4%BA%92"><span class="toc-number">1.1.8.</span> <span class="toc-text">和pkeyutl交互</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sm2%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="toc-number">1.2.</span> <span class="toc-text">SM2数字签名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sm2%E5%8F%82%E6%95%B0%E9%80%89%E6%8B%A9"><span class="toc-number">1.2.1.</span> <span class="toc-text">SM2参数选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sm2%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86"><span class="toc-number">1.3.</span> <span class="toc-text">SM2公钥加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E6%96%87%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">密文编码问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sm2%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.4.</span> <span class="toc-text">SM2密钥交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%8F%82%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">推荐椭圆曲线参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E8%AE%BF%E9%97%AEsm2%E6%8E%A8%E8%8D%90%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%8F%82%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">编程访问SM2推荐椭圆曲线参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sm2%E6%B5%8B%E8%AF%95%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%9F%9F%E5%8F%82%E6%95%B0"><span class="toc-number">1.7.</span> <span class="toc-text">SM2测试椭圆曲线域参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sm2-%E6%8E%A8%E8%8D%90%E6%9B%B2%E7%BA%BF"><span class="toc-number">1.8.</span> <span class="toc-text">SM2 推荐曲线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sm2-%E5%8A%A0%E5%AF%86"><span class="toc-number">1.9.</span> <span class="toc-text">SM2 加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sm2-%E8%A7%A3%E5%AF%86"><span class="toc-number">1.10.</span> <span class="toc-text">SM2 解密</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250820184437.html" title="无标题">无标题</a><time datetime="2025-08-20T10:44:37.005Z" title="发表于 2025-08-20 18:44:37">2025-08-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250817171300.html" title="无标题">无标题</a><time datetime="2025-08-17T09:13:00.028Z" title="发表于 2025-08-17 17:13:00">2025-08-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250815004542.html" title="无标题">无标题</a><time datetime="2025-08-14T16:45:42.873Z" title="发表于 2025-08-15 00:45:42">2025-08-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250805224803.html" title="lsfr">lsfr</a><time datetime="2025-08-05T14:48:03.000Z" title="发表于 2025-08-05 22:48:03">2025-08-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/20250729140815.html" title="RSA相关总结">RSA相关总结</a><time datetime="2025-07-29T06:08:15.000Z" title="发表于 2025-07-29 14:08:15">2025-07-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By infinite</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
