@@ -4,7 +4,7 @@
 
 # Site
 title: InfinitePwn's Blog
-subtitle: '记录密码学学习'
+subtitle: '记录技术与生活'
 description: '个人技术博客'
 keywords: 编程,技术,博客
 author: InfinitePwn
@@ -96,7 +96,10 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: butterfly
+theme: landscape-custom
+
+# Highlight.js CSS Theme
+injected_head: '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">'
 
 # Mathjax Configuration  
 mathjax:
