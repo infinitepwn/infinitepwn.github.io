@@ -56,8 +56,8 @@ social:
 favicon: /img/favicon.png
 
 avatar:
-  img: /img/butterfly-icon.png
-  effect: false
+  img: https://q1.qlogo.cn/g?b=qq&nk=169366533&s=100
+  effect: true
 
 # Disable all banner images
 disable_top_img: false
@@ -94,6 +94,8 @@ footer_img: false
 # Can set it to color, image URL or an array containing colors and/or image URLs
 # If an array is provided, a random background will be selected from the array on each load
 background:
+  - https://api.ixiaowai.cn/gqapi/gqapi.php
+  - https://anime-api.com/api/img/bg/anime
 
 cover:
   # Disable the cover or not

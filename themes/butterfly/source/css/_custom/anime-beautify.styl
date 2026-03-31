@@ -1,0 +1,243 @@
+// ========================
+// 二次元美化主题 Anime Theme
+// ========================
+
+// 主题色彩定义 - 二次元渐变色
+$anime-primary = #FF69B4      // 樱花粉
+$anime-secondary = #9370DB    // 紫色
+$anime-accent = #00CED1       // 青色
+$anime-light = #FFB6C1        // 浅粉
+$anime-dark = #2C2C54         // 深紫
+
+// ========================
+// 1. 页面背景优化
+// ========================
+body
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+  min-height: 100vh
+  
+  &::before
+    content: ''
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="%23ffffff" opacity="0.1"/></svg>')
+    background-size: auto 80px
+    background-repeat: repeat-x
+    animation: wave 8s linear infinite
+    z-index: 0
+    pointer-events: none
+
+@keyframes wave
+  0%
+    transform: translateX(0)
+  100%
+    transform: translateX(1200px)
+
+// ========================
+// 2. 导航栏美化
+// ========================
+#nav, nav.navbar
+  background: rgba(255, 255, 255, 0.95)
+  backdrop-filter: blur(10px)
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15)
+  border-bottom: 2px solid $anime-primary
+  
+  // 导航链接悬停效果
+  .nav-item a
+    position: relative
+    color: #333
+    transition: color 0.3s ease
+    
+    &::after
+      content: ''
+      position: absolute
+      bottom: -5px
+      left: 0
+      width: 0
+      height: 2px
+      background: linear-gradient(90deg, $anime-primary, $anime-secondary)
+      transition: width 0.3s ease
+    
+    &:hover
+      color: $anime-primary
+      
+      &::after
+        width: 100%
+
+// ========================
+// 3. 文章卡片美化
+// ========================
+.post-preview, .post-card, article.post
+  background: rgba(255, 255, 255, 0.9)
+  border-radius: 12px
+  overflow: hidden
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1)
+  backdrop-filter: blur(10px)
+  transition: all 0.3s ease
+  border: 1px solid rgba(255, 105, 180, 0.2)
+  
+  &:hover
+    transform: translateY(-5px)
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.2)
+    border-color: rgba(255, 105, 180, 0.5)
+
+// ========================
+// 4. 标题装饰
+// ========================
+h1, h2, h3
+  position: relative
+  color: $anime-dark
+
+h1::before, h2::before
+  content: ''
+  position: absolute
+  left: -15px
+  top: 50%
+  transform: translateY(-50%)
+  width: 4px
+  height: 60%
+  background: linear-gradient(180deg, $anime-primary, $anime-secondary)
+  border-radius: 2px
+
+// ========================
+// 5. 代码块美化
+// ========================
+figure.highlight
+  background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%)
+  border-radius: 10px
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3)
+  border-left: 4px solid $anime-primary
+  
+  pre
+    &::before
+      content: '❄️ Code'
+      position: absolute
+      right: 10px
+      top: 5px
+      font-size: 12px
+      color: $anime-light
+      opacity: 0.5
+
+// ========================
+// 6. 按钮美化
+// ========================
+.btn, button, input[type="submit"]
+  background: linear-gradient(135deg, $anime-primary, $anime-secondary)
+  border: none
+  border-radius: 25px
+  color: white
+  padding: 10px 25px
+  transition: all 0.3s ease
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3)
+  
+  &:hover
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5)
+    transform: translateY(-2px)
+
+// ========================
+// 7. 标签美化
+// ========================
+.tag-link, .label
+  background: linear-gradient(135deg, $anime-secondary, $anime-accent)
+  color: white
+  border-radius: 20px
+  padding: 5px 15px
+  display: inline-block
+  transition: all 0.3s ease
+  box-shadow: 0 2px 8px rgba(147, 112, 219, 0.3)
+  
+  &:hover
+    box-shadow: 0 4px 12px rgba(147, 112, 219, 0.5)
+    transform: scale(1.05)
+
+// ========================
+// 8. 侧边栏美化
+// ========================
+aside#sidebar
+  background: rgba(255, 255, 255, 0.85)
+  backdrop-filter: blur(10px)
+  border-radius: 12px
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1)
+  
+  .widget
+    background: rgba(255, 255, 255, 0.6)
+    border-radius: 10px
+    margin-bottom: 20px
+    padding: 15px
+    border-left: 4px solid $anime-primary
+    transition: all 0.3s ease
+    
+    &:hover
+      background: rgba(255, 255, 255, 0.9)
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2)
+
+// ========================
+// 9. 评论区美化
+// ========================
+.comment-item, .comments-block
+  background: rgba(255, 255, 255, 0.8)
+  border-radius: 10px
+  border-left: 4px solid $anime-accent
+  transition: all 0.3s ease
+  
+  &:hover
+    box-shadow: 0 4px 12px rgba(0, 206, 209, 0.2)
+
+// ========================
+// 10. 页脚美化
+// ========================
+#footer
+  background: linear-gradient(135deg, $anime-dark, $anime-secondary)
+  color: white
+  padding: 30px 20px
+  text-align: center
+  
+  a
+    color: $anime-light
+    transition: color 0.3s ease
+    
+    &:hover
+      color: white
+      text-shadow: 0 0 10px $anime-primary
+
+// ========================
+// 11. 返回顶部按钮美化
+// ========================
+#go-top
+  background: linear-gradient(135deg, $anime-primary, $anime-secondary)
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4)
+  transition: all 0.3s ease
+  
+  &:hover
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6)
+    transform: rotate(360deg) scale(1.1)
+
+// ========================
+// 12. 加载动画
+// ========================
+@keyframes shimmer
+  0%
+    background-position: -1000px 0
+  100%
+    background-position: 1000px 0
+
+.loading
+  animation: shimmer 2s infinite
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent)
+  background-size: 1000px 100%
+
+// ========================
+// 13. 响应式优化
+// ========================
+@media (max-width: 768px)
+  .post-preview, .post-card
+    border-radius: 8px
+  
+  h1::before, h2::before
+    display: none
+  
+  aside#sidebar
+    margin-top: 20px
