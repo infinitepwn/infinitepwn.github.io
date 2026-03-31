@@ -298,7 +298,6 @@
     }
     
     createProgressBar();
-    createMouseParticles();
     createScrollHighlight();
     createReadingProgress();
     createImageLazyLoad();
