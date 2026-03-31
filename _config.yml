@@ -110,6 +110,7 @@ mathjax:
   extension_options:
     tex:
       tags: 'ams'
+      useLabelIds: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
