@@ -36,7 +36,7 @@ code_blocks:
   word_wrap: true
 
   # Toolbar
-  copy: true
+  copy: false
   language: true
   # true: shrink the code blocks | false: expand the code blocks | none: expand code blocks and hide the button
   shrink: none
@@ -426,7 +426,7 @@ anchor:
 photofigcaption: false
 
 copy:
-  enable: true
+  enable: false
   # Add the copyright information after copied content
   copyright:
     enable: false
