@@ -2239,6 +2239,94 @@ figure.highlight pre .javascript .function {
 .container figure.highlight .highlight-tools .macStyle .mac-maximize {
   background: #35cd4b;
 }
+figure.highlight code .hljs-comment {
+  color: #969896;
+}
+figure.highlight code .hljs-attr {
+  color: #ff5370;
+}
+figure.highlight code .hljs-attribute {
+  color: #ff5370;
+}
+figure.highlight code .hljs-builtin-name,
+figure.highlight code .hljs-built_in {
+  color: #ffcb6b;
+}
+figure.highlight code .hljs-literal,
+figure.highlight code .hljs-number {
+  color: #f78c6c;
+}
+figure.highlight code .hljs-code {
+  color: #c3e88d;
+}
+figure.highlight code .hljs-string,
+figure.highlight code .hljs-title {
+  color: #c3e88d;
+}
+figure.highlight code .hljs-selector-class,
+figure.highlight code .hljs-selector-id {
+  color: #ff5370;
+}
+figure.highlight code .hljs-selector-pseudo,
+figure.highlight code .hljs-selector-tag {
+  color: #89ddff;
+}
+figure.highlight code .hljs-emphasis {
+  font-style: italic;
+}
+figure.highlight code .hljs-strong {
+  font-weight: bold;
+}
+figure.highlight code .hljs-link {
+  text-decoration: underline;
+}
+figure.highlight code .hljs-keyword,
+figure.highlight code .hljs-selector-attr,
+figure.highlight code .hljs-type {
+  color: #89ddff;
+}
+figure.highlight code .hljs-function {
+  color: #82aaff;
+}
+figure.highlight code .hljs-class {
+  color: #82aaff;
+}
+figure.highlight code .hljs-method {
+  color: #82aaff;
+}
+figure.highlight code .hljs-name {
+  color: #ff5370;
+}
+figure.highlight code .hljs-params {
+  color: #eff;
+}
+figure.highlight code .hljs-punctuation {
+  color: #eff;
+}
+figure.highlight code .hljs-quote {
+  color: #969896;
+}
+figure.highlight code .hljs-section {
+  color: #f78c6c;
+}
+figure.highlight code .hljs-tag {
+  color: #89ddff;
+}
+figure.highlight code .hljs-template-tag {
+  color: #89ddff;
+}
+figure.highlight code .hljs-template-variable {
+  color: #c3e88d;
+}
+figure.highlight code .hljs-variable {
+  color: #ff5370;
+}
+figure.highlight code .hljs-variable.language_ {
+  color: #89ddff;
+}
+figure.highlight code .hljs-regexp {
+  color: #c792ea;
+}
 .article-sort {
   margin-left: 10px;
   padding-left: 20px;
