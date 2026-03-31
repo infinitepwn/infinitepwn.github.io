@@ -1,226 +1,209 @@
-// 二次元装饰元素样式
-// Anime Decoration Elements
+// ========================
+// 高级装饰元素 Premium Decorations
+// 设计理念：精致、不突兀、提升整体气质
+// ========================
+
+// 色彩变量
+$gradient-primary = linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+$gradient-accent = linear-gradient(120deg, #a8edea 0%, #fed6e3 100%)
 
 // ========================
-// 樱花飘落效果
+// 1. 标题装饰线
 // ========================
-@keyframes sakura-fall
-  0%
-    transform: translateY(0) rotateZ(0deg)
-    opacity: 1
-  75%
-    opacity: 1
-  100%
-    transform: translateY(100vh) rotateZ(360deg)
-    opacity: 0
-
-@keyframes sakura-sway
-  0%, 100%
-    transform: translateX(0)
-  25%
-    transform: translateX(80px)
-  75%
-    transform: translateX(-80px)
-
-.sakura-container
-  position: fixed
-  top: 0
-  left: 0
-  width: 100%
-  height: 100vh
-  pointer-events: none
-  z-index: 1
-  overflow: hidden
-
-.sakura
-  position: absolute
-  width: 20px
-  height: 20px
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="20" r="3" fill="%23FFB6C1"/><circle cx="30" cy="45" r="3" fill="%23FFB6C1"/><circle cx="70" cy="45" r="3" fill="%23FFB6C1"/><circle cx="20" cy="70" r="3" fill="%23FFB6C1"/><circle cx="80" cy="70" r="3" fill="%23FFB6C1"/><circle cx="50" cy="50" r="5" fill="%23FF69B4"/></svg>') no-repeat center
-  background-size: contain
-  animation: sakura-fall 10s linear forwards, sakura-sway 3s ease-in-out infinite
-
-// ========================
-// 二次元徽章
-// ========================
-.anime-badge
-  display: inline-block
-  background: linear-gradient(135deg, #FF69B4, #9370DB)
-  color: white
-  padding: 8px 16px
-  border-radius: 20px
-  font-size: 12px
-  font-weight: bold
-  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.3)
-  position: relative
-  overflow: hidden
-
-  &::before
-    content: '✨'
-    margin-right: 6px
-    animation: sparkle 1.5s ease-in-out infinite
-
-// ========================
-// 二次元分割线
-// ========================
-.anime-divider
-  position: relative
-  height: 3px
-  background: linear-gradient(90deg, transparent, #FF69B4, #9370DB, #00CED1, transparent)
-  margin: 30px 0
-  border-radius: 2px
-  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.2)
-
-  &::before, &::after
-    content: '◆'
-    position: absolute
-    top: 50%
-    transform: translateY(-50%)
-    color: #FF69B4
-    font-size: 16px
-
-  &::before
-    left: -30px
-
-  &::after
-    right: -30px
-
-// ========================
-// 二次元提示框
-// ========================
-.anime-tip
-  background: rgba(255, 255, 255, 0.95)
-  border-left: 4px solid #FF69B4
-  border-radius: 8px
-  padding: 15px 20px
-  margin: 20px 0
-  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2)
-  position: relative
-
-  &.warning
-    border-left-color: #FFA500
-    background: rgba(255, 165, 0, 0.05)
-
-  &.info
-    border-left-color: #00CED1
-    background: rgba(0, 206, 209, 0.05)
-
-  &.success
-    border-left-color: #00FF00
-    background: rgba(0, 255, 0, 0.05)
-
-// ========================
-// 二次元卡片
-// ========================
-.anime-card
-  background: rgba(255, 255, 255, 0.9)
-  backdrop-filter: blur(10px)
-  border-radius: 12px
-  padding: 20px
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1)
-  border: 1px solid rgba(255, 105, 180, 0.2)
-  transition: all 0.3s ease
-  position: relative
-  overflow: hidden
-
-  &::before
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    height: 3px
-    background: linear-gradient(90deg, #FF69B4, #9370DB, #00CED1)
-    border-radius: 2px
-
-  &:hover
-    transform: translateY(-5px)
-    box-shadow: 0 12px 32px rgba(255, 105, 180, 0.3)
-    border-color: rgba(255, 105, 180, 0.5)
-
-// ========================
-// 闪烁效果
-// ========================
-@keyframes sparkle
-  0%, 100%
-    opacity: 1
-    transform: scale(1)
-  50%
-    opacity: 0.5
-    transform: scale(0.8)
-
-@keyframes glow
-  0%, 100%
-    text-shadow: 0 0 5px rgba(255, 105, 180, 0.5)
-  50%
-    text-shadow: 0 0 15px rgba(255, 105, 180, 0.8)
-
-.sparkle
-  animation: sparkle 1.5s ease-in-out infinite
-
-.glow
-  animation: glow 2s ease-in-out infinite
-
-// ========================
-// 二次元标题样式
-// ========================
-.anime-title
-  position: relative
-  padding-left: 25px
-  color: #2C2C54
-
-  &::before
-    content: '✦'
-    position: absolute
-    left: 0
-    color: #FF69B4
-    font-size: 18px
-    animation: rotate 3s linear infinite
-
-  &::after
-    content: ''
-    position: absolute
-    bottom: -8px
-    left: 0
-    width: 100%
-    height: 2px
-    background: linear-gradient(90deg, #FF69B4, #9370DB, transparent)
-    border-radius: 2px
-
-@keyframes rotate
-  from
-    transform: rotate(0deg)
-  to
-    transform: rotate(360deg)
-
-// ========================
-// 渐变文字
-// ========================
-.anime-gradient-text
-  background: linear-gradient(135deg, #FF69B4, #9370DB, #00CED1)
+.post-title::before,
+.widget-title::before
+  content: '✨'
+  margin-right: 8px
+  background: $gradient-primary
+  background-clip: text
   -webkit-background-clip: text
   -webkit-text-fill-color: transparent
-  background-clip: text
-  font-weight: bold
-  font-size: 1.2em
 
 // ========================
-// 二次元脚注
+// 2. 分割线美化
 // ========================
-.anime-footnote
-  font-size: 12px
-  color: #9370DB
+hr
+  border: none
+  height: 2px
+  background: $gradient-primary
+  margin: 24px 0
+  border-radius: 1px
+  opacity: 0.6
+
+// ========================
+// 3. 文章摘要装饰
+// ========================
+.post-excerpt
+  position: relative
+  padding-left: 12px
+  
+  &::before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    bottom: 0
+    width: 3px
+    background: $gradient-primary
+    border-radius: 2px
+
+// ========================
+// 4. 重点文字强调
+// ========================
+strong, b
+  background: rgba(102, 126, 234, 0.1)
+  padding: 2px 4px
+  border-radius: 3px
+  font-weight: 700
+
+// ========================
+// 5. 引用块装饰
+// ========================
+blockquote
+  border-left: 4px solid $gradient-primary
+  padding-left: 16px
+  margin-left: 0
+  color: #7f8c8d
   font-style: italic
-  border-left: 2px solid #FFB6C1
-  padding-left: 10px
-  margin: 10px 0
+  background: rgba(102, 126, 234, 0.05)
+  padding: 12px 16px
+  border-radius: 6px
 
 // ========================
-// 二次元代码行号美化
+// 6. 列表美化
 // ========================
-.line-numbers
-  background: linear-gradient(180deg, rgba(255, 105, 180, 0.1), rgba(147, 112, 219, 0.1))
-  border-right: 2px solid #FFB6C1
-  padding-right: 15px
-  margin-right: 15px
-  color: #9370DB
+ul, ol
+  li
+    position: relative
+    margin-bottom: 8px
+    
+    &::marker
+      color: #667eea
+      font-weight: 700
+
+// ========================
+// 7. 表格优化
+// ========================
+table
+  border-collapse: collapse
+  width: 100%
+  margin: 16px 0
+  
+  thead
+    background: rgba(102, 126, 234, 0.05)
+    
+    th
+      padding: 12px
+      border-bottom: 2px solid #667eea
+      color: #667eea
+      font-weight: 700
+      text-align: left
+  
+  tbody
+    tr
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+      transition: background 0.2s ease
+      
+      &:hover
+        background: rgba(102, 126, 234, 0.05)
+    
+    td
+      padding: 12px
+
+// ========================
+// 8. 提示框装饰
+// ========================
+.note, .info, .warning, .danger
+  border-left: 4px solid
+  padding: 12px 16px
+  border-radius: 6px
+  margin: 12px 0
+  background-size: 20px 20px
+  
+  &.info
+    border-color: #667eea
+    background: rgba(102, 126, 234, 0.05)
+    color: #667eea
+  
+  &.warning
+    border-color: #f39c12
+    background: rgba(243, 156, 18, 0.05)
+    color: #e67e22
+  
+  &.danger
+    border-color: #e74c3c
+    background: rgba(231, 76, 60, 0.05)
+    color: #e74c3c
+
+// ========================
+// 9. 返回顶部按钮
+// ========================
+#scroll-top
+  background: $gradient-primary
+  border-radius: 50%
+  width: 50px
+  height: 50px
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4)
+  
+  &:hover
+    transform: translateY(-4px)
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6)
+
+// ========================
+// 10. 行内代码装饰
+// ========================
+code
+  font-family: 'Courier New', monospace
+  letter-spacing: 0.3px
+
+// ========================
+// 11. 脚注装饰
+// ========================
+.footnote
+  font-size: 0.9rem
+  color: $text-secondary
+  padding: 8px 12px
+  background: rgba(0, 0, 0, 0.02)
+  border-left: 2px solid $gradient-primary
+  margin-top: 16px
+
+// ========================
+// 12. 装饰角标
+// ========================
+.post-meta::before
+  content: '📝'
+  margin-right: 6px
+
+.post-category::before
+  content: '🏷️'
+  margin-right: 4px
+
+.post-date::before
+  content: '📅'
+  margin-right: 4px
+
+// ========================
+// 13. 平滑过渡
+// ========================
+.fade-in
+  animation: fadeIn 0.5s ease-in
+  
+@keyframes fadeIn
+  from
+    opacity: 0
+    transform: translateY(10px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+// ========================
+// 14. 脉冲效果
+// ========================
+.pulse
+  animation: pulse 2s infinite
+  
+@keyframes pulse
+  0%, 100%
+    opacity: 1
+  50%
+    opacity: 0.7
