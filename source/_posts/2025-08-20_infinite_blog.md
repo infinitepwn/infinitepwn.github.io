@@ -5,6 +5,16 @@ tags: []
 mathjax: true
 ---
 
+![image-20250819104224973](https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250819104224973.png)
+
+![image-20250819110401500](https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250819110401500.png)
+
+![image-20250819110435950](https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250819110435950.png)
+
+![image-20250819112541804](https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/image-20250819112541804.png)
+
+
+
 # SQL注入
 在ctf中，我们通常通过get请求和post请求，提交参数，然后服务器后端拼接sql代码，进行查询数据
 

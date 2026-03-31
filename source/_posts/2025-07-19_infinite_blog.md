@@ -5,6 +5,14 @@ tags: []
 mathjax: true
 ---
 
+![推荐曲线](https://muzipiao.github.io/gmdocs/img/gmobjc-sm2-intro4.png)
+
+![sm2加密](https://muzipiao.github.io/gmdocs/img/gmobjc-sm2-intro5.png)
+
+![sm2解密](https://muzipiao.github.io/gmdocs/img/gmobjc-sm2-intro6.png)
+
+
+
 # gmssl使用
 ## 命令行功能
 从2.4版开始，GmSSL提供了sm2、sm2utl命令用于SM2相关的计算。
