@@ -1,0 +1,93 @@
+// hljs 样式修复 - 支持新版本 highlight.js 的类名
+
+if $highlight_enable && $highlight_theme != false
+  figure.highlight
+    code
+      // 基础颜色设置
+      .hljs-comment
+        color: $highlight-comment
+      
+      .hljs-attr
+        color: $highlight-red
+      
+      .hljs-attribute
+        color: $highlight-red
+      
+      .hljs-builtin-name,
+      .hljs-built_in
+        color: $highlight-yellow
+      
+      .hljs-literal,
+      .hljs-number
+        color: $highlight-orange
+      
+      .hljs-code
+        color: $highlight-green
+      
+      .hljs-string,
+      .hljs-title
+        color: $highlight-green
+      
+      .hljs-selector-class,
+      .hljs-selector-id
+        color: $highlight-red
+      
+      .hljs-selector-pseudo,
+      .hljs-selector-tag
+        color: $highlight-aqua
+      
+      .hljs-emphasis
+        font-style: italic
+      
+      .hljs-strong
+        font-weight: bold
+      
+      .hljs-link
+        text-decoration: underline
+      
+      .hljs-keyword,
+      .hljs-selector-attr,
+      .hljs-type
+        color: $highlight-aqua
+      
+      .hljs-function
+        color: $highlight-blue
+      
+      .hljs-class
+        color: $highlight-blue
+      
+      .hljs-method
+        color: $highlight-blue
+      
+      .hljs-name
+        color: $highlight-red
+      
+      .hljs-params
+        color: $highlight-foreground
+      
+      .hljs-punctuation
+        color: $highlight-foreground
+      
+      .hljs-quote
+        color: $highlight-comment
+      
+      .hljs-section
+        color: $highlight-orange
+      
+      .hljs-tag
+        color: $highlight-aqua
+      
+      .hljs-template-tag
+        color: $highlight-aqua
+      
+      .hljs-template-variable
+        color: $highlight-green
+      
+      .hljs-variable
+        color: $highlight-red
+      
+      .hljs-variable.language_
+        color: $highlight-aqua
+      
+      .hljs-regexp
+        color: $highlight-purple
