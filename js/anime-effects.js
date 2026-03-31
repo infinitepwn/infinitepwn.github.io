@@ -1,321 +1,356 @@
 /**
- * 二次元博客动态特效
- * Anime Theme Dynamic Effects
+ * 高级博客特效 - Premium Blog Effects
+ * 设计理念：优雅、性能优化、现代化的交互体验
  */
 
 (function() {
   'use strict';
 
   // ========================
-  // 1. 樱花飘落效果
-  // ========================
-  const createSakuraContainer = () => {
-    const container = document.createElement('div');
-    container.className = 'sakura-container';
-    container.id = 'sakura-container';
-    document.body.appendChild(container);
-    return container;
-  };
-
-  const createSakura = () => {
-    const sakura = document.createElement('div');
-    sakura.className = 'sakura';
-    
-    // 随机起始位置和动画延迟
-    const startX = Math.random() * window.innerWidth;
-    const delay = Math.random() * 2;
-    const duration = 8 + Math.random() * 4;
-    
-    sakura.style.cssText = `
-      left: ${startX}px;
-      top: -20px;
-      animation-delay: ${delay}s;
-      animation-duration: ${duration}s;
-    `;
-    
-    return sakura;
-  };
-
-  const initSakura = () => {
-    if (document.getElementById('sakura-container')) return;
-    
-    const container = createSakuraContainer();
-    
-    // 初始化樱花
-    for (let i = 0; i < 15; i++) {
-      container.appendChild(createSakura());
-    }
-    
-    // 定期添加新樱花保持效果
-    setInterval(() => {
-      if (container.children.length < 20) {
-        container.appendChild(createSakura());
-      }
-    }, 1000);
-    
-    // 移除动画完成的樱花
-    container.addEventListener('animationend', (e) => {
-      if (e.target.classList.contains('sakura')) {
-        e.target.remove();
-      }
-    });
-  };
-
-  // ========================
-  // 2. 页面加载动画
-  // ========================
-  const createLoadingAnimation = () => {
-    const loader = document.createElement('div');
-    loader.id = 'page-loader';
-    loader.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    `;
-    
-    const spinner = document.createElement('div');
-    spinner.style.cssText = `
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    `;
-    
-    loader.appendChild(spinner);
-    document.body.appendChild(loader);
-    
-    // 页面加载完成后隐藏
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => loader.remove(), 300);
-      }, 500);
-    });
-  };
-
-  // ========================
-  // 3. 滚动进度条
+  // 1. 页面加载进度条
   // ========================
   const createProgressBar = () => {
     const progressBar = document.createElement('div');
-    progressBar.id = 'reading-progress';
+    progressBar.className = 'progress-bar';
     progressBar.style.cssText = `
       position: fixed;
       top: 0;
       left: 0;
       height: 3px;
-      background: linear-gradient(90deg, #FF69B4, #9370DB, #00CED1);
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #a8edea 100%);
+      z-index: 9999;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    `;
+    document.body.appendChild(progressBar);
+    
+    let width = 10;
+    progressBar.style.width = width + '%';
+    
+    const interval = setInterval(() => {
+      if (width < 90) {
+        width += Math.random() * 30;
+        progressBar.style.width = Math.min(width, 90) + '%';
+      }
+    }, 300);
+    
+    window.addEventListener('load', () => {
+      clearInterval(interval);
+      progressBar.style.width = '100%';
+      setTimeout(() => {
+        progressBar.style.opacity = '0';
+        progressBar.style.transition = 'opacity 0.5s ease';
+      }, 500);
+    });
+  };
+
+  // ========================
+  // 2. 鼠标粒子效果 - 优化版
+  // ========================
+  const createMouseParticles = () => {
+    const canvas = document.createElement('canvas');
+    canvas.className = 'mouse-particles';
+    canvas.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    `;
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    let particles = [];
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    const Particle = function(x, y) {
+      this.x = x;
+      this.y = y;
+      this.size = Math.random() * 2 + 1;
+      this.speedX = (Math.random() - 0.5) * 3;
+      this.speedY = (Math.random() - 0.5) * 3;
+      this.opacity = 1;
+      this.decay = Math.random() * 0.015 + 0.015;
+    };
+    
+    Particle.prototype.draw = function() {
+      ctx.fillStyle = `rgba(102, 126, 234, ${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    };
+    
+    Particle.prototype.update = function() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.opacity -= this.decay;
+    };
+    
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach((particle, index) => {
+        particle.update();
+        particle.draw();
+        
+        if (particle.opacity <= 0) {
+          particles.splice(index, 1);
+        }
+      });
+      
+      if (particles.length > 0) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      for (let i = 0; i < 3; i++) {
+        particles.push(new Particle(mouseX, mouseY));
+      }
+      
+      if (particles.length > 0) {
+        animate();
+      }
+    });
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  };
+
+  // ========================
+  // 3. 平滑滚动高亮
+  // ========================
+  const createScrollHighlight = () => {
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  };
+
+  // ========================
+  // 4. 文章阅读进度条
+  // ========================
+  const createReadingProgress = () => {
+    const article = document.querySelector('article');
+    if (!article) return;
+    
+    const progressBar = document.createElement('div');
+    progressBar.style.cssText = `
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #a8edea 100%);
       z-index: 9998;
-      transition: width 0.1s ease;
+      transition: width 0.2s ease;
     `;
     document.body.appendChild(progressBar);
     
     window.addEventListener('scroll', () => {
-      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      progressBar.style.width = scrollPercentage + '%';
+      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      progressBar.style.width = scrolled + '%';
     });
   };
 
   // ========================
-  // 4. 鼠标粒子效果
+  // 5. 图片懒加载 + 加载动画
   // ========================
-  const createMouseParticles = () => {
-    const particles = [];
+  const createImageLazyLoad = () => {
+    const images = document.querySelectorAll('img[data-src]');
     
-    document.addEventListener('mousemove', (e) => {
-      // 每 10 个鼠标移动事件创建一个粒子
-      if (Math.random() > 0.9) {
-        const particle = document.createElement('div');
-        particle.style.cssText = `
-          position: fixed;
-          width: 8px;
-          height: 8px;
-          background: radial-gradient(circle, #FF69B4, #9370DB);
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 999;
-          left: ${e.clientX}px;
-          top: ${e.clientY}px;
-          opacity: 1;
-          box-shadow: 0 0 8px rgba(255, 105, 180, 0.6);
-          animation: fadeout 1s ease-out forwards;
-        `;
-        
-        document.body.appendChild(particle);
-        
-        // 移除粒子
-        setTimeout(() => particle.remove(), 1000);
-      }
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.onload = () => {
+            img.style.opacity = '1';
+          };
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+    
+    images.forEach(img => {
+      img.style.opacity = '0';
+      img.style.transition = 'opacity 0.3s ease';
+      imageObserver.observe(img);
     });
   };
 
   // ========================
-  // 5. 标题闪烁效果
+  // 6. 代码块复制按钮
   // ========================
-  const addTitleGlowEffect = () => {
-    const h1Elements = document.querySelectorAll('h1, h2, .post-title');
-    h1Elements.forEach(el => {
-      el.classList.add('glow');
-    });
-  };
-
-  // ========================
-  // 6. 代码块增强
-  // ========================
-  const enhanceCodeBlocks = () => {
-    const codeBlocks = document.querySelectorAll('pre, code, figure.highlight');
-    codeBlocks.forEach((block, index) => {
-      block.classList.add('anime-card');
+  const createCodeCopyButton = () => {
+    document.querySelectorAll('pre').forEach(pre => {
+      const button = document.createElement('button');
+      button.className = 'copy-code-btn';
+      button.innerHTML = '📋 复制';
+      button.style.cssText = `
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        background: rgba(102, 126, 234, 0.8);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        z-index: 10;
+      `;
       
-      // 添加复制按钮
-      if (block.tagName === 'PRE' && !block.querySelector('.copy-btn')) {
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'copy-btn';
-        copyBtn.textContent = '📋 复制';
-        copyBtn.style.cssText = `
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          background: linear-gradient(135deg, #FF69B4, #9370DB);
-          color: white;
-          border: none;
-          padding: 5px 10px;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 12px;
-          z-index: 10;
-          transition: all 0.3s ease;
-        `;
-        
-        copyBtn.addEventListener('click', () => {
-          const text = block.innerText;
-          navigator.clipboard.writeText(text).then(() => {
-            copyBtn.textContent = '✓ 已复制';
-            setTimeout(() => {
-              copyBtn.textContent = '📋 复制';
-            }, 2000);
-          });
+      button.addEventListener('mouseenter', () => {
+        button.style.background = 'rgba(102, 126, 234, 1)';
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        button.style.background = 'rgba(102, 126, 234, 0.8)';
+      });
+      
+      button.addEventListener('click', () => {
+        const code = pre.textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const originalText = button.innerHTML;
+          button.innerHTML = '✅ 已复制';
+          setTimeout(() => {
+            button.innerHTML = originalText;
+          }, 2000);
         });
-        
-        block.parentElement.style.position = 'relative';
-        block.parentElement.appendChild(copyBtn);
-      }
+      });
+      
+      pre.style.position = 'relative';
+      pre.appendChild(button);
     });
   };
 
   // ========================
-  // 7. 卡片Hover效果增强
+  // 7. 标题ID自动生成 + 链接生成
   // ========================
-  const enhanceCardEffects = () => {
-    const cards = document.querySelectorAll('article, .post, .post-preview, .widget');
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px)';
-        this.style.boxShadow = '0 12px 32px rgba(255, 105, 180, 0.3)';
-      });
+  const createHeadingLinks = () => {
+    const headings = document.querySelectorAll('h2, h3, h4, h5, h6');
+    headings.forEach(heading => {
+      if (!heading.id) {
+        heading.id = heading.textContent
+          .toLowerCase()
+          .replace(/[^\w\s]/g, '')
+          .replace(/\s+/g, '-');
+      }
       
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-        this.style.boxShadow = '';
+      const link = document.createElement('a');
+      link.href = '#' + heading.id;
+      link.className = 'heading-anchor';
+      link.innerHTML = '🔗';
+      link.style.cssText = `
+        opacity: 0;
+        margin-left: 8px;
+        color: #667eea;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+      `;
+      
+      heading.appendChild(link);
+      heading.addEventListener('mouseenter', () => {
+        link.style.opacity = '1';
+      });
+      heading.addEventListener('mouseleave', () => {
+        link.style.opacity = '0';
       });
     });
   };
 
   // ========================
-  // 8. 动画定义 (CSS in JS)
+  // 8. 返回顶部按钮
   // ========================
-  const injectAnimations = () => {
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
-      
-      @keyframes fadeout {
-        from {
-          opacity: 1;
-          transform: translate(0, 0);
-        }
-        to {
-          opacity: 0;
-          transform: translate(${Math.random() * 100 - 50}px, -30px);
-        }
-      }
-      
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-      }
+  const createBackToTop = () => {
+    const button = document.createElement('button');
+    button.id = 'back-to-top';
+    button.innerHTML = '↑';
+    button.style.cssText = `
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
     `;
-    document.head.appendChild(style);
-  };
-
-  // ========================
-  // 9. 打字机效果
-  // ========================
-  const typewriterEffect = (element, text, speed = 50) => {
-    if (!element || !text) return;
     
-    let index = 0;
-    element.textContent = '';
+    document.body.appendChild(button);
     
-    const type = () => {
-      if (index < text.length) {
-        element.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, speed);
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        button.style.opacity = '1';
+        button.style.pointerEvents = 'auto';
+      } else {
+        button.style.opacity = '0';
+        button.style.pointerEvents = 'none';
       }
-    };
+    });
     
-    type();
+    button.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    button.addEventListener('mouseenter', () => {
+      button.style.transform = 'translateY(-4px)';
+      button.style.boxShadow = '0 12px 32px rgba(102, 126, 234, 0.6)';
+    });
+    
+    button.addEventListener('mouseleave', () => {
+      button.style.transform = 'translateY(0)';
+      button.style.boxShadow = '0 8px 24px rgba(102, 126, 234, 0.4)';
+    });
   };
 
   // ========================
-  // 10. 初始化所有效果
+  // 9. 初始化所有特效
   // ========================
   const init = () => {
-    // 等待 DOM 完全加载
+    // 等待 DOM 加载完成
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
       return;
     }
-
-    // 依次初始化所有效果
-    injectAnimations();
-    createLoadingAnimation();
-    createProgressBar();
     
-    // 延迟初始化以避免性能问题
-    setTimeout(() => {
-      initSakura();
-      createMouseParticles();
-      addTitleGlowEffect();
-      enhanceCodeBlocks();
-      enhanceCardEffects();
-    }, 500);
-
-    console.log('✨ 二次元博客主题已激活！Anime theme activated!');
+    createProgressBar();
+    createMouseParticles();
+    createScrollHighlight();
+    createReadingProgress();
+    createImageLazyLoad();
+    createCodeCopyButton();
+    createHeadingLinks();
+    createBackToTop();
+    
+    console.log('✨ 高级博客特效已加载');
   };
 
-  // 在页面加载时初始化
   init();
-
-  // 暴露一些工具函数供外部使用
-  window.AnimeTheme = {
-    typewriterEffect,
-    init
-  };
 })();
