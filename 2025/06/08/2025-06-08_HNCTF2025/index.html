@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>H&amp;NCTF2025 | InfinitePwn's Blog</title><meta name="author" content="InfinitePwn"><meta name="copyright" content="InfinitePwn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="H&amp;NCTF2025 CryptoCryptolcgp常规的LCG问题， 观察函数generate 123def generate(self):        self.seed &#x3D; (self.a * self.seed + self.b) % self.m  # %代表取余运算        return self.seed  输入seed，获得一个新的seed  接着循环了5次，产生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H&amp;NCTF2025">
+<meta property="og:url" content="https://infinitepwn.github.io/2025/06/08/2025-06-08_HNCTF2025/index.html">
+<meta property="og:site_name" content="InfinitePwn&#39;s Blog">
+<meta property="og:description" content="H&amp;NCTF2025 CryptoCryptolcgp常规的LCG问题， 观察函数generate 123def generate(self):        self.seed &#x3D; (self.a * self.seed + self.b) % self.m  # %代表取余运算        return self.seed  输入seed，获得一个新的seed  接着循环了5次，产生">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://infinitepwn.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-06-07T22:43:37.000Z">
+<meta property="article:modified_time" content="2026-03-31T11:57:56.549Z">
+<meta property="article:author" content="InfinitePwn">
+<meta property="article:tag" content="crypto">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://infinitepwn.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "H&NCTF2025",
+  "url": "https://infinitepwn.github.io/2025/06/08/2025-06-08_HNCTF2025/",
+  "image": "https://infinitepwn.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-06-07T22:43:37.000Z",
+  "dateModified": "2026-03-31T11:57:56.549Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "InfinitePwn",
+      "url": "https://infinitepwn.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://infinitepwn.github.io/2025/06/08/2025-06-08_HNCTF2025/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'H&NCTF2025',
+  isHighlightShrink: undefined,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">InfinitePwn's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">H&amp;NCTF2025</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">H&amp;NCTF2025</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-07T22:43:37.000Z" title="发表于 2025-06-08 06:43:37">2025-06-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-31T11:57:56.549Z" title="更新于 2026-03-31 19:57:56">2026-03-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="H-NCTF2025-Crypto"><a href="#H-NCTF2025-Crypto" class="headerlink" title="H&NCTF2025 Crypto"></a>H&amp;NCTF2025 Crypto</h1><h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="lcgp"><a href="#lcgp" class="headerlink" title="lcgp"></a>lcgp</h3><p>常规的LCG问题，</p>
+<p>观察函数generate</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs monkey">def generate(<span class="hljs-variable language_">self</span>):<br>        <span class="hljs-variable language_">self</span>.<span class="hljs-built_in">seed</span> = (<span class="hljs-variable language_">self</span>.a * <span class="hljs-variable language_">self</span>.<span class="hljs-built_in">seed</span> + <span class="hljs-variable language_">self</span>.b) % <span class="hljs-variable language_">self</span>.m<span class="hljs-meta">  # %代表取余运算</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.<span class="hljs-built_in">seed</span><br></code></pre></td></tr></table></figure>
+
+<p>输入seed，获得一个新的seed  接着循环了5次，产生了5次种子</p>
+<p>换而言之，我们需要利用这5个种子，求出一开始的种子</p>
+<p>不妨设，一开始的seed为x1，然后我们写成数列的形式 已知求 接着来看算法的关键</p>
+<p>这里面a，b，m都是未知的，b好处理，因为在常数的位置，两个式子相减就能消掉</p>
+<p>考虑</p>
+<p>这时候，我们以作为一个新数列，那么这时候只剩下两个未知数了</p>
+<p>设</p>
+<p>那么</p>
+<p>于是构造了一个等比数列</p>
+<p><mjx-container class="MathJax" jax="SVG" display="true" width="full" style="min-width: 9.403ex;"><svg style="vertical-align: -0.566ex; min-width: 9.403ex;" xmlns="http://www.w3.org/2000/svg" width="100%" height="2.262ex" role="img" focusable="false"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(0.0181,-0.0181) translate(0, -750)"><g data-mml-node="math"><g data-mml-node="mtable" transform="translate(2078,0) translate(-2078,0)"><g transform="translate(0 750) matrix(1 0 0 -1 0 0) scale(55.25)"><svg data-table="true" preserveAspectRatio="xMidYMid" viewBox="0 -750 1 1000"><g transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="mlabeledtr"><g data-mml-node="mtd"></g></g></g></svg><svg data-labels="true" preserveAspectRatio="xMaxYMid" viewBox="1278 -750 1 1000"><g data-labels="true" transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="mtd" id="mjx-eqn:1"><g data-mml-node="mtext"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(389,0)"></path><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" transform="translate(889,0)"></path></g></g></g></svg></g></g></g></g></svg></mjx-container></p>
+<p>说到等比数列，等比中项就是一个有趣的性质，那么，对于这个同余的等比数列，是否有着等比中项呢，可以一试</p>
+<p>a消失了，那么此时，只剩下m这一个未知数</p>
+<p>把同余式写成等式</p>
+<p>可以求出k1m,k2m,等等</p>
+<p>如果两个k没有公因数的话，那么m就是它们的最大公因数</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs inform7">from Crypto.Util.number import *<br>y = <span class="hljs-comment">[]</span><br>km = <span class="hljs-comment">[]</span><br>possiblem = <span class="hljs-comment">[]</span><br>for i in range(4):<br>    y.append(x<span class="hljs-comment">[i+1]</span>-x<span class="hljs-comment">[i]</span>)<br>for j in range(2):<br>    km.append(y<span class="hljs-comment">[j+1]</span>*y<span class="hljs-comment">[j+1]</span>-y<span class="hljs-comment">[j]</span>*y<span class="hljs-comment">[j+2]</span>)<br>    if j &gt;= 1:<br>        if isPrime(GCD(km<span class="hljs-comment">[j]</span>,km<span class="hljs-comment">[j-1]</span>)): <br>            possiblem.append(GCD(km<span class="hljs-comment">[j]</span>,km<span class="hljs-comment">[j-1]</span>))<br></code></pre></td></tr></table></figure>
+
+<p>这样我们就得到了可能为m的possiblem</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">17685238729089629081000199791073775580173848219782600577303616658328942786376878589055722139055973814631247947507009292556525580971952751595622172013382374577299734041726162411213993858497140178230251563824957482883763872967881950049985507310408962206729214890421322185752340466578359217999838551622613116097987673746844913920603425686103175874552686869764028906518131374266999714020645422015426801070343771422250037085635856203202935123956520415086942807824199018302630540169113637093488756273183240186533936637562954227188102214396705205042491881526862572569275650908415160529650027016717502470758797514488134766043<br></code></pre></td></tr></table></figure>
+
+<p>只有一个，这非常好，既然m求出来了，那么就可以求a了</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs prolog">a = y[<span class="hljs-number">1</span>]*inverse(y[<span class="hljs-number">0</span>],m) <span class="hljs-comment">% m</span><br></code></pre></td></tr></table></figure>
+
+<p>我们先考虑求出a之后如何解决</p>
+<p><mjx-container class="MathJax" jax="SVG" display="true" width="full" style="min-width: 9.403ex;"><svg style="vertical-align: -0.566ex; min-width: 9.403ex;" xmlns="http://www.w3.org/2000/svg" width="100%" height="2.262ex" role="img" focusable="false"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(0.0181,-0.0181) translate(0, -750)"><g data-mml-node="math"><g data-mml-node="mtable" transform="translate(2078,0) translate(-2078,0)"><g transform="translate(0 750) matrix(1 0 0 -1 0 0) scale(55.25)"><svg data-table="true" preserveAspectRatio="xMidYMid" viewBox="0 -750 1 1000"><g transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="mlabeledtr"><g data-mml-node="mtd"></g></g></g></svg><svg data-labels="true" preserveAspectRatio="xMaxYMid" viewBox="1278 -750 1 1000"><g data-labels="true" transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="mtd" id="mjx-eqn:2"><g data-mml-node="mtext"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(389,0)"></path><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" transform="translate(889,0)"></path></g></g></g></svg></g></g></g></g></svg></mjx-container></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">x_1 = (<span class="hljs-attribute">x</span>[<span class="hljs-number">0</span>] + <span class="hljs-built_in">inverse</span>(a,m)*(x[<span class="hljs-number">0</span>]-x[<span class="hljs-number">1</span>])) % m <br><span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(long_to_bytes(x_1)</span></span>)<br></code></pre></td></tr></table></figure>
+
+<p>exp:</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs prolog">from <span class="hljs-symbol">Crypto</span>.<span class="hljs-symbol">Util</span>.number import *<br>y = []<br>km = []<br>possiblem = []<br>for i in range(<span class="hljs-number">4</span>):<br>    y.append(x[i+<span class="hljs-number">1</span>]-x[i])<br>for j in range(<span class="hljs-number">2</span>):<br>    km.append(y[j+<span class="hljs-number">1</span>]*y[j+<span class="hljs-number">1</span>]-y[j]*y[j+<span class="hljs-number">2</span>])<br>    if j &gt;= <span class="hljs-number">1</span>:<br>        if isPrime(<span class="hljs-symbol">GCD</span>(km[j],km[j<span class="hljs-number">-1</span>])): <br>            possiblem.append(<span class="hljs-symbol">GCD</span>(km[j],km[j<span class="hljs-number">-1</span>]))<br>m = <span class="hljs-number">17685238729089629081000199791073775580173848219782600577303616658328942786376878589055722139055973814631247947507009292556525580971952751595622172013382374577299734041726162411213993858497140178230251563824957482883763872967881950049985507310408962206729214890421322185752340466578359217999838551622613116097987673746844913920603425686103175874552686869764028906518131374266999714020645422015426801070343771422250037085635856203202935123956520415086942807824199018302630540169113637093488756273183240186533936637562954227188102214396705205042491881526862572569275650908415160529650027016717502470758797514488134766043</span><br>a = y[<span class="hljs-number">1</span>]*inverse(y[<span class="hljs-number">0</span>],m) <span class="hljs-comment">% m</span><br>print(a)<br>x_1 = (x[<span class="hljs-number">0</span>] + inverse(a,m)*(x[<span class="hljs-number">0</span>]-x[<span class="hljs-number">1</span>])) <span class="hljs-comment">% m </span><br>print(long_to_bytes(x_1))<br></code></pre></td></tr></table></figure>
+
+<h3 id="哈基coke"><a href="#哈基coke" class="headerlink" title="哈基coke"></a>哈基coke</h3><p>逆向Arnold即可</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">arnold_decode</span>(<span class="hljs-params">encoded_image, shuffle_times, a, b</span>):<br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    Arnold逆变换解密图像</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">        encoded_image: 加密后的图像</span><br><span class="hljs-string">        shuffle_times: 加密时使用的迭代次数</span><br><span class="hljs-string">        a, b: 加密时使用的参数</span><br><span class="hljs-string">        </span><br><span class="hljs-string">    返回:</span><br><span class="hljs-string">        解密后的图像</span><br><span class="hljs-string">    """</span><br>    decoded_image = np.zeros(shape=encoded_image.shape)<br>    h, w = encoded_image.shape[<span class="hljs-number">0</span>], encoded_image.shape[<span class="hljs-number">1</span>]<br>    N = h  <span class="hljs-comment"># 假设图像是正方形</span><br>    <br>    <span class="hljs-comment"># 计算逆变换的参数</span><br>    det = (<span class="hljs-number">1</span> * (a*b + <span class="hljs-number">1</span>) - b * a)  <span class="hljs-comment"># 行列式值</span><br>    inv_det = <span class="hljs-built_in">pow</span>(det, -<span class="hljs-number">1</span>, N)  <span class="hljs-comment"># 模逆元</span><br>    <br>    <span class="hljs-comment"># 逆变换矩阵</span><br>    inv_a = (a*b + <span class="hljs-number">1</span>) * inv_det % N<br>    inv_b = (-b) * inv_det % N<br>    inv_c = (-a) * inv_det % N<br>    inv_d = <span class="hljs-number">1</span> * inv_det % N<br>    <br>    <span class="hljs-keyword">for</span> time <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(shuffle_times):<br>        <span class="hljs-keyword">for</span> new_x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(h):<br>            <span class="hljs-keyword">for</span> new_y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(w):<br>                <span class="hljs-comment"># 计算原始位置</span><br>                ori_x = (inv_a * new_x + inv_b * new_y) % N<br>                ori_y = (inv_c * new_x + inv_d * new_y) % N<br>                <br>                decoded_image[ori_x, ori_y, :] = encoded_image[new_x, new_y, :]<br>        <br>        encoded_image = np.copy(decoded_image)<br>    <br>    <span class="hljs-keyword">return</span> decoded_image<br><br><span class="hljs-comment"># 使用示例</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:<br>    <span class="hljs-comment"># 读取加密后的图像</span><br>    encrypted_img = cv2.imread(<span class="hljs-string">r"C:\Users\infinite\Desktop\python\hnctf\en_flag.png"</span>)<br>    <br>    <span class="hljs-comment"># 解密参数必须与加密时一致</span><br>    a = <span class="hljs-number">9</span><br>    b = <span class="hljs-number">1</span><br>    shuffle_times = <span class="hljs-number">6</span>  <span class="hljs-comment"># 加密时使用的迭代次数</span><br>    <br>    <span class="hljs-comment"># 解密图像</span><br>    decrypted_img = arnold_decode(encrypted_img, shuffle_times, a, b)<br>    <br>    <span class="hljs-comment"># 保存解密后的图像</span><br>    cv2.imwrite(<span class="hljs-string">'decrypted_flag.png'</span>, decrypted_img, [<span class="hljs-built_in">int</span>(cv2.IMWRITE_PNG_COMPRESSION), <span class="hljs-number">0</span>])<br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">"图像解密完成，已保存为 decrypted_flag.png"</span>)<br></code></pre></td></tr></table></figure>
+
+<p>img### 为什么出题人的rsa总是ez<br>分为两个挑战</p>
+<p>part1涉及到common prime的生成</p>
+<p>$$ h_1 = p+bq</p>
+<p>h_2 = ap+q $$</p>
+<p>注意到</p>
+<p>注意到</p>
+<p>那么</p>
+<p>注意到p,q相对于n来说都是小根,可以考虑作为短向量</p>
+<p>构造</p>
+<p>那么</p>
+<p>就得到了一个短向量</p>
+<p>使用LLLcvp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sage.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br><span class="hljs-keyword">from</span> lll_cvp <span class="hljs-keyword">import</span> solve_inequality<br>L = matrix([[n, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [h1 * h2, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [-h2, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [-h1, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]])<br>lb = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]<br>ub = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>**<span class="hljs-number">1024</span>, <span class="hljs-number">2</span>**<span class="hljs-number">1024</span>]<br>sol = solve_inequality(L, lb, ub)<br>_, _, p, q = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, sol)<br><span class="hljs-keyword">assert</span> p * q == n<br>phi = (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>)<br>d = <span class="hljs-built_in">pow</span>(<span class="hljs-number">0x10001</span>, -<span class="hljs-number">1</span>, phi)<br>m = <span class="hljs-built_in">pow</span>(c, d, n)<br><span class="hljs-built_in">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+
+<p>得到flag{e_is_xevaf-cityf-fisof-ketaf-metaf-disef-nuvaf-cysuf-dosuf-getuf-cysuf-dasix,bubbleBabble}</p>
+<p>提示了bubbleBabble加密</p>
+<p>用网站解码得到</p>
+<p>e = 81733668723981020451323</p>
+<p>part2 特殊素数生成</p>
+<p>common prime已知g</p>
+<p>强网杯的题，稍微修改一下</p>
+<p>第八届强网杯-wp_第八届强网杯wp-CSDN博客</p>
+<p>里ezrsa的脚本</p>
+<p>exp:</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs processing">h = (N - <span class="hljs-number">1</span>) <span class="hljs-comment">// g</span><br><br>u = h <span class="hljs-comment">// g</span><br><br>v = h % g<br>def <span class="hljs-title function_">Solve_c</span>():<br>    sqrt_N = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">sqrt</span>(N))<br>    C = sqrt_N<span class="hljs-comment">//g^2</span><br>    a = <span class="hljs-number">2</span><br>    b = <span class="hljs-built_in">pow</span>(a,g,N)<br><br>    <span class="hljs-keyword">for</span> i in <span class="hljs-title function_">range</span>(<span class="hljs-number">2</span>,C):<br>        D = (<span class="hljs-built_in">int</span>(<span class="hljs-built_in">sqrt</span>(C)) + <span class="hljs-number">1</span>) * i<br>        <span class="hljs-keyword">final</span> = <span class="hljs-built_in">pow</span>(<span class="hljs-built_in">int</span>(b),<span class="hljs-built_in">int</span>(u),<span class="hljs-built_in">int</span>(N))<br>        tmp = <span class="hljs-number">1</span><br>        gs = <span class="hljs-built_in">pow</span>(<span class="hljs-built_in">int</span>(b), <span class="hljs-built_in">int</span>(D), N)<br>        <span class="hljs-keyword">for</span> r in <span class="hljs-title function_">tqdm</span>(<span class="hljs-title function_">range</span>(D)):<br>            <span class="hljs-keyword">for</span> s in <span class="hljs-title function_">range</span>(D):<br>                #<span class="hljs-keyword">if</span> <span class="hljs-title function_">powmod</span>(<span class="hljs-built_in">int</span>(b),<span class="hljs-built_in">int</span>(r*D+s),N) == <span class="hljs-keyword">final</span>:<br>                <span class="hljs-keyword">if</span> tmp == <span class="hljs-keyword">final</span>:<br>                    <span class="hljs-built_in">print</span>(<span class="hljs-string">"r ="</span>,r,<span class="hljs-string">"s ="</span>,s,<span class="hljs-string">"i ="</span>,i)<br>                    <span class="hljs-keyword">return</span> r * D + s<br>                tmp = (tmp * <span class="hljs-built_in">int</span>(b)) % N<br>c = <span class="hljs-title function_">Solve_c</span>()<br>A = u - c  # x * y = u - c<br><br>B = v + c * g  # x + y = v + c * g<br><br>delta = <span class="hljs-title function_">iroot</span>((B * B - <span class="hljs-number">4</span> * A), <span class="hljs-number">2</span>)[<span class="hljs-number">0</span>]<br><br>x = (B + delta) <span class="hljs-comment">// 2</span><br><br>y = (B - delta) <span class="hljs-comment">// 2</span><br><br>a = x <span class="hljs-comment">// 2</span><br><br>b = y <span class="hljs-comment">// 2</span><br><br>p = <span class="hljs-number">2</span> * g * a + <span class="hljs-number">1</span><br><br>q = <span class="hljs-number">2</span> * g * b + <span class="hljs-number">1</span><br><br>d = <span class="hljs-title function_">invert</span>(e, (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>))<br><br>m = <span class="hljs-title function_">powmod</span>(C, d, N)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-title function_">long_to_bytes</span>(m))<br></code></pre></td></tr></table></figure>
+
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>简单的求个离散对数</p>
+<p>然后这里数字被替换了</p>
+<p>直接遍历一遍所有组合，爆破就行了</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> *<br>Z = Zmod(<span class="hljs-number">2</span>^<span class="hljs-number">512</span>)<br>m = <span class="hljs-number">5084057673176634704877325918195984684237263100965172410645544705367004138917087081637515846739933954602106965103289595670550636402101057955537123475521383</span><br>c = <span class="hljs-number">2989443482952171039348896269189568991072039347099986172010150242445491605115276953489889364577445582220903996856271544149424805812495293211539024953331399</span><br>new_flag=<span class="hljs-built_in">str</span>(discrete_log(Z(c), Z(m)))<br>lowercase = <span class="hljs-string">'0123456789'</span> <br>uppercase = <span class="hljs-string">'7***4****5'</span> <br><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> permutations<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tqdm(permutations(<span class="hljs-string">"0123689"</span>)):<br>    up = <span class="hljs-string">f"7<span class="hljs-subst">{<span class="hljs-string">''</span>.join(i[:<span class="hljs-number">3</span>])}</span>4<span class="hljs-subst">{<span class="hljs-string">''</span>.join(i[<span class="hljs-number">3</span>:])}</span>5"</span><br>    table = <span class="hljs-string">''</span>.maketrans(up, lowercase) <br>    flag = new_flag.translate(table)<br>    <span class="hljs-keyword">try</span>:<br>        res = (long_to_bytes(<span class="hljs-built_in">int</span>(flag)).decode())<br>        <span class="hljs-keyword">if</span> res.startswith(<span class="hljs-string">"H&amp;NCTF"</span>):<br>            <span class="hljs-built_in">print</span>(res)<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="ezfactor"><a href="#ezfactor" class="headerlink" title="ezfactor"></a>ezfactor</h3><p>注意到  其中k是512位，r是248位，r远远小于hint</p>
+<p>那么我们有  r是一个小根，使用CopperSmith慢慢调参数即可</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs makefile">R = 2^248  <span class="hljs-comment"># r 的上界</span><br>e=0x10001<br>P.&lt;x&gt; = PolynomialRing(Zmod(N))<br>f = hint -x<br>f = f.monic()<br><span class="hljs-comment"># r = f.small_roots(X=R, beta=0.495, epsilon=0.015)[0] </span><br><span class="hljs-comment"># print("Found r =", r)</span><br>r = 310384729555967603261671853388867753979360895944109353196595111340924855459<br>p = gcd(hint - r, N)<br>q = N // p<br>assert p * q == N<br>print(<span class="hljs-string">"Found p ="</span>, p)<br>print(<span class="hljs-string">"Found q ="</span>, q)<br>d = inverse(e,(p-1)*(q-1))<br>m = pow(c,d,N)<br>print(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+
+<h3 id="ez-factor-pro"><a href="#ez-factor-pro" class="headerlink" title="ez-factor-pro"></a>ez-factor-pro</h3><p>后面只是障眼法，关键还是求r</p>
+<p>这里r变成了252位，怎么调参发现都不太行</p>
+<p>所以考虑爆破几位r</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">R</span> = <span class="hljs-number">2</span>^<span class="hljs-number">252</span>  # r 的上界<br><span class="hljs-attribute">e</span>=<span class="hljs-number">0</span>x10001<br><span class="hljs-attribute">P</span>.&lt;x&gt; = PolynomialRing(Zmod(N))<br><span class="hljs-attribute">high_bits</span> = <span class="hljs-number">12</span> #爆破高位<br><span class="hljs-attribute">X</span> = <span class="hljs-number">2</span>^(rbits - high_bits) - <span class="hljs-number">1</span>  <br><br><span class="hljs-attribute">for</span> high in trange(<span class="hljs-number">2</span>^high_bits,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>    <span class="hljs-attribute">r_high</span> = high &lt;&lt; (rbits - high_bits)<br>    <br>    <span class="hljs-comment"># 多项式：hint - (r_high + x) ≡ 0 mod p</span><br>    <span class="hljs-attribute">P</span>.&lt;x&gt; = PolynomialRing(Zmod(N))<br>    <span class="hljs-attribute">f</span> = hint - (r_high + x)<br>    <span class="hljs-attribute">f</span> = f.monic()<br>    <span class="hljs-attribute">roots</span> = f.small_roots(X, beta=<span class="hljs-number">0</span>.<span class="hljs-number">495</span>, epsilon=<span class="hljs-number">0</span>.<span class="hljs-number">03</span>)<br>    <br>    <span class="hljs-attribute">if</span> roots:<br>        <span class="hljs-attribute">r_low</span> = roots[<span class="hljs-number">0</span>]<br>        <span class="hljs-attribute">r</span> = r_high + r_low<br>        <span class="hljs-attribute">print</span>(f<span class="hljs-string">"Found r = {r}"</span>)<br>        <span class="hljs-attribute">break</span><br></code></pre></td></tr></table></figure>
+
+<p>得到r，后面就没什么了</p>
+<p>exp:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs makefile">r = 7166351305785506670352015492214713707534657162937963088592442157834795391917<br>c = <span class="hljs-string">"476922b694c764725338cca99d99c7471ec448d6bf60de797eb7cc6e71253221035eb577075f9658ac7f1a40747778ac261787baad21ee567256872fa9400c37"</span><br>c = bytes.fromhex(c)<br>leak=N*r<br>p = gcd(hint - r, N)<br>q = N // p<br>r_bytes = long_to_bytes(leak)<br>iv = r_bytes[:16] if len(r_bytes) &gt;= 16 <span class="hljs-keyword">else</span> r_bytes + b'\0'*(16-len(r_bytes))<br>key = sha256(str(p + q + r).encode()).digest()[:16] <br>crypt_sm4 = CryptSM4()<br>crypt_sm4.set_key(key, SM4_DECRYPT) <br>decrypted = crypt_sm4.crypt_cbc(iv, c)  <br>flag = unpad(decrypted, 16)<br><span class="hljs-section">print("Flag:", flag.decode())</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Three-vertical-lines"><a href="#Three-vertical-lines" class="headerlink" title="Three vertical lines"></a>Three vertical lines</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> Crypto.Util.number import *<br><span class="hljs-keyword">from</span><span class="hljs-built_in"> secret </span>import flag<br><span class="hljs-keyword">from</span> rsa.prime import getprime<br><span class="hljs-keyword">while</span>(1):<br>    <span class="hljs-attribute">p</span>=getprime(256)<br>    <span class="hljs-attribute">q</span>=getprime(256)<br>    <span class="hljs-keyword">if</span> isPrime(3*p*<span class="hljs-number">*5</span>+4*q*<span class="hljs-number">*5</span>):<br>        <span class="hljs-built_in">print</span>(3*p*<span class="hljs-number">*5</span>+4*q*<span class="hljs-number">*5</span>)<br>        break<br><br>e = 65537<br><span class="hljs-built_in">print</span>(pow(bytes_to_long(flag), e, p * q))<br><span class="hljs-comment">#72063558451087451183203801132459543552092564094711815404066471440396765744526854383117910805713050240067432476705168314622044706081669935956972031037827580519320550326077291392722314265758802332280697884744792689996718961355845963752788234205565249205191648439412084543163083032775054018324646541875754706761793307667356964825613429368358849530455220484128264690354330356861777561511117</span><br><span class="hljs-comment">#2864901454060087890623075705953001126417241189889895476561381971868301515757296100356013797346138819690091860054965586977737630238293536281745826901578223</span><br><br></code></pre></td></tr></table></figure>
+
+<p>给了一个  对于这种齐次式子，常见的做法就是消元  那么就有  我们求出这个a之后，就可以造格子了因为 </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">from</span> Crypto.Util.number import *<br><span class="hljs-attribute">h</span>=<span class="hljs-number">72063558451087451183203801132459543552092564094711815404066471440396765744526854383117910805713050240067432476705168314622044706081669935956972031037827580519320550326077291392722314265758802332280697884744792689996718961355845963752788234205565249205191648439412084543163083032775054018324646541875754706761793307667356964825613429368358849530455220484128264690354330356861777561511117</span><br><span class="hljs-attribute">P</span>.&lt;x&gt; = PolynomialRing(Zmod(h))<br><span class="hljs-attribute">f</span> = <span class="hljs-number">3</span>*x^<span class="hljs-number">5</span>+<span class="hljs-number">4</span><br><span class="hljs-attribute">a</span> = f.roots()[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br><span class="hljs-comment"># print((Integer(iroot(h,5)[0])).nbits())</span><br><span class="hljs-attribute">L</span> = matrix(ZZ,[[h,<span class="hljs-number">0</span>],[a,<span class="hljs-number">1</span>]])<br><span class="hljs-attribute">res</span>=L.LLL()[<span class="hljs-number">0</span>]<br><span class="hljs-attribute">p</span>,q = res<br><span class="hljs-attribute">p</span>,q = abs(p),abs(q)<br><span class="hljs-attribute">n</span> = p*q<br><span class="hljs-attribute">c</span>=<span class="hljs-number">2864901454060087890623075705953001126417241189889895476561381971868301515757296100356013797346138819690091860054965586977737630238293536281745826901578223</span><br><span class="hljs-attribute">e</span> = <span class="hljs-number">65537</span><br><span class="hljs-attribute">phi</span> = (p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br><span class="hljs-attribute">d</span>= inverse(e,phi)<br><span class="hljs-attribute">m</span> = pow(c,d,n)<br><span class="hljs-attribute">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://infinitepwn.github.io">InfinitePwn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://infinitepwn.github.io/2025/06/08/2025-06-08_HNCTF2025/">https://infinitepwn.github.io/2025/06/08/2025-06-08_HNCTF2025/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://infinitepwn.github.io" target="_blank">InfinitePwn's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/crypto/">crypto</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/06/08/2025-06-08_HNCTF2025-crypto/" title="H&amp;NCTF2025-crypto"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">H&NCTF2025-crypto</div></div><div class="info-2"><div class="info-item-1">H&amp;NCTF1.lcgp常规的LCG问题， 观察函数generate 123def generate(self):        self.seed = (self.a * self.seed + self.b) % self.m  # %代表取余运算        return self.seed  输入seed，获得一个新的seed  接着循环了5次，产生了5次种子 换而言之，我们需要利用这5个种子，求出一开始的种子 不妨设，一开始的seed为x1，然后我们写成数列的形式 已知求 接着来看算法的关键这里面a，b，m都是未知的，b好处理，因为在常数的位置，两个式子相减就能消掉 考虑  这时候，我们以作为一个新数列，那么这时候只剩下两个未知数了 设 那么 于是构造了一个等比数列说到等比数列，等比中项就是一个有趣的性质，那么，对于这个同余的等比数列，是否有着等比中项呢，可以一试 a消失了，那么此时，只剩下m这一个未知数 把同余式写成等式  可以求出k1m,k2m,等等 如果两个k没有公因数的话，那么m就是它们的最大公因数 1234567891011from Crypto.U...</div></div></div></a><a class="pagination-related" href="/2025/06/07/2025-06-07_%E8%8B%A6%E8%AF%BB%E6%A0%BC%E5%AF%86%E7%A0%81-lattice/" title="苦读格密码-lattice"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">苦读格密码-lattice</div></div><div class="info-2"><div class="info-item-1">对格的理解还是太肤浅了，这里加强一下理论学习 一、格的定义首先介绍一些基本概念 中的内积 定义欧几里得范数  为了研究整数集里的问题 假设在中有n个线性无关的向量，m&gt;n 则就是说只考虑向量的整系数线性组合，这在平面内会生成很多离散的点，实现了分割平面 长得就像晶胞一样（Crystal) 基本平行多面体（Fundamental Parallelepiped） 给定基，我们可以定义一个基本平行多面体：这个平行多面体可以看作格的“最小重复单元”，类似于晶体的“晶胞”。 需要遍历0到1，以覆盖这个晶胞 这些向量称为格L的基，m是维数，n是格L的秩 格基可以写成一个矩阵不同的基可以生成同一个格，不过，我们可以用晶胞作为每个格的区分标准，那么我们考察这个晶胞的体积，因为行列式本身就是对空间的拉伸程度，那我们计算这个晶胞体积，其实就是格的行列式 但是如果不满秩呢？ 那其实好像也能用每个线段长度来定义这个晶胞 换而言之，我们只计算n维子空间上的晶胞大小就行了，这个其实就是  比如这里行列式是，那么这个间隔就是 Kernal lattice  满足加法和整数数乘封闭，所以构成一个格 可以用...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/09/09/2025-09-09_RSA%E9%80%89%E6%8B%A9%E5%AF%86%E6%96%87%E6%94%BB%E5%87%BB/" title="RSA选择密文攻击"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-09</div><div class="info-item-2">RSA选择密文攻击</div></div><div class="info-2"><div class="info-item-1">RSA parity oracle一、举例即RSA奇偶性预言（oracle意为神谕） 这说的是，服务器可以解密任何密文，并至少返回密文的最低位（判断奇偶性），除了某个不可知的密文 那我们可以通过构造密文，进行二分查找，只需要次搜索就能恢复密文 假设  我们构造  那么有我们把这个发给服务器，服务器就会返回解密结果，注意到2m一定是偶数 且由于  那么有两种情况 为奇数，那么这就说明，即 为偶数，这说明 那么有这两种情况这两种情况分别得到范围 ，， 无论哪种情况都可以把m的范围缩小一半，然后我们继续操作  这时候我们发现没有那么显然了,有2种情况，  前者的话，注意这里要-3N,因为必须要减去奇数个N，而1个N不够为奇数，那么这就说明，即 为偶数，这说明 分别把范围缩小到 ， 我们发现有一个情况直接出了m=N//2 即使其他情况，每次构造都能使得范围变为原来的1/2,这就是经典的二分搜索 那么时间复杂度是  二、数学归纳法使用数学归纳法进行证明每次都能缩短1/2的区间 n=1的时候是显然的 假设第i次发送，那么有  且  于是有  那么第i+1次就会得到  为了方便对比，我们把上面...</div></div></div></a><a class="pagination-related" href="/2025/08/05/2025-08-05_lsfr/" title="lsfr"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-05</div><div class="info-item-2">lsfr</div></div><div class="info-2"><div class="info-item-1">1.LSFR基本介绍线性反馈移位寄存器（LFSR, Linear-Feedback ShiftRegister）是一种其输入位由其前一个状态的线性函数决定的移位寄存器 最常用的单个位线性函数是异或（XOR）。因此，LFSR通常是一种其输入位由整个寄存器当前值中某些位进行异或运算所得的移位寄存器。 LFSR的初始值被称为种子（seed），由于寄存器的操作是确定性的，因此其产生的值序列完全由当前（或之前）的状态决定。同样地，由于寄存器的可能状态数量是有限的，它最终必然会进入一个循环周期。不过，一个精心选择的反馈函数可以使LFSR 产生一个看起来随机且周期很长的比特序列。 2.Fibonacci LFSRs1.运算会影响下一个状态的比特位置被称为抽头（taps）。在图示中，抽头的位置是[16, 14, 13, 11]。LFSR 最右边的比特被称为输出位（outputbit），它始终也是一个抽头。 要获得下一个状态，首先将所有抽头位进行异或（XOR）运算；然后，将所有比特整体向右移动一位，最右边的比特被丢弃；最后，把之前异或运算的结果写入现在空出来的最左边比特位。 要获取伪随机输出流，每...</div></div></div></a><a class="pagination-related" href="/2025/08/17/2025-08-17_LWE%E5%AD%A6%E4%B9%A0/" title="LWE学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-17</div><div class="info-item-2">LWE学习</div></div><div class="info-2"><div class="info-item-1">LWE学习1.Background二十年来，格约化算法在破解密码系统方面的成功，确立了格约化作为公钥密码分析中最流行工具的地位。事实上，格在密码学中的应用长期以来主要是“负面的”。有趣的是，在许多实验中，LLL及其他格约化算法的实际表现远好于最坏情况分析所保证的效果，这导致人们普遍认为“格约化在实践中是容易的”。 然而，对于 带噪声学习问题（Learning With Errors,LWE），格约化算法的能力是有限的。当格的维度或误差足够大，或者给出的基被人为放大/混淆时，基约化将无法再找到格中的最短向量。这正是LWE 被认为是一个“困难”问题、适合作为密码学基础的直观原因。 好的，我来翻译成中文（保持学术化、流畅的表述）： 2.Introduction带噪声学习问题（Learning With Errors, LWE）指的是这样一个计算问题：我们希望学习一个定义在某个环上的线性函数 ，但是只能获得该函数的带噪声样本。这些样本通常形如： 其中： -  是定义该线性函数的秘密元素；是从某个已知分布中抽取的小噪声项；  是环中的已知元素； 表示矩阵 与向量  的乘积。  基于 LWE...</div></div></div></a><a class="pagination-related" href="/2025/07/29/2025-07-29_RSA%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" title="RSA相关总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-29</div><div class="info-item-2">RSA相关总结</div></div><div class="info-2"><div class="info-item-1">RSA简介1.encrypt生成两个大素数p,q 计算  作为模数，计算Euler函数  然后随机生成公钥e,满足  当N，e公开作为公钥之后 任何人都可以用公钥加密  2.decrypt计算私钥  解密  只有拥有私钥d的人可以解密 但是，往往由于参数生成不当，RSA可以被破解 相关数论算法1.Eculid算法用一个递归很容易实现 123456def eculid(x,y):    r =  x % y     if r == 0:        return y    else:        return eculid(y,r)  时间复杂度是O() 2.Extend Eculid算法也是递归 123456def gcdext(x,y):    r = x % y    if r == 0:        return [0,1]    else:        return [gcdext(y,r)[1],gcdext(y,r)[0] - x//y * gcdext(y,r)[1]]  注意到  由于x可以由y和x%y表示，那么 只需求  的解，注意到  那么  即  此...</div></div></div></a><a class="pagination-related" href="/2025/08/25/2025-08-25_Lilctf2025/" title="Lilctf2025"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-25</div><div class="info-item-2">Lilctf2025</div></div><div class="info-2"><div class="info-item-1">Crypto1.ez_math12345678910111213141516171819202122from sage.all import *from Crypto.Util.number import *flag = b'LILCTF{test_flag}'[7:-1]lambda1 = bytes_to_long(flag[:len(flag)//2])lambda2 = bytes_to_long(flag[len(flag)//2:])p = getPrime(512)def mul(vector, c):    return [vector[0]*c, vector[1]*c]v1 = [getPrime(128), getPrime(128)]v2 = [getPrime(128), getPrime(128)]A = matrix(GF(p), [v1, v2])B = matrix(GF(p), [mul(v1,lambda1), mul(v2,lambda2)])C = A.inverse() * Bprint(f'p = {p}')print(f'C = {...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">InfinitePwn</div><div class="author-info-description">个人技术博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#H-NCTF2025-Crypto"><span class="toc-number">1.</span> <span class="toc-text">H&amp;NCTF2025 Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lcgp"><span class="toc-number">1.1.1.</span> <span class="toc-text">lcgp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%9F%BAcoke"><span class="toc-number">1.1.2.</span> <span class="toc-text">哈基coke</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-number">1.1.3.</span> <span class="toc-text">数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezfactor"><span class="toc-number">1.1.4.</span> <span class="toc-text">ezfactor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ez-factor-pro"><span class="toc-number">1.1.5.</span> <span class="toc-text">ez-factor-pro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Three-vertical-lines"><span class="toc-number">1.1.6.</span> <span class="toc-text">Three vertical lines</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/09/2025-09-09_RSA%E9%80%89%E6%8B%A9%E5%AF%86%E6%96%87%E6%94%BB%E5%87%BB/" title="RSA选择密文攻击">RSA选择密文攻击</a><time datetime="2025-09-09T03:59:35.000Z" title="发表于 2025-09-09 11:59:35">2025-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/31/2025-08-31_infinite_blog/" title="infinite_blog">infinite_blog</a><time datetime="2025-08-31T00:18:39.000Z" title="发表于 2025-08-31 08:18:39">2025-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/2025-08-25_%E6%96%B0%E7%94%9F%E8%B5%9Bwp/" title="新生赛wp">新生赛wp</a><time datetime="2025-08-25T02:45:59.000Z" title="发表于 2025-08-25 10:45:59">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/2025-08-25_Lilctf2025/" title="Lilctf2025">Lilctf2025</a><time datetime="2025-08-24T21:37:09.000Z" title="发表于 2025-08-25 05:37:09">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/23/2025-08-23_infinite_blog/" title="infinite_blog">infinite_blog</a><time datetime="2025-08-22T23:29:28.000Z" title="发表于 2025-08-23 07:29:28">2025-08-23</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By InfinitePwn</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>webwp | InfinitePwn's Blog</title><meta name="author" content="InfinitePwn"><meta name="copyright" content="InfinitePwn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="攻防世界wp一、攻防世界 - get_post- 简单拿到题目，要求使用get方式提交变量 直接?a&#x3D;1即可 但是地址栏无法直接post请求 此时切换火狐浏览器，使用hackbar插件 post b&#x3D;2 直接获得flag 二、攻防世界 - view_source - 简单根据问题描述，应该要查看网页的源代码，但是鼠标右键被禁用了，左">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webwp">
+<meta property="og:url" content="https://infinitepwn.github.io/2024/12/03/2024-12-03_webwp/index.html">
+<meta property="og:site_name" content="InfinitePwn&#39;s Blog">
+<meta property="og:description" content="攻防世界wp一、攻防世界 - get_post- 简单拿到题目，要求使用get方式提交变量 直接?a&#x3D;1即可 但是地址栏无法直接post请求 此时切换火狐浏览器，使用hackbar插件 post b&#x3D;2 直接获得flag 二、攻防世界 - view_source - 简单根据问题描述，应该要查看网页的源代码，但是鼠标右键被禁用了，左">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://infinitepwn.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-12-03T01:31:40.000Z">
+<meta property="article:modified_time" content="2026-03-31T12:05:38.130Z">
+<meta property="article:author" content="InfinitePwn">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://infinitepwn.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "webwp",
+  "url": "https://infinitepwn.github.io/2024/12/03/2024-12-03_webwp/",
+  "image": "https://infinitepwn.github.io/img/butterfly-icon.png",
+  "datePublished": "2024-12-03T01:31:40.000Z",
+  "dateModified": "2026-03-31T12:05:38.130Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "InfinitePwn",
+      "url": "https://infinitepwn.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://infinitepwn.github.io/2024/12/03/2024-12-03_webwp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'webwp',
+  isHighlightShrink: undefined,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">InfinitePwn's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">webwp</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">webwp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-03T01:31:40.000Z" title="发表于 2024-12-03 09:31:40">2024-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-31T12:05:38.130Z" title="更新于 2026-03-31 20:05:38">2026-03-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374132565.png" alt="QQ_1733374132565"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374299858.png" alt="QQ_1733374299858"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374415954.png" alt="QQ_1733374415954"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374469344.png" alt="QQ_1733374469344"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374627637.png" alt="QQ_1733374627637"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374766067.png" alt="QQ_1733374766067"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374780238.png" alt="QQ_1733374780238"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733374969299.png" alt="QQ_1733374969299"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733375004386.png" alt="QQ_1733375004386"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733375572942.png" alt="QQ_1733375572942"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733377438538.png" alt="QQ_1733377438538"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733662044002.png" alt="QQ_1733662044002"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733662136271.png" alt="QQ_1733662136271"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733663232162.png" alt="QQ_1733663232162"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733665673982.png" alt="QQ_1733665673982"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733665708751.png" alt="QQ_1733665708751"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733664940116.png" alt="QQ_1733664940116"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/3037788250223ac533c7a5249ed98b08.png" alt="3037788250223ac533c7a5249ed98b08"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733753674911.png" alt="QQ_1733753674911"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733753745989.png" alt="QQ_1733753745989"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733755185113.png" alt="QQ_1733755185113"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1733842383081.png" alt="QQ_1733842383081"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735967047861.png" alt="QQ_1735967047861"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735969821792.png" alt="QQ_1735969821792"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735970421076.png" alt="QQ_1735970421076"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735970504477.png" alt="QQ_1735970504477"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735971624857.png" alt="QQ_1735971624857"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735971710532.png" alt="QQ_1735971710532"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735971862446.png" alt="QQ_1735971862446"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735972035331.png" alt="QQ_1735972035331"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735972104406.png" alt="QQ_1735972104406"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735972755212.png" alt="QQ_1735972755212"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/infinitepwn/blogimage/QQ_1735972873245.png" alt="QQ_1735972873245"></p>
+<h2 id="攻防世界wp"><a href="#攻防世界wp" class="headerlink" title="攻防世界wp"></a>攻防世界wp</h2><h2 id="一、攻防世界-get-post-简单"><a href="#一、攻防世界-get-post-简单" class="headerlink" title="一、攻防世界 - get_post- 简单"></a>一、攻防世界 - get_post- 简单</h2><p>拿到题目，要求使用get方式提交变量</p>
+<p>直接?a=1即可</p>
+<p>但是地址栏无法直接post请求</p>
+<p>此时切换火狐浏览器，使用hackbar插件</p>
+<p>post b=2 直接获得flag</p>
+<h3 id="二、攻防世界-view-source-简单"><a href="#二、攻防世界-view-source-简单" class="headerlink" title="二、攻防世界 - view_source - 简单"></a>二、攻防世界 - view_source - 简单</h3><p>根据问题描述，应该要查看网页的源代码，但是鼠标右键被禁用了，左键也不行</p>
+<p>但是我们有键盘</p>
+<p>使用F12快捷键即可</p>
+<h3 id="三、攻防世界-disabled-button-简单"><a href="#三、攻防世界-disabled-button-简单" class="headerlink" title="三、攻防世界 - disabled_button - 简单"></a>三、攻防世界 - disabled_button - 简单</h3><p>进来发现一个奇怪的按钮，审阅html代码，发现有个表单</p>
+<p>但是无法点击，按了没反应</p>
+<p>看到里面有个”disabled”,我在想，直接去掉就行了</p>
+<p>将disabled删除，这时候发现按钮可以点了</p>
+<p>按一下得到flag</p>
+<h3 id="四、攻防世界-cookie-简单"><a href="#四、攻防世界-cookie-简单" class="headerlink" title="四、攻防世界 - cookie - 简单"></a>四、攻防世界 - cookie - 简单</h3><p>使用火狐找到cookie，发现php源码泄露，访问</p>
+<p>访问php文件，得到这个界面，说看response</p>
+<p>前面一开始以为说的是http status，就是那个状态码404,</p>
+<p>但是不是，网上查询发现其实就是响应头</p>
+<p>刷新一下网页，在network里面，选择cookie.php访问响应头</p>
+<p>拿到flag</p>
+<h3 id="五、搭建图床的过程"><a href="#五、搭建图床的过程" class="headerlink" title="五、搭建图床的过程"></a>五、搭建图床的过程</h3><p>首先下载picgo</p>
+<p>然后在github上搭建一个仓库来作为图床</p>
+<p>记录token</p>
+<p>在picgo里面配置</p>
+<p>但注意要关掉steam++，否则会上传失败</p>
+<p>】</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-keyword">assert</span> m &lt; p<br></code></pre></td></tr></table></figure>
+
+<h3 id="六、easy-SQL"><a href="#六、easy-SQL" class="headerlink" title="六、easy SQL"></a>六、easy SQL</h3><p>进入网站后要求输入账号密码，随便输入一下，发现使用了get请求，并且泄露了php文件</p>
+<p>访问php文件，但是源码没有泄露</p>
+<p>接下来研究一下sql注入</p>
+<p>SQL注入就是指Web应用程序对用户输入数据的合理性没有进行判断，前端传入后端的参数是攻击者可控制的，并且根据参数带入数据库查询，攻击者可以通过构造不同的SQL语句来对数据库进行任意查询。</p>
+<p>简单来说就是没有过滤用户的输出，如果用户输入了一些恶意的参数，就能查询数据库中的数据</p>
+<p>那么如何攻击呢</p>
+<p>首先得了解一些sql语法</p>
+<p>查询数据</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">SELECT</span> 列名称 <span class="hljs-selector-tag">FROM</span> 表名称;<br></code></pre></td></tr></table></figure>
+
+<p>如果加上条件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">column</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">column</span> <span class="hljs-keyword">condition</span> <span class="hljs-keyword">value</span><br></code></pre></td></tr></table></figure>
+
+<p>比如</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Persons <span class="hljs-keyword">WHERE</span> City=<span class="hljs-string">'Sandnes'</span><br></code></pre></td></tr></table></figure>
+
+<p>那么显然，如果要对方要查询账号和密码是否正确</p>
+<p>就应该是where password = ’正确的密码‘</p>
+<p>这样就能查询到那个账号的数据</p>
+<p>但是我们不知道这个条件是数字型还是字符串型</p>
+<p>比如</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">City</span> = 1<br>\\ city = <span class="hljs-string">'1'</span><br></code></pre></td></tr></table></figure>
+
+<p>为了区分，我们可以试着加入一个单引号</p>
+<p>此时报错，说我们有SQL语法的错误，看后面报错信息，是多加了一个引号变成了’‘12‘’‘</p>
+<p>所以这显然是字符串型</p>
+<p>然后我们再看看闭合方式</p>
+<p>**</p>
+<p>显然是单引号闭合，但是不知道为什么后面password是双引号</p>
+<p>查了网上博客才知道实现方式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"> <span class="hljs-number">0</span>) {<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">"Login successful!"</span>;<br>} <span class="hljs-keyword">else</span> {<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">"Login failed!"</span>;<br>}<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>尝试使用万能密码</p>
+<p>此处#将后面的部分注释掉</p>
+<p>所以sql中的代码是</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">username</span> = ‘’or <span class="hljs-number">1</span> =<span class="hljs-number">1</span> # password = ‘<span class="hljs-number">2</span>’<br></code></pre></td></tr></table></figure>
+
+<p>由于1=1为true，因此直接执行，而不检查用户名和密码</p>
+<p>12.9 web</p>
+<h3 id="1-2019极客大挑战havefun"><a href="#1-2019极客大挑战havefun" class="headerlink" title="1.2019极客大挑战havefun"></a>1.2019极客大挑战havefun</h3><p>打开看源码，发现是get请求，简单的php审计</p>
+<p>只要cat=dog，就能拿到flag</p>
+<h3 id="2-warm-up"><a href="#2-warm-up" class="headerlink" title="2. warm up"></a>2. warm up</h3><p>打开查看源码，发现php文件名泄露</p>
+<p>访问拿到代码，开始审计</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-string">"source.php"</span>,<span class="hljs-string">"hint"</span>=&gt;<span class="hljs-string">"hint.php"</span>];<br>            <span class="hljs-keyword">if</span> (! <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$page</span>) || !<span class="hljs-title function_ invoke__">is_string</span>(<span class="hljs-variable">$page</span>)) {<br>                <span class="hljs-keyword">echo</span> <span class="hljs-string">"you can't see it"</span>;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            }<br><br>            <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$page</span>, <span class="hljs-variable">$whitelist</span>)) {<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            }<br><br>            <span class="hljs-variable">$_page</span> = <span class="hljs-title function_ invoke__">mb_substr</span>(<br>                <span class="hljs-variable">$page</span>,<br>                <span class="hljs-number">0</span>,<br>                <span class="hljs-title function_ invoke__">mb_strpos</span>(<span class="hljs-variable">$page</span> . <span class="hljs-string">'?'</span>, <span class="hljs-string">'?'</span>)<br>            );<br>            <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$_page</span>, <span class="hljs-variable">$whitelist</span>)) {<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            }<br><br>            <span class="hljs-variable">$_page</span> = <span class="hljs-title function_ invoke__">urldecode</span>(<span class="hljs-variable">$page</span>);<br>            <span class="hljs-variable">$_page</span> = <span class="hljs-title function_ invoke__">mb_substr</span>(<br>                <span class="hljs-variable">$_page</span>,<br>                <span class="hljs-number">0</span>,<br>                <span class="hljs-title function_ invoke__">mb_strpos</span>(<span class="hljs-variable">$_page</span> . <span class="hljs-string">'?'</span>, <span class="hljs-string">'?'</span>)<br>            );<br>            <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$_page</span>, <span class="hljs-variable">$whitelist</span>)) {<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            }<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">"you can't see it"</span>;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        }<br>    }<br><br>    <span class="hljs-keyword">if</span> (! <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">'file'</span>])<br>        &amp;&amp; <span class="hljs-title function_ invoke__">is_string</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">'file'</span>])<br>        &amp;&amp; emmm::<span class="hljs-title function_ invoke__">checkFile</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">'file'</span>])<br>    ) {<br>        <span class="hljs-keyword">include</span> <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">'file'</span>];<br>        <span class="hljs-keyword">exit</span>;<br>    } <span class="hljs-keyword">else</span> {<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">""</span>;<br>    }  <br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">if</span> (! isset(<span class="hljs-variable">$page</span>) || !is_string(<span class="hljs-variable">$page</span>)) {<br>                <span class="hljs-attribute">echo</span> <span class="hljs-string">"you can't see it"</span>;<br>                <span class="hljs-attribute">return</span> <span class="hljs-literal">false</span>;<br>            }<br><br></code></pre></td></tr></table></figure>
+
+<p>这一段逻辑有点绕，但我们不希望执行if，可以使用数字逻辑知识</p>
+<p>\overline A + \overline B= \overline {AB}也就是与非门，只要两个条件同时成立，就不会执行if</p>
+<p>换而言之，需要page设置，并且设置为字符串</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">if</span> (in_array(<span class="hljs-variable">$page</span>, <span class="hljs-variable">$whitelist</span>)) {<br>                <span class="hljs-attribute">return</span> <span class="hljs-literal">true</span>;<br>            }<br></code></pre></td></tr></table></figure>
+
+<p>PHP 5中 in_array函数功能 — 检查数组中是否存在某个值。</p>
+<p>所以大致我们就知道这个代码功能，就是检查用户是否输入了正确的文件名称</p>
+<p>也就是检查page是否在whilelist中，而”source.php”,”hint.php”就是whilelist中的值</p>
+<p>但是我对这个whilelist数组的形式有些奇怪，查询了一下</p>
+<p>在PHP中，箭头（=&gt;）是定义数组的键值对分隔符。你可以使用它来定义数组中的元素。</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sml">$<span class="hljs-built_in">array</span> = <span class="hljs-built_in">array</span>(<span class="hljs-string">"key1"</span> =&gt; <span class="hljs-string">"value1"</span>, <span class="hljs-string">"key2"</span> =&gt; <span class="hljs-string">"value2"</span>);<br></code></pre></td></tr></table></figure>
+
+<p>所以其实就是类似python的字典</p>
+<p>首先先访问一下hint.php,看看提示</p>
+<p>换而言之，我们要访问ffffllllaaaagggg文件，但是显然不在前面的白名单，无法访问12345<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.65ex;" xmlns="http://www.w3.org/2000/svg" width="17.278ex" height="2.347ex" role="img" focusable="false" viewBox="0 -750 7636.9 1037.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"></g><g data-mml-node="mi" transform="translate(33,-150) scale(0.707)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></g></g><g data-mml-node="mi" transform="translate(438.7,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mi" transform="translate(967.7,0)"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(1444.7,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mo" transform="translate(2188.5,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(3244.2,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="msub" transform="translate(4122.2,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mi" transform="translate(462,-150) scale(0.707)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g></g><g data-mml-node="mi" transform="translate(4965.9,0)"><path data-c="1D462" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(5537.9,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mi" transform="translate(5966.9,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mi" transform="translate(6435.9,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(6796.9,0)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(7247.9,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g></g></g></svg></mjx-container>page,                0,                mb_strpos($page . ‘?’, ‘?’)            );</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-built_in">string</span> **mb_substr**( <span class="hljs-built_in">string</span>$str, <span class="hljs-built_in">int</span>$start[, <span class="hljs-built_in">int</span>$length[, <span class="hljs-built_in">string</span>$encoding]] )<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>进行截断字符串</p>
+<p>mb_strpos函数用于在字符串中查找特定子字符串的位置</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-built_in">string</span> mb_strpos ( <span class="hljs-built_in">string</span> $haystack , <span class="hljs-built_in">string</span> $needle [, <span class="hljs-built_in">int</span> $offset = <span class="hljs-number">0</span> [, <span class="hljs-built_in">string</span> $encoding = mb_internal_encoding() ]] 母字符串，子字符串，搜索起始位置偏移量<br></code></pre></td></tr></table></figure>
+
+<p>其中$page . ‘?’是将page和？连接起来,在page的最后加上？，这样保证即使没有？，也能返回末尾的位置</p>
+<p>而这恰恰是漏洞所在，由于这个，我们可以在前面加上？截断，只要我们截断的字符串在白名单内，就能通过</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs autoit">$_page = urldecode($page)<span class="hljs-comment">;</span><br>            $_page = mb_substr(<br>                $_page,<br>                <span class="hljs-number">0</span>,<br>                mb_strpos($_page . <span class="hljs-string">'?'</span>, <span class="hljs-string">'?'</span>)<br>            )<span class="hljs-comment">;</span><br>            <span class="hljs-keyword">if</span> (in_array($_page, $whitelist)) {<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><span class="hljs-comment">;</span><br>            }<br></code></pre></td></tr></table></figure>
+
+<p>这里对page进行了url解码，然后又判断了一次，但貌似没什么用</p>
+<p>于是我们构造payload</p>
+<p>flag所在文件不知道在哪一层，只能逐个试探</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">http</span>://c1412e1a-f5e5-<span class="hljs-number">4</span>a6e-b0d5-<span class="hljs-number">20771</span>b23a9c7.node5.buuoj.cn:<span class="hljs-number">81</span>/source.php?file=hint.php../../ffffllllaaaagggg   以此类推<br></code></pre></td></tr></table></figure>
+
+<p>最终在</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>c1412e1a-f5e5-<span class="hljs-number">4</span>a6e-b0d5-<span class="hljs-number">20771</span>b23a9c7.node5.buuoj.cn:<span class="hljs-number">81</span><span class="hljs-regexp">/source.php?file=hint.php?../</span>..<span class="hljs-regexp">/../</span>..<span class="hljs-regexp">/../</span>ffffllllaaaagggg<br></code></pre></td></tr></table></figure>
+
+<p>拿到了flag</p>
+<p>不过有一个疑惑，为什么hint.php后面加了?不会把后面的认为是query</p>
+<h2 id="二、SQL注入"><a href="#二、SQL注入" class="headerlink" title="二、SQL注入"></a>二、SQL注入</h2><h3 id="个人的理解："><a href="#个人的理解：" class="headerlink" title="个人的理解："></a>个人的理解：</h3><p>SQL是一种结构化查询语言，用于在数据库中查询信息</p>
+<p>用户在与网页交互时，需要使用get，post请求来提交表单到后台的SQl服务器，如果用户在其中加入了一些SQL语言代码，就可能获得数据库查询的权限，原因在于后端没有对输入进行过滤，于是就产生了SQL注入漏洞</p>
+<h3 id="一些术语："><a href="#一些术语：" class="headerlink" title="一些术语："></a>一些术语：</h3><p>回显：常常指程序开发中执行命令的结果，就是返回的显示，你输入一个命令，然后给你返回一个值，显示在屏幕上</p>
+<p>当用户提交表单时，服务器返回到前端html页面的内容可以称为回显</p>
+<p>字段：数据库表格中的列</p>
+<p>我们把表中的每一行叫做一个“记录”，每一个记录包含这行中的所有信息，就像在通讯录数据库中某个人全部的信息，但记录在数据库中并没有专门的记录名，常常用它所在的行数表示这是第几个记录。字段是比记录更小的单位，字段集合组成记录，每个字段描述文献的某一特征，即数据项，并有唯一的供计算机识别的[字段标识符]</p>
+<p>MySQL自带数据库:MySQL环境搭建完成后，数据库并不是空的，而是有四个自带数据库</p>
+<p>MySQL自带的数据库包括mysql、information_schema、performance_schema、sys。</p>
+<ul>
+<li><p>mysql：系统自带的权限和用户信息管理数据库</p>
+</li>
+<li><p>information_schema：保存了MySQL服务器所有的系统信息，比如数据库的名字、数据库表的名字、表的列的信息。</p>
+</li>
+<li><p>performance_schema：要用于收集数据库服务器运行过程中的性能参数。</p>
+</li>
+<li><p>sys：建立在information_schema和performance_schema的基础上，提供更方便的查询视图。<br>这些数据库是动态更新的，对于SQL注入来说，information_schema是十分重要的，可以查询到数据库的名字</p>
+</li>
+</ul>
+<p>查询语句：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">SELECT</span> 列名称 <span class="hljs-selector-tag">FROM</span> 表名称;<br></code></pre></td></tr></table></figure>
+
+<p>如果加上条件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">column</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">column</span> <span class="hljs-keyword">condition</span> <span class="hljs-keyword">value</span><br></code></pre></td></tr></table></figure>
+
+<p>比如</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Persons <span class="hljs-keyword">WHERE</span> City=<span class="hljs-string">'Sandnes'</span><br></code></pre></td></tr></table></figure>
+
+<p>这里*是通配符，可以查询所有列</p>
+<p>如果后面没有from，select可以认为类似是一种print的功能</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">select</span> <span class="hljs-symbol">'Hello</span>, World!';<br><span class="hljs-keyword">select</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>联合查询</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-built_in">SELECT</span> <span class="hljs-built_in">name</span>, <span class="hljs-built_in">position</span> <span class="hljs-keyword">FROM</span> employees UNION <span class="hljs-built_in">SELECT</span> <span class="hljs-built_in">name</span>, <span class="hljs-built_in">position</span> <span class="hljs-keyword">FROM</span> contractors;<br></code></pre></td></tr></table></figure>
+
+<p>比如说我们有两个表格，emplyees和contractors，他们都有同样的列，那么使用union select就可以同时查询</p>
+<p>联合查询要求每个 <code>SELECT</code> 语句中的列数必须相同，并且对应列的数据类型应该是兼容的。</p>
+<p>再结合前面没有from的select，就能探测列数或者专业来说是字段数</p>
+<p>比如，ctfhub技能树的整型注入</p>
+<h3 id="一、CTFHUB：整型注入"><a href="#一、CTFHUB：整型注入" class="headerlink" title="一、CTFHUB：整型注入"></a>一、CTFHUB：整型注入</h3><p>拿到题目，说输个1试试，输入1，得到如下回显</p>
+<p>回显把SQL语句泄露出来了，也就是</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">select * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> <span class="hljs-built_in">id</span>=<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>仔细研读，是从news这个表里，选择满足id=1的所有列，并返回</p>
+<p>可以看出只有两列，两个字段，不过，也无法保证这个源码没有骗我们，可能不是*，而是只是输出了id，data？</p>
+<p>所以可以用联合查询探测</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> id=<span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>这个没有回显，说明列数没有匹配</p>
+<p>输入</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> id=<span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<p>之后就有回显了，说明确实是2列</p>
+<p>这里</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">select</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<p>这条查询没有指定表，而是直接返回两个常量值：1 和 2。它相当于返回了一行包含两列的数据。</p>
+<p>column1<br>column2</p>
+<p>1<br>2</p>
+<p>由于我们可以修改SQL代码，而且又探测了只有两个字段</p>
+<p>那么我们就可以用联合查询，忽略前面的id=1这个条件，因为无论前面是否查询到，union后面的都会执行</p>
+<p>我们可以利用这个获得回显，我们首先要知道flag藏在哪里</p>
+<p>information_schema.schemata，即information_schema库的schemata表里的schema_name存储着数据库的名字</p>
+<p>那么就利用</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> id=<span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,<span class="hljs-built_in">schema_name</span> <span class="hljs-keyword">from</span> information_schema.schemata<br></code></pre></td></tr></table></figure>
+
+<p>奇怪的是，为什么后面没有回显？</p>
+<p>这或许是网站显示问题，不能完全显示联合查询的内容，我们把前面id换成-1，或者-10，这样就只显示后面的内容</p>
+<p>这样就查到数据库名了，但是只有一个</p>
+<p>怎么把全部数据显示出来呢？</p>
+<p>使用语法</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> id=<span class="hljs-number">-10</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,group_concat(<span class="hljs-built_in">schema_name</span>) <span class="hljs-keyword">from</span> information_schema.schemata<br></code></pre></td></tr></table></figure>
+
+<p>就获得了所有库名</p>
+<p>前四个库都是自带的，那么显然最后一个sqli应该就是flag藏得地方</p>
+<p>接着我们要了解这个库里的表名</p>
+<p>和上面类比就行，换成table</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> id=<span class="hljs-number">-10</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,group_concat(<span class="hljs-built_in">table_name</span>) <span class="hljs-keyword">from</span> information_schema.<span class="hljs-keyword">tables</span><br></code></pre></td></tr></table></figure>
+
+<p>能查是能查，但是太长了，需要筛选</p>
+<p>那显然就在flag这个表里了</p>
+<p>但是这跟套娃一样，知道了表名，还得知道flag所在的列，</p>
+<p>也是，就上面换成columns</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> id=<span class="hljs-number">-10</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,group_concat(<span class="hljs-built_in">column_name</span>) <span class="hljs-keyword">from</span> information_schema.<span class="hljs-keyword">columns</span> <span class="hljs-keyword">where</span> table_schema=<span class="hljs-string">'sqli'</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">table_name</span>=<span class="hljs-string">'flag'</span><br></code></pre></td></tr></table></figure>
+
+<p>所以就准确定位了flag位置</p>
+<p>sqli库，flag表，flag字段</p>
+<p>使用</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> news <span class="hljs-keyword">where</span> id=<span class="hljs-number">-1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,flag <span class="hljs-keyword">from</span> sqli.flag<br></code></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://infinitepwn.github.io">InfinitePwn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://infinitepwn.github.io/2024/12/03/2024-12-03_webwp/">https://infinitepwn.github.io/2024/12/03/2024-12-03_webwp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://infinitepwn.github.io" target="_blank">InfinitePwn's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/web/">web</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/12/20/2024-12-20_%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" title="微分方程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">微分方程</div></div><div class="info-2"><div class="info-item-1">微分方程一、微分方程的一些基本概念一般地，含有未知函数导数或者微分的方程叫做微分方程，未知函数是一元函数式称为常微分方程 二、一阶微分方程的定义 三、一阶微分方程的分类 可分离变量的微分方程 齐次微分方程 一阶线性微分方程 伯努利方程  四、可分离变量的微分方程定义：形如的方程称为可分离变量的微分方程  两边积分得：  由此得到微分方程的通解(C为任意常数) Example 1 解：  两边积分得：    Example 2 的特解 解：     代入(0,0)得，  Example 3 解：注意此题有陷阱，应讨论  为微分方程的特解     Exercise 1 解：        Exercise 2 解： 显然 ，那么     当然，如果要求通解的话，没有初始条件，就需要考虑  的情况了 五、齐次微分方程形如  的方程称为齐次微分方程 解：设      解出  之后，代入即可 Example 1 解：  设        Example 2  设         Example 3       六、可化为齐次微分方程的方程形如  的方程。 解：显然这将坐标原点平移，置   ...</div></div></div></a><a class="pagination-related  no-desc" href="/2024/11/28/2024-11-28_Linear-Algebra/" title="Linear Algebra"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Linear Algebra</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/04/15/2025-04-15_sqli/" title="sqli"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-15</div><div class="info-item-2">sqli</div></div><div class="info-2"><div class="info-item-1">一、sqlmap使用扫注入点 1sqlmap -u http://localhost/sqli/Less-1/?id=1  显示所有数据库 1sqlmap -u http://localhost/sqli/Less-1/?id=1 -dbs</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">InfinitePwn</div><div class="author-info-description">个人技术博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cwp"><span class="toc-number">1.</span> <span class="toc-text">攻防世界wp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-get-post-%E7%AE%80%E5%8D%95"><span class="toc-number">2.</span> <span class="toc-text">一、攻防世界 - get_post- 简单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-view-source-%E7%AE%80%E5%8D%95"><span class="toc-number">2.1.</span> <span class="toc-text">二、攻防世界 - view_source - 简单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-disabled-button-%E7%AE%80%E5%8D%95"><span class="toc-number">2.2.</span> <span class="toc-text">三、攻防世界 - disabled_button - 简单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-cookie-%E7%AE%80%E5%8D%95"><span class="toc-number">2.3.</span> <span class="toc-text">四、攻防世界 - cookie - 简单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.4.</span> <span class="toc-text">五、搭建图床的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81easy-SQL"><span class="toc-number">2.5.</span> <span class="toc-text">六、easy SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2019%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98havefun"><span class="toc-number">2.6.</span> <span class="toc-text">1.2019极客大挑战havefun</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-warm-up"><span class="toc-number">2.7.</span> <span class="toc-text">2. warm up</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">3.</span> <span class="toc-text">二、SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">个人的理解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">一些术语：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81CTFHUB%EF%BC%9A%E6%95%B4%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-number">3.3.</span> <span class="toc-text">一、CTFHUB：整型注入</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/09/2025-09-09_RSA%E9%80%89%E6%8B%A9%E5%AF%86%E6%96%87%E6%94%BB%E5%87%BB/" title="RSA选择密文攻击">RSA选择密文攻击</a><time datetime="2025-09-09T03:59:35.000Z" title="发表于 2025-09-09 11:59:35">2025-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/31/2025-08-31_infinite_blog/" title="infinite_blog">infinite_blog</a><time datetime="2025-08-31T00:18:39.000Z" title="发表于 2025-08-31 08:18:39">2025-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/2025-08-25_%E6%96%B0%E7%94%9F%E8%B5%9Bwp/" title="新生赛wp">新生赛wp</a><time datetime="2025-08-25T02:45:59.000Z" title="发表于 2025-08-25 10:45:59">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/2025-08-25_Lilctf2025/" title="Lilctf2025">Lilctf2025</a><time datetime="2025-08-24T21:37:09.000Z" title="发表于 2025-08-25 05:37:09">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/23/2025-08-23_infinite_blog/" title="infinite_blog">infinite_blog</a><time datetime="2025-08-22T23:29:28.000Z" title="发表于 2025-08-23 07:29:28">2025-08-23</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By InfinitePwn</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
