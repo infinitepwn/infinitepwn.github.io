@@ -2,6 +2,7 @@
 title: infinite_blog
 date: 2025-07-19 00:44:54
 tags: []
+mathjax: true
 ---
 
 # gmssl使用

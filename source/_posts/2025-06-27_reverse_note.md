@@ -2,6 +2,7 @@
 title: reverse_note
 date: 2025-06-27 14:10:13
 tags: ["reverse"]
+mathjax: true
 ---
 
 # 1.什么是PE?

@@ -2,6 +2,7 @@
 title: infinite_blog
 date: 2025-08-17 09:13:00
 tags: []
+mathjax: true
 ---
 
 # LWE学习
