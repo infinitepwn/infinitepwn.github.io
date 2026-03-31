@@ -15,16 +15,6 @@ mathjax: true
 下面是斐波那契数列的一个例子
 
 ```
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
 int fibonacciRecurs(int a1,int a2,int n)
 {
     if(n == 1 || n == 2)
@@ -42,17 +32,6 @@ int fibonacciRecurs(int a1,int a2,int n)
 下面是求反转数字的例子
 
 ```
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
 int sum = 0;
 int reverseNumber(int n,int sum)
 {
@@ -73,13 +52,6 @@ int reverseNumber(int n,int sum)
 我们可以使用python简单比较一下循环和递归
 
 ```
-1
-2
-3
-4
-5
-6
-7
 def peach(n):
 	peach = 1
 	for i in range(10-n):
@@ -92,12 +64,6 @@ for j in range(10,0,-1):
 如果使用递归
 
 ```
-1
-2
-3
-4
-5
-6
 def peach(n):
     if n == 1:
         return 1

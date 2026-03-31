@@ -11,38 +11,31 @@ mathjax: true
 
 ### 生成SM2私钥
 ```
-1
 $ gmssl sm2 -genkey -sms4 -out sm2.pem
 ```
 
 ### 将SM2私钥整数值转换为PEM格式的私钥
 ```
-1
 $ gmssl sm2 -inform text -out sm2.pem
 ```
 
 ### 导出SM2公钥
 ```
-1
 $ gmssl sm2 -in sm2.pem -pubout -out sm2Pub.pem
 ```
 
 ### 显示SM2私钥的Z值
 ```
-1
 $ gmssl sm2 -genzid -in sm2.pem -id Alice -noout
 ```
 
 ### 计算带Z值的杂凑值
 ```
-1
 $ gmssl sm2utl -dgst -in msg.txt -pubin -inkey sm2Pub.pem -id Alice
 ```
 
 ### 对消息签名
 ```
-1
-2
 $ gmssl sm2utl -sign -in msg.txt -inkey sm2.pem -id Alice -out sig.der
 $ gmssl sm2utl -verify -in msg.txt -sigfile sig.der -pubin -in sm2Pub.pem -id Alice
 ```
@@ -51,23 +44,12 @@ $ gmssl sm2utl -verify -in msg.txt -sigfile sig.der -pubin -in sm2Pub.pem -id Al
 
 ### 加密解密
 ```
-1
-2
 $ gmssl sm2utl -encrypt -in msg.txt -pubin -inkey sm2Pub.pem -out enced.der
 $ gmssl sm2utl -decrypt -in enced.der -inkey sm2.pem
 ```
 
 ### 和pkeyutl交互
 ```
-1
-2
-3
-4
-5
-6
-7
-8
-9
 $ gmssl sm2utl -dgst -in msg.txt -pubin -inkey sm2Pub.pem -id Alice -out msg.sm3
 $ gmssl sm2utl -sign -in msg.txt -inkey sm2.pem -id Alice -out sm2.sig
 $ gmssl pkeyutl -verify -pkeyopt ec_scheme:sm2 -in msg.sm3 -sigfile sm2.sig -pubin -inkey sm2Pub.pem
@@ -110,21 +92,18 @@ GmSSL的SM2_encrypt()和SM2_decrypt()在加解密的同时也完成SM2_CIPHERTEX
 SM2标准中给出了一个推荐的256比特的素数域椭圆曲线域参数，GmSSL内置了这个椭圆曲线域参数，命名为sm2p256v1。通过GmSSL命令行可以显示该域参数的详细内容如下：
 
 ```
-1
 $ gmssl ecparam -text -noout -name sm2p256v1 -param_enc explicit
 ```
 
 通过ecparam命令可以生成该域参数上的SM2公私钥对。注意，SM2公私要钥对就是标准的椭圆曲线公私要钥对，即可以用于SM2数字签名、密钥交换和公钥加密，也可以用于ECDSA数字签名、ECDH密钥交换和ECIES公钥加密。生成密钥对的命令如下：
 
 ```
-1
 $ gmssl ecparam -genkey -name sm2p256v1 -out sm2key.pem
 ```
 
 如果用户希望在其他支持椭圆曲线密码(但不支持SM2推荐域参数)的密码库或应用中使用这条曲线，可以通过ecparam命令将该域参数导出为标准的PEM格式文件，并导入到目标应用中。
 
 ```
-1
 $ gmssl ecparam -name sm2p256v1 -param_enc explicit -out sm2p256v1.pem
 ```
 
@@ -133,10 +112,6 @@ GmSSL内置的SM2推荐曲线可以通过NID
 NID_sm2p256v1或者字符串"sm2p256v1"索引，在编程时可以通过NID_sm2p256v1生成域参数EC_GROUP对象或者该曲线上的密钥对象EC_KEY。
 
 ```
-1
-2
-3
-4
 #include <openssl/ec>
 
 EC_GROUP *sm2p256v1 = EC_GROUP_new_by_curve_name(NID_sm2p256v1);

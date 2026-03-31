@@ -9,7 +9,6 @@ mathjax: true
 在ctf中，我们通常通过get请求和post请求，提交参数，然后服务器后端拼接sql代码，进行查询数据
 
 ```
-1
 $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 ```
 
@@ -18,7 +17,6 @@ $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$passwo
 我们后面都以这个为例
 
 ```
-1
 $sql = "SELECT * FROM users WHERE id = $id";
 ```
 
@@ -26,7 +24,6 @@ $sql = "SELECT * FROM users WHERE id = $id";
 
 ## 数字型
 ```
-1
 $sql = "SELECT * FROM users WHERE id = $id";
 ```
 
@@ -38,7 +35,6 @@ $sql = "SELECT * FROM users WHERE id = $id";
 
 ## 字符型
 ```
-1
 $sql = "SELECT * FROM users WHERE id = '$id'";
 ```
 
@@ -51,6 +47,5 @@ near ''1'' LIMIT 0,1' at line 1
 大概是
 
 ```
-1
 $sql = "SELECT * FROM sometable WHERE somecol = '$wllm' LIMIT 0,1";
 ```

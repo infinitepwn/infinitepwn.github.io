@@ -30,29 +30,6 @@ Authorization 字段传递。
 以下是如何将 JWT 添加到 HTTP 请求头的示例：
 
 ```
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
 // 使用 Fetch API 发送带有 JWT 的请求
 
 const token = "your-jwt-token";
@@ -83,7 +60,6 @@ catch(error => console.error("Error:", error));
 .链接一起就构成了Jwt字符串。
 
 ```
-1
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 ```
 
@@ -98,7 +74,6 @@ header, and when you decode it, looks like this:
 所以如果和题目生成的不一样，加个sort_headers
 
 ```
-1
 encoded = jwt.encode({'username': username, 'admin': False}, SECRET_KEY, algorithm='HS256',sort_headers=False)
 ```
 
@@ -109,10 +84,6 @@ encoded = jwt.encode({'username': username, 'admin': False}, SECRET_KEY, algorit
 将header中的alg改成none，然后签名随便就行了
 
 ```
-1
-2
-3
-4
 session = {'username': 'admin', 'admin': True}
 token = jwt.encode(session,key=None,algorithm="none")
 print(token)
@@ -123,7 +94,6 @@ print(token)
 
 ## 2.使用jwt_tool爆破HS256密钥
 ```
-1
 python jwt_tool.py eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiYWRtaW4iOmZhbHNlfQ.-Rn2Yjl7gjPxDf2SIkyo_76iR_Yp-dA-E500-kS95NE -C -d rockyou.txt      
 ```
 
@@ -144,12 +114,6 @@ PEM 以 -----BEGIN 开头，以 -----END
 文件交互并提取相关数据。例如我们想提取出模数 n：
 
 ```
-1
-2
-3
-4
-5
-6
 #!/usr/bin/env python3
 from Crypto.PublicKey import RSA
 
@@ -166,7 +130,6 @@ PEM 格式的数据。
 我们可以用 openssl 将 PEM 文件转化为 DER 文件：
 
 ```
-1
 openssl x509 -inform DER -in certificate.der > certificate.pem
 ```
 
@@ -175,8 +138,6 @@ Python 代码。
 
 ## 其他格式转换
 ```
-1
-2
 openssl x509 -outform der -in certificate.pem -out certificate.der
 openssl x509 -inform der -in certificate.cer -out certificate.pem
 ```
