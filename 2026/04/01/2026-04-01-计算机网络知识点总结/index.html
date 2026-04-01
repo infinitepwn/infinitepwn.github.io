@@ -1,0 +1,1580 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机网络知识点总结 — 谢希仁第八版（第1-4章） | InfinitePwn's Blog</title><meta name="author" content="InfinitePwn"><meta name="copyright" content="InfinitePwn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文使用专业的html-to-markdown工具转换，内容涵盖谢希仁《计算机网络（第八版）》第1-4章所有核心知识点，包括网络概论、物理层、数据链路层、网络层。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络知识点总结 — 谢希仁第八版（第1-4章）">
+<meta property="og:url" content="https://infinitepwn.github.io/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="InfinitePwn&#39;s Blog">
+<meta property="og:description" content="本文使用专业的html-to-markdown工具转换，内容涵盖谢希仁《计算机网络（第八版）》第1-4章所有核心知识点，包括网络概论、物理层、数据链路层、网络层。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/188052472?s=200&v=4">
+<meta property="article:published_time" content="2026-03-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-01T03:17:52.215Z">
+<meta property="article:author" content="InfinitePwn">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="知识点总结">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="谢希仁">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/188052472?s=200&v=4"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "计算机网络知识点总结 — 谢希仁第八版（第1-4章）",
+  "url": "https://infinitepwn.github.io/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/",
+  "image": "https://avatars.githubusercontent.com/u/188052472?s=200&v=4",
+  "datePublished": "2026-03-31T16:00:00.000Z",
+  "dateModified": "2026-04-01T03:17:52.215Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "InfinitePwn",
+      "url": "https://infinitepwn.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://infinitepwn.github.io/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":false,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机网络知识点总结 — 谢希仁第八版（第1-4章）',
+  isHighlightShrink: undefined,
+  isToc: true,
+  pageType: 'post'
+}</script><script src="/js/anime-effects.js"></script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg"></div><script>(() => {
+  const arr = ["background-image: url(https://api.ixiaowai.cn/gqapi/gqapi.php);","background-image: url(https://anime-api.com/api/img/bg/anime);"]
+  const webBgDiv = document.getElementById('web_bg')
+
+  const setRandomBg = () => {
+    webBgDiv.style = arr[Math.floor(Math.random() * arr.length)]
+    requestAnimationFrame(() => webBgDiv.classList.add('bg-animation'))
+  }
+
+  document.addEventListener('pjax:send', () => {
+    webBgDiv.style = ''
+    webBgDiv.classList.remove('bg-animation')
+  })
+
+  document.addEventListener('pjax:complete', setRandomBg)
+  document.addEventListener('DOMContentLoaded', setRandomBg)
+})()
+</script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">InfinitePwn's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">计算机网络知识点总结 — 谢希仁第八版（第1-4章）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">计算机网络知识点总结 — 谢希仁第八版（第1-4章）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-31T16:00:00.000Z" title="发表于 2026-04-01 00:00:00">2026-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-01T03:17:52.215Z" title="更新于 2026-04-01 11:17:52">2026-04-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/">网络技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p>本文基于谢希仁《计算机网络（第八版）》第1-4章内容整理</p>
+<p>📅 转换时间: 2026-04-01<br>🔧 转换工具: html-to-markdown (基于Rust的高性能转换器)</p>
+</blockquote>
+<h2 id="📋-内容摘要"><a href="#📋-内容摘要" class="headerlink" title="📋 内容摘要"></a>📋 内容摘要</h2><p>本文通过专业的 HTML 转 Markdown 工具进行转换，确保内容完整性和格式保留。内容涵盖计算机网络的基础知识、协议、网络模型等核心概念。</p>
+<hr>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><h2 id="📋-目录"><a href="#📋-目录" class="headerlink" title="📋 目录"></a>📋 目录</h2><ol>
+<li><a href="#ch1">第一章 · 概论 — 网络是什么、怎么工作的</a></li>
+<li><a href="#ch2">第二章 · 物理层 — 比特是怎么跑过去的</a></li>
+<li><a href="#ch3">第三章 · 数据链路层 — 帧的传输与差错控制</a></li>
+<li><a href="#ch4">第四章 · 网络层 — IP 地址与数据包路由</a></li>
+<li><a href="#ch4-411">4.1.1 网络层提供的两种服务（虚电路 vs 数据报）</a></li>
+<li><a href="#ch4-412">4.1.2 网络层的两个层面（数据平面 vs 控制平面）</a></li>
+<li><a href="#ch4-42">4.2 网际协议 IP</a><br>1. <a href="#ch4-421">4.2.1 虚拟互联网络</a><br>2. <a href="#ch4-422">4.2.2 IP 地址</a><br>3. <a href="#ch4-423">4.2.3 IP 地址与 MAC 地址</a></li>
+</ol>
+<p>🌐</p>
+<h2 id="第一章-·-概论"><a href="#第一章-·-概论" class="headerlink" title="第一章 · 概论"></a>第一章 · 概论</h2><p>网络是什么，由谁组成，怎么工作，有哪些基本概念</p>
+<p>1.1 计算机网络的定义与分类</p>
+<p>🖥️ 什么是计算机网络 核心定义</p>
+<p>计算机网络 &#x3D; <strong>一组互联的自治计算机的集合</strong>。”互联”指用通信线路和设备连在一起；”自治”指每台计算机自己做决定，不受别人控制。</p>
+<p>**🌰 生活例子：**想象家里的电脑、手机、平板通过 WiFi 路由器连在一起，每台设备各自有自己的系统和账号，但它们又能互相通信、共享打印机——这就是一个最简单的计算机网络（家庭局域网）。</p>
+<p><strong>💡 个人理解：</strong>“自治”是关键词。一台电脑崩溃了，其他电脑照常运行。这和电话系统不同——电话网中一旦交换机出问题，大片区域就无法通话。</p>
+<p>📏 按覆盖范围分类 分类</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>英文缩写</th>
+<th>覆盖范围</th>
+<th>典型例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个人区域网</td>
+<td>PAN</td>
+<td>~1 米</td>
+<td>蓝牙耳机连手机</td>
+</tr>
+<tr>
+<td>局域网</td>
+<td>LAN</td>
+<td>几百米~几千米</td>
+<td>学校机房、公司内网</td>
+</tr>
+<tr>
+<td>城域网</td>
+<td>MAN</td>
+<td>一个城市</td>
+<td>有线电视网络</td>
+</tr>
+<tr>
+<td>广域网</td>
+<td>WAN</td>
+<td>几百~几千公里</td>
+<td>互联网的骨干网</td>
+</tr>
+</tbody></table>
+<p>**🌰 例子：**你在家连 WiFi（LAN）→ 流量走运营商 4G&#x2F;5G 网（MAN&#x2F;WAN）→ 到达百度服务器（WAN）。整个链路就穿越了多种网络。</p>
+<p>🔄 按拓扑结构分类 分类</p>
+<p>网络中节点和线路的连接方式叫<strong>拓扑结构</strong>，主要有：</p>
+<ul>
+<li><strong>总线型</strong>：所有节点挂在一根线上（像公共汽车站）。便宜但单点故障影响全局。</li>
+<li><strong>星型</strong>：所有节点连向中心交换机&#x2F;路由器。现代以太网最常用。</li>
+<li><strong>环型</strong>：节点首尾相连形成环。令牌环网使用过。</li>
+<li><strong>网状型</strong>：任意两节点之间有多条路径。互联网骨干网采用，可靠性最高。</li>
+</ul>
+<p>**💡 理解：**互联网的设计哲学来自冷战——即便一部分网络被摧毁，信息还能绕道传输，这就是网状拓扑的核心价值。</p>
+<p>1.2 互联网的发展历程</p>
+<p>📜 ARPANET → 互联网 历史</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>关键事件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一阶段</td>
+<td>1969</td>
+<td>ARPANET 诞生，仅4个节点，分组交换理念确立</td>
+</tr>
+<tr>
+<td>第二阶段</td>
+<td>1980s</td>
+<td>TCP&#x2F;IP 协议确立为标准，NSFNet 骨干网建立</td>
+</tr>
+<tr>
+<td>第三阶段</td>
+<td>1993至今</td>
+<td>WWW 发明，商业化，移动互联网爆发</td>
+</tr>
+</tbody></table>
+<p>**🌰 例子：**1969年10月，UCLA 向斯坦福研究院发送了第一条网络消息 “lo”（想发 login，系统崩了只发出两个字母）。这个”半句话”是互联网的诞生瞬间。</p>
+<p>1.3 互联网的组成</p>
+<p>🏗️ 边缘部分 vs 核心部分 架构</p>
+<p>互联网由两大部分组成：</p>
+<p><strong>边缘部分（用户侧）</strong>  </p>
+<p>包含主机（Host），即用户直接使用的设备：电脑、手机、服务器等。  </p>
+<p>通信模式：C&#x2F;S模式 或 P2P模式</p>
+<p><strong>核心部分（运营商侧）</strong>  </p>
+<p>包含路由器和通信链路，负责数据包的转发和路由。是互联网的”高速公路网”。</p>
+<p>**🌰 例子（C&#x2F;S模式）：**你用浏览器（客户端）访问百度（服务器），请求由百度服务器响应——这是 Client&#x2F;Server 模式。  </p>
+<p>**🌰 例子（P2P模式）：**用 BitTorrent 下载电影时，你既从别人那里下载（客户端），同时也在给别人上传（服务器）——这是 Peer-to-Peer 模式，没有中心服务器。</p>
+<p>1.4 三种数据交换方式</p>
+<p>📦 电路交换 vs 报文交换 vs 分组交换 核心重点</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+<th>典型应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>电路交换</strong></td>
+<td>通信前先建立专用物理通路，全程独占</td>
+<td>时延小、无抖动</td>
+<td>建立时间长、信道利用率低</td>
+<td>电话系统</td>
+</tr>
+<tr>
+<td><strong>报文交换</strong></td>
+<td>把整个消息作为一个单位存储转发</td>
+<td>不独占信道</td>
+<td>大报文时延高、需大存储</td>
+<td>早期电报</td>
+</tr>
+<tr>
+<td><strong>分组交换</strong></td>
+<td>把数据分成小包，独立路由</td>
+<td>效率高、可靠性强</td>
+<td>有排队时延、有开销</td>
+<td>互联网</td>
+</tr>
+</tbody></table>
+<p>**🌰 电路交换比喻：**像租一条专属车道从北京到上海，不管有没有车，这条道一直被你占着，别人不能用。通话质量好但浪费。  </p>
+<p>**🌰 分组交换比喻：**像快递公司——你的货物（数据）被拆成多个包裹，每个包裹贴上地址标签独立发出，途中可能走不同路线，最终在目的地重新组装。高峰期各包裹可能排队等候，但总体效率远高于电路交换。</p>
+<p>**💡 为什么互联网选择分组交换？**假设你发一封2MB的邮件，分组交换把它切成1000个小包，每个包排队时间极短，总时延很小；而且某个路由器坏了，包可以绕道走——这正是军事需求下”抗毁性”的体现。</p>
+<p>1.5 计算机网络的性能指标</p>
+<p>⚡ 速率（带宽）性能指标</p>
+<p>速率 &#x3D; 单位时间内传输的<strong>比特</strong>数，单位是 b&#x2F;s（bps）。</p>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th>值</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 Kb&#x2F;s</td>
+<td>10³ b&#x2F;s</td>
+<td>早期拨号调制解调器</td>
+</tr>
+<tr>
+<td>1 Mb&#x2F;s</td>
+<td>10⁶ b&#x2F;s</td>
+<td>老式宽带</td>
+</tr>
+<tr>
+<td>1 Gb&#x2F;s</td>
+<td>10⁹ b&#x2F;s</td>
+<td>家用千兆光纤</td>
+</tr>
+<tr>
+<td>1 Tb&#x2F;s</td>
+<td>10¹² b&#x2F;s</td>
+<td>骨干网光纤</td>
+</tr>
+</tbody></table>
+<p>⚠️</p>
+<p>**注意：**运营商说的”百兆宽带”是 100 Mb&#x2F;s，而文件大小用字节（Byte）计量，1 Byte &#x3D; 8 bit。所以”百兆宽带”下载速度上限是 100÷8 &#x3D; 12.5 MB&#x2F;s，不是 100 MB&#x2F;s！</p>
+<p>⏱️ 时延的四个组成部分 核心重点</p>
+<p>数据从发送端到接收端的总时延 &#x3D; 发送时延 + 传播时延 + 处理时延 + 排队时延</p>
+<table>
+<thead>
+<tr>
+<th>时延类型</th>
+<th>公式 &#x2F; 说明</th>
+<th>决定因素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>发送时延</strong></td>
+<td>&#x3D; 数据帧长度 ÷ 信道带宽</td>
+<td>数据大小 + 带宽</td>
+</tr>
+<tr>
+<td><strong>传播时延</strong></td>
+<td>&#x3D; 信道长度 ÷ 传播速率（~2×10⁸ m&#x2F;s）</td>
+<td>距离远近</td>
+</tr>
+<tr>
+<td><strong>处理时延</strong></td>
+<td>路由器&#x2F;主机分析数据包所需时间</td>
+<td>设备处理能力</td>
+</tr>
+<tr>
+<td><strong>排队时延</strong></td>
+<td>在路由器队列中等待的时间</td>
+<td>网络拥堵程度</td>
+</tr>
+</tbody></table>
+<p>**🌰 例子：**你发一个 1MB 的文件（8Mb），通过 100Mb&#x2F;s 的宽带，到北京服务器（距离 1000km）：<br>• 发送时延 &#x3D; 8Mb ÷ 100Mb&#x2F;s &#x3D; 0.08s<br>• 传播时延 &#x3D; 1000km ÷ (2×10⁸ m&#x2F;s) ≈ 0.005s<br>• 排队+处理时延：平时 ~10ms，拥堵时可达 500ms<br>✅ 高带宽减少发送时延；地球到月球的传播时延是固定的约1.3秒，带宽再大也无法减少。</p>
+<p>**💡 有趣的时延带宽积：**时延 × 带宽 &#x3D; “管道中有多少比特在飞”。带宽10Gb&#x2F;s、时延100ms 的链路，里面”装着”10⁹×0.1 &#x3D; 10亿个bit的数据！发送方发完却还没收到ACK，这就是为什么高速长距离网络需要大缓冲区。</p>
+<p>📊 吞吐量与利用率 性能指标</p>
+<p><strong>吞吐量</strong>：单位时间内实际传输的数据量（实际速率，通常 &lt; 理论带宽）</p>
+<p><strong>信道利用率</strong>：U &#x3D; 实际使用时间 &#x2F; 总时间。但利用率越高，时延越大！</p>
+<p>🔴</p>
+<p>当信道利用率 U → 1（趋于满载），时延 → ∞（理论上趋于无穷大）。这就是为什么网络工程师不会让信道利用率超过50%——类似公路管理不允许路上的车”堵死”。</p>
+<p>1.6 计算机网络的体系结构（分层模型）</p>
+<p>🏛️ 为什么要分层？设计思想</p>
+<p>网络通信涉及从物理电信号到应用程序的极其复杂的过程，分层的好处是：</p>
+<ul>
+<li>每层只做一件事，职责清晰</li>
+<li>上层不关心下层如何实现（模块化）</li>
+<li>不同厂商的设备只要实现相同协议就能互通</li>
+</ul>
+<p>**🌰 类比：**寄快递时，你（应用层）只管填写地址，不关心快递员（网络层）用卡车还是飞机（物理层）运输。分层让每个角色专注本职工作。</p>
+<p>📐 OSI 七层模型 vs TCP&#x2F;IP 四层模型 核心重点</p>
+<p><strong>OSI 七层模型（理论标准）</strong></p>
+<ol start="7">
+<li><p>应用层 Application</p>
+</li>
+<li><p>表示层 Presentation</p>
+</li>
+<li><p>会话层 Session</p>
+</li>
+<li><p>传输层 Transport</p>
+</li>
+<li><p>网络层 Network</p>
+</li>
+<li><p>数据链路层 Data Link</p>
+</li>
+<li><p>物理层 Physical</p>
+</li>
+</ol>
+<p><strong>TCP&#x2F;IP 四层模型（事实标准）</strong></p>
+<p>应用层（HTTP&#x2F;FTP&#x2F;DNS…）</p>
+<p>传输层（TCP&#x2F;UDP）</p>
+<p>网络层（IP&#x2F;ICMP&#x2F;ARP）</p>
+<p>网络接口层（以太网&#x2F;WiFi…）</p>
+<p>**💡 OSI vs TCP&#x2F;IP：**OSI 是”教科书标准”，理论完美但实现复杂，现实中几乎没有产品完全按 OSI 实现。TCP&#x2F;IP 是”江湖标准”，先有实现再有标准，简单实用，称霸互联网。谢希仁书中用的是折中的”五层模型”（合并表示层和会话层到应用层）。</p>
+<p>🔑 关键术语：协议、服务、接口 概念辨析</p>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>含义</th>
+<th>比喻</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>协议（Protocol）</strong></td>
+<td>同层实体通信的规则（水平方向）</td>
+<td>两国外交官都用英语交流的规定</td>
+</tr>
+<tr>
+<td><strong>服务（Service）</strong></td>
+<td>下层向上层提供的能力（垂直方向）</td>
+<td>快递公司提供”揽件→配送”服务</td>
+</tr>
+<tr>
+<td><strong>接口（Interface）</strong></td>
+<td>相邻层之间交换信息的方式</td>
+<td>快递员和仓库之间的交接手续</td>
+</tr>
+<tr>
+<td><strong>实体（Entity）</strong></td>
+<td>每层中能发送&#x2F;接收信息的软硬件</td>
+<td>快递流程中每个岗位上的工作人员</td>
+</tr>
+</tbody></table>
+<p>📨 数据封装与解封装 核心流程</p>
+<p>数据从应用层向下传输时，每经过一层都加上本层的<strong>首部（Header）</strong>，接收端从下往上逐层剥去首部，最终还原数据。</p>
+<p>应用数据</p>
+<p>→</p>
+<p>+TCP头 &#x3D; 报文段</p>
+<p>→</p>
+<p>+IP头 &#x3D; 数据报</p>
+<p>→</p>
+<p>+帧头帧尾 &#x3D; 帧</p>
+<p>→</p>
+<p>→ 比特流 →</p>
+<p>**🌰 类比俄罗斯套娃：**你的 HTTP 请求（最内层）被放进 TCP 信封，TCP 信封再放进 IP 信封，IP 信封放进以太网帧的大箱子，最终变成电信号传出去。每一层只看自己那层的”信封”，不管里面装什么。</p>
+<p>⚡</p>
+<h2 id="第二章-·-物理层"><a href="#第二章-·-物理层" class="headerlink" title="第二章 · 物理层"></a>第二章 · 物理层</h2><p>比特 0 和 1 如何在物理介质上传输</p>
+<p>2.1 物理层的基本概念</p>
+<p>🔌 物理层的任务 定义</p>
+<p>物理层关心的是<strong>如何在传输介质上传输比特流</strong>，它解决的是”如何用电压&#x2F;光&#x2F;无线电波来表示 0 和 1”的问题。</p>
+<p>物理层的四大特性：</p>
+<ul>
+<li><strong>机械特性</strong>：接口形状、尺寸（如 RJ45 网线接口是什么样的）</li>
+<li><strong>电气特性</strong>：电压范围（如 +5V 代表 1，0V 代表 0）</li>
+<li><strong>功能特性</strong>：某条线的含义（如某脚是数据线还是时钟线）</li>
+<li><strong>规程特性</strong>：各信号线的工作顺序和时序关系</li>
+</ul>
+<p>**🌰 例子：**USB 接口就是一套物理层规范，规定了接口形状（机械）、5V电压（电气）、D+&#x2F;D-数据线功能（功能）和握手时序（规程）。</p>
+<p>2.2 数据通信基础理论</p>
+<p>📡 模拟信号 vs 数字信号 基础概念</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特征</th>
+<th>例子</th>
+<th>优缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>模拟信号</strong></td>
+<td>连续变化的波形</td>
+<td>老式电话语音、AM&#x2F;FM广播</td>
+<td>传远了噪声叠加，失真严重</td>
+</tr>
+<tr>
+<td><strong>数字信号</strong></td>
+<td>离散的高低电平</td>
+<td>计算机网络数据</td>
+<td>抗噪声强，可再生无损传输</td>
+</tr>
+</tbody></table>
+<p>**💡 为什么现代通信都用数字化？**数字信号在中继站可以”再生”——只要识别出是 0 还是 1，就能发出一个全新的干净信号，不会累积噪声。模拟信号每次放大，噪声也跟着放大，传 1000 公里后就面目全非了。</p>
+<p>📐 奈奎斯特定理 &amp; 香农定理 核心公式</p>
+<p>这两个定理决定了信道的理论最大传输速率上限：</p>
+<p><strong>奈奎斯特定理（理想无噪声信道）：</strong><br>最大数据率 &#x3D; 2W·log₂N（bps）<br>W &#x3D; 信道带宽（Hz），N &#x3D; 信号的离散级数</p>
+<p><strong>香农定理（有噪声信道）：</strong><br>最大数据率 &#x3D; W·log₂(1 + S&#x2F;N)（bps）<br>S&#x2F;N &#x3D; 信噪比（通常用 dB 表示：10·lg(S&#x2F;N)）</p>
+<p>**🌰 例子：**家用电话线带宽约 3kHz，信噪比约 30dB（S&#x2F;N &#x3D; 1000）：<br>香农极限 &#x3D; 3000 × log₂(1001) ≈ 3000 × 10 &#x3D; 30,000 bps &#x3D; 30 kbps<br>这就是为什么老式电话线调制解调器的极限是约 56kbps（还有其他工程因素）。</p>
+<p>**💡 理解：**奈奎斯特告诉我们”增加信号级别可以提速”；香农告诉我们”噪声才是真正的天花板”。5G 之所以快，核心原因是信道质量好（短距离、多天线消除噪声），信噪比高。</p>
+<p>🔄 三种通信方向 概念</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单工</td>
+<td>只能一个方向传输</td>
+<td>广播、遥控器</td>
+</tr>
+<tr>
+<td>半双工</td>
+<td>可双向，但不能同时</td>
+<td>对讲机（一个人说完才能另一个人说）</td>
+</tr>
+<tr>
+<td>全双工</td>
+<td>同时双向传输</td>
+<td>电话、网络通信</td>
+</tr>
+</tbody></table>
+<p>🔢 基带传输与宽带传输 传输方式</p>
+<p><strong>基带传输</strong>：直接用数字信号（方波）在信道上传输，不搬频率。以太网用的就是基带传输。</p>
+<p><strong>宽带传输（频带传输）</strong>：用数字信号调制载波（Modulation），频率搬移后传输。有线电视、WiFi 都是宽带传输。</p>
+<p><strong>三种调制方式：</strong></p>
+<ul>
+<li><strong>调幅（ASK）</strong>：用幅度高低表示 0&#x2F;1，像音量大小代表不同含义</li>
+<li><strong>调频（FSK）</strong>：用频率高低表示 0&#x2F;1，像音调高低代表不同含义</li>
+<li><strong>调相（PSK）</strong>：用相位变化表示 0&#x2F;1，现代通信最常用（4G&#x2F;5G、WiFi都用QAM）</li>
+</ul>
+<p>2.3 物理层传输介质</p>
+<p>🔌 导向传输介质（有线）传输介质</p>
+<table>
+<thead>
+<tr>
+<th>介质</th>
+<th>特点</th>
+<th>速率&#x2F;距离</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>双绞线</strong></td>
+<td>两根铜线绞合，抵消电磁干扰。分屏蔽（STP）和非屏蔽（UTP）</td>
+<td>Cat6: 1Gbps&#x2F;100m</td>
+<td>家庭&#x2F;办公室以太网</td>
+</tr>
+<tr>
+<td><strong>同轴电缆</strong></td>
+<td>中心铜芯+绝缘层+金属网+外皮，抗干扰强</td>
+<td>几百Mbps&#x2F;公里级</td>
+<td>有线电视、早期以太网</td>
+</tr>
+<tr>
+<td><strong>光纤</strong></td>
+<td>玻璃纤维中光信号传输，单模&#x2F;多模，完全不受电磁干扰</td>
+<td>数十Tbps&#x2F;数千公里</td>
+<td>骨干网、家庭光宽带</td>
+</tr>
+</tbody></table>
+<p>**🌰 光纤原理：**光在玻璃纤维中以全内反射的方式传播，就像光在镜子做的管道里不停反弹前行。单模光纤芯极细（9μm），光走直线，传输距离远；多模光纤芯较粗（62.5μm），光走折线，适合短距离。</p>
+<p>📶 非导向传输介质（无线）传输介质</p>
+<table>
+<thead>
+<tr>
+<th>频段</th>
+<th>特点</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无线电波（&lt;1GHz）</td>
+<td>穿透力强，绕射好</td>
+<td>AM&#x2F;FM广播、2G&#x2F;3G蜂窝网</td>
+</tr>
+<tr>
+<td>微波（1-30GHz）</td>
+<td>直线传播，需视距，大容量</td>
+<td>WiFi 2.4&#x2F;5GHz、4G&#x2F;5G、卫星通信</td>
+</tr>
+<tr>
+<td>红外线</td>
+<td>不穿墙，短距离</td>
+<td>遥控器</td>
+</tr>
+<tr>
+<td>激光</td>
+<td>带宽极大，需精准对准</td>
+<td>大楼间无线光通信</td>
+</tr>
+</tbody></table>
+<p>2.4 信道复用技术</p>
+<p>🔀 频分复用 &#x2F; 时分复用 &#x2F; 码分复用 复用技术</p>
+<p>复用的目的：<strong>一条物理线路同时传输多路信号，提高线路利用率</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>英文</th>
+<th>原理</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>频分复用</strong></td>
+<td>FDM</td>
+<td>给每路信号分配不同频率，同时传输</td>
+<td>有线电视（每个频道占不同频段）</td>
+</tr>
+<tr>
+<td><strong>时分复用</strong></td>
+<td>TDM</td>
+<td>给每路信号分配不同时间槽，轮流传输</td>
+<td>数字电话 E1 线路（30路电话共享）</td>
+</tr>
+<tr>
+<td><strong>统计时分复用</strong></td>
+<td>STDM</td>
+<td>按需分配时间槽（有话要说才占槽）</td>
+<td>ATM 网络</td>
+</tr>
+<tr>
+<td><strong>码分复用</strong></td>
+<td>CDM</td>
+<td>用正交码字区分不同用户，同时同频</td>
+<td>3G 移动通信（CDMA）</td>
+</tr>
+</tbody></table>
+<p>**🌰 FDM 比喻：**有线电视像一条高速公路，每个频道（CCTV1、CCTV2…）就是一条车道，车辆（信号）在各自车道上同时跑，互不干扰。  </p>
+<p>**🌰 TDM 比喻：**30 个人轮流用同一条路发言，每人轮到时有 1&#x2F;30 秒说话时间，循环往复。  </p>
+<p>**🌰 CDM 比喻：**在一间嘈杂的房间里，每对情侣用不同语言私密交流——中文、英文、法文同时说话，各自只听懂自己语言的信息。</p>
+<p>💡 波分复用（WDM）光纤复用</p>
+<p>在光纤中，用不同颜色（波长）的光同时传输多路信号。本质上就是光领域的频分复用。</p>
+<p>密集波分复用（DWDM）可在一根光纤中传输 80+ 路，总容量可达数十 Tbps。</p>
+<p>**🌰 例子：**一根跨太平洋的海底光缆，用 DWDM 承载了数百路信号，支撑全球互联网海量流量，但外表只是一根手指粗的细管子。</p>
+<p>2.5 数字传输系统 &amp; 宽带接入技术</p>
+<p>🏠 用户宽带接入方式 接入技术</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>介质</th>
+<th>速率</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ADSL</strong></td>
+<td>电话线双绞线</td>
+<td>下行8Mbps&#x2F;上行800Kbps</td>
+<td>“非对称”—下载比上传快</td>
+</tr>
+<tr>
+<td><strong>HFC（光纤同轴混合）</strong></td>
+<td>光纤+同轴电缆</td>
+<td>下行数百Mbps</td>
+<td>有线电视网络改造而来，邻居共享带宽</td>
+</tr>
+<tr>
+<td><strong>FTTH（光纤到户）</strong></td>
+<td>光纤直达家门</td>
+<td>1Gbps+</td>
+<td>目前最先进，国内大城市已普及</td>
+</tr>
+<tr>
+<td><strong>以太网接入</strong></td>
+<td>双绞线&#x2F;光纤</td>
+<td>百兆~万兆</td>
+<td>校园&#x2F;企业局域网最常用</td>
+</tr>
+<tr>
+<td><strong>WiFi（无线局域网）</strong></td>
+<td>无线电波</td>
+<td>WiFi 6: ~9.6Gbps理论</td>
+<td>802.11 系列标准，家庭最常用</td>
+</tr>
+</tbody></table>
+<p>**💡 为什么 ADSL 非对称？**普通用户下载远多于上传，所以把更多带宽分给下行方向。这是针对用户行为习惯做的工程优化。</p>
+<p>🔗</p>
+<h2 id="第三章-·-数据链路层"><a href="#第三章-·-数据链路层" class="headerlink" title="第三章 · 数据链路层"></a>第三章 · 数据链路层</h2><p>如何在两个直接相连的节点之间可靠地传输帧</p>
+<p>3.1 数据链路层的基本概念</p>
+<p>🔗 数据链路层做什么？定义</p>
+<p>数据链路层负责在<strong>相邻两个节点（一跳）<strong>之间可靠传输</strong>帧（Frame）</strong>。</p>
+<p>核心任务：</p>
+<ul>
+<li><strong>封装成帧</strong>：给数据加上帧头和帧尾，便于识别边界</li>
+<li><strong>透明传输</strong>：确保数据本身的内容不影响帧的传输（处理帧定界符问题）</li>
+<li><strong>差错检测</strong>：通过校验码发现传输中的错误</li>
+</ul>
+<p>**🌰 比喻：**数据链路层就像城市里的快递员，负责在同一条街（一跳）上把包裹从A门牌送到B门牌，处理本地路况问题（差错），不管包裹最终要到哪个城市（那是网络层的事）。</p>
+<p>📦 帧的结构 帧格式</p>
+<p>帧头<br>目的MAC<br>源MAC<br>类型</p>
+<p>数据部分<br>（46~1500字节）</p>
+<p>帧尾<br>FCS校验</p>
+<p>以太网帧最小64字节，最大1518字节（MTU&#x3D;1500字节数据）。超过这个大小的数据需要 IP 层分片。</p>
+<p>3.2 差错检测技术</p>
+<p>✅ 奇偶校验与 CRC 循环冗余检验 核心重点</p>
+<p><strong>奇偶校验（Parity Check）：</strong></p>
+<p>在数据后面加1位校验位，使得所有比特中1的个数为奇数（奇校验）或偶数（偶校验）。</p>
+<p>⚠️</p>
+<p>奇偶校验只能检测<strong>奇数位</strong>错误，如果同时翻转了偶数位，检测不出来！现代网络已很少单独使用。</p>
+<p><strong>CRC（循环冗余检验）：</strong></p>
+<p>把数据看作一个大的二进制多项式，除以一个约定的生成多项式，把**余数（FCS帧检验序列）**附在数据后面。接收方做同样的除法，余数为0则无错。</p>
+<p>**🌰 CRC 直觉理解：**把数据看成一个大数，除以一个”密码数字”，把余数写在包裹上。收件方做同样的除法，余数一样就说明数据没有改变。即使1个bit翻转，除法结果也会完全不同，所以检测率极高（CRC-32 的错误漏检率约 1&#x2F;2³²）。</p>
+<p>ℹ️</p>
+<p><strong>重要区分：<strong>CRC 只能</strong>检测</strong>错误，不能<strong>纠正</strong>错误。以太网发现 CRC 出错就直接丢弃帧，由上层（TCP）负责重传。这是”检错重传”策略。</p>
+<p>3.3 点对点协议 PPP</p>
+<p>📡 PPP 协议 广域网链路</p>
+<p>PPP（Point-to-Point Protocol）是目前使用最广泛的广域网数据链路层协议，用于两点之间的串行链路通信。</p>
+<p>典型应用：<strong>拨号上网（PPPoE）</strong>——你家路由器通过 PPPoE 连接运营商，本质就是 PPP over Ethernet。</p>
+<p><strong>PPP 帧结构：</strong></p>
+<p>F<br>7E</p>
+<p>A<br>FF</p>
+<p>C<br>03</p>
+<p>Protocol</p>
+<p>Information（数据）</p>
+<p>FCS</p>
+<p>F<br>7E</p>
+<p>标志字段 0x7E 用作帧定界符。若数据中出现 0x7E，用”字节填充”（转义）处理，确保透明传输。</p>
+<p>**🌰 例子（字节填充）：**数据中如果出现 0x7E（帧定界符），发送方改成 0x7D 0x5E 两个字节；如果出现 0x7D（转义字符），改成 0x7D 0x5D。接收方看到 0x7D 就知道下一个字节是”被转义的”，还原回去。就像写文章时，引号内的引号要变成另一种符号。</p>
+<p>3.4 以太网（局域网核心）</p>
+<p>🌐 以太网的诞生与 CSMA&#x2F;CD 核心重点</p>
+<p>以太网（Ethernet）由 Xerox 公司于1970年代发明，现在是全球最主流的局域网技术。IEEE 802.3 标准。</p>
+<p>早期以太网是<strong>总线型</strong>：所有节点共享一条总线，任何人发送的信号所有人都能听到。问题：两个人同时说话会”碰撞”。</p>
+<p>解决方案：<strong>CSMA&#x2F;CD（载波侦听多路访问&#x2F;碰撞检测）</strong></p>
+<p><strong>CSMA&#x2F;CD 工作流程（背口诀：”先听后说，边说边听，冲突后随机退避”）：</strong></p>
+<ol>
+<li>**载波侦听（CS）：**发送前先监听信道，如果有人在说就等待</li>
+<li>**多路访问（MA）：**信道空闲时才开始发送</li>
+<li>**碰撞检测（CD）：**发送过程中持续监听，发现碰撞立即停止并发强化信号</li>
+<li>**随机退避：**等待随机时间后重试（二进制指数退避算法）</li>
+</ol>
+<p><strong>🌰 CSMA&#x2F;CD 类比课堂发言：</strong> 课堂讨论（总线以太网）：  </p>
+<ul>
+<li>想发言前先听有没有人说话（载波侦听）  </li>
+<li>没有人说话时再开口（多路访问）  </li>
+<li>说的过程中如果和别人撞上了，立刻停下来（碰撞检测+停止）  </li>
+<li>随机等几秒再重新举手（随机退避）</li>
+</ul>
+<p>**最小帧长为什么是 64 字节？**为了让发送方在发完一帧之前就能检测到碰撞——信号跑完最长距离（2500m，往返约 51.2μs）所传输的数据量，即 10Mbps × 51.2μs &#x3D; 512bit &#x3D; 64字节。</p>
+<p><strong>💡 现代以太网已经不用 CSMA&#x2F;CD 了！<strong>现代以太网全部是</strong>全双工交换机</strong>：每个端口独享一条点对点链路，根本不会碰撞。CSMA&#x2F;CD 只在老式半双工共享总线网络中才有意义，现在更多是考试知识点。</p>
+<p>🏷️ MAC 地址 核心概念</p>
+<p>MAC 地址（Media Access Control Address）&#x3D; 网卡的”出厂序列号”，全球唯一，48位，写成 6 组十六进制数。</p>
+<p>AA:BB</p>
+<p>:</p>
+<p>CC:DD</p>
+<p>:</p>
+<p>EE:FF</p>
+<p>前3字节（OUI）是厂商标识，由 IEEE 分配；后3字节是厂商自己分配的序列号。</p>
+<p><strong>🌰 MAC vs IP 地址区别：</strong><br>MAC 地址 &#x3D; 你的<strong>身份证号</strong>（固定，出生就定，全球唯一）<br>IP 地址 &#x3D; 你的<strong>家庭住址</strong>（随你搬家而变，方便定位）  </p>
+<p>数据链路层（局域网内）用 MAC 地址找到你；网络层（跨网络）用 IP 地址找到你。</p>
+<p>🔀 集线器 vs 交换机 网络设备对比</p>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>工作层</th>
+<th>转发方式</th>
+<th>碰撞域</th>
+<th>广播域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>集线器（Hub）</strong></td>
+<td>物理层</td>
+<td>广播所有端口</td>
+<td>所有端口共一个</td>
+<td>一个</td>
+</tr>
+<tr>
+<td><strong>网桥（Bridge）</strong></td>
+<td>数据链路层</td>
+<td>按 MAC 地址转发，2端口</td>
+<td>每端口独立</td>
+<td>一个</td>
+</tr>
+<tr>
+<td><strong>交换机（Switch）</strong></td>
+<td>数据链路层</td>
+<td>按 MAC 地址转发，多端口</td>
+<td>每端口独立</td>
+<td>一个（默认）</td>
+</tr>
+</tbody></table>
+<p><strong>🌰 集线器 vs 交换机：</strong><br>集线器：你跟 A 说悄悄话，全班同学都能听到（广播），但每次只有一个人能说话（碰撞域）。<br>交换机：有”记忆”——知道每个端口后面是哪个 MAC 地址（MAC地址表），可以精准地点对点转发，多对设备同时通信互不干扰。</p>
+<p><strong>💡 交换机的 MAC 地址学习机制：<strong>交换机刚启动时 MAC 地址表是空的。每当它收到一帧，就把源 MAC 地址和入端口记录下来。几分钟后，它就”认识”了所有设备的位置。这叫</strong>自学习（Self-learning）</strong>。如果目的 MAC 不在表中，则<strong>泛洪（Flood）</strong>（除入端口外发往所有端口）。</p>
+<p>🏷️ VLAN 虚拟局域网 重要技术</p>
+<p>VLAN（Virtual LAN）用软件把一个物理网络划分成多个逻辑网络，实现广播域隔离。</p>
+<p>**🌰 例子：**一家公司财务部和研发部在同一层楼连同一台交换机，但通过 VLAN 划分，财务部的广播流量不会被研发部看到，安全又节省带宽。  </p>
+<p>802.1Q 协议在以太网帧中插入 4 字节标签（VLAN Tag），其中12位 VLAN ID 最多支持 4094 个 VLAN。</p>
+<p>🗺️</p>
+<h2 id="第四章-·-网络层"><a href="#第四章-·-网络层" class="headerlink" title="第四章 · 网络层"></a>第四章 · 网络层</h2><p>IP 地址、数据报转发、路由选择，互联网的核心</p>
+<p>4.1 网络层概述</p>
+<p>🗺️ 网络层的任务 定义</p>
+<p>网络层的核心任务：<strong>把数据包从源主机送到目的主机</strong>，即使跨越多个网络（路由器）。</p>
+<p>两大核心功能：</p>
+<ul>
+<li>**转发（Forwarding）：**路由器根据转发表决定数据包下一跳去哪里（本地操作）</li>
+<li>**路由选择（Routing）：**维护路由表，计算最优路径（全局计算）</li>
+</ul>
+<p>ℹ️</p>
+<p>**转发 vs 路由选择：**类比导航——路由选择相当于你出发前规划最优路线；转发相当于路口的指路牌告诉你”直行还是左转”。</p>
+<p>4.1.1 网络层提供的两种服务</p>
+<p>🔀 虚电路服务 vs 数据报服务 核心对比</p>
+<p>网络层向上层（传输层）提供服务有两种设计思路，争论的焦点是：<strong>“可靠性由网络来保证，还是由端系统来保证？”</strong></p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>虚电路服务（Virtual Circuit）</th>
+<th>数据报服务（Datagram）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>思路来源</strong></td>
+<td>借鉴电话网络的设计思想</td>
+<td>互联网的实际做法（TCP&#x2F;IP）</td>
+</tr>
+<tr>
+<td><strong>连接建立</strong></td>
+<td>通信前必须建立虚电路（逻辑连接）</td>
+<td>不需要建立连接，即发即走</td>
+</tr>
+<tr>
+<td><strong>路径</strong></td>
+<td>同一连接的所有数据包走<strong>同一条路径</strong></td>
+<td>每个数据包<strong>独立路由</strong>，可走不同路径</td>
+</tr>
+<tr>
+<td><strong>数据包顺序</strong></td>
+<td>到达顺序与发送顺序相同</td>
+<td>可能乱序到达，需上层重排</td>
+</tr>
+<tr>
+<td><strong>路由器存储</strong></td>
+<td>每条虚电路都要在路由器中维护状态</td>
+<td>路由器不保存连接状态，只查路由表转发</td>
+</tr>
+<tr>
+<td><strong>可靠性保证</strong></td>
+<td>由<strong>网络负责</strong>（误码、丢包、拥塞都在网内处理）</td>
+<td>由<strong>端系统（TCP）负责</strong>，网络尽力而为</td>
+</tr>
+<tr>
+<td><strong>节点故障影响</strong></td>
+<td>路由器故障 → 经过该节点的虚电路全断</td>
+<td>路由器故障 → 后续包绕道，已在途包可能丢失</td>
+</tr>
+<tr>
+<td><strong>典型代表</strong></td>
+<td>ATM、帧中继、X.25</td>
+<td>互联网 IP 协议</td>
+</tr>
+</tbody></table>
+<p><strong>🌰 虚电路服务类比：</strong> 像打电话——先拨号建立通话（建立虚电路），通话期间所有声音都经过同一条线路，挂断后线路释放。有序、稳定，但中间哪个交换机坏了就断线。  </p>
+<p><strong>🌰 数据报服务类比：</strong> 像寄快递——每个包裹贴上目的地址独立发出，快递公司（路由器）根据当前状况决定走哪条路，不同包裹可能走不同路线，也可能后发先至。灵活、高效，但需要收件人自己检查有没有包裹丢失。</p>
+<p><strong>💡 互联网为什么选择数据报服务？</strong><br>互联网的设计哲学是 <strong>“网络尽力而为（Best Effort），端系统负责可靠性”</strong>。理由是：<br>① 数据报让网络核心变得简单（路由器不需要维护每条连接的状态），可以支撑海量并发连接；<br>② 可靠性交给端系统（TCP）处理，更灵活——有的应用不需要可靠（视频直播用 UDP），强迫网络保证可靠反而浪费；<br>③ 抗毁性更强——某个路由器挂了，数据包自动绕路，整个网络不会瘫痪。  </p>
+<p>这就是”端到端原则（End-to-End Principle）”——复杂性推到边缘，网络核心保持简单。</p>
+<p>✅</p>
+<p>**一句话总结：**虚电路服务像”包车”——路线固定，全程负责；数据报服务像”公共交通”——各走各的，乘客自负其责。互联网选择了后者，牺牲了网络内部的有序性，换取了整体的灵活性和扩展性。</p>
+<p>4.1.2 网络层的两个层面</p>
+<p>🏗️ 数据平面 vs 控制平面 核心概念</p>
+<p>网络层的功能可以从两个维度来理解——<strong>「怎么转发一个包」<strong>和</strong>「怎么决定路由表」</strong>，这两件事分别对应网络层的两个层面。</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>数据平面（Data Plane）</th>
+<th>控制平面（Control Plane）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>别名</strong></td>
+<td>转发平面（Forwarding Plane）</td>
+<td>路由平面（Routing Plane）</td>
+</tr>
+<tr>
+<td><strong>核心任务</strong></td>
+<td>把数据包从输入端口<strong>快速转发</strong>到输出端口</td>
+<td><strong>计算并维护路由表</strong>，决定数据包应该往哪走</td>
+</tr>
+<tr>
+<td><strong>时间尺度</strong></td>
+<td>纳秒级（硬件线速处理，极快）</td>
+<td>秒&#x2F;分钟级（路由协议收敛需要时间）</td>
+</tr>
+<tr>
+<td><strong>实现方式</strong></td>
+<td>路由器硬件芯片（ASIC&#x2F;FPGA）完成</td>
+<td>路由协议软件（RIP、OSPF、BGP）完成</td>
+</tr>
+<tr>
+<td><strong>依据</strong></td>
+<td>查转发表（FIB，已计算好的结果）</td>
+<td>运行路由算法（链路状态&#x2F;距离向量等）</td>
+</tr>
+<tr>
+<td><strong>类比角色</strong></td>
+<td>快递员（按地址投递）</td>
+<td>导航系统（规划路线）</td>
+</tr>
+</tbody></table>
+<p><strong>🌰 两个层面的工作流程举例：</strong>  </p>
+<p>想象你在一个大型物流中心（路由器）工作：  </p>
+<p>📦 **控制平面的工作：**每天早上开会，和周边各物流中心交换信息——“我到上海要 2 小时，我到北京要 5 小时……”。大家汇总后各自算出最优路线，写成一张《目的地→走哪条传送带》的路由表，贴在墙上。  </p>
+<p>⚡ **数据平面的工作：**快递包裹流水线上不停传来，扫码枪扫一下目的地，立即查墙上那张表，”上海？走3号传送带！”，然后把包裹甩上去，整个过程毫秒级完成，不需要动脑子重新算路线。  </p>
+<p><strong>关键点：路由表（控制平面算的）和转发表（数据平面用的）本质上是同一张表，但分开理解更清晰。</strong></p>
+<p>🔄 传统方式 vs SDN 软件定义网络 扩展理解</p>
+<p>两个层面的分离引出了一个重要问题：控制平面应该放在哪里？</p>
+<p><strong>📟 传统路由器（Per-Router Control）</strong></p>
+<ul>
+<li>每台路由器<strong>自己运行路由协议</strong></li>
+<li>数据平面和控制平面都在同一台设备里</li>
+<li>路由器既是执行者又是决策者</li>
+<li>优点：去中心化，健壮性强</li>
+<li>缺点：难以全局优化，配置复杂</li>
+</ul>
+<p><strong>☁️ SDN（Software Defined Networking）</strong></p>
+<ul>
+<li>控制平面从路由器中<strong>抽离出来</strong></li>
+<li>集中到云端的 <strong>SDN 控制器</strong>统一计算</li>
+<li>路由器只做数据平面（转发），变成”哑设备”</li>
+<li>优点：全局视角，灵活编程，易运维</li>
+<li>缺点：控制器成为单点故障风险</li>
+</ul>
+<p><strong>🌰 传统 vs SDN 类比：</strong><br>传统路由器就像<strong>每个路口的交警自己决定放哪个方向的车</strong>——每个交警只看自己的路口，靠经验和和邻居交警的信息协调。  </p>
+<p>SDN 就像<strong>交通指挥中心统一调度</strong>——有个大屏幕看到全城路况，统一下令每个路口的信号灯怎么配时，全局最优。  </p>
+<p>现代数据中心（阿里云、腾讯云内部）大量使用 SDN，因为机器多、路线复杂，集中控制更高效。</p>
+<p><strong>💡 为什么要区分两个层面？</strong><br>① <strong>性能隔离</strong>：数据平面要线速处理海量包，不能被路由计算拖慢；控制平面可以慢一点但要正确。<br>② <strong>故障隔离</strong>：路由协议出 bug，不影响已有的转发规则继续工作；反之亦然。<br>③ <strong>SDN 的基础</strong>：只有将两个平面在概念上分清，才能在架构上分离，实现网络的软件化编程。<br>④ <strong>考试重点</strong>：数据平面 &#x3D; 转发（查表动作），控制平面 &#x3D; 路由（算表过程），这个区别常考！</p>
+<p>✅</p>
+<p>**一句话总结：**控制平面是「军师」，负责出谋划策、算出路由表；数据平面是「士兵」，负责按图索骥、快速转发数据包。两者分工明确，各司其职，是现代路由器架构设计的核心思想。</p>
+<p>4.2 网际协议 IP</p>
+<p>🌐 什么是网际协议 IP？ 总览</p>
+<p>IP（Internet Protocol，网际协议）是 TCP&#x2F;IP 体系中<strong>最核心的协议</strong>，工作在网络层。它解决了一个根本问题：<strong>如何在由各种异构网络（不同技术、不同硬件、不同协议）组成的大型互联网络上，传递数据包？</strong></p>
+<p>📦</p>
+<p><strong>IP 数据报</strong></p>
+<p>统一的分组格式，屏蔽底层差异</p>
+<p>🏷️</p>
+<p><strong>IP 地址</strong></p>
+<p>全球唯一的逻辑地址体系</p>
+<p>🗺️</p>
+<p><strong>路由转发</strong></p>
+<p>逐跳决策，把包送到目的地</p>
+<p>**💡 IP 协议的设计哲学：<strong>IP 是一个</strong>尽力而为（Best-Effort）**的协议——它不保证数据包一定能到达，不保证顺序，也不保证延迟，只是竭尽所能地转发。可靠性由上层的 TCP 负责。这种”简单网络，智能终端”的思路让互联网得以承载各种各样的应用。</p>
+<p>4.2.1 虚拟互联网络</p>
+<p>🔗 什么是虚拟互联网络？ 核心概念</p>
+<p>现实世界的互联网，是由成千上万个<strong>物理网络</strong>（以太网、Wi-Fi、光纤骨干网、卫星网……）通过<strong>路由器</strong>互联起来的。这些底层网络技术千差万别，帧格式、地址长度、最大传输单元（MTU）各不相同。</p>
+<p>IP 协议通过在这些异构网络之上构建一个<strong>统一的逻辑层</strong>，让所有用户感觉自己在使用同一个网络——这就是<strong>虚拟互联网络（Internet）</strong>。</p>
+<p><strong>🌰 类比：国际快递系统</strong>  </p>
+<p>寄一个包裹从北京到纽约，中间会经历：陆运卡车 → 国内航班 → 国际货轮 → 当地邮车……每种运输方式都有自己的规则（装箱规格不同、票据格式不同）。  </p>
+<p>但你作为寄件人，只需要<strong>写上统一格式的地址标签</strong>（IP地址），剩下的都由各段运输衔接完成。你感觉到的是一个无缝的”全球快递网络”，而不是一堆拼凑起来的运输片段。  </p>
+<p><strong>IP 协议就是那张统一的地址标签规范，虚拟互联网络就是那个”感觉无缝”的全球快递系统。</strong></p>
+<p>🔄 IP 数据报在异构网络中的传输过程</p>
+<p>数据从主机 A 经过多个不同类型的网络，最终到达主机 B，IP 数据报经历的变化如下：</p>
+<p>IP 数据报穿越异构网络示意</p>
+<p>主机 A<br>以太网</p>
+<p>→ 以太网帧 →</p>
+<p>路由器 R1<br>以太网 &#x2F; Wi-Fi</p>
+<p>→ Wi-Fi帧 →</p>
+<p>路由器 R2<br>Wi-Fi &#x2F; 光纤</p>
+<p>→ 光纤帧 →</p>
+<p>主机 B<br>光纤以太网</p>
+<p>↑ 底层帧格式在每段链路上不同，但 IP 数据报的内容始终不变 ↑</p>
+<p><strong>📌 关键理解：封装与解封装</strong><br>每到一段新的链路，路由器会：<br>① <strong>剥掉</strong>上一段链路的数据帧头（解封装），取出 IP 数据报；<br>② 查路由表，决定下一跳；<br>③ 用下一段链路的<strong>新帧格式重新封装</strong> IP 数据报，发出去。  </p>
+<p>IP 数据报就像一封信的内容，外面的信封（数据帧）每到一个中转站就换一个，但信的内容（IP 层及以上）全程不变。</p>
+<p>🧩 互联网络中的关键术语辨析</p>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>含义</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>网络（Network）</strong></td>
+<td>由相同技术组成的单一物理网络</td>
+<td>一栋楼的以太网、一个校园 Wi-Fi</td>
+</tr>
+<tr>
+<td><strong>互联网络（Internetwork）</strong></td>
+<td>由路由器将多个异构网络连接起来</td>
+<td>校园网 + 电信骨干网 + 家庭网</td>
+</tr>
+<tr>
+<td><strong>互联网（Internet）</strong></td>
+<td>全球最大的互联网络（专有名词，首字母大写）</td>
+<td>我们日常使用的”网络”</td>
+</tr>
+<tr>
+<td><strong>路由器（Router）</strong></td>
+<td>连接异构网络的关键设备，工作在网络层</td>
+<td>家里的光猫路由器、运营商核心路由器</td>
+</tr>
+<tr>
+<td><strong>虚拟互联网络</strong></td>
+<td>IP 协议在异构物理网络之上创建的<strong>逻辑统一网络</strong></td>
+<td>互联网用户感知到的”一张大网”</td>
+</tr>
+</tbody></table>
+<p><strong>💡 “虚拟”体现在哪里？</strong><br>“虚拟”不是说网络不真实，而是说这层统一性是<strong>逻辑上的抽象</strong>，靠 IP 协议软件来维持，并没有一根真正连通全球的统一物理网线。就像”虚拟机”并不是真的机器，但用起来和真机一样。  </p>
+<p>正是这种虚拟化能力，让互联网可以把以太网、Wi-Fi、4G、卫星等完全不同的技术<strong>无缝整合</strong>，并在未来持续纳入新的网络技术，而不需要推倒重建。</p>
+<p>✅</p>
+<p>**一句话总结：**虚拟互联网络是 IP 协议的最大贡献——用一个统一的逻辑层，把底层五花八门的物理网络”粘合”成一张人人都能用同一套规则通信的全球大网。</p>
+<p>4.2.2 IP 地址</p>
+<p>🔢 IPv4 地址结构 核心重点</p>
+<p>IPv4 地址 &#x3D; 32位二进制，通常用<strong>点分十进制</strong>表示，如 192.168.1.100</p>
+<p>11000000</p>
+<p>.</p>
+<p>10101000</p>
+<p>.</p>
+<p>00000001</p>
+<p>.</p>
+<p>01100100</p>
+<p>192</p>
+<p>.</p>
+<p>168</p>
+<p>.</p>
+<p>1</p>
+<p>.</p>
+<p>100</p>
+<p>IP 地址 &#x3D; <strong>网络号（Net ID）</strong> + <strong>主机号（Host ID）</strong>，用子网掩码（Subnet Mask）来划分边界。</p>
+<p>🅰️ 分类 IP 地址（A&#x2F;B&#x2F;C&#x2F;D&#x2F;E类）传统分类</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>首字节范围</th>
+<th>网络号位数</th>
+<th>主机号位数</th>
+<th>每网络主机数</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A 类</strong></td>
+<td>1~126</td>
+<td>8位</td>
+<td>24位</td>
+<td>~1600万</td>
+<td>超大型网络（已分配完）</td>
+</tr>
+<tr>
+<td><strong>B 类</strong></td>
+<td>128~191</td>
+<td>16位</td>
+<td>16位</td>
+<td>~65000</td>
+<td>大中型网络</td>
+</tr>
+<tr>
+<td><strong>C 类</strong></td>
+<td>192~223</td>
+<td>24位</td>
+<td>8位</td>
+<td>254</td>
+<td>小型网络</td>
+</tr>
+<tr>
+<td><strong>D 类</strong></td>
+<td>224~239</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>组播（Multicast）</td>
+</tr>
+<tr>
+<td><strong>E 类</strong></td>
+<td>240~255</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>保留备用</td>
+</tr>
+</tbody></table>
+<p>⚠️ 特殊 IP 地址一览 重要细节</p>
+<p>并非所有 IP 地址都能自由使用——有些是保留的，有些只能在特定场景下作为源地址或目的地址。以下按 RFC 5735 &#x2F; RFC 1122 标准整理：</p>
+<table>
+<thead>
+<tr>
+<th>地址范围 &#x2F; 写法</th>
+<th>地址类型</th>
+<th>源地址</th>
+<th>目的地址</th>
+<th>说明与例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0.0.0.0 / 8</code></td>
+<td>本网络地址</td>
+<td>⚠️ 受限</td>
+<td>❌ 禁止</td>
+<td>仅在主机<strong>刚启动、尚未获取 IP</strong>时使用，代表”本网络上的本主机”。DHCP 场景最常见。   如：<code>0.0.0.0</code>（主机发 DHCP 请求时）</td>
+</tr>
+<tr>
+<td><code>127.0.0.0 / 8</code></td>
+<td>环回地址（Loopback）</td>
+<td>✅ 可以</td>
+<td>✅ 可以</td>
+<td>数据包永远不离开本机，IP 层直接处理。常用于本机测试。   如：<code>127.0.0.1</code>（localhost）、<code>127.0.0.2</code></td>
+</tr>
+<tr>
+<td><code>10.0.0.0 / 8</code></td>
+<td>私有地址（A类）</td>
+<td>✅ 可以</td>
+<td>✅ 可以</td>
+<td>内网专用，路由器<strong>不会将其路由到公网</strong>。   如：<code>10.0.1.5</code>（家庭&#x2F;企业内网常见）</td>
+</tr>
+<tr>
+<td><code>172.16.0.0 / 12</code></td>
+<td>私有地址（B类段）</td>
+<td>✅ 可以</td>
+<td>✅ 可以</td>
+<td>包含 172.16.x.x ~ 172.31.x.x，共 16 个 B 类网络。   如：<code>172.16.254.3</code></td>
+</tr>
+<tr>
+<td><code>192.168.0.0 / 16</code></td>
+<td>私有地址（C类段）</td>
+<td>✅ 可以</td>
+<td>✅ 可以</td>
+<td>最常用的内网地址段，家用路由器 LAN 口常见 <code>192.168.1.x</code>。</td>
+</tr>
+<tr>
+<td><code>100.64.0.0 / 10</code></td>
+<td>运营商级 NAT 地址</td>
+<td>✅ 可以</td>
+<td>✅ 可以</td>
+<td>运营商用来给大量用户共享少数公网 IP（NAPT 场景）。   如：<code>100.100.1.1</code></td>
+</tr>
+<tr>
+<td><code>169.254.0.0 / 16</code></td>
+<td>链路本地地址（Link-Local）</td>
+<td>⚠️ 受限</td>
+<td>⚠️ 受限</td>
+<td>DHCP 失败时自动分配，仅限<strong>同一条链路</strong>通信，不能跨路由器。   如：<code>169.254.12.34</code>（Windows 称”APIPA”）</td>
+</tr>
+<tr>
+<td><code>224.0.0.0 / 4</code></td>
+<td>多播&#x2F;组播地址</td>
+<td>⚠️ 受限</td>
+<td>✅ 可以</td>
+<td>源地址不能是多播地址（发送方必须是单播），但目的地址可以是多播。   如：<code>224.0.0.1</code>（所有主机）、<code>224.0.0.9</code>（RIPv2）</td>
+</tr>
+<tr>
+<td><code>240.0.0.0 / 4</code></td>
+<td>E 类（保留，实验用）</td>
+<td>❌ 禁止</td>
+<td>❌ 禁止</td>
+<td>全部保留给将来使用，<strong>绝对不能用于正常通信</strong>。</td>
+</tr>
+<tr>
+<td>主机号全 0（如 <code>192.168.1.0</code>）</td>
+<td>网络地址</td>
+<td>❌ 禁止</td>
+<td>⚠️ 受限</td>
+<td>代表整个网络本身，不能分配给任何主机。目的地址只在路由表中表示”去往这个网络”。</td>
+</tr>
+<tr>
+<td>主机号全 1（如 <code>192.168.1.255</code>）</td>
+<td>定向广播地址</td>
+<td>❌ 禁止</td>
+<td>✅ 可以</td>
+<td>向该网络的所有主机广播。现代路由器出于安全默认不转发此类广播。</td>
+</tr>
+<tr>
+<td><code>255.255.255.255</code></td>
+<td>受限广播地址</td>
+<td>❌ 禁止</td>
+<td>⚠️ 受限</td>
+<td>向本网络所有主机广播（不穿透路由器）。仅用于<strong>不知道目标网络号</strong>的场景（如 DHCP 发现请求）。</td>
+</tr>
+</tbody></table>
+<p><strong>🌰 场景举例说明”源&#x2F;目的地址限制”的实际意义：</strong>  </p>
+<p><strong>场景1：DHCP 获取 IP 的全过程</strong><br>你的电脑刚开机，还没有 IP，发 DHCP Discover：<br>① <strong>源地址</strong>：<code>0.0.0.0</code>（因为还没IP）<br>② <strong>目的地址</strong>：<code>255.255.255.255</code>（受限广播，找 DHCP 服务器）<br>获取成功后，<code>0.0.0.0</code> 就再也用不了了。  </p>
+<p><strong>场景2：ping 环回地址</strong><br><code>ping 127.0.0.1</code> — 源、目的都可以用 127.x.x.x，IP 层自己和自己对话，根本不经过网卡。  </p>
+<p><strong>场景3：多播视频直播</strong><br>直播服务器发送视频流：<br>① <strong>源地址</strong>：<code>202.118.1.100</code>（单播公网IP）<br>② <strong>目的地址</strong>：<code>239.0.0.1</code>（某个直播频道的多播地址）<br>所有加入该频道的用户都能收到——多播源本身不能是多播地址。</p>
+<p><strong>💡 为什么这些限制很重要？</strong><br>① <strong>防止路由混乱</strong>：如果私有地址出现在公网上，路由器不知道往哪送，会导致路由表错乱。<br>② <strong>防止广播风暴</strong>：广播地址如果被滥用成源地址，可以伪造大量广播包，直接瘫痪整个局域网。<br>③ <strong>安全防护</strong>：现代防火墙通常直接<strong>丢弃所有来自特殊地址（如 127.x.x.x、0.0.0.0、240.x.x.x）的入站数据包</strong>，因为正常通信永远不应该出现这些地址。</p>
+<p>⚡</p>
+<p><strong>⚡ 特殊地址分类为什么能让转发更迅速？</strong>  </p>
+<p><strong>核心原理：让路由器在查路由表之前，就用”首字节”快速分类处理，无需深入查表。</strong>  </p>
+<p>路由器的 IP 层收到一个数据包时，源&#x2F;目的 IP 地址一目了然。协议事先规定好”哪些地址不用查路由表”，这样路由器可以：  </p>
+<table>
+<thead>
+<tr>
+<th>快速决策</th>
+<th>依据</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>目的 &#x3D; 127.x.x.x？</strong></td>
+<td>首字节 &#x3D; 127 → 查表前直接本地回环</td>
+<td>不经过任何网卡，转发时间 ≈ 0</td>
+</tr>
+<tr>
+<td><strong>目的 &#x3D; 255.255.255.255？</strong></td>
+<td>首字节 &#x3D; 255 → 识别为受限广播</td>
+<td>直接按链路层广播，不查路由表</td>
+</tr>
+<tr>
+<td><strong>目的 &#x3D; 主机号全1？</strong></td>
+<td>末字节 &#x3D; 全1 → 识别为定向广播</td>
+<td>按链路层广播转发，本地处理</td>
+</tr>
+<tr>
+<td><strong>目的 &#x3D; 私有地址？</strong></td>
+<td>首字节 &#x3D; 10 &#x2F; 172.x &#x2F; 192.168 → 命中 NAT&#x2F;私有规则</td>
+<td>触发 NAT 处理或直接丢弃（外网路由器）</td>
+</tr>
+<tr>
+<td><strong>目的 &#x3D; 多播地址？</strong></td>
+<td>首字节 224-239 → 进入多播转发流程</td>
+<td>走专用多播路由协议，不走普通单播表</td>
+</tr>
+<tr>
+<td><strong>目的 &#x3D; 0.0.0.0？</strong></td>
+<td>全0 → 启动阶段自举包</td>
+<td>按特殊处理，DHCP场景直接交给链路层</td>
+</tr>
+</tbody></table>
+<p><strong>🌰 通俗类比：机场安检 vs 快速通道</strong><br>想象一个机场，海量乘客（数据包）排队过安检（查路由表）：<br>① <strong>普通乘客</strong>（公网单播地址）→老老实实过安检、验票、登机（查路由表找下一跳）。<br>② <strong>机组人员</strong>（环回地址）→ 直接走内部通道，根本不进安检大厅（IP 层本地处理）。<br>③ <strong>持贵宾券的乘客</strong>（私有地址&#x2F;多播地址）→ 引导到专用窗口，不和普通乘客抢资源（走 NAT&#x2F;多播路径）。<br>④ <strong>没有登机牌的人</strong>（0.0.0.0、240.x.x.x）→ 安检直接拦下（防火墙丢弃）。  </p>
+<p>分类之后，安检大厅（路由表）需要处理的乘客数量大幅减少，安检速度自然快了很多。  </p>
+<p><strong>💡 技术本质：IP 地址的”前缀规则”和”特殊段”让路由器在 O(1) 时间复杂度内就能做出转发决策的一部分判断，而不必每次都对整张路由表做最长前缀匹配。</strong> 这对于高速路由器（需要每秒处理上亿个数据包）来说至关重要——每省一次路由表查询，就省下几十到几百个时钟周期。</p>
+<p>🔪 子网划分与子网掩码 核心重点</p>
+<p>将一个大网络切割成多个小子网，实现更精细的管理和减少广播流量。</p>
+<p>子网掩码：与 IP 地址做 <code>AND</code> 运算，结果就是网络地址。</p>
+<p>IP 地址： 192.168.1.100 &#x3D; 11000000.10101000.00000001.01100100<br>子网掩码： 255.255.255.0 &#x3D; 11111111.11111111.11111111.00000000<br>────────────────────────────────────────────────────<br>AND 结果（网络地址）：192.168.1.0</p>
+<p><strong>🌰 &#x2F;24 vs &#x2F;25 子网划分例子：</strong><br>给你 192.168.1.0&#x2F;24 这个 C 类网络（254台主机）：<br>• 用 &#x2F;25（255.255.255.128）划分成2个子网：<br>子网1：192.168.1.0 ~ 192.168.1.127（128地址，126台主机）<br>子网2：192.168.1.128 ~ 192.168.1.255（128地址，126台主机）<br>这样一楼和二楼各用一个子网，互相隔离广播域。</p>
+<p>🌍 CIDR 无类别域间路由 现代路由</p>
+<p>CIDR（Classless Inter-Domain Routing）抛弃了 A&#x2F;B&#x2F;C 类的限制，用”地址前缀&#x2F;前缀长度”来表示任意大小的地址块。</p>
+<p>如 140.252.20.68&#x2F;22 表示前22位是网络号，后10位是主机号（1022台主机）。</p>
+<p><strong>🌰 路由汇聚（超网）例子：</strong><br>四个连续 C 类网络：<br>192.168.0.0&#x2F;24<br>192.168.1.0&#x2F;24<br>192.168.2.0&#x2F;24<br>192.168.3.0&#x2F;24<br>可以汇聚为一条路由：192.168.0.0&#x2F;22（因为前22位相同）。<br>路由器只需要维护 1 条路由记录，而不是 4 条，减少了路由表规模。</p>
+<p>**💡 CIDR 解决了什么问题？**1990年代初期，互联网爆炸性增长，B 类地址快速耗尽（太多机构申请65536个地址的B类，实际用不完），C 类又太小。CIDR 实现了按需分配，”你要1000台主机，我给你一个&#x2F;22（1022个主机地址）”，告别了浪费。</p>
+<p>4.2.3 IP 地址与 MAC 地址</p>
+<p>🏷️ 两种地址的本质区别 核心概念</p>
+<p>IP 地址和 MAC（媒体访问控制）地址是网络中两种完全不同层次的身份标识，理解它们的区别是理解整个网络通信过程的关键。</p>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>IP 地址（网络层）</th>
+<th>MAC 地址（数据链路层）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>别称</strong></td>
+<td>逻辑地址 &#x2F; 软件地址</td>
+<td>物理地址 &#x2F; 硬件地址 &#x2F; LAN 地址</td>
+</tr>
+<tr>
+<td><strong>长度</strong></td>
+<td>IPv4：32位（4字节），如 192.168.1.100</td>
+<td>48位（6字节），如 00:1A:2B:3C:4D:5E</td>
+</tr>
+<tr>
+<td><strong>分配方式</strong></td>
+<td>由网络管理员或 DHCP 动态分配，可以改变</td>
+<td>由网卡厂商固化在 ROM 中，烧录式，全球唯一，理论上不可改</td>
+</tr>
+<tr>
+<td><strong>层次（OSI）</strong></td>
+<td>网络层（第3层）</td>
+<td>数据链路层（第2层）</td>
+</tr>
+<tr>
+<td><strong>作用范围</strong></td>
+<td>整个互联网，逻辑上的”门牌号”，负责跨网络路由</td>
+<td>仅限同一局域网（广播域）内，物理上的”身份证号”</td>
+</tr>
+<tr>
+<td><strong>分层视角</strong></td>
+<td>端到端通信时，端系统看到的地址（发件人&#x2F;收件人地址）</td>
+<td>一跳到下一跳时，链路看到的地址（快递员看的中转站地址）</td>
+</tr>
+<tr>
+<td><strong>类比</strong></td>
+<td>🌐 邮政编码 + 门牌号（可变的逻辑地址）</td>
+<td>🏭 出厂序列号（固化的物理标识）</td>
+</tr>
+</tbody></table>
+<p><strong>🌰 通俗比喻：搬家场景</strong>  </p>
+<p>想象你搬家了，邮政编码从”北京 100000”变成了”上海 200000”：<br>① **你的身份证号（MAC 地址）**永远不会变——它就是你这个人，和你住哪无关。<br>② **你的住址（IP 地址）**变了——换了城市，需要通知所有亲友更新通讯录（类似 ARP）。<br>③ 快递公司（路由器）只看邮政编码（IP）决定长途走哪条路；到了城市后，快递员只看门牌号（MAC）决定最后送到哪一家。  </p>
+<p><strong>关键理解：IP 地址管”我在哪栋楼”，MAC 地址管”我是哪个人”。</strong></p>
+<p><strong>💡 为什么需要两种地址？</strong><br>① <strong>分层原则</strong>：OSI 模型每一层只管自己该管的事——网络层负责跨网寻址（选路），数据链路层负责相邻节点转发（封装成帧）。如果只用 IP 地址，链路层无法知道”下一跳”的物理接口在哪；如果只用 MAC 地址，路由器无法知道数据包应该往哪个网络方向走。<br>② <strong>灵活性</strong>：IP 地址可以动态分配（DHCP），方便网络管理；如果只用 MAC 地址，换网卡就要重新配置整个网络的路由表，几乎不可行。<br>③ <strong>可扩展性</strong>：IPv6 用 128 位 MAC 地址的思路来生成接口标识，实现”自我配置”（SLAAC）。</p>
+<p>🔄 IP 地址与 MAC 地址在通信中的协作流程 重点过程</p>
+<p>当主机 A（192.168.1.10）向主机 B（202.118.21.100）发送数据时，IP 层和链路层是如何配合的？</p>
+<p>📍 A → B 通信：IP 层与链路层地址变化全过程</p>
+<p>主机 A 源IP: 192.168.1.10 源MAC: AA:AA:AA:AA:AA:AA 目的IP: 202.118.21.100 目的MAC: ？？？（查ARP表 → 若无则发ARP请求）</p>
+<p>↓ 封装成以太网帧：目的MAC &#x3D; 路由器LAN口MAC，源MAC &#x3D; AA</p>
+<p>路由器 R 【解封】剥掉帧头，取出 IP 数据报</p>
+<p>（转发决策） 查路由表：目的IP 202.118.21.100 → 下一跳 202.118.1.1</p>
+<p>（重新封装） 源MAC &#x3D; 路由器WAN口MAC，目的MAC &#x3D; 下一跳路由器WAN口MAC</p>
+<p>↓ 经若干路由器逐跳转发，每跳MAC地址都变化 ↓</p>
+<p>主机 B 最终到达：目的IP &#x3D; 202.118.21.100（不变！），目的MAC &#x3D; BB:BB:BB:BB:BB:BB</p>
+<p>🔑</p>
+<p><strong>关键结论：</strong><br>• <strong>IP 地址在整条链路上</strong>从源到目的<strong>始终不变</strong>（除非有 NAT），代表端到端的逻辑身份。<br>• <strong>MAC 地址在每一跳都会变化</strong>——源MAC和目的MAC只管”当前这一段链路”的两个相邻节点。</p>
+<p>🗺️ 地址解析协议 ARP 核心重点</p>
+<p>ARP（Address Resolution Protocol）的作用是：根据已知的目标 IP 地址，去查询对应的 MAC 地址。这个过程发生在<strong>同一局域网内</strong>——跨网段的 IP 地址需要由路由器来转发，ARP 不跨路由器。</p>
+<p><strong>📋 ARP 表（ARP Cache）</strong></p>
+<p>每台主机&#x2F;路由器都维护一张 ARP 表，存储 IP 地址 → MAC 地址的映射：<br><code>192.168.1.1 → AA:BB:CC:DD:EE:FF</code><br><code>192.168.1.100 → 11:22:33:44:55:66</code><br>表项有生命周期（通常20分钟），超时后需要重新 ARP。</p>
+<p><strong>🔍 ARP 欺骗攻击</strong></p>
+<p>ARP 表可以被恶意伪造——攻击者发送伪造的 ARP 响应（”我是网关，我的 IP 没变，但 MAC 是我的”），把别人的 MAC 指向自己。<br>**防范：**静态 ARP 表项、ARP 防火墙、交换机 Port-Security。</p>
+<p><strong>🌰 ARP 的完整工作过程（动画演示）：</strong>  </p>
+<p>**场景：**主机 A（192.168.1.10）想发消息给同一局域网的 主机 B（192.168.1.20），但不知道 B 的 MAC 地址。  </p>
+<p><strong>Step 1：查 ARP 表</strong><br>A 先查自己的 ARP 表——“192.168.1.20 → ?”<br>命中 → 直接用这个 MAC 地址封装帧，结束。<br>未命中 → 进入 Step 2。  </p>
+<p><strong>Step 2：ARP 请求（广播）</strong><br>A 构造 ARP 请求包，内容：<br>“谁有 IP 地址 192.168.1.20？请告诉我，你的 MAC 地址是什么？”<br>用广播 MAC（FF:FF:FF:FF:FF:FF）封装，发到局域网所有主机。  </p>
+<p><strong>Step 3：ARP 响应（单播）</strong><br>局域网中只有 B 的 IP 匹配，B 收到后回应：<br>“我的 IP 是 192.168.1.20，我的 MAC 地址是 BB:BB:BB:BB:BB:BB”<br>B 将 A 的 IP→MAC 记录到自己的 ARP 表里。  </p>
+<p><strong>Step 4：更新缓存，发送数据</strong><br>A 收到响应后，把 192.168.1.20 → BB:BB:BB:BB:BB:BB 写入 ARP 表，然后正常封装以太网帧发送。  </p>
+<p><strong>整个过程耗时：几毫秒，用户无感知。</strong></p>
+<p><strong>💡 ARP 为什么是广播？</strong><br>因为 A 根本不知道 B 在不在局域网里、发请求给谁，只能<strong>广播给所有人</strong>，让 B 自己来认领。就像你在班级群里问”谁认识张三”，而不是精确地给某个人发私信——因为你不知道张三在不在群里。  </p>
+<p><strong>为什么不直接用 IP 地址通信，要转成 MAC 地址？</strong><br>因为数据链路层（二层）只知道 MAC 地址。交换机转发数据帧靠的是 MAC 地址表——它不认识 IP。IP 层和数据链路层是两张地图，各管各的事，ARP 就是两层的”翻译官”。</p>
+<p>✅</p>
+<p>**一句话总结：**IP 地址是”邮政编码”（跨网不变），MAC 地址是”身份证号”（一跳一变）。ARP 就是在只知道邮政编码的情况下，去局域网内打听对应身份证号的协议——问完记下来，下次直接用。</p>
+<p>4.3 IP 数据报格式</p>
+<p>📋 IP 数据报首部各字段 格式解析</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>位数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>版本（Version）</td>
+<td>4</td>
+<td>IPv4&#x3D;4，IPv6&#x3D;6</td>
+</tr>
+<tr>
+<td>首部长度（IHL）</td>
+<td>4</td>
+<td>单位4字节，最小20字节（值&#x3D;5）</td>
+</tr>
+<tr>
+<td>区分服务（ToS）</td>
+<td>8</td>
+<td>QoS服务质量标记，现代用 DSCP</td>
+</tr>
+<tr>
+<td>总长度</td>
+<td>16</td>
+<td>整个IP数据报的字节数，最大 65535</td>
+</tr>
+<tr>
+<td>标识（ID）</td>
+<td>16</td>
+<td>同一数据报的分片具有相同 ID</td>
+</tr>
+<tr>
+<td>标志（Flags）</td>
+<td>3</td>
+<td>DF（禁止分片）、MF（还有更多分片）</td>
+</tr>
+<tr>
+<td>片偏移</td>
+<td>13</td>
+<td>该分片在原数据报中的位置，单位8字节</td>
+</tr>
+<tr>
+<td><strong>TTL（生存时间）</strong></td>
+<td>8</td>
+<td>每过一个路由器减1，到0丢弃。防止包无限循环！</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>8</td>
+<td>6&#x3D;TCP，17&#x3D;UDP，1&#x3D;ICMP</td>
+</tr>
+<tr>
+<td>首部校验和</td>
+<td>16</td>
+<td>只校验首部，不校验数据</td>
+</tr>
+<tr>
+<td>源 IP 地址</td>
+<td>32</td>
+<td>发送方 IP</td>
+</tr>
+<tr>
+<td>目的 IP 地址</td>
+<td>32</td>
+<td>接收方 IP</td>
+</tr>
+</tbody></table>
+<p>**🌰 TTL 的妙用：**TTL 初始通常设置为64或128。<code>traceroute</code> 命令就利用了 TTL：先发 TTL&#x3D;1 的包（第一跳路由器回 ICMP 超时），再发 TTL&#x3D;2 的包（第二跳回应）……这样就能知道数据包经过的每一跳路由器。</p>
+<p>✂️ IP 数据报分片 重要机制</p>
+<p>当 IP 数据报大小超过链路的**MTU（最大传输单元）**时，需要在路由器进行分片。</p>
+<p>以太网 MTU &#x3D; 1500 字节；如果 IP 数据报为 4000 字节，需要分成 3 片：</p>
+<p>原始：4000字节（数据3980字节 + 首部20字节）  </p>
+<p>片1：1500字节，数据1480字节，偏移&#x3D;0，MF&#x3D;1<br>片2：1500字节，数据1480字节，偏移&#x3D;185（1480&#x2F;8），MF&#x3D;1<br>片3：1040字节，数据1020字节，偏移&#x3D;370（2960&#x2F;8），MF&#x3D;0</p>
+<p>**💡 注意：**分片只在目的主机才重组（不在中间路由器），因为分片可能走不同路径到达目的地。IPv6 不允许路由器分片（发现 MTU 不够就发 ICMP 通知发送方重新分小包），设计更合理。</p>
+<p>4.4 ARP &#x2F; ICMP 协议</p>
+<p>🔍 ARP 地址解析协议 核心协议</p>
+<p>问题：知道对方 IP 地址，但不知道 MAC 地址，怎么发以太网帧？</p>
+<p>ARP（Address Resolution Protocol）：通过广播请求，把 IP 地址解析为 MAC 地址。</p>
+<p>广播：谁是 192.168.1.1？</p>
+<p>→</p>
+<p>192.168.1.1 单播回复：是我，我的MAC是 AA:BB:CC…</p>
+<p>→</p>
+<p>存入 ARP 缓存（有效期约2分钟）</p>
+<p>**🌰 ARP 类比：**你在班级群里发消息”学号001的同学，你的座位号是多少？”001同学私信你回答，然后你把这个信息记在小本本上（ARP 缓存）。下次发快递就直接写座位号，不用再问了。</p>
+<p>🔴</p>
+<p>**ARP 欺骗（ARP Spoofing）：**攻击者发送伪造的 ARP 回应：”我才是192.168.1.1，我的 MAC 是 XX:XX:XX…”，让你把所有发给网关的数据都发给攻击者——这是”中间人攻击”的常用手法。</p>
+<p>📨 ICMP 互联网控制报文协议 诊断协议</p>
+<p>ICMP（Internet Control Message Protocol）用于在 IP 层传递<strong>控制信息和差错报告</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>ICMP 报文类型</th>
+<th>触发场景</th>
+<th>对应工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>回显请求&#x2F;回显应答（Type 8&#x2F;0）</td>
+<td>主动测试连通性</td>
+<td><code>ping</code> 命令</td>
+</tr>
+<tr>
+<td>超时（Type 11）</td>
+<td>TTL 减到 0</td>
+<td><code>traceroute</code> 命令</td>
+</tr>
+<tr>
+<td>目的不可达（Type 3）</td>
+<td>找不到目的地&#x2F;端口</td>
+<td>连接失败时看到</td>
+</tr>
+<tr>
+<td>重定向（Type 5）</td>
+<td>路由器告知更优路由</td>
+<td>自动路由优化</td>
+</tr>
+</tbody></table>
+<p><strong>🌰 ping 的工作过程：</strong><br><code>ping 8.8.8.8</code>  </p>
+<ol>
+<li>你发送 ICMP Echo Request（Type&#x3D;8）给 8.8.8.8  </li>
+<li>8.8.8.8 收到后回一个 ICMP Echo Reply（Type&#x3D;0）  </li>
+<li>你计算往返时延（RTT）<br>如果收不到回复，可能是网络不通、对方防火墙拦截了 ICMP 等。</li>
+</ol>
+<p>4.5 路由选择协议</p>
+<p>🗺️ 内部网关协议 RIP 路由协议</p>
+<p>RIP（Routing Information Protocol）基于<strong>距离向量算法（Bellman-Ford）</strong>，用”跳数”作为度量。最大跳数 15（16 表示不可达）。</p>
+<p>**🌰 RIP 工作原理：**每台路由器每30秒向邻居广播”我到各个网络的距离表”。邻居收到后更新自己的路由表（到目的地 &#x3D; 经过这邻居的跳数 + 1）。  </p>
+<p>缺点：”坏消息传得慢”问题：链路断了，路由器可能要经过很多轮才收敛到正确状态。</p>
+<p>🗺️ 内部网关协议 OSPF 路由协议</p>
+<p>OSPF（Open Shortest Path First）基于<strong>链路状态算法（Dijkstra 最短路径）</strong>。每台路由器了解全网拓扑，自己计算最短路径。</p>
+<p><strong>🌰 OSPF vs RIP 比较：</strong><br>RIP &#x3D; 问路人：”到北京怎么走？” 路人说”往东走”，但他只是按别人说的告诉你，不一定对。<br>OSPF &#x3D; 自己有完整的地图，用导航软件（Dijkstra）算出最优路径，精确可靠，收敛快。  </p>
+<p>OSPF 支持多条等价路径（负载均衡），支持分层（骨干区域+普通区域），适合大型企业网。</p>
+<p>🌍 外部网关协议 BGP 互联网路由</p>
+<p>BGP（Border Gateway Protocol）用于不同自治系统（AS）之间的路由选择，是互联网的”主干路由协议”。</p>
+<p>BGP 不追求最短路径，而是基于<strong>策略</strong>（商业关系、政治因素等）选路。</p>
+<p>**🌰 AS 和 BGP：**中国电信、中国联通、美国 AT&amp;T 各是一个 AS（自治系统），它们之间通过 BGP 宣告”我这里能到 X.X.X.X&#x2F;8 这块地址”。<br>你从家访问谷歌，数据可能经过：中国电信（AS4134）→ 香港核心网 → 全球互联网骨干 → 谷歌 AS（AS15169），这条路由就是 BGP 决定的。</p>
+<p>🔄 NAT 网络地址转换 重要技术</p>
+<p>NAT（Network Address Translation）：将私有 IP 地址转换为公网 IP 地址，让内网多台设备共享一个公网 IP 上网。</p>
+<p>内网主机<br>192.168.1.100:5000</p>
+<p>→</p>
+<p>NAT 路由器<br>替换为公网IP<br>1.2.3.4:60000</p>
+<p>→</p>
+<p>互联网服务器<br>看到的是1.2.3.4</p>
+<p>**🌰 例子：**家里有手机、电脑、平板3台设备（内网 IP：192.168.1.x），但运营商只给你一个公网 IP（如 101.88.x.x）。NAT 让3台设备都能上网，路由器维护一个”翻译表”，把内部的(IP:端口)映射到公网的不同端口，区分不同设备的流量。</p>
+<p>**💡 NAT 的矛盾：**NAT 是解决 IPv4 地址耗尽的”打补丁”方案，效果很好，延缓了 IPv4 枯竭十余年，但它破坏了互联网”端到端”的纯粹性。IPv6 每台设备都有全球唯一公网地址，理论上不需要 NAT，是治本方案——但 IPv6 推进缓慢，NAT 还会继续用很久。</p>
+<p>🚀 IPv6 下一代IP</p>
+<p>IPv6 地址 &#x3D; 128位，写成8组4位十六进制数，地址空间约 3.4×10³⁸ 个。</p>
+<p>2001:0db8</p>
+<p>:</p>
+<p>0000:0000</p>
+<p>:</p>
+<p>0000:0000</p>
+<p>:</p>
+<p>0000:0001</p>
+<p>可简写：连续的0用 <code>::</code> 替代（只能用一次），如上面可写成 2001:db8::1</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>IPv4</th>
+<th>IPv6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>地址长度</td>
+<td>32位</td>
+<td>128位</td>
+</tr>
+<tr>
+<td>地址总数</td>
+<td>约43亿</td>
+<td>约3.4×10³⁸</td>
+</tr>
+<tr>
+<td>首部长度</td>
+<td>可变（20~60字节）</td>
+<td>固定40字节</td>
+</tr>
+<tr>
+<td>分片处理</td>
+<td>路由器可分片</td>
+<td>只在源主机分片</td>
+</tr>
+<tr>
+<td>校验和</td>
+<td>首部有校验和</td>
+<td>无（上层负责）</td>
+</tr>
+<tr>
+<td>ARP</td>
+<td>需要 ARP 协议</td>
+<td>用 NDP 替代</td>
+</tr>
+<tr>
+<td>QoS 支持</td>
+<td>弱（ToS字段）</td>
+<td>强（流标签字段）</td>
+</tr>
+</tbody></table>
+<p>**🌰 IPv6 地址够用多久？**地球表面积约 5.1×10¹⁴ 平方米，IPv6 能为每平方米分配约 6.7×10²³ 个地址（阿伏伽德罗常数量级！）——给地球上每粒沙子都分配一个 IP 都绰绰有余。</p>
+<p>4.6 路由表与最长前缀匹配</p>
+<p>🔍 最长前缀匹配（Longest Prefix Match）路由查找</p>
+<p>路由器查找路由表时，选择与目的 IP 地址匹配的<strong>前缀最长</strong>的那条路由（最精确的匹配）。</p>
+<p>路由表：<br>192.168.1.0&#x2F;24 → 接口1<br>192.168.1.0&#x2F;25 → 接口2<br>0.0.0.0&#x2F;0 → 接口0（默认路由）  </p>
+<p>目的地：192.168.1.100<br>匹配 &#x2F;24（24位匹配）、匹配 &#x2F;25（25位匹配）<br>→ 选择 &#x2F;25（前缀更长，更精确）→ 接口2</p>
+<p>**🌰 类比：**如同查词典，192.168.1.100 既在”192.168.x.x（B区）”也在”192.168.1.x（B区-1楼）”，选最精确的那条——1楼。&#x2F;0 是”默认路由”，相当于”找不到地址时寄到总部”。</p>
+<h2 id="📝-全书核心要点速记"><a href="#📝-全书核心要点速记" class="headerlink" title="📝 全书核心要点速记"></a>📝 全书核心要点速记</h2><p><strong>第一章 · 概论</strong></p>
+<ul>
+<li>三种交换：电路 &#x2F; 报文 &#x2F; <strong>分组</strong>交换</li>
+<li>四个时延：发送 &#x2F; 传播 &#x2F; 处理 &#x2F; 排队</li>
+<li>OSI 7层 vs TCP&#x2F;IP 4层</li>
+<li>协议&#x3D;水平通信规则，服务&#x3D;向上提供能力</li>
+</ul>
+<p><strong>第二章 · 物理层</strong></p>
+<ul>
+<li>奈奎斯特（无噪）vs 香农（有噪）</li>
+<li>数字信号优于模拟（可再生）</li>
+<li>FDM &#x2F; TDM &#x2F; CDM &#x2F; WDM 四种复用</li>
+<li>光纤：全反射，单模远，多模近</li>
+</ul>
+<p><strong>第三章 · 数据链路层</strong></p>
+<ul>
+<li>CRC 检错（不能纠错）</li>
+<li>PPP：广域网链路协议，字节填充</li>
+<li>CSMA&#x2F;CD：”先听后说，冲突退避”</li>
+<li>交换机：MAC 自学习 + 泛洪转发</li>
+</ul>
+<p><strong>第四章 · 网络层</strong></p>
+<ul>
+<li>子网划分：IP AND 掩码 &#x3D; 网络地址</li>
+<li>ARP：IP → MAC（广播请求）</li>
+<li>ICMP：ping (echo) &#x2F; traceroute (TTL)</li>
+<li>RIP（跳数&#x2F;距离向量）vs OSPF（链路状态）</li>
+<li>NAT：私有IP→公网IP共享上网</li>
+<li>IPv6：128位，固定首部，源端分片</li>
+</ul>
+<hr>
+<h2 id="🔍-转换统计"><a href="#🔍-转换统计" class="headerlink" title="🔍 转换统计"></a>🔍 转换统计</h2><ul>
+<li><strong>源文件</strong>: 计算机网络知识点总结.html</li>
+<li><strong>转换工具</strong>: html-to-markdown v3.0.1</li>
+<li><strong>转换选项</strong>: heading_style&#x3D;”atx”, wrap_width&#x3D;80</li>
+</ul>
+<blockquote>
+<p>💡 提示：建议使用支持Markdown的阅读器查看，以获得最佳阅读体验。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://infinitepwn.github.io">InfinitePwn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://infinitepwn.github.io/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">https://infinitepwn.github.io/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://infinitepwn.github.io" target="_blank">InfinitePwn's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a><a class="post-meta__tags" href="/tags/%E8%B0%A2%E5%B8%8C%E4%BB%81/">谢希仁</a><a class="post-meta__tags" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">知识点总结</a></div><div class="post-share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/188052472?s=200&amp;v=4" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" title="计算机网络知识点总结（谢希仁第八版）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">计算机网络知识点总结（谢希仁第八版）</div></div><div class="info-2"><div class="info-item-1">📡 计算机网络知识点全面总结 基于谢希仁《计算机网络》第八版（上册）整理涵盖第1-4章：概论 · 物理层 · 数据链路层 · 网络层  📋 目录第一章 · 概论 1.1 计算机网络的定义与分类 1.2 互联网的发展历程   1.3 互联网的组成 1.4 三种数据交换方式 1.5 计算机网络的性能指标 1.6 计算机网络的体系结构  第二章 · 物理层 2.1 物理层的基本概念 2.2 数据通信基础理论 2.3 物理层传输介质 2.4 信道复用技术 2.5 数字传输系统 &amp; 宽带接入技术  第三章 · 数据链路层 3.1 数据链路层的基本概念 3.2 差错检测技术 3.3 点对点协议 PPP 3.4 以太网（局域网核心）  第四章 · 网络层 4.1 网络层概述 4.1.1 网络层提供的两种服务 4.1.2 网络层的两个层面 4.2 网际协议 IP 4.2.1 虚拟互联网络 4.2.2 IP 地址 4.2.3 IP 地址与 MAC 地址 4.3 IP 数据报格式 4.4 ARP &#x2F; ICMP 协议 4.5 路由选择协议 4.6 路由表与最长前缀匹配   第一章...</div></div></div></a><a class="pagination-related" href="/2025/09/09/2025-09-09_RSA%E9%80%89%E6%8B%A9%E5%AF%86%E6%96%87%E6%94%BB%E5%87%BB/" title="RSA选择密文攻击"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">RSA选择密文攻击</div></div><div class="info-2"><div class="info-item-1">RSA parity oracle一、举例即RSA奇偶性预言（oracle意为神谕） 这说的是，服务器可以解密任何密文，并至少返回密文的最低位（判断奇偶性），除了某个不可知的密文 那我们可以通过构造密文，进行二分查找，只需要次搜索就能恢复密文 假设  我们构造  那么有我们把这个发给服务器，服务器就会返回解密结果，注意到2m一定是偶数 且由于  那么有两种情况 为奇数，那么这就说明，即 为偶数，这说明 那么有这两种情况这两种情况分别得到范围 ，， 无论哪种情况都可以把m的范围缩小一半，然后我们继续操作  这时候我们发现没有那么显然了,有2种情况，  前者的话，注意这里要-3N,因为必须要减去奇数个N，而1个N不够为奇数，那么这就说明，即 为偶数，这说明 分别把范围缩小到 ， 我们发现有一个情况直接出了m=N//2 即使其他情况，每次构造都能使得范围变为原来的1/2,这就是经典的二分搜索 那么时间复杂度是  二、数学归纳法使用数学归纳法进行证明每次都能缩短1/2的区间 n=1的时候是显然的 假设第i次发送，那么有  且  于是有  那么第i+1次就会得到  为了方便对比，我们把上面...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" title="计算机网络知识点总结（谢希仁第八版）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-01</div><div class="info-item-2">计算机网络知识点总结（谢希仁第八版）</div></div><div class="info-2"><div class="info-item-1">📡 计算机网络知识点全面总结 基于谢希仁《计算机网络》第八版（上册）整理涵盖第1-4章：概论 · 物理层 · 数据链路层 · 网络层  📋 目录第一章 · 概论 1.1 计算机网络的定义与分类 1.2 互联网的发展历程   1.3 互联网的组成 1.4 三种数据交换方式 1.5 计算机网络的性能指标 1.6 计算机网络的体系结构  第二章 · 物理层 2.1 物理层的基本概念 2.2 数据通信基础理论 2.3 物理层传输介质 2.4 信道复用技术 2.5 数字传输系统 &amp; 宽带接入技术  第三章 · 数据链路层 3.1 数据链路层的基本概念 3.2 差错检测技术 3.3 点对点协议 PPP 3.4 以太网（局域网核心）  第四章 · 网络层 4.1 网络层概述 4.1.1 网络层提供的两种服务 4.1.2 网络层的两个层面 4.2 网际协议 IP 4.2.1 虚拟互联网络 4.2.2 IP 地址 4.2.3 IP 地址与 MAC 地址 4.3 IP 数据报格式 4.4 ARP &#x2F; ICMP 协议 4.5 路由选择协议 4.6 路由表与最长前缀匹配   第一章...</div></div></div></a><a class="pagination-related" href="/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AE%8C%E6%95%B4%E6%80%BB%E7%BB%93/" title="计算机网络知识点总结 — 谢希仁第八版（上半）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-01</div><div class="info-item-2">计算机网络知识点总结 — 谢希仁第八版（上半）</div></div><div class="info-2"><div class="info-item-1">📡 计算机网络知识点全面总结谢希仁 · 第八版 · 上册（第1-4章）   通俗易懂 · 附带实例 · 含💡 个人理解 📋 目录  * [📡 第一章 · 概论 — 网络是什么、怎么工作的](#ch1)    * [🔌 第二章 · 物理层 — 比特是怎么跑过去的](#ch2)    * [🔗 第三章 · 数据链路层 — 帧的传输与差错控制](#ch3)    * [🌐 第四章 · 网络层 — IP 地址与数据包路由](#ch4)        [4.1.1 网络层提供的两种服务（虚电路 vs 数据报）](#ch4-411)        * [4.1.2 网络层的两个层面（数据平面 vs 控制平面）](#ch4-412)        * [4.2 网际协议 IP](#ch4-42)            [4.2.1 虚拟互联网络](#ch4-421)            * [4.2.2 IP 地址](#ch4-422)            * [4.2.3 IP 地址与 MAC 地址](#ch4-423)    🌐  📡 第一章 · 概论网络是什么，由谁...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/188052472?s=200&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">InfinitePwn</div><div class="author-info-description">个人技术博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E5%86%85%E5%AE%B9%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">📋 内容摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">2.</span> <span class="toc-text">主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E7%9B%AE%E5%BD%95"><span class="toc-number">3.</span> <span class="toc-text">📋 目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%C2%B7-%E6%A6%82%E8%AE%BA"><span class="toc-number">4.</span> <span class="toc-text">第一章 · 概论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%C2%B7-%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-number">5.</span> <span class="toc-text">第二章 · 物理层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%C2%B7-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">6.</span> <span class="toc-text">第三章 · 数据链路层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%C2%B7-%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">7.</span> <span class="toc-text">第四章 · 网络层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D-%E5%85%A8%E4%B9%A6%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9%E9%80%9F%E8%AE%B0"><span class="toc-number">8.</span> <span class="toc-text">📝 全书核心要点速记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E8%BD%AC%E6%8D%A2%E7%BB%9F%E8%AE%A1"><span class="toc-number">9.</span> <span class="toc-text">🔍 转换统计</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AE%8C%E6%95%B4%E6%80%BB%E7%BB%93/" title="计算机网络知识点总结 — 谢希仁第八版（上半）">计算机网络知识点总结 — 谢希仁第八版（上半）</a><time datetime="2026-04-01T03:00:00.000Z" title="发表于 2026-04-01 11:00:00">2026-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" title="计算机网络知识点总结（谢希仁第八版）">计算机网络知识点总结（谢希仁第八版）</a><time datetime="2026-04-01T02:52:23.000Z" title="发表于 2026-04-01 10:52:23">2026-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/01/2026-04-01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" title="计算机网络知识点总结 — 谢希仁第八版（第1-4章）">计算机网络知识点总结 — 谢希仁第八版（第1-4章）</a><time datetime="2026-03-31T16:00:00.000Z" title="发表于 2026-04-01 00:00:00">2026-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/09/2025-09-09_RSA%E9%80%89%E6%8B%A9%E5%AF%86%E6%96%87%E6%94%BB%E5%87%BB/" title="RSA选择密文攻击">RSA选择密文攻击</a><time datetime="2025-09-09T03:59:35.000Z" title="发表于 2025-09-09 11:59:35">2025-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/31/2025-08-31_infinite_blog/" title="infinite_blog">infinite_blog</a><time datetime="2025-08-31T00:18:39.000Z" title="发表于 2025-08-31 08:18:39">2025-08-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By InfinitePwn</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
