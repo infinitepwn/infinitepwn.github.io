@@ -1,24 +1,8 @@
----
-title: 计算机网络知识点总结 — 谢希仁第八版（第1-4章）
-date: 2026-04-01
-tags: [计算机网络, 学习笔记, 谢希仁, 知识点总结]
-categories: [计算机科学, 网络技术]
-description: 本文使用专业的html-to-markdown工具转换，内容涵盖谢希仁《计算机网络（第八版）》第1-4章所有核心知识点，包括网络概论、物理层、数据链路层、网络层。
----
+# 📡 计算机网络知识点全面总结
 
-> 本文基于谢希仁《计算机网络（第八版）》第1-4章内容整理
-> 
-> 📅 转换时间: 2026-04-01
-> 🔧 转换工具: html-to-markdown (基于Rust的高性能转换器)
+谢希仁 · 第八版 · 上册（第1-4章）
 
-## 📋 内容摘要
-
-本文通过专业的 HTML 转 Markdown 工具进行转换，确保内容完整性和格式保留。内容涵盖计算机网络的基础知识、协议、网络模型等核心概念。
-
----
-
-## 主要内容
-
+通俗易懂 · 附带实例 · 含个人理解
 
 ## 📋 目录
 
@@ -92,17 +76,15 @@ description: 本文使用专业的html-to-markdown工具转换，内容涵盖谢
 
 互联网由两大部分组成：
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0;">
-<div style="background:#eff6ff; border-radius:8px; padding:14px; border:1px solid #93c5fd;">
-<strong style="color:#1d4ed8; font-size:1.05em;">边缘部分（用户侧）</strong><br><br>
-包含主机（Host），即用户直接使用的设备：电脑、手机、服务器等。<br><br>
+**边缘部分（用户侧）**  
+
+包含主机（Host），即用户直接使用的设备：电脑、手机、服务器等。  
+
 通信模式：C/S模式 或 P2P模式
-</div>
-<div style="background:#f0fdf4; border-radius:8px; padding:14px; border:1px solid #86efac;">
-<strong style="color:#065f46; font-size:1.05em;">核心部分（运营商侧）</strong><br><br>
+
+**核心部分（运营商侧）**  
+
 包含路由器和通信链路，负责数据包的转发和路由。是互联网的"高速公路网"。
-</div>
-</div>
 
 **🌰 例子（C/S模式）：**你用浏览器（客户端）访问百度（服务器），请求由百度服务器响应——这是 Client/Server 模式。  
 
@@ -188,29 +170,31 @@ description: 本文使用专业的html-to-markdown工具转换，内容涵盖谢
 
 📐 OSI 七层模型 vs TCP/IP 四层模型 核心重点
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:12px 0;">
-<div>
-<strong style="display:block; margin-bottom:8px; color:#1d4ed8; font-size:1.05em;">OSI 七层模型（理论标准）</strong>
-<div class="stack-diagram" style="font-family:monospace; text-align:center;">
-<div style="background:#ef4444; color:white; height:45px; line-height:45px; margin:3px 0; border-radius:4px;">7. 应用层 Application</div>
-<div style="background:#f97316; color:white; height:45px; line-height:45px; margin:3px 0; border-radius:4px;">6. 表示层 Presentation</div>
-<div style="background:#eab308; color:white; height:45px; line-height:45px; margin:3px 0; border-radius:4px;">5. 会话层 Session</div>
-<div style="background:#22c55e; color:white; height:45px; line-height:45px; margin:3px 0; border-radius:4px;">4. 传输层 Transport</div>
-<div style="background:#3b82f6; color:white; height:45px; line-height:45px; margin:3px 0; border-radius:4px;">3. 网络层 Network</div>
-<div style="background:#8b5cf6; color:white; height:45px; line-height:45px; margin:3px 0; border-radius:4px;">2. 数据链路层 Data Link</div>
-<div style="background:#ec4899; color:white; height:45px; line-height:45px; margin:3px 0; border-radius:4px;">1. 物理层 Physical</div>
-</div>
-</div>
-<div>
-<strong style="display:block; margin-bottom:8px; color:#059669; font-size:1.05em;">TCP/IP 四层模型（事实标准）</strong>
-<div class="stack-diagram" style="font-family:monospace; text-align:center; margin-top:0;">
-<div style="background:#dc2626; color:white; height:72px; line-height:72px; margin:3px 0; border-radius:4px;">应用层（HTTP/FTP/DNS…）</div>
-<div style="background:#059669; color:white; height:48px; line-height:48px; margin:3px 0; border-radius:4px;">传输层（TCP/UDP）</div>
-<div style="background:#0891b2; color:white; height:48px; line-height:48px; margin:3px 0; border-radius:4px;">网络层（IP/ICMP/ARP）</div>
-<div style="background:#7c3aed; color:white; height:72px; line-height:72px; margin:3px 0; border-radius:4px;">网络接口层（以太网/WiFi…）</div>
-</div>
-</div>
-</div>
+**OSI 七层模型（理论标准）**
+
+7. 应用层 Application
+
+6. 表示层 Presentation
+
+5. 会话层 Session
+
+4. 传输层 Transport
+
+3. 网络层 Network
+
+2. 数据链路层 Data Link
+
+1. 物理层 Physical
+
+**TCP/IP 四层模型（事实标准）**
+
+应用层（HTTP/FTP/DNS…）
+
+传输层（TCP/UDP）
+
+网络层（IP/ICMP/ARP）
+
+网络接口层（以太网/WiFi…）
 
 **💡 OSI vs TCP/IP：**OSI 是"教科书标准"，理论完美但实现复杂，现实中几乎没有产品完全按 OSI 实现。TCP/IP 是"江湖标准"，先有实现再有标准，简单实用，称霸互联网。谢希仁书中用的是折中的"五层模型"（合并表示层和会话层到应用层）。
 
@@ -1232,13 +1216,6 @@ IPv6 地址 = 128位，写成8组4位十六进制数，地址空间约 3.4×10³
 - NAT：私有IP→公网IP共享上网
 - IPv6：128位，固定首部，源端分片
 
+基于谢希仁《计算机网络》第八版（上册）整理 · 知识点总结 + 个人理解 + 生活化例子
 
----
-
-## 🔍 转换统计
-
-- **源文件**: 计算机网络知识点总结.html
-- **转换工具**: html-to-markdown v3.0.1
-- **转换选项**: heading_style="atx", wrap_width=80
-
-> 💡 提示：建议使用支持Markdown的阅读器查看，以获得最佳阅读体验。
+涵盖第1-4章：概论 · 物理层 · 数据链路层 · 网络层
