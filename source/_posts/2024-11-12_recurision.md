@@ -1,8 +1,11 @@
 ---
 title: recurision
 date: 2024-11-12 05:25:12
-tags: ["C++"]
-mathjax: true
+categories: Programming
+tags:
+  - C++
+  - Algorithm
+mathjax: false
 ---
 
 ### 函数递归

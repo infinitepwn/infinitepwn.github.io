@@ -1,8 +1,10 @@
 ---
 title: Certification
 date: 2025-07-16 06:23:24
-tags: []
-mathjax: true
+categories: Notes
+tags:
+  - Notes
+mathjax: false
 ---
 
 # JWT（JSON Web Tokens）

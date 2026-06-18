@@ -1,8 +1,10 @@
 ---
 title: infinite_blog
 date: 2025-07-19 00:44:54
-tags: []
-mathjax: true
+categories: Blog
+tags:
+  - Blog
+mathjax: false
 ---
 
 ![推荐曲线](https://muzipiao.github.io/gmdocs/img/gmobjc-sm2-intro4.png)

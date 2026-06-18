@@ -1,7 +1,9 @@
 ---
 title: infinite_blog
 date: 2025-08-23 07:29:28
-tags: []
+categories: Blog
+tags:
+  - Blog
 mathjax: true
 ---
 
