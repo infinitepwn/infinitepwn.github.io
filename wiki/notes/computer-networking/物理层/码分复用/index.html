@@ -1110,33 +1110,33 @@
 <p>当码分复用信道被多个不同地址的用户共享时，就称为码分多址（Code Division Multiple Access，CDMA）。</p>
 <p>每一个用户可以在同样的时间、使用同样的频带进行通信，接收端依靠码片序列的正交性分离出目标用户的数据。</p>
 <h2 id="_3">如何发送信息<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>在 CDMA 中，每一个比特时间划分成 $m$ 个短的间隔，称为码片（chip）。</p>
-<p>使用 CDMA 的每一站被指派一个唯一的 $m$ bit 码片序列：</p>
+<p>在 CDMA 中，每一个比特时间划分成 <span class="arithmatex">\(m\)</span> 个短的间隔，称为码片（chip）。</p>
+<p>使用 CDMA 的每一站被指派一个唯一的 <span class="arithmatex">\(m\)</span> bit 码片序列：</p>
 <ul>
 <li>如果要发送比特 1，就发送自己的码片序列。</li>
 <li>如果要发送比特 0，就发送自己的码片序列反码。</li>
-<li>通常把 0 记作 $-1$，把 1 记作 $+1$。</li>
+<li>通常把 0 记作 <span class="arithmatex">\(-1\)</span>，把 1 记作 <span class="arithmatex">\(+1\)</span>。</li>
 </ul>
-<p>由于每发送一个原始比特都要发送 $m$ 个码片，所以数据率要扩大到原来的 $m$ 倍，这称为扩频。</p>
+<p>由于每发送一个原始比特都要发送 <span class="arithmatex">\(m\)</span> 个码片，所以数据率要扩大到原来的 <span class="arithmatex">\(m\)</span> 倍，这称为扩频。</p>
 <h2 id="_4">正交<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>给每一站分配的码片序列各不相同，且必须相互正交。</p>
 <h3 id="_5">规格化内积<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>两个不同站的码片序列 $S$ 和 $T$ 应满足：</p>
-<p>$$
+<p>两个不同站的码片序列 <span class="arithmatex">\(S\)</span> 和 <span class="arithmatex">\(T\)</span> 应满足：</p>
+<div class="arithmatex">\[
 S\cdot T = \frac{1}{m} \sum_{i=1}^m S_iT_i=0
-$$</p>
+\]</div>
 <h3 id="_6">两个性质<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <ul>
-<li>$S$ 和其他站码片序列的反码也正交。</li>
-<li>$S$ 和自己的规格化内积是 $1$。</li>
-<li>$S$ 和自己的反码的规格化内积是 $-1$。</li>
+<li><span class="arithmatex">\(S\)</span> 和其他站码片序列的反码也正交。</li>
+<li><span class="arithmatex">\(S\)</span> 和自己的规格化内积是 <span class="arithmatex">\(1\)</span>。</li>
+<li><span class="arithmatex">\(S\)</span> 和自己的反码的规格化内积是 <span class="arithmatex">\(-1\)</span>。</li>
 </ul>
 <h2 id="_7">如何接收消息<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>接收端把收到的码片序列与目标站的码片序列做规格化内积：</p>
 <ul>
-<li>结果为 $1$，表示目标站发送了比特 1。</li>
-<li>结果为 $-1$，表示目标站发送了比特 0。</li>
-<li>结果为 $0$，表示收到的信号中没有目标站的信息。</li>
+<li>结果为 <span class="arithmatex">\(1\)</span>，表示目标站发送了比特 1。</li>
+<li>结果为 <span class="arithmatex">\(-1\)</span>，表示目标站发送了比特 0。</li>
+<li>结果为 <span class="arithmatex">\(0\)</span>，表示收到的信号中没有目标站的信息。</li>
 </ul>
 <p>如果多个站同时发送，由于不同站的码片序列正交，接收端仍然可以通过与目标站码片序列相乘并求平均，提取出目标站的数据。</p>
 <h2 id="_8">相关笔记<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
@@ -1217,6 +1217,10 @@ $$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

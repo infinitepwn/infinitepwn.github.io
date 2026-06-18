@@ -1122,101 +1122,101 @@
 </blockquote>
 <h3 id="_2">证明零知识性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>这里有两个东西：</p>
-<p>$$
+<div class="arithmatex">\[
 U_\lambda
-$$</p>
+\]</div>
 <p>表示一个随机变量/分布，通常理解成<strong>真实协议执行中验证者看到的东西</strong>。</p>
-<p>$$
+<div class="arithmatex">\[
 V_\lambda
-$$</p>
+\]</div>
 <p>表示另一个随机变量/分布，通常理解成<strong>模拟器伪造出来的东西</strong>。</p>
 <p>零知识证明的目标就是说明：</p>
-<p>$$
+<div class="arithmatex">\[
 U_\lambda \approx V_\lambda
-$$</p>
+\]</div>
 <p>也就是说，真实交互产生的内容，和模拟器不靠秘密信息生成的内容，在外人看来分不出来。</p>
 <p>第一页说的是三种“不可区分”。</p>
 <h3 id="1">1. 相等<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p>$$
-\forall a\in {0,1}^*,\Pr[a\leftarrow U_\lambda]
+<div class="arithmatex">\[
+\forall a\in \{0,1\}^*,\Pr[a\leftarrow U_\lambda]
 =
 \Pr[a\leftarrow V_\lambda]
-$$</p>
+\]</div>
 <p>意思是：
-对于任意输出 $a$，两个分布输出它的概率完全一样。</p>
+对于任意输出 <span class="arithmatex">\(a\)</span>，两个分布输出它的概率完全一样。</p>
 <p>这叫<strong>完美不可区分</strong>。</p>
 <p>比如：</p>
-<p>$$
+<div class="arithmatex">\[
 U = \text{均匀随机生成一个比特}
-$$</p>
-<p>$$
+\]</div>
+<div class="arithmatex">\[
 V = \text{也是均匀随机生成一个比特}
-$$</p>
+\]</div>
 <p>那么它们输出 0 和 1 的概率都一样，完全相等。</p>
 <h3 id="2">2. 统计不可区分<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
-<p>$$
-\sum_{a\in{0,1}^*}
+<div class="arithmatex">\[
+\sum_{a\in\{0,1\}^*}
 \left|
 \Pr[a\leftarrow U_\lambda]
 -
 \Pr[a\leftarrow V_\lambda]
 \right|
 \leq \text{negl}(\lambda)
-$$</p>
+\]</div>
 <p>意思是：
 两个分布可以不完全一样，但是整体差距非常小，小到可以忽略。</p>
 <p>这里的</p>
-<p>$$
+<div class="arithmatex">\[
 \text{negl}(\lambda)
-$$</p>
-<p>叫<strong>可忽略函数</strong>，意思是随着安全参数 $\lambda$ 增大，它比任何多项式倒数都小，例如：</p>
-<p>$$
+\]</div>
+<p>叫<strong>可忽略函数</strong>，意思是随着安全参数 <span class="arithmatex">\(\lambda\)</span> 增大，它比任何多项式倒数都小，例如：</p>
+<div class="arithmatex">\[
 2^{-\lambda}
-$$</p>
+\]</div>
 <p>就可以认为是可忽略的。</p>
 <p>所以统计不可区分就是：</p>
 <p>哪怕给你无限算力，你也几乎分不出来。</p>
 <h3 id="3">3. 计算不可区分<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<p>$$
+<div class="arithmatex">\[
 \left|
 \Pr[D(1^\lambda,a)=1]
 -
 \Pr[D(1^\lambda,b)=1]
 \right|
 \leq \text{negl}(\lambda)
-$$</p>
+\]</div>
 <p>其中：</p>
-<p>$$
+<div class="arithmatex">\[
 a\leftarrow U_\lambda,\quad b\leftarrow V_\lambda
-$$</p>
+\]</div>
 <p>意思是：
-对于任何多项式时间算法 $D$，它都无法有效地区分 $U_\lambda$ 和 $V_\lambda$。</p>
-<p>这里的 $D$ 叫<strong>区分器</strong>。</p>
+对于任何多项式时间算法 <span class="arithmatex">\(D\)</span>，它都无法有效地区分 <span class="arithmatex">\(U_\lambda\)</span> 和 <span class="arithmatex">\(V_\lambda\)</span>。</p>
+<p>这里的 <span class="arithmatex">\(D\)</span> 叫<strong>区分器</strong>。</p>
 <p>你可以把它理解成一个裁判：</p>
 <p>它拿到一个样本，然后判断：</p>
-<p>“这个样本是来自真实协议 $U_\lambda$，还是来自模拟器 $V_\lambda$？”</p>
+<p>“这个样本是来自真实协议 <span class="arithmatex">\(U_\lambda\)</span>，还是来自模拟器 <span class="arithmatex">\(V_\lambda\)</span>？”</p>
 <p>如果任何高效算法都猜不准，那就说明它们<strong>计算不可区分</strong>。</p>
 <p>这三者强度关系是：</p>
-<p>$$
+<div class="arithmatex">\[
 \text{完全相等}
 \Rightarrow
 \text{统计不可区分}
 \Rightarrow
 \text{计算不可区分}
-$$</p>
+\]</div>
 <p>也就是：</p>
 <p>完全一样最强；
 统计距离很小次之；
 只要求高效算法分不出来最弱。</p>
 <p>放回“零知识性”里，这页想表达的是：</p>
-<p>如果真实协议视图 $U_\lambda$ 和模拟器生成的视图 $V_\lambda$ 不可区分，那么验证者从真实交互中看到的东西，就完全可以由模拟器自己造出来。</p>
+<p>如果真实协议视图 <span class="arithmatex">\(U_\lambda\)</span> 和模拟器生成的视图 <span class="arithmatex">\(V_\lambda\)</span> 不可区分，那么验证者从真实交互中看到的东西，就完全可以由模拟器自己造出来。</p>
 <p>既然模拟器不掌握秘密信息，却能造出几乎一样的东西，那说明真实协议也没有泄露秘密信息。</p>
 <p>所以零知识性的本质就是：</p>
-<p>$$
+<div class="arithmatex">\[
 \text{真实执行的视图}
 \approx
 \text{模拟器生成的视图}
-$$</p>
+\]</div>
 <p>验证者看不出来真假，因此它没学到额外知识。</p>
 <h3 id="_3">成员的零知识证明<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <h4 id="_4">子群成员问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
@@ -1303,6 +1303,10 @@ $$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

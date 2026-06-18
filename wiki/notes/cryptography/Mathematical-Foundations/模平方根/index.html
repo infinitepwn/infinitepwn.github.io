@@ -1014,7 +1014,7 @@
           <li class="md-nav__item">
   <a href="#p-equiv-3-pmod-4" class="md-nav__link">
     <span class="md-ellipsis">
-      $p \equiv 3 \pmod 4$的情况
+      \(p \equiv 3 \pmod 4\)的情况
     </span>
   </a>
   
@@ -1023,11 +1023,11 @@
           <li class="md-nav__item">
   <a href="#p-equiv-1-pmod-4" class="md-nav__link">
     <span class="md-ellipsis">
-      $p \equiv 1 \pmod 4$的情况
+      \(p \equiv 1 \pmod 4\)的情况
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="$p \equiv 1 \pmod 4$的情况">
+    <nav class="md-nav" aria-label="\(p \equiv 1 \pmod 4\)的情况">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1085,26 +1085,40 @@
 <p>来源：<code>密码学引论 / Mathematical-Foundations/模平方根.md</code></p>
 </blockquote>
 <h2 id="_2">模为素数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="p-equiv-3-pmod-4">$p \equiv 3 \pmod 4$的情况<a class="headerlink" href="#p-equiv-3-pmod-4" title="Permanent link">&para;</a></h3>
+<h3 id="p-equiv-3-pmod-4"><span class="arithmatex">\(p \equiv 3 \pmod 4\)</span>的情况<a class="headerlink" href="#p-equiv-3-pmod-4" title="Permanent link">&para;</a></h3>
 <p>注意到一个平凡的情况
-$$x^2 \equiv 1 \pmod p$$
-则$x = 1,p-1$
+$$
+x^2 \equiv 1 \pmod p
+$$
+则<span class="arithmatex">\(x = 1,p-1\)</span>
 我们考虑<a href="../%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86/">费马小定理</a>
 $$
 x^2 \equiv d \pmod p
 $$
-$$x^{p-1} \equiv 1 \pmod p$$
+$$
+x^{p-1} \equiv 1 \pmod p
+$$
 由于d是已知的，模素数是构成一个循环群的，我们可以在d的子群里找一下有没有平方根
-$$x = d^t \pmod p$$</p>
+$$
+x = d^t \pmod p
+$$</p>
 <p>也就是说
-$$d^{2t-1} \equiv 1 \pmod p$$
+$$
+d^{2t-1} \equiv 1 \pmod p
+$$
 那么由<a href="../%E6%AC%A7%E6%8B%89%E5%87%86%E5%88%99/">欧拉准则</a>
-$$d^\frac{p-1}{2} \equiv 1 \pmod p$$
+$$
+d^\frac{p-1}{2} \equiv 1 \pmod p
+$$
 容易得到
-$$t = \frac{p+1}{4}$$
+$$
+t = \frac{p+1}{4}
+$$
 所以就可以求解
-$$x = \pm d^{\frac{p+1}{4}} \pmod p$$</p>
-<h3 id="p-equiv-1-pmod-4">$p \equiv 1 \pmod 4$的情况<a class="headerlink" href="#p-equiv-1-pmod-4" title="Permanent link">&para;</a></h3>
+$$
+x = \pm d^{\frac{p+1}{4}} \pmod p
+$$</p>
+<h3 id="p-equiv-1-pmod-4"><span class="arithmatex">\(p \equiv 1 \pmod 4\)</span>的情况<a class="headerlink" href="#p-equiv-1-pmod-4" title="Permanent link">&para;</a></h3>
 <h4 id="tonellishanks-algorithm">Tonelli–Shanks algorithm<a class="headerlink" href="#tonellishanks-algorithm" title="Permanent link">&para;</a></h4>
 <p>相关概念</p>
 <p><a href="../%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86/">费马小定理</a></p>
@@ -1184,6 +1198,10 @@ $$x = \pm d^{\frac{p+1}{4}} \pmod p$$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
