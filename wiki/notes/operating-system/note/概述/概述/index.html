@@ -1,0 +1,1891 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/operating-system/note/%E6%A6%82%E8%BF%B0/%E6%A6%82%E8%BF%B0/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>概述 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              概述
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作系统的运行环境
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作系统的运行环境">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理器运行模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="处理器运行模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理器构成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      进程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 核心定义：什么是进程？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 进程的内部结构（内存视图）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 进程控制块 (PCB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 进程的生命周期与状态转换
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-context-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 核心动作：上下文切换(Context Switch)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      线程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="线程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-interleaving" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 线程的“交织”执行 (Interleaving)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      调度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      调度算法的目标
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调度算法的目标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 所有系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 不同环境下的特定目标
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 批处理系统的三大衡量指标
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 调度策略的优化技巧
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      批处理系统中的调度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="批处理系统中的调度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fcfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      先来先服务（FCFS）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sjf" class="md-nav__link">
+    <span class="md-ellipsis">
+      最短作业优先(SJF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      最短剩余时间优先
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      最高响应比优先
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      轮转调度
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/operating-system/note/概述/概述.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/operating-system/note/概述/概述.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>操作系统 / note/概述/概述.md</code></p>
+</blockquote>
+<h2 id="_2">操作系统的运行环境<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>程序的运行不仅依靠自身，还需要<strong>操作系统、计算机硬件（如CPU、内存、硬盘、显卡等）以及用户的共同参与</strong> 。为了实现保护与控制，硬件必须将操作系统与用户程序隔离 。</p>
+<h3 id="_3">处理器运行模式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="_4">处理器构成<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>处理器由运算器、控制器、一系列的寄存器以及高速缓存构成</p>
+<p>处理器通过程序状态字（PSW）等控制和状态寄存器来划分和记录运行状态 。</p>
+<ul>
+<li>
+<p><strong>内核态 (Kernel Mode)</strong>：用于运行操作系统程序，可以执行修改状态字、允许/禁止中断等“特权指令” 。</p>
+</li>
+<li>
+<p><strong>用户态 (User Mode)</strong>：用于运行用户程序，只能执行“非特权指令” 。</p>
+</li>
+<li>
+<p><strong>状态切换</strong>：内核态切换到用户态可以通过设置PSW实现 ；而用户态进入内核态的<strong>唯一途径是中断机制</strong> 。</p>
+</li>
+<li>
+<p>中断机制</p>
+</li>
+</ul>
+<p>中断机制是现代计算机系统的核心，保障软硬件配合协同 。</p>
+<ul>
+<li>
+<p><strong>硬中断</strong>：外部事件引起，用于支持CPU与设备通信（如I/O操作、显卡通知显示完毕） 。它具有被动、随机出现且程序无感知的特点 。</p>
+</li>
+<li>
+<p><strong>异常</strong>：CPU执行指令时自身出现的问题，如缺页异常、算术溢出、内存越界等 。</p>
+</li>
+<li>
+<p><strong>软中断</strong>：通过执行特定指令（如系统调用）人为主动触发，以确定的方式从用户态进入核心态 。具有主动、确定的特点 。</p>
+</li>
+<li>
+<p><strong>处理流程</strong>：硬件接收中断信号并保护现场（保存寄存器到栈） -&gt; 查中断向量表 -&gt; 将处理程序入口地址推入寄存器 -&gt; 执行中断处理程序 -&gt; 恢复中断断点并继续执行原程序 。</p>
+</li>
+<li>
+<p>系统调用</p>
+</li>
+<li>
+<p>系统调用是操作系统提供给应用程序的接口，是程序唯一可以主动进入操作系统（特权模式）的操作方式 。</p>
+</li>
+<li>
+<p><strong>与函数库调用的区别</strong>：函数库调用属于过程调用，开销小且处理器模式不变（例如libc中约有300个函数）；而系统调用需要利用软中断（如TRAP、INT指令），在用户和内核上下文间切换，开销较大，且不同操作系统的系统调用各不相同（例如UNIX约有90个） 。</p>
+</li>
+</ul>
+<hr />
+<p>保护</p>
+<p>处理器</p>
+<p>两类寄存器</p>
+<ul>
+<li>用户可见寄存器(GPR)</li>
+</ul>
+<p>Risc-V x0-x31</p>
+<p>ARM r0-r12</p>
+<ul>
+<li>控制和状态寄存器(SPR)</li>
+</ul>
+<p>程序计数器(PC)，记录将要取出指令的地址</p>
+<p>栈指针寄存器(SP)，记录使用栈的指针</p>
+<p>用于push，pop指令</p>
+<p>程序状态字寄存器(PSW)，包含条件码位，CPU优先级，模式</p>
+<p>处理器模式</p>
+<ul>
+<li>内核态(Kernel Mode)</li>
+</ul>
+<p>使用特权指令</p>
+<ul>
+<li>用户态(User Mode)</li>
+</ul>
+<p>使用非特权指令(如果能用编程语言实现就是非特权)</p>
+<p>x86有四种CPU模式</p>
+<p>内核态转成用户态，可以直接用特权指令设置程序状态字PSW</p>
+<p>用户态转成内核态，唯一途径是中断机制</p>
+<p>系统调用是程序唯一可以主动进入操作系统的方式</p>
+<p>ARM CortexM3</p>
+<p>通用寄存器R0-R12</p>
+<p>所有寄存器都是 32 位宽，这与它的 32 位架构相匹配。</p>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0-R7</td>
+<td>低寄存器</td>
+<td>绝大多数 Thumb 和 Thumb-2 指令都能访问，代码密度最高。</td>
+</tr>
+<tr>
+<td>R8 - R12</td>
+<td>高寄存器</td>
+<td>仅部分 32 位 Thumb-2 指令可以访问。</td>
+</tr>
+<tr>
+<td>R13(SP)</td>
+<td>堆栈指针</td>
+<td>非常特殊。M3 有两个堆栈指针（MSP 和 PSP），但在物理上同一时间只能看到一个。</td>
+</tr>
+<tr>
+<td>R14 (LR)</td>
+<td>链接寄存器</td>
+<td>用于保存子程序或函数的返回地址</td>
+</tr>
+<tr>
+<td>R15 (PC)</td>
+<td>程序计数器</td>
+<td>指向当前正在执行（或取指）的指令地址。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>双堆栈指针 (R13)：</p>
+</li>
+<li>
+<p>MSP (Main Stack Pointer)： 主堆栈指针，用于操作系统内核、异常处理和特权级代码。</p>
+</li>
+<li>
+<p>PSP (Process Stack Pointer)： 进程堆栈指针，通常用于用户级的线程或任务。这种设计增强了系统的稳定性。</p>
+</li>
+<li>
+<p>程序计数器 (PC)： 在执行过程中，PC 的读出值通常是当前指令地址加上 4（因为指令都是32位，4个字节）。</p>
+</li>
+<li>
+<p>特殊功能寄存器</p>
+</li>
+</ul>
+<p>它实际上由三个子寄存器组成，可以组合访问：</p>
+<p>除了通用寄存器，Cortex-M3 还有三类特殊寄存器，它们不属于逻辑运算的一部分，而是负责监控处理器状态和控制中断。</p>
+<p>A. 程序状态寄存器 (xPSR)</p>
+<ul>
+<li>
+<p>APSR (应用 PSR)： 存储 ALU 标志（如 N-负、Z-零、C-进位、V-溢出）。</p>
+</li>
+<li>
+<p>IPSR (中断 PSR)： 存储当前正在处理的异常编号。</p>
+</li>
+<li>
+<p>EPSR (执行 PSR)： 存储执行状态（如是否处于 Thumb 状态）。</p>
+</li>
+</ul>
+<p>用于控制系统对中断的响应：</p>
+<p>B. 中断屏蔽寄存器</p>
+<ul>
+<li>
+<p>PRIMASK： “一键禁能”所有可屏蔽中断（只剩下 NMI 和 HardFault）。</p>
+</li>
+<li>
+<p>FAULTMASK： 彻底禁用除 NMI 外的所有异常。</p>
+</li>
+<li>
+<p>BASEPRI： 优先级阈值寄存器。只有优先级高于此值的异常才能被受理，这是实现实时性控制的核心。</p>
+</li>
+</ul>
+<p>用于定义处理器的状态：</p>
+<p>C. 控制寄存器 (CONTROL)</p>
+<ul>
+<li>
+<p>决定当前使用哪个堆栈指针（MSP 还是 PSP）。</p>
+</li>
+<li>
+<p>决定当前处于特权级还是用户级。</p>
+</li>
+</ul>
+<p>与普通外设（如 GPIO 或定时器）不同，你不能通过内存地址（如 0x4000...）直接访问这些寄存器。</p>
+<p>控制寄存器 (CONTROL)
+​这个寄存器决定了 CPU 的“身份”和“装备”。它主要有两位：
+​SPSEL (Bit 1): 堆栈选择
+​0: 使用主堆栈指针 (MSP)。
+​1: 使用进程堆栈指针 (PSP)。
+​注：在中断处理程序中，此位固定为 0（强制使用 MSP）。
+​nPRIV (Bit 0): 特权级控制
+​0: 特权级（可以访问所有资源）。
+​1: 用户级（受限制，不能直接修改特殊寄存器，不能触发某些系统操作）。</p>
+<ol>
+<li>核心机制：执行优先级 vs 寄存器数值
+​在 Cortex-M3 中，处理器的状态由“模式”和“特权级”共同决定：
+​Handler Mode（处理模式）： 只要在中断里，就一定处于这个模式。这个模式强制具备“特权级”，无论 CONTROL[0] 是什么。
+​Thread Mode（线程模式）： 正常运行主程序时处于此模式。此时是否具备特权，由 CONTROL[0] 决定。
+​关键结论：
+​当一个在“用户级”（CONTROL[0]=1）运行的任务被中断触发时：
+​硬件自动切换到 Handler Mode。
+​在 Handler Mode 下，CPU 无视 CONTROL[0] 的设置，强制以“特权身份”运行，这样它才能访问受保护的外设和特殊寄存器。
+​但是，CONTROL[0] 寄存器里的那个 1 可能依然留在那里，并没有被硬件擦除。</li>
+</ol>
+<hr />
+<p>第二部分：操作系统的关键概念</p>
+<ol>
+<li>
+<p>进程 (Process)</p>
+</li>
+<li>
+<p><strong>定义</strong>：运行中的程序，是所有操作系统的核心概念 。</p>
+</li>
+<li>
+<p><strong>本质</strong>：可以看作是一个“容器”，掌握着程序运行的上下文（如寄存器、堆栈、指令指针）并与内存地址、资源集合及用户号相关联 。</p>
+</li>
+<li>
+<p><strong>产生原因</strong>：为了支持多道程序设计，保存系统中多个并发执行程序的运行信息 。进程由其他进程创建，呈现树状结构 。</p>
+</li>
+<li>
+<p>地址空间、文件与输入输出</p>
+</li>
+<li>
+<p><strong>地址空间</strong>：进程“看到”的一段虚拟内存区域，它可能大于或小于真实物理内存，使用时需要将虚拟地址转换为物理地址 。</p>
+</li>
+<li>
+<p><strong>文件</strong>：是一种长期或临时存储设备中的数据流抽象模型，独立于具体物理设备，通常以树状层次结构的目录进行组织和访问 。</p>
+</li>
+<li>
+<p><strong>输入/输出 (I/O)</strong>：由操作系统通过驱动程序管理，驱动程序通常由硬件厂商开发并运行在内核态 。</p>
+</li>
+<li>
+<p>内核架构 (Kernel)</p>
+</li>
+</ol>
+<p>内核是操作系统的核心部分，负责管理进程、内存、文件和系统资源等 。常见的内核结构包括：</p>
+<ul>
+<li>
+<p><strong>宏内核 (Monolithic Kernel)</strong>：整个内核程序是一个单一二进制可执行文件，大部分UNIX和Linux采用此结构 。</p>
+</li>
+<li>
+<p><strong>微内核 (Microkernel)</strong>：仅将最核心的功能（如基本线程管理、内存管理、IPC）加入内核，如Mach、Minix系统 。</p>
+</li>
+<li>
+<p><strong>混合内核 (Hybrid Kernel)</strong>：结合了宏内核与微内核的特点，如Windows NT 。</p>
+</li>
+</ul>
+<hr />
+<p>第三部分：操作系统的四大特征</p>
+<ol>
+<li>
+<p><strong>并发</strong>：宏观上多个程序同时执行；微观上任何时刻只有一个程序在CPU上执行（轮流执行，与并行有区别） 。</p>
+</li>
+<li>
+<p><strong>共享</strong>：操作系统与多个用户的程序共同使用计算机系统中的有限资源，需解决资源分配与保护问题 。</p>
+</li>
+<li>
+<p><strong>虚拟</strong>：将一个物理实体映射为若干个逻辑实体，使得逻辑上每个进程仿佛都有独占的CPU和内存空间 。</p>
+</li>
+<li>
+<p><strong>随机</strong>：多个进程“走走停停”，推进速度不可预知，且必须随时响应不可预测的外部事件或中断 。</p>
+</li>
+</ol>
+<h2 id="_5">进程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>CPU的利用率</p>
+<h3 id="1">1. 核心定义：什么是进程？<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>简单来说，<strong>进程是正在运行的程序的实例</strong>。</p>
+<ul>
+<li>
+<p><strong>程序（Program）</strong> 是静态的。它只是存储在硬盘上的一堆编译好的代码和数据（比如一个 <code>.exe</code> 文件或你在 macOS 终端里跑的脚本）。</p>
+</li>
+<li>
+<p><strong>进程（Process）</strong> 是动态的。当操作系统把程序加载到内存中，并分配了 CPU 资源让它开始执行时，它就变成了一个进程。</p>
+</li>
+</ul>
+<p>如果把“程序”比作一张<strong>菜谱</strong>，“进程”就是厨师阅读菜谱、准备食材、并在厨房里真正<strong>炒菜的全过程</strong>。</p>
+<hr />
+<h3 id="2">2. 进程的内部结构（内存视图）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>一个标准的进程内存空间通常从低地址到高地址分为以下几个部分：</p>
+<ul>
+<li>
+<p><strong>代码段（Text Section）：</strong> 存放编译后的机器指令（你的代码）。这部分通常是只读的，防止程序意外修改自己的指令。</p>
+</li>
+<li>
+<p><strong>数据段（Data Section）：</strong> 存放全局变量和静态变量。</p>
+</li>
+<li>
+<p><strong>堆（Heap）：</strong> 用于动态内存分配。当你在代码里使用类似 <code>malloc</code>（C语言）或 <code>new</code>（C++）时，内存就是从这里申请的。堆向高地址增长。</p>
+</li>
+<li>
+<p><strong>栈（Stack）：</strong> 用于存放局部变量、函数参数和返回地址。每次调用函数时，相关数据会被压入栈中；函数返回时弹出。栈向低地址增长。</p>
+</li>
+</ul>
+<hr />
+<h3 id="3-pcb">3. 进程控制块 (PCB)<a class="headerlink" href="#3-pcb" title="Permanent link">&para;</a></h3>
+<p>操作系统可能同时运行成百上千个进程，为了管理它们，内核为每个进程维护了一个数据结构，称为 <strong>进程控制块（Process Control Block, PCB）</strong></p>
+<p>在底层实现中，创建一个进程（或任务）本质上就是分配内存空间并初始化这个控制块。PCB 包含了操作系统管理该进程所需的所有关键信息：</p>
+<ul>
+<li>
+<p><strong>进程状态（State）：</strong> 进程当前是在运行、就绪还是阻塞？</p>
+</li>
+<li>
+<p><strong>程序计数器（PC）：</strong> 记录进程下一次要执行的指令地址。</p>
+</li>
+<li>
+<p><strong>CPU 寄存器：</strong> 当进程被暂停时，需要保存当前 CPU 寄存器的状态，以便将来恢复执行。</p>
+</li>
+<li>
+<p><strong>内存管理信息：</strong> 页表或段表，记录该进程使用了哪些内存。</p>
+</li>
+<li>
+<p><strong>记账信息与 I/O 状态：</strong> 进程打开了哪些文件，占用了多少 CPU 时间等。</p>
+</li>
+</ul>
+<hr />
+<h3 id="4">4. 进程的生命周期与状态转换<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>进程从创建到消亡，会经历不同的状态。最经典的五状态模型如下：</p>
+<ul>
+<li>
+<p><strong>创建（New）：</strong> 进程正在被创建，操作系统正在为其分配 PCB 和资源。</p>
+</li>
+<li>
+<p><strong>就绪（Ready）：</strong> 进程已经准备好运行，万事俱备，只欠 CPU 调度。它在就绪队列中排队。</p>
+</li>
+<li>
+<p><strong>运行（Running）：</strong> 进程获得了 CPU，正在执行它的指令。</p>
+</li>
+<li>
+<p><strong>阻塞/等待（Blocked/Waiting）：</strong> 进程因为等待某个事件发生（比如等待用户输入、等待网络数据、等待磁盘读取）而暂停。此时即使给它 CPU，它也无法运行。</p>
+</li>
+<li>
+<p><strong>终止（Terminated）：</strong> 进程执行完毕或被系统强行杀死，操作系统回收其占用的所有资源。</p>
+</li>
+</ul>
+<hr />
+<h3 id="5-context-switch">5. 核心动作：<a href="../%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/">上下文切换</a>(Context Switch)<a class="headerlink" href="#5-context-switch" title="Permanent link">&para;</a></h3>
+<p>单个 CPU 核心在同一时刻只能运行一个进程。操作系统通过<strong>上下文切换</strong>制造出多个进程“同时”运行的假象（并发）。</p>
+<ol>
+<li>
+<p><strong>保存现场：</strong> 当操作系统决定暂停当前运行的进程 A 时，会将 CPU 当前的所有状态（程序计数器、各种通用寄存器的值、栈指针等）保存到进程 A 的 PCB 中。</p>
+</li>
+<li>
+<p><strong>调度：</strong> 调度器从就绪队列中挑选下一个要运行的进程 B。</p>
+</li>
+<li>
+<p><strong>恢复现场：</strong> 操作系统将进程 B 的 PCB 中保存的寄存器值和程序计数器加载回 CPU 中。</p>
+</li>
+<li>
+<p><strong>继续执行：</strong> CPU 接着执行进程 B 的代码。</p>
+</li>
+</ol>
+<p>这种切换往往需要借助底层的系统调用或硬件中断来触发。例如，通过特定的汇编指令触发软中断，进入内核态，完成环境的保存与切换，然后再跳转到新任务的第一条指令开始运行。</p>
+<h2 id="_6">线程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>一个进程拥有一个或多个线程</p>
+<p>线程可以理解为轻量级的进程，是操作系统能够进行运算调度的最小单位</p>
+<p>是进程中的实际运作单位</p>
+<p>这些线程共享资源（如地址、内存空间），拥有自己的堆栈和寄存器环境，保证独立运行的最小要求</p>
+<p>为什么要引入线程？</p>
+<ul>
+<li>
+<p>应用需要(word文件上删一句话，是先动磁盘还是先动显示？）</p>
+</li>
+<li>
+<p>开销考虑</p>
+</li>
+<li>
+<p>性能考虑</p>
+</li>
+<li>
+<p>提高并发的粒度（由进程并发变成线程并发）</p>
+</li>
+</ul>
+<p>线程控制块（TCB）</p>
+<p>包含程序计数器，寄存器，栈，状态</p>
+<h3 id="1-interleaving">1. 线程的“交织”执行 (Interleaving)<a class="headerlink" href="#1-interleaving" title="Permanent link">&para;</a></h3>
+<p>观察输出顺序，你会发现它并不是“主线程创建完所有 10 个线程，然后子线程才开始打印”。</p>
+<ul>
+<li>
+<p><strong>现象：</strong> 在 <code>Main here.Creating thread 1</code> 之后，紧接着就出现了 <code>Hello World! Greeting from thread #0!</code>。</p>
+</li>
+<li>
+<p><strong>结论：</strong> 这说明<strong>主线程（创建者）和子线程（执行者）是在并发执行的</strong>。主线程还没跑完循环，操作系统就已经给线程 0 分配了 CPU 时间片并让它开始运行了。这种“你跑一段，我跑一段”的现象就叫<strong>交织</strong>。</p>
+</li>
+</ul>
+<p>Linux</p>
+<p>进程、线程、内核线程</p>
+<p>microC/os-II</p>
+<p>不具有线程，只有task</p>
+<p>线程的三种实现</p>
+<ul>
+<li>
+<p>用户空间中实现线程</p>
+</li>
+<li>
+<p>内核空间中实现线程</p>
+</li>
+<li>
+<p>混合实现</p>
+</li>
+</ul>
+<h2 id="_7">调度<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p><strong>当计算机系统是多道程序设计系统时，通常就会有多个进程或线程同时竞争CPU。只要有两个或更多的进程处于就绪状态，这种情形就会发⽣。如果只有⼀个CPU可⽤，那么就必须选择下⼀个要运⾏的进程。在操作系统中，完成选择⼯作的这⼀部分称为调度程序（scheduler），该程序使⽤的算法称为调度算法（schedulingalgorithm）。</strong></p>
+<p>进程可以分成两个类型</p>
+<ul>
+<li>
+<p>计算密集型</p>
+</li>
+<li>
+<p>I/O密集型</p>
+</li>
+</ul>
+<p><img alt="image.png|92" src="https://cdn2.flowus.cn/oss/023da8e3-7d13-4354-bb11-869b5b4871bb/image.png?time=1774517400&amp;token=fd0f1547c36f173eaa2c69866bf188f3f18b0c0a724c9935c9a45b974169f624&amp;role=free&amp;rate=512" /></p>
+<p>非抢占式：进程可以一直执行</p>
+<p>抢占式：进程可以被操作系统打断</p>
+<p>抢占式调度算法挑选一个进程，并且让该进程运行某个固定时段的最大值。如果在该时段结束时，该进程仍在运行，它就被挂起，而调度程序挑选另一个进程运行（如果存在一个就绪进程）。进行抢占式调度处理，需要在时间间隔的末端发生时钟中断，以便把CPU控制返回给调度程序。如果没有可用的时钟，那么非抢占式调度就是唯一的选择了。</p>
+<h3 id="_8">调度算法的目标<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<hr />
+<h4 id="1_1">1. 所有系统<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>无论什么类型的系统，调度程序都应满足：</p>
+<ul>
+<li>
+<p><strong>公平</strong>：给每个进程合理的 CPU 份额，避免某个进程被无限期“饿死”。</p>
+</li>
+<li>
+<p><strong>策略强制执行</strong>：确保系统设定的规则（如：安全控制进程优先于发薪水进程）得到彻底执行。</p>
+</li>
+<li>
+<p><strong>平衡</strong>：尽可能让系统的所有部分（CPU、I/O 设备）都忙碌起来，不出现闲置。</p>
+</li>
+</ul>
+<h4 id="2_1">2. 不同环境下的特定目标<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<p>调度算法需要根据应用场景进行权衡（Trade-off）：</p>
+<table>
+<thead>
+<tr>
+<th><strong>系统类型</strong></th>
+<th><strong>核心目标</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>批处理系统</strong></td>
+<td><strong>吞吐量、周转时间</strong></td>
+<td>追求单位时间内完成作业数最大化，以及减少作业从提交到完成的总时间。</td>
+</tr>
+<tr>
+<td><strong>交互式系统</strong></td>
+<td><strong>响应时间、均衡性</strong></td>
+<td>重点在于快速响应用户的操作，并符合用户的心理预期（均衡感）。</td>
+</tr>
+<tr>
+<td><strong>实时系统</strong></td>
+<td><strong>截止时间、预测性</strong></td>
+<td>必须在限定时间内完成任务（避免丢数据），且系统的行为必须是可预测的。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="3">3. 批处理系统的三大衡量指标<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<p>文中详细解释了管理大型计算中心时常用的三个概念：</p>
+<ol>
+<li>
+<p><strong>吞吐量 (Throughput)</strong>：系统每小时完成的作业数量。<strong>越大越好</strong>。</p>
+</li>
+<li>
+<p><strong>周转时间 (Turnaround Time)</strong>：从作业提交到完成的平均等待时间。<strong>越小越好</strong>。</p>
+</li>
+<li>
+<p><em>注意</em>：吞吐量和周转时间有时是矛盾的。只运行短任务可以提高吞吐量，但会导致长任务的周转时间变得无限长。</p>
+</li>
+<li>
+<p><strong>CPU 利用率 (CPU Utilization)</strong>：CPU 忙碌的时间比例。</p>
+</li>
+<li>
+<p><em>观点</em>：作者认为这<strong>不是一个好的度量参数</strong>，就像通过引擎转速来评价汽车好坏一样不可靠；真正有价值的是系统实际完成了多少工作。</p>
+</li>
+</ol>
+<h4 id="4_1">4. 调度策略的优化技巧<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><strong>混合搭配</strong>：在内存中同时保留 <strong>CPU 密集型</strong>和 <strong>I/O 密集型</strong>进程。</p>
+</li>
+<li>
+<p><strong>原因</strong>：如果全是 CPU 密集型，磁盘会闲置；如果全是 I/O 密集型，CPU 会闲置。通过组合，可以让 CPU 和磁盘同时运转，提高整体效率。</p>
+</li>
+</ul>
+<hr />
+<p><strong>一句话总结：</strong></p>
+<p>没有完美的调度算法，只有最适合环境的算法——批处理看效率（吞吐量），交互式看速度（响应时间），实时系统看准时（截止时间）。</p>
+<p>关键时间定义</p>
+<ul>
+<li>
+<p>到达时间</p>
+</li>
+<li>
+<p>进程进入就绪队列的时间</p>
+</li>
+<li>
+<p>完成时间</p>
+</li>
+<li>
+<p>进程完成的时间</p>
+</li>
+<li>
+<p>周转时间</p>
+</li>
+<li>
+<p>周转时间=完成时间-到达时间</p>
+</li>
+<li>
+<p>处理时间</p>
+</li>
+<li>
+<p>进程在CPU上执行的时间</p>
+</li>
+<li>
+<p>等待时间</p>
+</li>
+<li>
+<p>等待时间=处理时间-周转时间</p>
+</li>
+<li>
+<p>响应时间</p>
+</li>
+<li>
+<p>到达系统到首次获得CPU的时间</p>
+</li>
+</ul>
+<h3 id="_9">批处理系统中的调度<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h4 id="fcfs">先来先服务（FCFS）<a class="headerlink" href="#fcfs" title="Permanent link">&para;</a></h4>
+<p>按照进程请求CPU的顺序运行，非抢占式</p>
+<p>缺点在于长进程后面的短进程要一直等待</p>
+<h4 id="sjf">最短作业优先(SJF)<a class="headerlink" href="#sjf" title="Permanent link">&para;</a></h4>
+<p>假设可以精确预测每个作业运行时间</p>
+<p>假设作业之间相互独立、同时运行</p>
+<h4 id="_10">最短剩余时间优先<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>当一个新就绪的进程比当前运行进程具有更短的运行时间，就抢占</p>
+<p>优点在于拥有最短的平均周转时间</p>
+<p>缺点在于长时间的任务迟迟得不到解决，产生饥饿现象</p>
+<h4 id="_11">最高响应比优先<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>计算响应比</p>
+<p>$R=\frac{周转时间}{处理时间}$</p>
+<h4 id="_12">轮转调度<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
