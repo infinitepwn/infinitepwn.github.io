@@ -1171,14 +1171,14 @@
 <h3 id="_6">发送时延<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>也叫做传输时延
 是指主机或路由器发送数据帧所需要的时间
-$$
+[
 发送时延 = \frac{数据帧长度}{发送速率}
-$$</p>
+]</p>
 <h3 id="_7">传播时延<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>电磁波在信道中传播一定的距离需要花费的时间
-$$
+[
 传播时延 = \frac{信道长度}{电磁波在信道上的传播速率}
-$$
+]
 电磁波在光纤中的传播速率约为<span class="arithmatex">\(2 \times 10^5km/s\)</span></p>
 <p>发送时延是发生在内部的，传播时延发生在信道上</p>
 <h3 id="_8">处理时延<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
@@ -1205,23 +1205,23 @@ $$
 <p>信道利用率指某信道有百分之几的时间是被利用的</p>
 <p>如果我们设一个信道每秒通过<span class="arithmatex">\(\mu\)</span>个bit，每秒进入<span class="arithmatex">\(\lambda\)</span>个bit，显然通过的应该比进入的多，不然信道就直接堵塞了，那么在单位时间内，只通过了<span class="arithmatex">\(\lambda\)</span>个bit，因为出去的比进来的多，进来的肯定都出去了
 所以利用率
-$$
+[
 U = \frac{\lambda}{\mu}
-$$
+]
 当信道空闲时，也就是没有数据进入时，显然U=0
 此时时延就是
-$$
+[
 D_0 = \frac{1}{\mu}
-$$
+]
 当有数据进入之后，一个bit进入之后，得等待前面的<span class="arithmatex">\(\lambda\)</span>个bit先过，对于这个bit来说，实际的通过速率应该就是<span class="arithmatex">\(\mu - \lambda\)</span>
 所以
-$$
+[
 D=\frac{1}{\mu - \lambda}
-$$
+]
 带入就有
-$$
+[
 D = \frac{D_0}{1-U}
-$$
+]
 也就是说，网络利用率越高，时延越大</p>
 <h2 id="_12">相关笔记<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
