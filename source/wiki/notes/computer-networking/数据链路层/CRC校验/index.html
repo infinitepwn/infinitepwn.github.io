@@ -1133,9 +1133,9 @@
 <p>先用模2运算进行<span class="arithmatex">\(2^n \times M\)</span>的操作，也就是在M后面加上n个零</p>
 <h3 id="2mp">模2除法M除以P<a class="headerlink" href="#2mp" title="Permanent link">&para;</a></h3>
 <p>双方事先商定一个长度为n+1位的除数P
-$$
+[
 (M&lt;&lt;n) \div P = Q \cdots R
-$$
+]
 显然我们会得到一个长度为n位的余数R</p>
 <h3 id="mr">M拼接余数R<a class="headerlink" href="#mr" title="Permanent link">&para;</a></h3>
 <p>R就是n位的冗余码，把R放在M后面，发送出去就行
@@ -1146,19 +1146,19 @@ $$
 - 余数是0，就接受
 - 余数不是0，就判定这个帧有差错，丢弃
 这是因为
-$$
+[
 (M&lt;&lt;n) -R = PQ
-$$
+]
 注意：模2情况下，加法和减法是一样的</p>
 <h2 id="_2">生成多项式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>就是把前面的除数P，以多项式的形式表示
-$$
+[
 P(X) = X^3+X^2+1-&gt;1101
-$$
+]
 常用的有CRC-16，CRC-CCITT，CRC-32
-$$
+[
 P(X)=X^{16}+X^{15}+X^2+1
-$$
+]
 比如这是CRC-16</p>
 <h2 id="_3">相关笔记<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
