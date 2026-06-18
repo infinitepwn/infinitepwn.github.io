@@ -1028,9 +1028,9 @@
 <blockquote>
 <p>来源：<code>密码学引论 / digital_signature/安全参数.md</code></p>
 </blockquote>
-<p>$$<br />
-1^\lambda<br />
-$$</p>
+<div class="arithmatex">\[  
+1^\lambda  
+\]</div>
 <p>不是指数运算，而是“长度为 \lambda 的全 1 字符串”。</p>
 <p>和二进制编码对比一下更清楚：</p>
 <table>
@@ -1076,19 +1076,19 @@ $$</p>
 </table>
 <p>为什么密码学里要用一元编码？</p>
 <p>因为密码学理论里经常说：</p>
-<p>算法运行时间是关于安全参数$\lambda$ 的多项式时间。</p>
+<p>算法运行时间是关于安全参数<span class="arithmatex">\(\lambda\)</span> 的多项式时间。</p>
 <p>如果输入是二进制的 <code>128</code>，那么输入长度只有 8 位左右。 但是如果输入是：</p>
-<p>$$<br />
-1^{128}<br />
-$$</p>
+<div class="arithmatex">\[  
+1^{128}  
+\]</div>
 <p>那么输入长度就是 128。</p>
 <p>这样写可以保证算法的运行时间是关于 \lambda 多项式，而不是关于 \log \lambda 多项式。</p>
 <p>所以：</p>
-<p>$$<br />
-KeyGen(1^\lambda)<br />
-$$</p>
+<div class="arithmatex">\[  
+KeyGen(1^\lambda)  
+\]</div>
 <p>可以理解成：</p>
-<p>给密钥生成算法一个长度为 $\lambda$ 的字符串，用它来表示安全参数是 $\lambda$</p>
+<p>给密钥生成算法一个长度为 <span class="arithmatex">\(\lambda\)</span> 的字符串，用它来表示安全参数是 <span class="arithmatex">\(\lambda\)</span></p>
 
 
 
@@ -1162,6 +1162,10 @@ $$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

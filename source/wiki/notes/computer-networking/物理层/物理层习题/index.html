@@ -1107,25 +1107,41 @@
 <h2 id="3">题目 3：香农公式与信噪比<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>[!question] 问题
-用香农公式计算一下，假定信道带宽为 $3100$ Hz，最大信息传输速率为 $35$ kbit/s，那么若想使最大信息传输速率增加 $60\%$，信噪比 $\frac{S}{N}$ 应增大多少倍？如果再将信噪比增大到 $10$ 倍，最大信息传输速率可以再增加 $20\%$ 吗？</p>
+用香农公式计算一下，假定信道带宽为 <span class="arithmatex">\(3100\)</span> Hz，最大信息传输速率为 <span class="arithmatex">\(35\)</span> kbit/s，那么若想使最大信息传输速率增加 <span class="arithmatex">\(60\%\)</span>，信噪比 <span class="arithmatex">\(\frac{S}{N}\)</span> 应增大多少倍？如果再将信噪比增大到 <span class="arithmatex">\(10\)</span> 倍，最大信息传输速率可以再增加 <span class="arithmatex">\(20\%\)</span> 吗？</p>
 <p>[!success] 回答
 根据香农公式：</p>
-<p>$$C=W\log_2(1+\frac{S}{N})$$</p>
-<p>令 $t=\frac{S}{N}$，原来的最大信息传输速率为：</p>
-<p>$$35000=3100\log_2(1+t)$$</p>
-<p>若最大信息传输速率增加 $60\%$，则：</p>
-<p>$$35000 \times 1.6=3100\log_2(1+t')$$</p>
+<div class="arithmatex">\[
+C=W\log_2(1+\frac{S}{N})
+\]</div>
+<p>令 <span class="arithmatex">\(t=\frac{S}{N}\)</span>，原来的最大信息传输速率为：</p>
+<div class="arithmatex">\[
+35000=3100\log_2(1+t)
+\]</div>
+<p>若最大信息传输速率增加 <span class="arithmatex">\(60\%\)</span>，则：</p>
+<div class="arithmatex">\[
+35000 \times 1.6=3100\log_2(1+t')
+\]</div>
 <p>所以：</p>
-<p>$$t=2^{\frac{350}{31}}-1$$</p>
-<p>$$t'=2^{\frac{560}{31}}-1$$</p>
+<div class="arithmatex">\[
+t=2^{\frac{350}{31}}-1
+\]</div>
+<div class="arithmatex">\[
+t'=2^{\frac{560}{31}}-1
+\]</div>
 <p>因此信噪比增大的倍数约为：</p>
-<p>$$\frac{t'}{t}\approx 2^{\frac{210}{31}}=2^{6.77}\approx 109$$</p>
-<p>也就是大约要增大 $109$ 倍。</p>
-<p>如果再将信噪比增大到 $10$ 倍，则新的速率与原来增加 $60\%$ 后的速率相比约为：</p>
-<p>$$\frac{\log_2(1+10t')}{\log_2(1+t')}\approx \frac{\log_2(10t')}{\log_2(t')}=1+\frac{\log_2 10}{\log_2 t'}$$</p>
-<p>因为 $\log_2 t'\approx \frac{560}{31}$，所以：</p>
-<p>$$1+\frac{3.32}{18.06}\approx 1.184$$</p>
-<p>只能再增加约 $18.4\%$，不能再增加 $20\%$。</p>
+<div class="arithmatex">\[
+\frac{t'}{t}\approx 2^{\frac{210}{31}}=2^{6.77}\approx 109
+\]</div>
+<p>也就是大约要增大 <span class="arithmatex">\(109\)</span> 倍。</p>
+<p>如果再将信噪比增大到 <span class="arithmatex">\(10\)</span> 倍，则新的速率与原来增加 <span class="arithmatex">\(60\%\)</span> 后的速率相比约为：</p>
+<div class="arithmatex">\[
+\frac{\log_2(1+10t')}{\log_2(1+t')}\approx \frac{\log_2(10t')}{\log_2(t')}=1+\frac{\log_2 10}{\log_2 t'}
+\]</div>
+<p>因为 <span class="arithmatex">\(\log_2 t'\approx \frac{560}{31}\)</span>，所以：</p>
+<div class="arithmatex">\[
+1+\frac{3.32}{18.06}\approx 1.184
+\]</div>
+<p>只能再增加约 <span class="arithmatex">\(18.4\%\)</span>，不能再增加 <span class="arithmatex">\(20\%\)</span>。</p>
 </blockquote>
 <h2 id="4">题目 4：常用传输媒体<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -1225,6 +1241,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

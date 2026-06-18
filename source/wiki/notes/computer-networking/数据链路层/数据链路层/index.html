@@ -1454,7 +1454,7 @@
 <ul>
 <li><strong>争用窗口 (CW, Contention Window):</strong> 由多个时隙 (Slot) 组成（例如 CW=15）。</li>
 <li>
-<p><strong>退避计时器 (Backoff Timer):</strong> 1. 每个站点在 $0 \sim CW$，之间随机选一个数字作为初始退避值。</p>
+<p><strong>退避计时器 (Backoff Timer):</strong> 1. 每个站点在 <span class="arithmatex">\(0 \sim CW\)</span>，之间随机选一个数字作为初始退避值。</p>
 </li>
 <li>
 <p>当信道空闲时，计时器开始倒计时；当信道忙碌时，计时器<strong>冻结</strong>。</p>
@@ -1471,13 +1471,13 @@
 <p>为了应对网络拥堵，争用窗口的大小是动态调整的：</p>
 <ul>
 <li><strong>初始状态:</strong> CW较小（如 15）。</li>
-<li><strong>发生碰撞/未收到 ACK:</strong> 协议认为信道拥挤，会将 CW的值翻倍（近似加倍，公式通常为 $2^{n+k}-1$）。</li>
-<li><strong>重传范围:</strong> 随着重传次数增加，随机退避的范围从$0\sim31、0\sim63$一直增加到最大值（如 1023）。这降低了再次碰撞的概率。</li>
+<li><strong>发生碰撞/未收到 ACK:</strong> 协议认为信道拥挤，会将 CW的值翻倍（近似加倍，公式通常为 <span class="arithmatex">\(2^{n+k}-1\)</span>）。</li>
+<li><strong>重传范围:</strong> 随着重传次数增加，随机退避的范围从<span class="arithmatex">\(0\sim31、0\sim63\)</span>一直增加到最大值（如 1023）。这降低了再次碰撞的概率。</li>
 </ul>
 <hr />
 <h3 id="9-7-9-8">核心流程图解（对应图 9-7 和 9-8）<a class="headerlink" href="#9-7-9-8" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>A 发送 DATA</strong> $\rightarrow$<strong>等待 SIFS</strong> $\rightarrow$ <strong>B 返回 ACK</strong>。</li>
+<li><strong>A 发送 DATA</strong> <span class="arithmatex">\(\rightarrow\)</span><strong>等待 SIFS</strong> <span class="arithmatex">\(\rightarrow\)</span> <strong>B 返回 ACK</strong>。</li>
 <li>其他站（C, D）在 A 发送期间检测到忙，<strong>推迟接入</strong>。</li>
 <li>A 传完后，经过 <strong>DIFS</strong> 时间，C 和 D 开始倒计时。</li>
 <li>C 的随机数小，先减到 0，<strong>开始发送</strong>；D 的计时器<strong>中途冻结</strong>，等待下一轮。</li>
@@ -1617,6 +1617,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

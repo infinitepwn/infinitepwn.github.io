@@ -1102,38 +1102,54 @@
 <h2 id="3">题目 3：电路交换与分组交换时延比较<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>[!question] 问题
-试在下列条件下比较电路交换和分组交换：要传送的报文一共 $x$ bit，从源点到终点共经过 $k$ 段链路，每段链路的传播时延为 $d$ s，数据率为 $b$。在电路交换时，电路的建立时间为 $s$；在分组交换时，分组长度为 $p$ bit，忽略首部对发送时延的影响，也忽略排队时延。问在怎样的条件下，分组交换的时延比电路交换小？</p>
+试在下列条件下比较电路交换和分组交换：要传送的报文一共 <span class="arithmatex">\(x\)</span> bit，从源点到终点共经过 <span class="arithmatex">\(k\)</span> 段链路，每段链路的传播时延为 <span class="arithmatex">\(d\)</span> s，数据率为 <span class="arithmatex">\(b\)</span>。在电路交换时，电路的建立时间为 <span class="arithmatex">\(s\)</span>；在分组交换时，分组长度为 <span class="arithmatex">\(p\)</span> bit，忽略首部对发送时延的影响，也忽略排队时延。问在怎样的条件下，分组交换的时延比电路交换小？</p>
 <p>[!success] 回答
 电路交换总时延为：</p>
-<p>$$T_c=s+\frac{x}{b}+kd $$</p>
-<p>分组长度为 $p$ bit，所以报文一共分成 $\frac{x}{p}$ 个分组。</p>
+<div class="arithmatex">\[
+T_c=s+\frac{x}{b}+kd
+\]</div>
+<p>分组长度为 <span class="arithmatex">\(p\)</span> bit，所以报文一共分成 <span class="arithmatex">\(\frac{x}{p}\)</span> 个分组。</p>
 <p>每个分组在一段链路上的发送时延为：</p>
-<p>$$\frac{p}{b}$$</p>
-<p>第一个分组从源点到终点，需要经过 $k$ 段链路。由于是存储转发，所以第一个分组总时延为：</p>
-<p>$$ k\left(\frac{p}{b}+d\right) $$</p>
+<div class="arithmatex">\[
+\frac{p}{b}
+\]</div>
+<p>第一个分组从源点到终点，需要经过 <span class="arithmatex">\(k\)</span> 段链路。由于是存储转发，所以第一个分组总时延为：</p>
+<div class="arithmatex">\[
+k\left(\frac{p}{b}+d\right)
+\]</div>
 <p>也就是每一段都要经历一次发送时延和传播时延。</p>
 <p>后面的分组可以流水线传输，每隔：</p>
-<p>$$\frac{p}{b}$$</p>
+<div class="arithmatex">\[
+\frac{p}{b}
+\]</div>
 <p>就有一个分组到达终点。因此：</p>
-<p>$$T_p=kd+\frac{x}{b}+\frac{(k-1)p}{b}$$</p>
-<p>令 $T_c &gt; T_p$，有：</p>
-<p>$$
+<div class="arithmatex">\[
+T_p=kd+\frac{x}{b}+\frac{(k-1)p}{b}
+\]</div>
+<p>令 <span class="arithmatex">\(T_c &gt; T_p\)</span>，有：</p>
+<div class="arithmatex">\[
 \frac{(k-1)p}{b}&lt;s
-$$</p>
+\]</div>
 <p>在忽略排队时延、忽略首部影响，并且采用存储转发分组交换时：</p>
-<p>$$\boxed{\text{当 } s&gt;\frac{(k-1)p}{b} \text{ 时，分组交换的时延小于电路交换}}$$</p>
-<p>也就是说，只要电路交换的电路建立时间 $s$ 大于分组交换由于多段链路存储转发带来的额外发送时延 $\frac{(k-1)p}{b}$，分组交换就更快。</p>
+<div class="arithmatex">\[
+\boxed{\text{当 } s&gt;\frac{(k-1)p}{b} \text{ 时，分组交换的时延小于电路交换}}
+\]</div>
+<p>也就是说，只要电路交换的电路建立时间 <span class="arithmatex">\(s\)</span> 大于分组交换由于多段链路存储转发带来的额外发送时延 <span class="arithmatex">\(\frac{(k-1)p}{b}\)</span>，分组交换就更快。</p>
 </blockquote>
 <h2 id="4">题目 4：分组长度最优值<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>[!question] 问题
-在上一题的基础上，如果考虑首部为 $h$ bit，不计传播时延和排队时延，如果要使总时延最小，则 $p$ 应该取多少？</p>
+在上一题的基础上，如果考虑首部为 <span class="arithmatex">\(h\)</span> bit，不计传播时延和排队时延，如果要使总时延最小，则 <span class="arithmatex">\(p\)</span> 应该取多少？</p>
 <p>[!success] 回答
 总时间为：</p>
-<p>$$T = (k-1+\frac{x}{p})\frac{p+h}{b}$$</p>
+<div class="arithmatex">\[
+T = (k-1+\frac{x}{p})\frac{p+h}{b}
+\]</div>
 <p>求导即可，得到：</p>
-<p>$$p=\sqrt{\frac{xh}{k-1}}$$</p>
-<p>此时 $T$ 取到最小值。</p>
+<div class="arithmatex">\[
+p=\sqrt{\frac{xh}{k-1}}
+\]</div>
+<p>此时 <span class="arithmatex">\(T\)</span> 取到最小值。</p>
 </blockquote>
 <h2 id="_2">相关笔记<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1214,6 +1230,10 @@ $$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

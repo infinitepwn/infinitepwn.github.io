@@ -1129,9 +1129,9 @@
 <h3 id="_3">拥塞控制与流量控制的区别<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>拥塞控制是让网络能够承受现有的网络负荷，是一个全局性的过程，涉及所有的主机、所有的路由器，以及与降低网络传输性能有关的所有因素。相反，流量控制往往是指点对点的通信量的控制，是个端到端的问题（接收端控制发送端），它所要做的是抑制发送端发送数据的速率。以便使接收端来得及接收。当然，拥塞控制和流量控制也有相似的地方，即它们都通过控制发送方发送数据的速率来达到控制效果。</p>
 <h3 id="_4">拥塞窗口<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>$$
-发送窗口 = \min{拥塞窗口，接收窗口}
-$$</p>
+<div class="arithmatex">\[
+发送窗口 = \min\{拥塞窗口，接收窗口\}
+\]</div>
 <h3 id="_5">慢开始<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>需要设置一个慢开始门限ssthresh
 超过这个门限就进入拥塞避免</p>
@@ -1226,6 +1226,10 @@ $$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

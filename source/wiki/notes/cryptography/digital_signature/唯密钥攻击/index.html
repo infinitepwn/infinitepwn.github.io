@@ -1031,10 +1031,16 @@
 <p>Q:什么是唯密钥攻击？</p>
 <p><strong>唯密钥攻击</strong>是数字签名中的一种攻击类型。攻击者只知道签名者的公开密钥，即公钥，而不知道私钥，也没有获得任何合法的消息-签名对。攻击者的目标是在仅凭公钥的条件下，伪造出一个消息及其对应的有效签名，使该签名能够通过验证算法。</p>
 <p>设数字签名体制为：</p>
-<p>$$\sigma = \operatorname{Sign}(sk,m)$$</p>
-<p>$$\operatorname{Verify}(pk,m,\sigma)=1$$</p>
-<p>其中 (sk) 为私钥，(pk) 为公钥，(m) 为消息，($\sigma$) 为签名。在唯密钥攻击中，攻击者只掌握 (pk)，试图构造出某个 ((m,\sigma))，使得：</p>
-<p>$$\operatorname{Verify}(pk,m,\sigma)=1$$</p>
+<div class="arithmatex">\[
+\sigma = \operatorname{Sign}(sk,m)
+\]</div>
+<div class="arithmatex">\[
+\operatorname{Verify}(pk,m,\sigma)=1
+\]</div>
+<p>其中 (sk) 为私钥，(pk) 为公钥，(m) 为消息，(<span class="arithmatex">\(\sigma\)</span>) 为签名。在唯密钥攻击中，攻击者只掌握 (pk)，试图构造出某个 ((m,\sigma))，使得：</p>
+<div class="arithmatex">\[
+\operatorname{Verify}(pk,m,\sigma)=1
+\]</div>
 <p>如果攻击者能够做到这一点，就称该签名方案在唯密钥攻击下是不安全的。</p>
 <p>因此，<strong>数字签名的唯密钥攻击是指攻击者仅利用公开密钥来伪造有效签名的攻击方式</strong>。这是数字签名中攻击者能力较弱的一种攻击模型。</p>
 
@@ -1110,6 +1116,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

@@ -1029,7 +1029,7 @@
 <p>来源：<code>密码学引论 / hash_function/MD结构.md</code></p>
 </blockquote>
 <p>在<a href="https://en.wikipedia.org/wiki/Cryptography" title="密码学">密码学</a>中，<strong>Merkle-Damgård 构造</strong>或<strong>Merkle-Damgård 哈希函数是一种利用抗碰撞</strong><a href="https://en.wikipedia.org/wiki/One-way_compression_function" title="One-way compression function">单向压缩函数构建</a><a href="https://en.wikipedia.org/wiki/Collision_resistance" title="碰撞阻力">抗</a> 碰撞<a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function" title="加密哈希函数">加密哈希函数</a>的方法。：145 这种构造被用于设计许多流行的哈希算法，例如<a href="https://en.wikipedia.org/wiki/MD5" title="MD5">MD5</a>、<a href="https://en.wikipedia.org/wiki/SHA-1" title="SHA-1">SHA-1</a>和<a href="https://en.wikipedia.org/wiki/SHA-2" title="SHA-2">SHA-2</a>。
-<a href="https://en.wikipedia.org/wiki/Ralph_Merkle" title="拉尔夫·默克尔">Merkle-Damgård 构造由Ralph Merkle</a>于1979 年在其<a href="https://en.wikipedia.org/wiki/Doctor_of_Philosophy" title="哲学博士">博士</a> <a href="https://en.wikipedia.org/wiki/Thesis" title="论文">论文</a>中提出。Ralph Merkle 和<a href="https://en.wikipedia.org/wiki/Ivan_Damg%C3%A5rd" title="伊万·达姆加德">Ivan Damgård</a>分别独立证明了该结构的可靠性：也就是说，如果使用合适的<a href="https://en.wikipedia.org/wiki/Padding_(cryptography)" title="填充（密码学）">填充方案并且压缩函数是</a><a href="https://en.wikipedia.org/wiki/Collision_resistance" title="碰撞阻力">抗碰撞的</a>，那么哈希函数也将是抗碰撞的。[</p>
+<a href="https://en.wikipedia.org/wiki/Ralph_Merkle" title="拉尔夫·默克尔">Merkle-Damgård 构造由Ralph Merkle</a>于1979 年在其<a href="https://en.wikipedia.org/wiki/Doctor_of_Philosophy" title="哲学博士">博士</a> <a href="https://en.wikipedia.org/wiki/Thesis" title="论文">论文</a>中提出。Ralph Merkle 和<a href="https://en.wikipedia.org/wiki/Ivan_Damg%C3%A5rd" title="伊万·达姆加德">Ivan Damgård</a>分别独立证明了该结构的可靠性：也就是说，如果使用合适的<a href="https://en.wikipedia.org/wiki/Padding_\(cryptography\)" title="填充（密码学）">填充方案并且压缩函数是</a><a href="https://en.wikipedia.org/wiki/Collision_resistance" title="碰撞阻力">抗碰撞的</a>，那么哈希函数也将是抗碰撞的。[</p>
 <p>Merkle-Damgård 哈希函数首先应用<a href="https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction#MD-compliant_padding">符合 MD 规范的填充</a>函数，生成一个长度为固定数字倍数（例如 512 或 1024）的输入——这是因为压缩函数无法处理任意长度的输入。然后，哈希函数将结果分割成固定长度的数据块，并逐个使用压缩函数进行处理，每次处理都将输入块与上一轮的输出合并。为了确保构造的安全性，Merkle 和 Damgård 提出使用长度编码的填充来填充消息。这被称为_长度填充_或_Merkle-Damgård 强化_。</p>
 <p><a href="https://en.wikipedia.org/wiki/File:Merkle-Damgard_hash_big.svg"><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Merkle-Damgard_hash_big.svg/500px-Merkle-Damgard_hash_big.svg.png" /></a></p>
 <p>Merkle–Damgård 哈希构造</p>
@@ -1108,6 +1108,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

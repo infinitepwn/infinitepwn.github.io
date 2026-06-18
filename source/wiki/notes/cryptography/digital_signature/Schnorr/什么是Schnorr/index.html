@@ -1031,51 +1031,51 @@
 <p>Q:什么是Schnorr签名
 <strong>Schnorr 签名</strong>是一种基于离散对数困难问题的数字签名方案。它由 Schnorr 提出，具有结构简单、签名长度较短、效率较高等特点。Schnorr 签名可以看作是许多现代签名方案的重要基础，例如一些椭圆曲线签名方案也采用了类似思想。</p>
 <p>设 (G) 是一个阶为 (q) 的循环群，(g) 是生成元。签名者选择私钥：</p>
-<p>[
+<div class="arithmatex">\[
 x \in \mathbb{Z}_q
-]</p>
+\]</div>
 <p>对应公钥为：</p>
-<p>[
+<div class="arithmatex">\[
 y = g^x
-]</p>
+\]</div>
 <p>其中 (x) 是私钥，(y) 是公钥。</p>
 <p>对消息 (m) 进行签名时，签名者随机选择一个临时随机数：</p>
-<p>[
+<div class="arithmatex">\[
 k \in \mathbb{Z}_q
-]</p>
+\]</div>
 <p>计算：</p>
-<p>[
+<div class="arithmatex">\[
 r = g^k
-]</p>
+\]</div>
 <p>然后计算挑战值：</p>
-<p>[
+<div class="arithmatex">\[
 e = H(r,m)
-]</p>
+\]</div>
 <p>其中 (H) 是哈希函数。接着计算：</p>
-<p>[
+<div class="arithmatex">\[
 s = k - ex \pmod q
-]</p>
+\]</div>
 <p>最终签名为：</p>
-<p>[
+<div class="arithmatex">\[
 (e,s)
-]</p>
+\]</div>
 <p>验证时，验证者利用公钥 (y)、消息 (m) 和签名 ((e,s))，计算：</p>
-<p>[
+<div class="arithmatex">\[
 r' = g^s y^e
-]</p>
+\]</div>
 <p>然后检查：</p>
-<p>[
+<div class="arithmatex">\[
 e \stackrel{?}{=} H(r',m)
-]</p>
+\]</div>
 <p>如果等式成立，则签名有效。</p>
 <p>其正确性来自：</p>
-<p>[
+<div class="arithmatex">\[
 g^s y^e
 = g^{k-ex}(g^x)^e
 = g^{k-ex+ex}
 = g^k
 = r
-]</p>
+\]</div>
 <p>所以验证者能够重新得到签名时的 (r)，从而验证签名的合法性。</p>
 <p>因此，<strong>Schnorr 签名是一种利用离散对数困难问题构造的数字签名算法，其核心思想是通过随机数、哈希挑战和私钥响应生成签名，并由公钥验证签名的正确性。</strong></p>
 
@@ -1151,6 +1151,10 @@ g^s y^e
     
     
       <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

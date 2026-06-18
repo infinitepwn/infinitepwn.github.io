@@ -1161,10 +1161,10 @@
 <h4 id="_8">信道利用率<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
 <p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260615115018779.png" /></p>
 <p>忽略处理时延和排队时延
-发送方发送分组的发送时延为$T_D$,往返时间为RTT，接收方发送ACK的发送时延为$T_A$，那么只有$T_D$时间是用于发送数据分组的，所以</p>
-<p>$$
+发送方发送分组的发送时延为<span class="arithmatex">\(T_D\)</span>,往返时间为RTT，接收方发送ACK的发送时延为<span class="arithmatex">\(T_A\)</span>，那么只有<span class="arithmatex">\(T_D\)</span>时间是用于发送数据分组的，所以</p>
+<div class="arithmatex">\[
 信道利用率=\frac{T_D}{T_D+RTT+T_A}
-$$</p>
+\]</div>
 <p>使⽤上述的确认和重传机制,我们就可以在不可靠的传输⽹络上实现可靠的通信｡像上述的这种可靠传输协议常称为==⾃动重传请求ARQ(Automatic Repeater Quest)==｡意思是重传的请求是⾃动进⾏的,因此也可⻅到⾃动请求重传这样的译名｡接收⽅不需要请求发送⽅重传某个出错的分组｡</p>
 <h3 id="_9">滑动窗口协议<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <h2 id="_10">相关笔记<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
@@ -1247,6 +1247,10 @@ $$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

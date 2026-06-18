@@ -1081,48 +1081,74 @@ $$
 x
 $$
 公钥为：
-$$y \equiv g^x \pmod p$$
+$$
+y \equiv g^x \pmod p
+$$
 所以公钥是：</p>
-<p>$$(p,g,y)$$</p>
+<div class="arithmatex">\[
+(p,g,y)
+\]</div>
 <h3 id="_2">签名过程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>假设消息为 (m)，一般先计算哈希：</p>
 <p>$$
 H(m)
 $$
 签名者随机选一个临时随机数 (k)，要求：</p>
-<p>$$\gcd(k,p-1)=1$$
+<p>$$
+\gcd(k,p-1)=1
+$$
 然后计算：</p>
-<p>$$r \equiv g^k \pmod p$$</p>
+<div class="arithmatex">\[
+r \equiv g^k \pmod p
+\]</div>
 <p>再计算：</p>
-<p>$$s \equiv k^{-1}(H(m)-xr) \pmod{p-1}$$</p>
+<div class="arithmatex">\[
+s \equiv k^{-1}(H(m)-xr) \pmod{p-1}
+\]</div>
 <p>最终签名为：</p>
-<p>$$(r,s)$$</p>
+<div class="arithmatex">\[
+(r,s)
+\]</div>
 <hr />
 <h3 id="_3">验证过程<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>验证者检查：</p>
-<p>$$g^{H(m)} \equiv y^r r^s \pmod p$$</p>
+<div class="arithmatex">\[
+g^{H(m)} \equiv y^r r^s \pmod p
+\]</div>
 <p>如果等式成立，则签名有效。</p>
 <hr />
 <h3 id="_4">为什么验证公式成立？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>因为：</p>
-<p>$$y = g^x$$</p>
-<p>$r = g^k$</p>
+<div class="arithmatex">\[
+y = g^x
+\]</div>
+<div class="arithmatex">\[
+r = g^k
+\]</div>
 <p>所以：</p>
-<p>$$y^r r^s
+<div class="arithmatex">\[y^r r^s
 \equiv (g^x)^r (g^k)^s
-\pmod p$$</p>
+\pmod p\]</div>
 <p>即：</p>
-<p>$$y^r r^s
+<div class="arithmatex">\[y^r r^s
 \equiv g^{xr} g^{ks}
-\pmod p$$</p>
+\pmod p\]</div>
 <p>又因为签名时：</p>
-<p>$s \equiv k^{-1}(H(m)-xr) \pmod{p-1}$</p>
+<div class="arithmatex">\[
+s \equiv k^{-1}(H(m)-xr) \pmod{p-1}
+\]</div>
 <p>所以：</p>
-<p>$ks \equiv H(m)-xr \pmod{p-1}$</p>
+<div class="arithmatex">\[
+ks \equiv H(m)-xr \pmod{p-1}
+\]</div>
 <p>因此：</p>
-<p>$$xr+ks \equiv H(m) \pmod{p-1}$$</p>
+<div class="arithmatex">\[
+xr+ks \equiv H(m) \pmod{p-1}
+\]</div>
 <p>于是：</p>
-<p>$$g^{xr+ks} \equiv g^{H(m)} \pmod p$$</p>
+<div class="arithmatex">\[
+g^{xr+ks} \equiv g^{H(m)} \pmod p
+\]</div>
 <p>所以验证公式成立。</p>
 
 
@@ -1197,6 +1223,10 @@ $$
     
     
       <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

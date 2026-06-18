@@ -1351,11 +1351,19 @@
 <p>存储转发技术，将报文分成小的部分，加上首部（包头），称为<strong>分组</strong></p>
 <p>设分组长度为Lbit，传输速度为Rbps,则分组交换可以类比成<strong>流水线</strong>，如果有P个分组需要经过N条链路（N-1个路由器）</p>
 <p>那么总时间为</p>
-<p>$t = (N+P-1)\frac{L}{R}$</p>
+<div class="arithmatex">\[
+t = (N+P-1)\frac{L}{R}
+\]</div>
 <p>单位注意bps的进位是1000，B是1024</p>
-<p>$1B=8b$</p>
-<p>$1MB = 1024KB=2^{20}B$</p>
-<p>$1Mbps=1000Kbps=10^6bps$</p>
+<div class="arithmatex">\[
+1B=8b
+\]</div>
+<div class="arithmatex">\[
+1MB = 1024KB=2^{20}B
+\]</div>
+<div class="arithmatex">\[
+1Mbps=1000Kbps=10^6bps
+\]</div>
 <p>通信主体:应用程序之间的通信</p>
 <p>数据如何正确运输到目的主机?路径选择和路由表生成，数字信号转为模拟信号</p>
 <p>APRANET 设计提出了分层的设计方法</p>
@@ -1412,14 +1420,22 @@
 <p>信道不是理想的，不可能以任意高的速率传输（有可能出现失真，无法识别）</p>
 <p>奈氏准则:码元传输的最高速率为2W（码元/秒），W为带宽</p>
 <p>信噪比:</p>
-<p>$10\log_{10}{\frac{S}{N}}$</p>
+<div class="arithmatex">\[
+10\log_{10}{\frac{S}{N}}
+\]</div>
 <p>香农公式，信道的极限信息传输速率</p>
-<p>$C=W\log_2{(1+\frac{S}{N})}(bit/s)$</p>
+<div class="arithmatex">\[
+C=W\log_2{(1+\frac{S}{N})}(bit/s)
+\]</div>
 <p>假设一个码元最多携带的比特数为x</p>
 <p>那么</p>
-<p>$2Wx=W\log_2{(1+\frac{S}{N})}$</p>
+<div class="arithmatex">\[
+2Wx=W\log_2{(1+\frac{S}{N})}
+\]</div>
 <p>得</p>
-<p>$x=\frac{\log_2{(1+\frac{S}{N})}}{2}$</p>
+<div class="arithmatex">\[
+x=\frac{\log_2{(1+\frac{S}{N})}}{2}
+\]</div>
 <p>所以码元不可能携带无限多的bit</p>
 <h3 id="_8">信道复用技术<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>频分复用FDM</p>
@@ -1586,7 +1602,7 @@ VLAN (虚拟局域网)
 <p><strong>争用窗口 (CW, Contention Window):</strong> 由多个时隙 (Slot) 组成（例如 CW=15）。</p>
 </li>
 <li>
-<p><strong>退避计时器 (Backoff Timer):</strong> 1. 每个站点在 $0 \sim CW$，之间随机选一个数字作为初始退避值。</p>
+<p><strong>退避计时器 (Backoff Timer):</strong> 1. 每个站点在 <span class="arithmatex">\(0 \sim CW\)</span>，之间随机选一个数字作为初始退避值。</p>
 </li>
 <li>
 <p>当信道空闲时，计时器开始倒计时；当信道忙碌时，计时器<strong>冻结</strong>。</p>
@@ -1606,17 +1622,17 @@ VLAN (虚拟局域网)
 <p><strong>初始状态:</strong> CW较小（如 15）。</p>
 </li>
 <li>
-<p><strong>发生碰撞/未收到 ACK:</strong> 协议认为信道拥挤，会将 CW的值翻倍（近似加倍，公式通常为 $2^{n+k}-1$）。</p>
+<p><strong>发生碰撞/未收到 ACK:</strong> 协议认为信道拥挤，会将 CW的值翻倍（近似加倍，公式通常为 <span class="arithmatex">\(2^{n+k}-1\)</span>）。</p>
 </li>
 <li>
-<p><strong>重传范围:</strong> 随着重传次数增加，随机退避的范围从$ 0\sim31、0\sim63$一直增加到最大值（如 1023）。这降低了再次碰撞的概率。</p>
+<p><strong>重传范围:</strong> 随着重传次数增加，随机退避的范围从<span class="arithmatex">\(0\sim31、0\sim63\)</span>一直增加到最大值（如 1023）。这降低了再次碰撞的概率。</p>
 </li>
 </ul>
 <hr />
 <h3 id="9-7-9-8">核心流程图解（对应图 9-7 和 9-8）<a class="headerlink" href="#9-7-9-8" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p><strong>A 发送 DATA</strong> $\rightarrow $<strong>等待 SIFS</strong> $\rightarrow$ <strong>B 返回 ACK</strong>。</p>
+<p><strong>A 发送 DATA</strong> <span class="arithmatex">\(\rightarrow\)</span><strong>等待 SIFS</strong> <span class="arithmatex">\(\rightarrow\)</span> <strong>B 返回 ACK</strong>。</p>
 </li>
 <li>
 <p>其他站（C, D）在 A 发送期间检测到忙，<strong>推迟接入</strong>。</p>
@@ -1858,6 +1874,10 @@ VLAN (虚拟局域网)
     
     
       <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

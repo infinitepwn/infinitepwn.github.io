@@ -1090,9 +1090,13 @@
 <p>在任意时刻只有一个程序是活跃的</p>
 <p>利用多进程可以提高CPU的利用率</p>
 <p>不妨设
-$$p = \frac{等待IO的时间}{停留在内存中的时间}$$
+$$
+p = \frac{等待IO的时间}{停留在内存中的时间}
+$$
 我们认为这是一个概率，如果内存中同时有n个进程，那么所有进程都在等待io的时候，CPU会空转，否则CPU都在运行，因此
-$$CPU利用率 = 1-p^n$$
+$$
+CPU利用率 = 1-p^n
+$$
 <img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260603165603491.png" />
 显然，等待IO的时间越少，CPU利用率越高
 另一方面，n越大，CPU利用率也越高</p>
@@ -1175,6 +1179,10 @@ $$CPU利用率 = 1-p^n$$
     
     
       <script src="../../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

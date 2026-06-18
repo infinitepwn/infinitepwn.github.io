@@ -1096,31 +1096,31 @@
 </ul>
 <h3 id="_4">交互式证明系统<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>语言：集合L</p>
-<p>L中的元素是${0,1}^{*}$的一个子集</p>
-<p>A说服B相信某个元素$x \in L$</p>
+<p>L中的元素是<span class="arithmatex">\(\{0,1\}^{*}\)</span>的一个子集</p>
+<p>A说服B相信某个元素<span class="arithmatex">\(x \in L\)</span></p>
 <p>满足两个条件</p>
 <ol>
-<li><strong>完备性</strong>：对于充分长的$x\in L$,将$x$作为$(A,B)$的输入，且A与B能够遵照协议运行，B接受对$x\in L$的证明</li>
-<li><strong>合理性(soundness)</strong>：对于充分长的$x\notin L$,对任意的交互图灵机A',将x作为$(A',B)$的输入，B至多以可忽略的概率接受$x\in L$的证明</li>
+<li><strong>完备性</strong>：对于充分长的<span class="arithmatex">\(x\in L\)</span>,将<span class="arithmatex">\(x\)</span>作为<span class="arithmatex">\((A,B)\)</span>的输入，且A与B能够遵照协议运行，B接受对<span class="arithmatex">\(x\in L\)</span>的证明</li>
+<li><strong>合理性(soundness)</strong>：对于充分长的<span class="arithmatex">\(x\notin L\)</span>,对任意的交互图灵机A',将x作为<span class="arithmatex">\((A',B)\)</span>的输入，B至多以可忽略的概率接受<span class="arithmatex">\(x\in L\)</span>的证明</li>
 </ol>
 <h3 id="_5">交互图灵机<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p><img alt="image-20260525154358527" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20260525154358527.png" /></p>
 <p>E.g</p>
-<p>A向B证明$(n,y)\in QNR$,</p>
-<p>B随机选择一个整数$i \in {0,1}$和一个整数$r\in Z_n^{*}$</p>
-<p>发送$w = y^i r^2 \mod n$</p>
+<p>A向B证明<span class="arithmatex">\((n,y)\in QNR\)</span>,</p>
+<p>B随机选择一个整数<span class="arithmatex">\(i \in \{0,1\}\)</span>和一个整数<span class="arithmatex">\(r\in Z_n^{*}\)</span></p>
+<p>发送<span class="arithmatex">\(w = y^i r^2 \mod n\)</span></p>
 <p>A收到之后，调用计算能力判断w是否是二次剩余，如果是，发送j=0，不是，就发送j=1</p>
-<p>B检验是否$i=j$</p>
+<p>B检验是否<span class="arithmatex">\(i=j\)</span></p>
 <p>Soundness</p>
 <p>如果y是二次剩余的话，那即使A具有无穷的计算能力，也无法求出i，</p>
 <p>因为w一定是二次剩余，A是无法分辨的</p>
 <h3 id="_6">构造零知识证明<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>A向B证明$(n,y) \in QR$</p>
+<p>A向B证明<span class="arithmatex">\((n,y) \in QR\)</span></p>
 <ol>
-<li>A随机选择一个元素r，计算$w=r^2 \mod n$,并将w发给B</li>
-<li>B随机选择$i\in{0,1}$,并且发给A</li>
-<li>A收到i之后，计算$y^iw$的一个随机平方根Z，并将Z发送给B</li>
-<li>B收到Z之后，验证$Z^2 \equiv y^iw \mod n$</li>
+<li>A随机选择一个元素r，计算<span class="arithmatex">\(w=r^2 \mod n\)</span>,并将w发给B</li>
+<li>B随机选择<span class="arithmatex">\(i\in\{0,1\}\)</span>,并且发给A</li>
+<li>A收到i之后，计算<span class="arithmatex">\(y^iw\)</span>的一个随机平方根Z，并将Z发送给B</li>
+<li>B收到Z之后，验证<span class="arithmatex">\(Z^2 \equiv y^iw \mod n\)</span></li>
 </ol>
 <p>理论上来说B如果一直选i=1，就好像可以避免A的欺骗</p>
 <p>但是此时A又可以预测B的输入，从而构造非法的w</p>
@@ -1199,6 +1199,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

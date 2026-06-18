@@ -1080,17 +1080,21 @@
 <p>在 ElGamal / DSA / ECDSA 这类签名里，(k) 是命门。只要 (k) 重复、偏弱、可预测，就可能泄露私钥。</p>
 <h2 id="k_1">真随机生成 (k)：只能降低碰撞概率<a class="headerlink" href="#k_1" title="Permanent link">&para;</a></h2>
 <p>假设 (k) 在一个很大的范围里均匀随机选，比如：</p>
-<p>$$k \in [1, q-1]$$</p>
+<div class="arithmatex">\[
+k \in [1, q-1]
+\]</div>
 <p>其中 (q) 是一个 256 bit 左右的大素数，那么可选空间大约是：
-$$2^{256}$$</p>
+$$
+2^{256}
+$$</p>
 <p>如果签名次数是 (n)，根据生日悖论，碰撞概率大约是：</p>
-<p>[
+<div class="arithmatex">\[
 P \approx \frac{n^2}{2q}
-]</p>
+\]</div>
 <p>比如你签名 (2^{32}) 次，碰撞概率大约是：</p>
-<p>[
+<div class="arithmatex">\[
 P \approx \frac{2^{64}}{2^{257}} = 2^{-193}
-]</p>
+\]</div>
 <p>这个概率极低，现实中可以认为不可能发生。</p>
 <p>所以正常做法是：</p>
 <ol>
@@ -1102,9 +1106,9 @@ P \approx \frac{2^{64}}{2^{257}} = 2^{-193}
 <p>但是你说得对：<strong>概率上仍然不是零。</strong></p>
 <h2 id="k_2">更现代的做法：确定性生成 (k)<a class="headerlink" href="#k_2" title="Permanent link">&para;</a></h2>
 <p>为了避免随机数生成器出问题，DSA/ECDSA 常用一种思路：</p>
-<p>[
+<div class="arithmatex">\[
 k = F(x, H(m))
-]</p>
+\]</div>
 <p>也就是说，(k) 不完全靠随机数，而是由：</p>
 <ul>
 <li>私钥 (x)</li>
@@ -1131,9 +1135,9 @@ k = F(x, H(m))
 <p>如果私钥 (x) 泄露，那 (k) 也能被重算出来。不过这不是额外问题，因为私钥泄露本来签名系统就完了。</p>
 <p>还有一个问题是侧信道攻击。</p>
 <p>即使 (k) 生成得很好，如果计算过程中泄露了：</p>
-<p>[
+<div class="arithmatex">\[
 k
-]</p>
+\]</div>
 <p>或者泄露了 (k) 的部分比特，也可能被 lattice/HNP 攻击恢复私钥。</p>
 <p>所以还要保证：</p>
 <ul>
@@ -1145,18 +1149,18 @@ k
 <hr />
 <h2 id="elgamal-gcdkp-11">原始 ElGamal 签名里还要注意 [gcd(k,p-1)=1]<a class="headerlink" href="#elgamal-gcdkp-11" title="Permanent link">&para;</a></h2>
 <p>因为签名公式是：</p>
-<p>[
+<div class="arithmatex">\[
 s \equiv k^{-1}(H(m)-xr) \pmod{p-1}
-]</p>
+\]</div>
 <p>所以需要：</p>
-<p>[
+<div class="arithmatex">\[
 \gcd(k,p-1)=1
-]</p>
+\]</div>
 <p>否则 [k^{-1} \pmod{p-1}] 不存在。</p>
 <p>因此生成 (k) 时不能只是随机取一个数，还要检查：</p>
-<p>[
+<div class="arithmatex">\[
 \gcd(k,p-1)=1
-]</p>
+\]</div>
 <p>如果不满足，就重新生成。</p>
 
 
@@ -1231,6 +1235,10 @@ s \equiv k^{-1}(H(m)-xr) \pmod{p-1}
     
     
       <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
