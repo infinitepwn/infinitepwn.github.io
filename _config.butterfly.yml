@@ -18,6 +18,8 @@ nav:
   fixed: false
 
 menu:
+  Home: / || fas fa-home
+  Wiki: /wiki/ || fas fa-book
   # Home: / || fas fa-home
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music

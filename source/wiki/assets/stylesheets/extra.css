@@ -1,0 +1,11 @@
+.md-typeset h1 {
+  font-weight: 700;
+}
+
+.md-typeset .grid.cards > ul > li {
+  border-radius: 8px;
+}
+
+.md-typeset a {
+  text-decoration-thickness: 0.08em;
+}
