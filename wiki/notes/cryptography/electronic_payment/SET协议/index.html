@@ -1126,39 +1126,41 @@
 <img alt="image.png|446" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260601144452692.png" /></p>
 <ol>
 <li>发送购买请求REQ</li>
-<li>回应购买请求RES1
-[
+<li>回应购买请求RES1</li>
+</ol>
+<div class="arithmatex">\[
 Sig(sk_M,H(RES1)),Cert_M,Cert_P
-]</li>
+\]</div>
+<ol>
 <li>验证响应合法性：确认商家身份</li>
-<li>
-<p>发送订单与支付信息
-[
+<li>发送订单与支付信息</li>
+</ol>
+<div class="arithmatex">\[
 Sig(sk_C,H(H(OI)||H(PI))),OI,H(PI),Cert_C
-]
-商家可以通过收到的OI和H(PI)验证签名，对PI进行哈希函数是因为不希望被购物网站知晓？（注意这个签名同时被商家和支付网关验证了）
+\]</div>
+<p>商家可以通过收到的OI和H(PI)验证签名，对PI进行哈希函数是因为不希望被购物网站知晓？（注意这个签名同时被商家和支付网关验证了）
 同时还要发送混合加密的密文
-实际加密用的是对称密码DES，密钥是sk1，但是sk1要通过非对称密码来加密
-[
+实际加密用的是对称密码DES，密钥是sk1，但是sk1要通过非对称密码来加密</p>
+<div class="arithmatex">\[
 Enc(pk_p,acc||sk_1),Enc(sk_1,Sig(sk_C,H(OI)||H(PI))||H(OI)||PI)
-]
-sk1是持卡人临时生成的，商家是无法解开这个密文的，只有支付网关可以</p>
-</li>
-<li>
-<p>验证订单信息</p>
-</li>
+\]</div>
+<p>sk1是持卡人临时生成的，商家是无法解开这个密文的，只有支付网关可以</p>
+<ol>
+<li>验证订单信息</li>
 </ol>
 <h3 id="_3">支付授权阶段<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260601150950642.png" /></p>
 <ol>
-<li>请求支付授权
-[
+<li>请求支付授权</li>
+</ol>
+<div class="arithmatex">\[
 Enc(pk_P,sk_2),Enc(sk_2,Sig(sk_M,H(AuthREQ)||AuthREQ))
-]
-再附加上之前持卡人发过来的
-[
+\]</div>
+<p>再附加上之前持卡人发过来的</p>
+<div class="arithmatex">\[
 Enc(pk_p,acc||sk_1),Enc(sk_1,Sig(sk_C,H(OI)||H(PI))||H(OI)||PI)
-]</li>
+\]</div>
+<ol>
 <li>验证支付授权请求</li>
 <li>支付授权回应</li>
 <li>验证支付授权回应</li>
@@ -1251,7 +1253,7 @@ Enc(pk_p,acc||sk_1),Enc(sk_1,Sig(sk_C,H(OI)||H(PI))||H(OI)||PI)
       
         <script src="../../../../assets/javascripts/mathjax.js"></script>
       
-        <script src="../../../../assets/javascripts/mathjax/tex-mml-chtml.js"></script>
+        <script src="../../../../assets/javascripts/mathjax/tex-svg.js"></script>
       
     
   </body>

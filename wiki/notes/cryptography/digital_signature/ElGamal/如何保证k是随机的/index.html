@@ -1031,7 +1031,7 @@
         <li class="md-nav__item">
   <a href="#elgamal-gcdkp-11" class="md-nav__link">
     <span class="md-ellipsis">
-      原始 ElGamal 签名里还要注意 [gcd(k,p-1)=1]
+      原始 ElGamal 签名里还要注意 \(gcd(k,p-1)=1\)
     </span>
   </a>
   
@@ -1083,10 +1083,10 @@
 <div class="arithmatex">\[
 k \in [1, q-1]
 \]</div>
-<p>其中 (q) 是一个 256 bit 左右的大素数，那么可选空间大约是：
-[
+<p>其中 (q) 是一个 256 bit 左右的大素数，那么可选空间大约是：</p>
+<div class="arithmatex">\[
 2^{256}
-]</p>
+\]</div>
 <p>如果签名次数是 (n)，根据生日悖论，碰撞概率大约是：</p>
 <div class="arithmatex">\[
 P \approx \frac{n^2}{2q}
@@ -1147,7 +1147,7 @@ k
 <li>签名失败时不要重用同一个 (k)。</li>
 </ul>
 <hr />
-<h2 id="elgamal-gcdkp-11">原始 ElGamal 签名里还要注意 [gcd(k,p-1)=1]<a class="headerlink" href="#elgamal-gcdkp-11" title="Permanent link">&para;</a></h2>
+<h2 id="elgamal-gcdkp-11">原始 ElGamal 签名里还要注意 <span class="arithmatex">\(gcd(k,p-1)=1\)</span><a class="headerlink" href="#elgamal-gcdkp-11" title="Permanent link">&para;</a></h2>
 <p>因为签名公式是：</p>
 <div class="arithmatex">\[
 s \equiv k^{-1}(H(m)-xr) \pmod{p-1}
@@ -1156,7 +1156,7 @@ s \equiv k^{-1}(H(m)-xr) \pmod{p-1}
 <div class="arithmatex">\[
 \gcd(k,p-1)=1
 \]</div>
-<p>否则 [k^{-1} \pmod{p-1}] 不存在。</p>
+<p>否则 <span class="arithmatex">\(k^{-1} \pmod{p-1}\)</span> 不存在。</p>
 <p>因此生成 (k) 时不能只是随机取一个数，还要检查：</p>
 <div class="arithmatex">\[
 \gcd(k,p-1)=1
@@ -1238,7 +1238,7 @@ s \equiv k^{-1}(H(m)-xr) \pmod{p-1}
       
         <script src="../../../../../assets/javascripts/mathjax.js"></script>
       
-        <script src="../../../../../assets/javascripts/mathjax/tex-mml-chtml.js"></script>
+        <script src="../../../../../assets/javascripts/mathjax/tex-svg.js"></script>
       
     
   </body>

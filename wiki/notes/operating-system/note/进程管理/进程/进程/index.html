@@ -1089,15 +1089,15 @@
 <p>在任何多编程系统中，CPU都会快速从进程切换到进程，每个进程运行数十或数百毫秒。虽然严格来说，在任何时刻，CPU只运行一个进程，但在1秒内，它可能会在其中几个进程上工作，给人一种并行的错觉。有时人们在这种情况下谈论伪并行，将其与多处理器系统（具有两个或多个共享相同物理内存的CPU）的真正硬件并行性形成对比。人们很难跟踪多个并行的活动。</p>
 <p>在任意时刻只有一个程序是活跃的</p>
 <p>利用多进程可以提高CPU的利用率</p>
-<p>不妨设
-[
+<p>不妨设</p>
+<div class="arithmatex">\[
 p = \frac{等待IO的时间}{停留在内存中的时间}
-]
-我们认为这是一个概率，如果内存中同时有n个进程，那么所有进程都在等待io的时候，CPU会空转，否则CPU都在运行，因此
-[
+\]</div>
+<p>我们认为这是一个概率，如果内存中同时有n个进程，那么所有进程都在等待io的时候，CPU会空转，否则CPU都在运行，因此</p>
+<div class="arithmatex">\[
 CPU利用率 = 1-p^n
-]
-<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260603165603491.png" />
+\]</div>
+<p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260603165603491.png" />
 显然，等待IO的时间越少，CPU利用率越高
 另一方面，n越大，CPU利用率也越高</p>
 <p>增大内存是一个有效提高CPU利用率的方法，因为进程需要占据内存，内存越大，内存中同时运行的进程的就越多，n越大，CPU利用率也就越大</p>
@@ -1182,7 +1182,7 @@ CPU利用率 = 1-p^n
       
         <script src="../../../../../../assets/javascripts/mathjax.js"></script>
       
-        <script src="../../../../../../assets/javascripts/mathjax/tex-mml-chtml.js"></script>
+        <script src="../../../../../../assets/javascripts/mathjax/tex-svg.js"></script>
       
     
   </body>
