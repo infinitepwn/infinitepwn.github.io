@@ -115,3 +115,9 @@ deploy:
   repo: https://github.com/infinitepwn/infinitepwn.github.io.git
   branch: main
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
