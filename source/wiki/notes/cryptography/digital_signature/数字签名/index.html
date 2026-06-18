@@ -1046,20 +1046,20 @@
 <p>来源：<code>密码学引论 / digital_signature/数字签名.md</code></p>
 </blockquote>
 <p>数字签名方案由以下三个概率多项式时间算法组成：</p>
-<p>密钥生成算法
-[
+<p>密钥生成算法</p>
+<div class="arithmatex">\[
 KeyGen (sk,vk) ← KeyGen(1^λ)
-]
-输入<a href="../%E5%AE%89%E5%85%A8%E5%8F%82%E6%95%B0/">安全参数</a><span class="arithmatex">\(1^λ\)</span>，输出(sk,vk)，其中sk 为签名私钥，vk 为验证公钥。</p>
-<p>签名算法
-[
+\]</div>
+<p>输入<a href="../%E5%AE%89%E5%85%A8%E5%8F%82%E6%95%B0/">安全参数</a><span class="arithmatex">\(1^λ\)</span>，输出(sk,vk)，其中sk 为签名私钥，vk 为验证公钥。</p>
+<p>签名算法</p>
+<div class="arithmatex">\[
 Sign: σ ← Sign_{sk}(m)
-]
-输入签名私钥sk 与要签署的消息m，输出签名σ，其中m ∈ M，M 为消息空间。</p>
-<p>验证算法
-[
+\]</div>
+<p>输入签名私钥sk 与要签署的消息m，输出签名σ，其中m ∈ M，M 为消息空间。</p>
+<p>验证算法</p>
+<div class="arithmatex">\[
 Vrfy:b ← Vrfyvk(m,σ)
-]</p>
+\]</div>
 <p>输入验证公钥vk，消息m 与签名σ，输出b，其中b ∈ {0,1}。b = 1 表示</p>
 <p>验证通过，即签名是合法的，b = 0 表示验证不通过，即签名不合法。</p>
 <h2 id="mac">与<a href="../../block_cipher/MAC/">MAC</a>的区别<a class="headerlink" href="#mac" title="Permanent link">&para;</a></h2>
@@ -1141,7 +1141,7 @@ Vrfy:b ← Vrfyvk(m,σ)
       
         <script src="../../../../assets/javascripts/mathjax.js"></script>
       
-        <script src="../../../../assets/javascripts/mathjax/tex-mml-chtml.js"></script>
+        <script src="../../../../assets/javascripts/mathjax/tex-svg.js"></script>
       
     
   </body>

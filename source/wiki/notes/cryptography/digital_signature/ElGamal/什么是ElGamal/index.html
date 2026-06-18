@@ -1076,28 +1076,28 @@
 <p>ElGamal 签名是一种<strong>基于离散对数困难问题</strong>的数字签名算法。它和 ElGamal 加密同源，思想也类似：在有限域乘法群里，利用私钥生成签名，别人用公钥验证签名。</p>
 <h3 id="_1">参数生成<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>选择一个大素数 p，以及模 p 下的生成元 (g)。</p>
-<p>私钥为：
-[
+<p>私钥为：</p>
+<div class="arithmatex">\[
 x
-]
-公钥为：
-[
+\]</div>
+<p>公钥为：</p>
+<div class="arithmatex">\[
 y \equiv g^x \pmod p
-]
-所以公钥是：</p>
+\]</div>
+<p>所以公钥是：</p>
 <div class="arithmatex">\[
 (p,g,y)
 \]</div>
 <h3 id="_2">签名过程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>假设消息为 (m)，一般先计算哈希：</p>
-<p>[
+<div class="arithmatex">\[
 H(m)
-]
-签名者随机选一个临时随机数 (k)，要求：</p>
-<p>[
+\]</div>
+<p>签名者随机选一个临时随机数 (k)，要求：</p>
+<div class="arithmatex">\[
 \gcd(k,p-1)=1
-]
-然后计算：</p>
+\]</div>
+<p>然后计算：</p>
 <div class="arithmatex">\[
 r \equiv g^k \pmod p
 \]</div>
@@ -1230,7 +1230,7 @@ g^{xr+ks} \equiv g^{H(m)} \pmod p
       
         <script src="../../../../../assets/javascripts/mathjax.js"></script>
       
-        <script src="../../../../../assets/javascripts/mathjax/tex-mml-chtml.js"></script>
+        <script src="../../../../../assets/javascripts/mathjax/tex-svg.js"></script>
       
     
   </body>
