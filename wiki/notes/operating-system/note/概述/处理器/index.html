@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1003,6 +1150,15 @@
       
         <li class="md-nav__item">
   <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU结构
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpu_1" class="md-nav__link">
     <span class="md-ellipsis">
       CPU中的寄存器
     </span>
@@ -1129,10 +1285,13 @@
 <blockquote>
 <p>来源：<code>操作系统 / note/概述/处理器.md</code></p>
 </blockquote>
+<h2 id="cpu">CPU结构<a class="headerlink" href="#cpu" title="Permanent link">&para;</a></h2>
+<p>CPU可以分成控制器和数据通路
+<a href="../%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF/">数据通路</a></p>
 <p>CPU从内存中取出指令并执行，在每个CPU基本周期中，首先从内存中取出指令，解码以确定其类型和操作数，然后执行
 <img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260605151057091.png" /></p>
 <p>每个CPU都有一套可执行的专门指令集，因此x86处理器不能执行ARM程序，反之亦然</p>
-<h2 id="cpu">CPU中的寄存器<a class="headerlink" href="#cpu" title="Permanent link">&para;</a></h2>
+<h2 id="cpu_1">CPU中的寄存器<a class="headerlink" href="#cpu_1" title="Permanent link">&para;</a></h2>
 <h3 id="_2">用户可见的寄存器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>由于用来访问内存以得到指令或数据的时间要比执行指令话费的时间长的多，因此所有CPU内都有一些用来保存关键变量和临时数据的寄存器</p>
 <h3 id="_3">控制和状态寄存器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
@@ -1143,7 +1302,8 @@
 <h2 id="_4">流水线<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <h2 id="_5">处理器的模式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <h3 id="_6">内核态<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>CPU可以执行指令集中的每一条指令</p>
+<p>CPU可以执行指令集中的每一条指令
+常见的内核态指令:I/O指令，置时钟指令，中断处理指令，原语</p>
 <h3 id="_7">用户态<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>仅允许执行整个指令集的一个子集和访问所有功能的一个子集</p>
 <p>特权指令和非特权指令</p>

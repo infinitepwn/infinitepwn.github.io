@@ -20,7 +20,7 @@
     
     
       
-        <title>Las Vegas算法 - CS Knowledge Tree</title>
+        <title>Las Vegas 算法 - CS Knowledge Tree</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Las Vegas算法
+              Las Vegas 算法
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      与 Monte Carlo 算法的区别
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      密码学中的意义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      学习要点
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1024,10 +1206,30 @@
   
 
 
-<h1 id="las-vegas">Las Vegas算法<a class="headerlink" href="#las-vegas" title="Permanent link">&para;</a></h1>
+<h1 id="las-vegas">Las Vegas 算法<a class="headerlink" href="#las-vegas" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / Public-key Encryption/Las Vegas算法.md</code></p>
 </blockquote>
+<p>Las Vegas 算法是一类随机算法：运行时间可能随机变化，但只要输出结果，结果一定正确。</p>
+<h2 id="monte-carlo">与 Monte Carlo 算法的区别<a class="headerlink" href="#monte-carlo" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Las Vegas 算法：结果一定正确，运行时间不确定。</li>
+<li>Monte Carlo 算法：运行时间通常固定或可控，但结果可能有小概率错误。</li>
+</ul>
+<h2 id="_1">密码学中的意义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>密码学经常使用随机性，但不同算法对错误概率的要求不同。例如：</p>
+<ul>
+<li>随机化算法可以用于寻找因子、生成参数或选择候选值。</li>
+<li>如果算法必须保证结果正确，就更接近 Las Vegas 思路。</li>
+<li>如果允许极小错误概率，例如部分素性测试，则更接近 Monte Carlo 思路。</li>
+</ul>
+<h2 id="_2">学习要点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>判断一个随机算法时，先问两个问题：</p>
+<ol>
+<li>它会不会输出错误答案？</li>
+<li>它的运行时间是否可能依赖随机选择？</li>
+</ol>
+<p>如果答案是“不会输出错误答案，但运行时间随机”，就是 Las Vegas 算法。</p>
 
 
 

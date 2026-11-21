@@ -1,0 +1,1303 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/rag/data/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>关于令狐冲转生为史莱姆并对世界献上了美好的炎爆这件事 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              关于令狐冲转生为史莱姆并对世界献上了美好的炎爆这件事
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/rag/data.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/rag/data.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">关于令狐冲转生为史莱姆并对世界献上了美好的炎爆这件事<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>RAG / data.md</code></p>
+</blockquote>
+<h1 id="_2">第一章：风陵渡绝响，异世魂初凝<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>剑魔独孤求败的传承者，华山派弃徒，放浪不羁的令狐冲，在经历了一系列江湖恩怨与快意情仇之后，本以为能与任盈盈携手笑傲江湖，共度余生。然天有不测风云，一次为了保护无辜村民，独身抵挡一支神秘军队的围攻时，他虽凭借出神入化的独孤九剑斩敌无数，终因力竭内伤爆发，含笑而逝。他最后的念头，是那首与盈盈合奏的《笑傲江湖曲》，以及对这红尘俗世的一丝眷恋与洒脱。</p>
+<p>再次恢复意识时，令狐冲感觉一片混沌。没有了熟悉的身体，没有了视觉、听觉、嗅觉，甚至连触觉都变得迟钝而怪异。他感觉自己像一滩……液体？不，更像是一团有弹性的胶状物。他努力“感知”，发现自己正趴在一片湿润的苔藓上，周围是高大的、散发着奇异荧光的蘑菇。这是一个全然陌生的世界。他尝试“移动”，身体便如水流般蠕动起来，缓慢却有效。令狐冲心中巨震：“我……我这是怎么了？莫非，这就是阴曹地府？可为何还有这般奇异的生机？”</p>
+<p>他很快发现，自己似乎变成了一种……史莱姆。一种在传说故事中最为低级、最为孱弱的魔物。没有手脚，没有五官，只有一个核心，似乎是他的灵魂所在。令狐冲不禁苦笑，想他一代剑术宗师，如今竟落得如此境地。不过，既来之则安之，他那随遇而安的性子又占了上风。他开始探索这个新身体的奥秘。</p>
+<h1 id="_3">第二章：史莱姆的生存法则与“吸星大法”<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<p>作为一只史莱姆，令狐冲发现自己有种本能——吞噬与分解。他尝试吞噬了一片落叶，落叶进入他半透明的身体后，便被一种奇异的力量缓缓分解，化为纯粹的能量滋养着他的核心。这让他想起了任我行的“吸星大法”，虽然原理大相径庭，但都有汲取外界能量为己用的特性。他开始有意识地吞噬周围一切能分解的东西：死去的虫豸、腐烂的植物、甚至是一些闪烁着微弱光芒的小石头。</p>
+<p>每一次吞噬，都让他对这个世界的能量规则多了一分理解。这个世界存在一种名为“魔素”的能量，无处不在，而史莱姆这种生物，天生就能缓慢吸收游离魔素，并通过吞噬物质来加速这一过程。令狐冲那强大的灵魂，使得他这只史莱姆在吸收和转化效率上远超同类。他甚至感觉到，自己体内的“魔素”在按照一种熟悉的轨迹运转，那竟是《易筋经》的行功路线！虽然没有了经脉，但能量的流动却惊人地相似。</p>
+<p>某日，他在一个隐秘的洞穴深处，发现了一块散发着灼热气息的红色晶石。那晶石中蕴含的火系魔素极为庞大且狂暴。普通的史莱姆若是靠近，恐怕瞬间就会被焚烧殆尽。但令狐冲的灵魂本能地感觉到，这块晶石对他有大用。他小心翼翼地将身体覆盖上去，开始尝试吸收。</p>
+<h1 id="_4">第三章：炎爆的雏形与独孤九剑的意境<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<p>红色晶石的能量刚一入体，令狐冲便感觉到了前所未有的灼痛。那股能量狂暴无比，在他体内横冲直撞，仿佛要将他撕裂。就在他快要支撑不住，以为自己这只史莱姆也要“走火入魔”时，他想起了独孤九剑的“破气式”。破气式讲究寻找对方真气运转的弱点，顺势而为，借力打力。他尝试用自己那微弱但精纯的“易筋经魔素”去引导这股狂暴的火系能量，不再强行压制，而是寻找其流动的“势”。</p>
+<p>奇迹发生了。那狂暴的火系魔素，在他的引导下，渐渐变得驯服。它们不再是单纯的破坏力量，而是开始有序地在他体内流转。令狐冲福至心灵，独孤九剑的总诀，“归妹趋无妄，无妄趋同人，同人趋大有。甲转丙，丙转庚，庚转癸。子丑之交，辰巳之交，午未之交。风雷是一变，山泽是一变，水火是一变。乾坤相激，震兑相激，离巽相激。三增而成五，五增而成九……”这些玄奥的剑理，此刻竟与魔素的运转隐隐相合。</p>
+<p>他尝试将这股高度压缩的火系魔素向外释放。没有具体形态，只是一种纯粹的能量宣泄。他对着洞穴的石壁，“噗”地一声，一团拳头大小的火球喷射而出，撞在石壁上，轰然炸开！碎石四溅，烟尘弥漫。威力虽然不大，但令狐冲却兴奋不已。这不是魔法，这是他以独孤九剑的“意”与“势”，结合史莱姆的特性，催发出的能量爆发！他将其戏称为“破爆式”。</p>
+<h1 id="_5">第四章：酒虫不改，初遇冒险者<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
+<p>掌握了“破爆式”的雏形后，令狐冲的生存能力大为提升。他不再是那个人畜无害的小史莱姆了。他离开了那个洞穴，开始探索更广阔的世界。这个世界有茂密的森林，高耸的山脉，以及……各种各样的魔物。他遇到过凶猛的狼群，巨大的蜘蛛，甚至还有会喷吐毒气的蜥蜴。但凭借着史莱姆的隐蔽性和出其不意的“破爆式”，他总能化险为夷，甚至还能吞噬一些魔物的血肉精华，增强自身。</p>
+<p>一日，他蠕动到一片人类活动的边缘区域。空气中飘来了令他魂牵梦绕的香气——酒香！令狐冲的酒虫顿时被勾了起来。他循着酒香，来到一个冒险者营地旁。几个冒险者正围着篝火，大口喝酒，大块吃肉，谈论着最近的委托和遇到的奇闻异事。令狐冲悄悄靠近，他的目标是……洒落在地上的几滴酒液。</p>
+<p>他小心翼翼地伸出伪足，想要舔舐那些酒滴。突然，一个年轻的女魔法师发现了他。“呀！一只火红色的史莱姆！好可爱！”她惊呼道。其他冒险者也围了过来，一个壮硕的剑士拔出了剑，警惕地说：“小心，有些变异史莱姆很危险。”令狐冲心中一紧，暗道：“糟糕，被发现了。要不要先给他们来一发‘破爆式’自保？”</p>
+<h1 id="_6">第五章：炎爆史莱姆的“善意”<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h1>
+<p>女魔法师似乎对令狐冲很感兴趣，她阻止了同伴的攻击，蹲下身子，好奇地观察着他。“它好像不怕火……而且，它的颜色好纯粹，像火焰一样。”她伸出手，尝试触摸令狐冲。令狐冲犹豫了一下，他能感觉到这个女孩没有恶意。他放松了身体，任由她触摸。女孩的手指触碰到他时，感觉到一阵温暖。</p>
+<p>就在这时，森林深处传来一声震耳欲聋的咆哮，紧接着地面开始震动。一群双眼赤红的哥布林，手持简陋的武器，疯狂地冲向营地。“是狂暴哥布林！它们被什么东西刺激了！”老练的队长喊道，冒险者们立刻进入战斗状态。哥布林数量众多，冒险者小队虽然配合默契，但也渐渐陷入困境。女魔法师在吟唱一个大型法术，但需要时间。</p>
+<p>令狐冲看着眼前的景象，想起了当年在江湖中行侠仗义的日子。他虽然成了史莱姆，但侠义之心未泯。他悄悄移动到哥布林群的侧翼，深吸一口气（如果史莱姆有气可吸的话），体内的火系魔素按照独孤九剑“破箭式”的原理——讲究料敌先机，攻敌之不得不救——高度压缩，然后猛地喷出！</p>
+<p>“轰！”一团巨大的火球，带着无可匹敌的气势，精准地炸入哥布林最密集之处。强大的冲击波和高温火焰瞬间将十几只哥布林吞噬。这不是他之前那种小打小闹的“破爆式”，这是他结合了更多剑理，威力更强，也更“写意”的炎爆！冒险者们惊呆了，纷纷望向那只不起眼的红色史莱姆。</p>
+<h1 id="_7">第六章：无心插柳，炎爆扬名<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h1>
+<p>令狐冲一发炎爆，瞬间扭转了战局。残余的哥布林被这突如其来的恐怖攻击吓破了胆，纷纷四散而逃。冒险者小队目瞪口呆地看着那只正在“喘息”（身体微微起伏）的红色史莱姆。女魔法师更是双眼放光：“天呐！刚才那是……炎爆术吗？不，比炎爆术更凝聚，更……迅猛！”</p>
+<p>队长走上前，对着令狐冲行了一个标准的冒险者礼节：“多谢阁下援手。在下‘钢之盾’冒险小队队长，巴顿。不知阁下如何称呼？”令狐冲无法言语，只能晃了晃身体。女魔法师艾米莉亚笑道：“它可能没有名字呢。不过它这么厉害，又通体火红，不如叫它‘烈焰’？”令狐冲对这个名字不置可否，他更喜欢别人叫他令狐冲，可惜他说不出来。</p>
+<p>巴顿队长从怀里掏出一小袋金币：“这是我们的一点心意，感谢阁下的救命之恩。”令狐冲对金币没兴趣，他蠕动到篝火旁，眼巴巴地看着酒桶。艾米莉亚冰雪聪明，立刻明白了它的意思，惊喜道：“难道……它想喝酒？”她小心地倒了一些麦酒在石碗里，推到令狐冲面前。令狐冲毫不客气，将整个身体覆盖上去，酒液很快被他吸收。一股熟悉的暖流（和微醺感）传遍全身，令狐冲舒服地抖了抖。</p>
+<p>自此，“钢之盾”冒险小队多了一位特殊的“荣誉成员”——一只会施展强大炎爆，并且酷爱杯中之物的红色史莱姆。他们将令狐冲的“义举”上报了冒险者公会，并绘声绘色地描述了他那如同艺术品般的炎爆。很快，“炎爆史莱姆”的名号在附近的城镇流传开来，有人好奇，有人敬畏，也有人觊觎。</p>
+<h1 id="_8">第七章：黑森林的阴影与“破索式”炎爆<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h1>
+<p>随着“炎爆史莱姆”的名声渐响，令狐冲也从冒险者口中得知了这个世界更多的信息。他目前所在的区域，边缘有一片被称为“黑森林”的禁地。传说森林深处有上古遗迹，但也盘踞着强大的魔物，更有传言说，一股邪恶的力量正在森林中蔓延，使得周围的生物变得狂暴嗜血，就像他们之前遇到的狂暴哥布林。</p>
+<p>“钢之盾”小队接到了一个深入黑森林边缘，调查异常情况的委托。他们邀请令狐冲一同前往，毕竟他那神出鬼没的炎爆是极大的助力。令狐冲对那股“邪恶力量”也颇感兴趣，他隐隐觉得，那股力量与他吸收的红色晶石似乎有所关联，但又更加阴冷和腐朽。</p>
+<p>进入黑森林，光线骤暗，空气中弥漫着腐败的气息。他们很快遭遇到了一群被黑气缠绕的魔化野狼。这些野狼速度极快，配合默契，如同训练有素的士兵。巴顿的盾牌上被抓出了深深的爪痕，其他队员也险象环生。令狐冲观察着狼群的攻击阵型，它们的配合虽然紧密，但在他这位曾经的剑术大师眼中，却充满了破绽。</p>
+<p>他想起了独孤九剑中的“破索式”，专破鞭索软兵刃，讲究攻击其连接点和发力点，使其无法连贯。这些魔狼的配合，就像一条无形的锁链。令狐冲没有选择大范围的炎爆，而是连续喷射出数道细小但极度凝聚的火线，如同飞针，精准地点射在几只关键头狼发力变向的节点上。火线瞬间的高温让它们动作一滞，阵型顿时出现混乱。冒险者们抓住机会，一举反击，成功击溃了狼群。艾米莉亚赞叹道：“烈焰，你的火焰控制真是越来越精妙了！”</p>
+<h1 id="_9">第八章：古神祭坛与“总诀式”的献祭<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h1>
+<p>在黑森林的更深处，他们发现了一座被藤蔓和黑气笼罩的古老祭坛。祭坛中央，一颗巨大的、跳动着的黑色心脏状晶体，正不断散发着邪恶的能量，侵蚀着周围的一切。这正是导致魔物狂暴和森林异变的源头。数名身披黑袍的神秘教徒，正在祭坛周围进行着某种邪恶的仪式，试图催发黑色晶体的力量。</p>
+<p>“阻止他们！”巴顿队长大吼一声，率先冲了上去。一场恶战爆发。黑袍教徒不仅能操控被腐化的魔物，自身也掌握着诡异的暗影魔法。冒险者小队虽然奋力抵抗，但渐渐不敌，艾米IA在施法时被偷袭，受了重伤。</p>
+<p>令狐冲知道，不能再有所保留了。他看着那颗邪恶的黑色心脏，它散发出的能量波动与他体内的火系魔素格格不入，甚至让他感到一种源自灵魂的厌恶。他想起了独孤九剑的“总诀式”，那是所有变化的最终归宿，是“无招胜有招”的至高境界。此刻，他要用他所理解的“总诀式”，来献祭这邪恶的根源。</p>
+<p>他将体内所有的火系魔素，以及从这个世界吸收的各种驳杂能量，甚至是他作为史莱姆的生命本源，都开始以“总诀式”的玄奥法门进行压缩、融合、提纯。他的身体发出刺目的红光，周围的温度急剧升高。空气因高温而扭曲，地面开始熔化。黑袍教徒们惊恐地看着这只小小的史莱姆，仿佛在看一个即将爆发的火山。</p>
+<h1 id="_10">第九章：美好的炎爆，净化与新生<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h1>
+<p>“为了这个世界……也为了我心中的那份快意恩仇！”令狐冲的意识中闪过这个念头。下一刻，一道前所未有，超越了单纯“炎爆”范畴的能量洪流，从他小小的身体中喷薄而出。那不是单纯的火焰，那光芒炽烈而纯净，带着一种一往无前、净化一切的“意”。它没有固定的形态，却仿佛包含了独孤九剑所有招式的变化——时而如“破剑式”般锋锐无匹，时而如“破枪式”般一往无前，时而如“破索式”般灵动精巧。</p>
+<p>这道能量洪流没有直接摧毁祭坛，而是以一种玄妙的方式，渗透、瓦解了黑色心脏晶体的结构。黑色的邪恶能量在纯净的光焰中哀嚎、消散。黑袍教徒们连惨叫都来不及发出，便化为灰烬。笼罩在黑森林上空的阴云被驱散，阳光第一次照进了这片被诅咒之地。</p>
+<p>当光芒散尽，原地只留下一个巨大的琉璃状坑洞，以及……一枚小小的、散发着微弱红光的史莱姆核心。令狐冲几乎耗尽了所有力量，变回了最原始的状态。冒险者们围了上来，艾米莉亚流着泪，小心翼翼地捧起那枚核心，用自己仅存的魔力温养着它。“烈焰……你……”</p>
+<p>令狐冲的核心微微闪烁，传递出一股虚弱但满足的意念。他知道，他成功了。他以史莱姆之身，用他理解的“剑道”，对这个世界献上了一场“美好”的炎爆。这一爆，不仅摧毁了邪恶，也净化了被污染的土地，更是在场每个人心中留下了不可磨灭的印记。</p>
+<h1 id="_11">第十章：史莱姆剑仙的传说<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h1>
+<p>数月后，黑森林恢复了生机。令狐冲在艾米莉亚和“钢之盾”小队的照料下，慢慢恢复过来，甚至比以前更加凝练。他虽然依旧是史莱姆形态，但他的核心更加明亮，身体流转的火光也带着一丝神圣的韵味。他依然爱喝酒，依然会用他那独特的炎爆“行侠仗义”。</p>
+<p>关于“炎爆史莱姆”的传说，演变成了“火焰贤者史莱姆”，甚至有人开始称他为“史莱姆剑仙”。人们传说，有一只无所不能的史莱姆，它能释放出净化一切邪恶的火焰，那火焰时而狂暴如龙，时而精妙如针，带着一股潇洒不羁的剑意。它守护着一方安宁，偶尔会出现在某个小酒馆，用珍奇的魔物材料换取一壶好酒。</p>
+<p>令狐冲并不知道这些。他只是继续着自己的旅程，以一只史莱姆的形态，在这个奇妙的世界里，用自己的方式，演绎着另一段“笑傲江湖”。或许有一天，他能找到变回人形的方法，或许不能。但这又有什么关系呢？只要心中有剑，有酒，有朋友，有那份快意恩仇的洒脱，是人是史莱姆，又有什么分别？他对着夕阳，仿佛再次哼起了那首熟悉的曲调，而远方，似乎又有什么不平之事，等待着他献上一发“美好的炎爆”。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

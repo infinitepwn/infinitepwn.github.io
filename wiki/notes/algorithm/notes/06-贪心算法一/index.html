@@ -1,0 +1,1496 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/algorithm/notes/06-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%80/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Lecture 6 · 贪心算法（一） - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-6" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 6 · 贪心算法（一）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      怎么证明一个贪心选择是安全的
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interval-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      区间调度（Interval Scheduling）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="区间调度（Interval Scheduling）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      归纳证明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他规则为什么会失败
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimal-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      最优装载（Optimal Loading）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimizing-maximum-lateness" class="md-nav__link">
+    <span class="md-ellipsis">
+      最小化最大延迟（Minimizing Maximum Lateness）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最小化最大延迟（Minimizing Maximum Lateness）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      交换相邻逆序任务
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fractional-knapsack" class="md-nav__link">
+    <span class="md-ellipsis">
+      可分背包（Fractional Knapsack）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可分背包（Fractional Knapsack）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么按密度排序
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/algorithm/notes/06-贪心算法一.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/algorithm/notes/06-贪心算法一.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="lecture-6">Lecture 6 · 贪心算法（一）<a class="headerlink" href="#lecture-6" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>算法设计与分析 / notes/06-贪心算法一.md</code></p>
+</blockquote>
+<p><a href="../../">课程索引</a> · <a href="../slides/lecture-06.pdf">Lecture 6 课件</a> · <a href="../07-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%BA%8C/">贪心算法（二）</a></p>
+<h2 id="_1">怎么证明一个贪心选择是安全的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>贪心策略每次按一条规则选定当前决策，之后继续做剩余部分。证明时，可以先拿一个最优解来比较。如果这个最优解没有采用当前的贪心选择，就试着改动它，使它采用这一步，同时保持可行性和目标值。这样就得到一个和贪心选择相容的最优解，可以继续处理剩余的问题</p>
+<p>例如，面额为 <span class="arithmatex">\(\{1,3,4\}\)</span> 时，要凑出 <span class="arithmatex">\(6\)</span> 并使硬币数最少。每次选能用的最大面额会得到 <span class="arithmatex">\(4+1+1\)</span>，而 <span class="arithmatex">\(3+3\)</span> 只需要两枚。选了 <span class="arithmatex">\(4\)</span> 以后，剩余部分当然也可以求到最优，但整个结果已经比全局最优差了</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>每一步比较什么</th>
+<th>为什么可以这么选</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无权区间调度</td>
+<td>相容任务中结束最早</td>
+<td>换掉最优解的下一个任务，后续任务仍然能接上</td>
+</tr>
+<tr>
+<td>最优装载</td>
+<td>剩余集装箱中最轻</td>
+<td>换掉一个箱子，总重量只会减小，箱数保持相同</td>
+</tr>
+<tr>
+<td>最小化最大延迟</td>
+<td>截止时间最早</td>
+<td>交换相邻逆序任务，最大延迟不会增大</td>
+</tr>
+<tr>
+<td>可分背包</td>
+<td>单位重量价值最高</td>
+<td>可以用相同重量的高密度物品替换低密度物品</td>
+</tr>
+</tbody>
+</table>
+<h2 id="interval-scheduling">区间调度（Interval Scheduling）<a class="headerlink" href="#interval-scheduling" title="Permanent link">&para;</a></h2>
+<p>每个任务 <span class="arithmatex">\(i\)</span> 已经规定好使用机器的时间 <span class="arithmatex">\([s_i,f_i)\)</span>，其中 <span class="arithmatex">\(s_i&lt;f_i\)</span>。两项任务可以首尾相接，即 <span class="arithmatex">\(f_i=s_j\)</span> 时可以先安排 <span class="arithmatex">\(i\)</span> 再安排 <span class="arithmatex">\(j\)</span>。目标是选出<strong>数量最多</strong>的一组互不重叠的任务</p>
+<p>这里已经给定了每项任务的起止时间，所以算法只决定选哪些任务。每选完一个任务，后面还能接哪些任务只取决于它的结束时间。结束越早，剩余候选就越多</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>按 f[i] 从小到大排序
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>last = -∞
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>chosen = []
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>依次考虑任务 i：
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    如果 s[i] &gt;= last：
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        将 i 加入 chosen
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        last = f[i]
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>返回 chosen
+</code></pre></div>
+<p>在课件的例子里，先选 <span class="arithmatex">\(2=[1,4)\)</span>，再选 <span class="arithmatex">\(5=[4,7)\)</span>，最后选 <span class="arithmatex">\(8=[8,11)\)</span>。排序需要 <span class="arithmatex">\(O(n\log n)\)</span>，排序后只需 <span class="arithmatex">\(O(n)\)</span> 扫描</p>
+<h3 id="_2">归纳证明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>设贪心已经选出的 <span class="arithmatex">\(k\)</span> 个任务恰好构成某个最优解 <span class="arithmatex">\(O\)</span> 的前缀。<span class="arithmatex">\(k=0\)</span> 时任取一个最优解即可</p>
+<p>若贪心下一步选了任务 <span class="arithmatex">\(g\)</span>，<span class="arithmatex">\(O\)</span> 必须还有后续任务，否则可以直接把 <span class="arithmatex">\(g\)</span> 接到 <span class="arithmatex">\(O\)</span> 后面，得到更大的相容集。设 <span class="arithmatex">\(O\)</span> 的下一个任务是 <span class="arithmatex">\(j\)</span>。<span class="arithmatex">\(j\)</span> 和 <span class="arithmatex">\(g\)</span> 都能接在前缀后，且按贪心规则有 <span class="arithmatex">\(f_g\le f_j\)</span>。把 <span class="arithmatex">\(j\)</span> 换成 <span class="arithmatex">\(g\)</span> 后，原先能接在 <span class="arithmatex">\(j\)</span> 后面的任务也都能接在 <span class="arithmatex">\(g\)</span> 后面，所以任务数保持不变。于是，贪心选出的前 <span class="arithmatex">\(k+1\)</span> 个任务也是某个最优解的前缀</p>
+<p>算法停止时已经没有能接在这个前缀后面的任务，因此该最优解已经被完整选出</p>
+<h3 id="_3">其他规则为什么会失败<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>最早开始</strong>。对 <span class="arithmatex">\([0,5),[1,2),[2,3),[3,4)\)</span>，会先选 <span class="arithmatex">\([0,5)\)</span>，只能完成一项。后三个区间可以全部选上</li>
+<li><strong>持续时间最短</strong>。对 <span class="arithmatex">\([0,3),[3,6),[2,4)\)</span>，会先选 <span class="arithmatex">\([2,4)\)</span>，挡住两边本来可以各做的一项</li>
+<li><strong>冲突最少</strong>。取四个可依次完成的区间 <span class="arithmatex">\([0,2),[3,5),[6,8),[9,11)\)</span>，加入 <span class="arithmatex">\([4,7)\)</span>，再加入三个互相重叠的 <span class="arithmatex">\([1,4)\)</span> 任务和三个互相重叠的 <span class="arithmatex">\([7,10)\)</span> 任务。<span class="arithmatex">\([4,7)\)</span> 只和中间两个原任务冲突，冲突数唯一最小。先选它后，两侧各只剩至多一项可做，最终最多三项</li>
+</ul>
+<p>如果任务有价值，目标变成最大化价值和，这条规则也会失效。例如 <span class="arithmatex">\([0,1)\)</span> 的价值为 <span class="arithmatex">\(1\)</span>，与其冲突的 <span class="arithmatex">\([0,2)\)</span> 的价值为 <span class="arithmatex">\(100\)</span>，这个实例里应选后者</p>
+<h2 id="optimal-loading">最优装载（Optimal Loading）<a class="headerlink" href="#optimal-loading" title="Permanent link">&para;</a></h2>
+<p>容量为 <span class="arithmatex">\(W\)</span>，箱子 <span class="arithmatex">\(i\)</span> 重 <span class="arithmatex">\(w_i&gt;0\)</span>。每个箱子只能整件装上，目标是使装载数量最多</p>
+<div class="arithmatex">\[
+\max \sum_{i=1}^n x_i,\qquad
+\sum_{i=1}^n w_i x_i\le W,\qquad x_i\in\{0,1\}
+\]</div>
+<p>按重量升序排列，从最轻的一件开始装。下一件放不下时，后面的箱子至少一样重，也都放不下。排序加线性扫描共 <span class="arithmatex">\(O(n\log n)\)</span></p>
+<p>为什么可以先装最轻件？如果它放得下，从任意一个最优装载方案里拿出一件换成最轻件，重量不会增大，箱数保持一样。固定最轻件后，剩下的就是容量 <span class="arithmatex">\(W-w_1\)</span>、物品数少一件的同类问题，对物品数归纳即可</p>
+<p>还可以直接看排序后的前缀和。任取 <span class="arithmatex">\(k\)</span> 件，最轻的 <span class="arithmatex">\(k\)</span> 件总重量最小。因此，装下 <span class="arithmatex">\(k\)</span> 件当且仅当</p>
+<div class="arithmatex">\[
+\sum_{i=1}^k w_i\le W
+\]</div>
+<p>例如 <span class="arithmatex">\(W=10\)</span>，重量排序后为 <span class="arithmatex">\(2,3,4,6\)</span>，前缀重量依次为 <span class="arithmatex">\(2,5,9,15\)</span>，前三件可装，任何四件都超过容量。这里每件的价值都等于 <span class="arithmatex">\(1\)</span>，这个条件对应 <a href="../../%E5%BC%95%E8%AE%BA/">0–1 背包</a> 的一个特例</p>
+<h2 id="minimizing-maximum-lateness">最小化最大延迟（Minimizing Maximum Lateness）<a class="headerlink" href="#minimizing-maximum-lateness" title="Permanent link">&para;</a></h2>
+<p>所有任务从时刻 <span class="arithmatex">\(0\)</span> 就可以开始，单机串行执行，每项任务都必须完成，中途不抢占。任务 <span class="arithmatex">\(j\)</span> 的处理时长为 <span class="arithmatex">\(t_j\)</span>，截止时间为 <span class="arithmatex">\(d_j\)</span>，完成时间为 <span class="arithmatex">\(C_j\)</span>，目标为</p>
+<div class="arithmatex">\[
+\min L_{\max},\qquad
+L_{\max}=\max_j L_j,\qquad L_j=C_j-d_j
+\]</div>
+<p>提前完成的 <span class="arithmatex">\(L_j\)</span> 是负数。如果题目用的是只计逾期量的 tardiness，则单项是 <span class="arithmatex">\(T_j=\max\{0,L_j\}\)</span>，最大值是 <span class="arithmatex">\(T_{\max}=\max\{0,L_{\max}\}\)</span>。两种记法要与题目的目标对应</p>
+<p>算法按截止时间从早到晚（Earliest Due Date，课件称 Earliest Deadline First）排序，从时刻 <span class="arithmatex">\(0\)</span> 连续执行，耗时 <span class="arithmatex">\(O(n\log n)\)</span>。以 <span class="arithmatex">\(A=(3,4)\)</span>、<span class="arithmatex">\(B=(1,7)\)</span>、<span class="arithmatex">\(C=(2,5)\)</span> 为例，每个二元组依次是处理时间和截止时间</p>
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>完成时间</th>
+<th>各任务延迟</th>
+<th style="text-align: right;">最大延迟</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(A,C,B\)</span></td>
+<td><span class="arithmatex">\(3,5,6\)</span></td>
+<td><span class="arithmatex">\(-1,0,-1\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(B,C,A\)</span></td>
+<td><span class="arithmatex">\(1,3,6\)</span></td>
+<td><span class="arithmatex">\(-6,-2,2\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>第二个顺序就是按最短处理时间排序，而 <a href="../../%E5%BC%95%E8%AE%BA/">Lecture 1 的单机调度</a> 要最小化的是所有任务完成时间之和 <span class="arithmatex">\(\sum_j C_j\)</span></p>
+<h3 id="_4">交换相邻逆序任务<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>所有任务都在时刻 <span class="arithmatex">\(0\)</span> 就绪，所以可以把任意最优调度整体向前压紧，消除空闲时间。各任务完成得更早或保持原样，<span class="arithmatex">\(L_{\max}\)</span> 不会增大</p>
+<p>在压紧后的顺序里，若有相邻任务 <span class="arithmatex">\(j,i\)</span> 且 <span class="arithmatex">\(d_i&lt;d_j\)</span>，设这两项结束的共同时间点为 <span class="arithmatex">\(F\)</span>。交换成 <span class="arithmatex">\(i,j\)</span> 时，其他任务的完成时间保持相同，任务 <span class="arithmatex">\(i\)</span> 提前完成，而任务 <span class="arithmatex">\(j\)</span> 的新延迟为</p>
+<div class="arithmatex">\[
+L'_j=F-d_j\le F-d_i=L_i,\qquad L'_i\le L_i
+\]</div>
+<p>因此交换后这对任务的最大延迟不超过交换前的最大延迟。每次交换消去一个截止时间逆序，直到按 <span class="arithmatex">\(d_j\)</span> 升序排列。同一截止时间 <span class="arithmatex">\(d\)</span> 的任务可以任意排序，因为它们作为一组连续执行，组内最大延迟都是<strong>这组结束时刻减去 <span class="arithmatex">\(d\)</span></strong></p>
+<h2 id="fractional-knapsack">可分背包（Fractional Knapsack）<a class="headerlink" href="#fractional-knapsack" title="Permanent link">&para;</a></h2>
+<p>每件物品可以分割，<span class="arithmatex">\(x_i\in[0,1]\)</span> 表示取物品 <span class="arithmatex">\(i\)</span> 的比例。假设 <span class="arithmatex">\(w_i&gt;0\)</span>、<span class="arithmatex">\(v_i\ge0\)</span>，问题为</p>
+<div class="arithmatex">\[
+\max \sum_{i=1}^{n}x_i v_i,\qquad
+\sum_{i=1}^{n}x_i w_i\le W
+\]</div>
+<p>按价值密度 <span class="arithmatex">\(\rho_i=v_i/w_i\)</span> 降序取物品。当前剩余容量为 <span class="arithmatex">\(R\)</span> 时，取</p>
+<div class="arithmatex">\[
+x_i=\min\left\{1,\frac{R}{w_i}\right\},\qquad R\leftarrow R-x_iw_i
+\]</div>
+<p>例如容量是 <span class="arithmatex">\(50\)</span>，三件物品的 <span class="arithmatex">\((w_i,v_i)\)</span> 为 <span class="arithmatex">\((10,60),(20,100),(30,120)\)</span>，价值密度为 <span class="arithmatex">\(6,5,4\)</span>。前两件全部选入，第三件选 <span class="arithmatex">\(2/3\)</span>，总价值为 <span class="arithmatex">\(240\)</span>。复杂度由排序决定，为 <span class="arithmatex">\(O(n\log n)\)</span></p>
+<h3 id="_5">为什么按密度排序<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>设最优解在最高密度物品 <span class="arithmatex">\(i\)</span> 上取的重量少于贪心要求的重量。如果背包还有空位，可以先用 <span class="arithmatex">\(i\)</span> 填补。如果还需要腾出重量，就从已选的低密度物品中移出相同重量。把重量 <span class="arithmatex">\(\Delta\)</span> 从物品 <span class="arithmatex">\(j\)</span> 换到物品 <span class="arithmatex">\(i\)</span>，价值变化是</p>
+<div class="arithmatex">\[
+\Delta(\rho_i-\rho_j)\ge0
+\]</div>
+<p>因为物品可以任意切分，可以把 <span class="arithmatex">\(i\)</span> 一直增加到贪心规定的取量。固定这一步后，其余物品和剩余容量构成同类子问题，重复这个论证即可。对于 0–1 背包，整件物品无法任意腾出等重的一部分，交换步骤所需的可行性条件已经改变</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

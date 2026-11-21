@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1008,10 +1155,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="为什么需要系统调用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统调用分类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      进程管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       典型服务
     </span>
@@ -1020,7 +1191,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       基本流程
     </span>
@@ -1029,7 +1200,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       相关
     </span>
@@ -1073,10 +1244,23 @@
 <p>来源：<code>操作系统 / note/概述/系统调用.md</code></p>
 </blockquote>
 <p>上级：<a href="../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/">操作系统的运行环境</a></p>
-<p>系统调用是用户程序请求操作系统内核服务的接口，也是程序主动从用户态进入内核态的主要方式。</p>
+<blockquote>
+<p>[!concept] 系统调用
+系统调用是用户程序请求操作系统内核服务的接口，也是程序主动从用户态进入内核态的主要方式。</p>
+</blockquote>
 <h2 id="_2">为什么需要系统调用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>用户程序不能直接执行特权指令，也不能随意访问设备、文件系统和内核数据结构。需要访问这些资源时，必须通过系统调用让内核代为完成。</p>
-<h2 id="_3">典型服务<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>[!warning] 为什么不能直接访问内核资源
+用户程序不能直接执行特权指令，也不能随意访问设备、文件系统和内核数据结构。</p>
+<p>需要访问这些资源时，必须通过系统调用让内核代为完成。</p>
+</blockquote>
+<h3 id="_3">系统调用分类<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">进程管理<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>pid = fork()
+pid = waitpid(pid,&amp;staloc,options)
+s = evecve(name,argv,environp)
+exit(status)</p>
+<h2 id="_5">典型服务<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li>进程控制：创建、退出、等待进程。</li>
 <li>文件操作：打开、读写、关闭文件。</li>
@@ -1084,15 +1268,16 @@
 <li>信息维护：获取时间、系统信息。</li>
 <li>通信：管道、信号、共享内存等。</li>
 </ul>
-<h2 id="_4">基本流程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<ol>
-<li>用户程序准备系统调用号和参数。</li>
-<li>执行陷入指令，触发软中断或异常。</li>
-<li>CPU 从用户态切换到内核态。</li>
-<li>内核检查参数并执行服务。</li>
-<li>返回用户态，用户程序继续运行。</li>
-</ol>
-<h2 id="_5">相关<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6">基本流程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>[!flow] 基本流程
+1. 用户程序准备系统调用号和参数。
+2. 执行陷入指令，触发软中断或异常。
+3. CPU 从用户态切换到内核态。
+4. 内核检查参数并执行服务。
+5. 返回用户态，用户程序继续运行。</p>
+</blockquote>
+<h2 id="_7">相关<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../%E4%B8%AD%E6%96%AD/">中断</a></li>
 <li><a href="../%E5%A4%84%E7%90%86%E5%99%A8/">处理器</a></li>

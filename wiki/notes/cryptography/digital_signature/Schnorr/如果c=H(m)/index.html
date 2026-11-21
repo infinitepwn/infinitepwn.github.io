@@ -20,7 +20,7 @@
     
     
       
-        <title>如果c=H(m) - CS Knowledge Tree</title>
+        <title>如果 c = H(m) - CS Knowledge Tree</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chm" class="md-skip">
+        <a href="#c-hm" class="md-skip">
           跳转至
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              如果c=H(m)
+              如果 c = H(m)
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hm" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么不能只用 H(m)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      可能的问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      正确直觉
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1024,10 +1206,29 @@
   
 
 
-<h1 id="chm">如果c=H(m)<a class="headerlink" href="#chm" title="Permanent link">&para;</a></h1>
+<h1 id="c-hm">如果 c = H(m)<a class="headerlink" href="#c-hm" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / digital_signature/Schnorr/如果c=H(m).md</code></p>
 </blockquote>
+<p>在 Schnorr 签名中，挑战值通常不是只对消息哈希，而是计算：</p>
+<div class="arithmatex">\[
+c = H(R || m)
+\]</div>
+<p>其中 <span class="arithmatex">\(R\)</span> 是承诺值，<span class="arithmatex">\(m\)</span> 是消息。</p>
+<h2 id="hm">为什么不能只用 H(m)<a class="headerlink" href="#hm" title="Permanent link">&para;</a></h2>
+<p>如果令 <span class="arithmatex">\(c=H(m)\)</span>，挑战值就和本次签名的随机承诺 <span class="arithmatex">\(R\)</span> 无关。这样会破坏 Fiat-Shamir 变换中“先承诺、再挑战、最后响应”的结构。</p>
+<h2 id="_1">可能的问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>攻击者可以先知道挑战值，再构造响应和承诺。</li>
+<li>承诺 <span class="arithmatex">\(R\)</span> 没有被消息摘要绑定，验证等式的约束变弱。</li>
+<li>签名不再可靠模拟交互式 Schnorr 协议中的随机挑战。</li>
+</ul>
+<h2 id="_2">正确直觉<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Schnorr 签名要让挑战同时绑定消息和承诺：</p>
+<div class="arithmatex">\[
+c = H(R || m)
+\]</div>
+<p>这样签名者不能在知道挑战后任意选择承诺，攻击者也不能把同一个挑战挪到不匹配的承诺上使用。</p>
 
 
 

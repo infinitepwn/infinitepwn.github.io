@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,101 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dma_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DMA的构成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DMA的构成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dma_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 教材中的DMA寄存器模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dma_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要 DMA
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本过程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      优点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dma_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      DMA 与中断的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache 一致性问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,8 +1270,97 @@
 <blockquote>
 <p>来源：<code>操作系统 / note/输入输出/DMA.md</code></p>
 </blockquote>
-<p>相当于一个临时CPU？
-本来数据之间的转移是需要CPU来处理的，但是有了DMA，CPU只要提前编程好DMA，就可以让DMA执行读写操作，而CPU可以去做其他事情</p>
+<p>上级：<a href="../%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%28IO%29/">输入输出(IO)</a></p>
+<p>DMA（Direct Memory Access，直接存储器访问）允许设备控制器在内存和设备之间直接传输数据，CPU 只负责配置和收尾。</p>
+<p>可以把 DMA 控制器理解成一个专门负责搬运数据的硬件助手，但它不是通用 CPU，只执行预设好的数据传输任务。
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260623225324702.png" /></p>
+<h2 id="dma_1">DMA的构成<a class="headerlink" href="#dma_1" title="Permanent link">&para;</a></h2>
+<p>在操作系统教材的语境下，DMA控制器通常被描述为由<strong>4类</strong>核心寄存器构成。这个经典模型解释了DMA如何自主完成数据块传输。</p>
+<h3 id="dma_2">📚 教材中的DMA寄存器模型<a class="headerlink" href="#dma_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">寄存器名称</th>
+<th style="text-align: left;">核心功能</th>
+<th style="text-align: left;">通俗理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>命令/状态寄存器 (CR)</strong></td>
+<td style="text-align: left;">接收CPU发来的I/O命令和控制信息，或报告设备状态。</td>
+<td style="text-align: left;">接收“搬运任务指令”并汇报当前“工作状态”。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>内存地址寄存器 (MAR)</strong></td>
+<td style="text-align: left;">存放数据在内存中的地址（传输的源地址或目标地址）。</td>
+<td style="text-align: left;">记录数据要从“哪里”搬到“哪里”的地址。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>数据寄存器 (DR)</strong></td>
+<td style="text-align: left;">用于暂存从设备到内存或从内存到设备的数据。</td>
+<td style="text-align: left;">充当数据搬运过程中的“临时中转站”。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>数据计数器 (DC)</strong></td>
+<td style="text-align: left;">存放本次要传送的数据块大小（字数或字节数），通常递减至0表示传输完成。</td>
+<td style="text-align: left;">记录“还剩多少数据要搬”，像倒计时钟。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dma_3">为什么需要 DMA<a class="headerlink" href="#dma_3" title="Permanent link">&para;</a></h2>
+<p>如果没有 DMA，大块 I/O 数据需要 CPU 一个字或一个字节地搬运：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>设备 -&gt; CPU寄存器 -&gt; 内存
+</code></pre></div>
+<p>这样 CPU 会被数据搬运占用，无法同时执行其他进程。</p>
+<p>有了 DMA 后，CPU 只需要告诉 DMA 控制器：</p>
+<ul>
+<li>从哪里读数据。</li>
+<li>写到哪里。</li>
+<li>传输多少字节。</li>
+<li>传输方向是什么。</li>
+</ul>
+<p>然后 DMA 控制器直接完成数据传输。</p>
+<h2 id="_1">基本过程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ol>
+<li>设备驱动设置 DMA 控制器的源地址、目标地址、长度和方向。</li>
+<li>设备开始传输数据。</li>
+<li>DMA 控制器在设备和内存之间搬运数据。</li>
+<li>传输完成后，DMA 控制器触发中断。</li>
+<li>CPU 进入中断处理程序，检查结果并唤醒等待进程。</li>
+</ol>
+<h2 id="_2">优点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>减少 CPU 搬运数据的开销。</li>
+<li>适合磁盘、网卡等大块数据传输。</li>
+<li>提高 CPU 和 I/O 设备的并行程度。</li>
+</ul>
+<h2 id="_3">注意点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>DMA 和 CPU 可能竞争内存总线。</li>
+<li>如果有 Cache，必须处理缓存一致性问题，避免 CPU 看到旧数据。</li>
+<li>DMA 访问内存必须受操作系统控制，否则可能破坏内核或其他进程的数据。</li>
+</ul>
+<h2 id="dma_4">DMA 与中断的关系<a class="headerlink" href="#dma_4" title="Permanent link">&para;</a></h2>
+<p>DMA 并不是替代中断。DMA 负责搬运数据，中断负责通知 CPU “传输已经完成”或“传输出现错误”。</p>
+<p>因此一次典型的大块 I/O 通常是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CPU配置DMA -&gt; DMA搬运数据 -&gt; DMA/设备触发中断 -&gt; CPU收尾
+</code></pre></div>
+<h2 id="cache">Cache 一致性问题<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h2>
+<p>如果设备通过 DMA 把数据写入内存，而 CPU 缓存中还保留着同一地址的旧数据，CPU 可能读到过期内容。</p>
+<p>解决方式包括：</p>
+<ul>
+<li>DMA 前后刷新或失效相关 Cache 行。</li>
+<li>使用不可缓存的 DMA 缓冲区。</li>
+<li>使用硬件支持的缓存一致性协议。</li>
+</ul>
+<h2 id="_4">相关<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../%E4%B8%AD%E6%96%AD%E9%A9%B1%E5%8A%A8IO/">中断驱动IO</a></li>
+<li><a href="../%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/">设备驱动</a></li>
+<li><a href="../IO%E7%A1%AC%E4%BB%B6/">IO硬件</a></li>
+<li><a href="../%E7%A3%81%E7%9B%98/">磁盘</a></li>
+</ul>
 
 
 

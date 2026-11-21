@@ -20,7 +20,7 @@
     
     
       
-        <title>SHA256 - CS Knowledge Tree</title>
+        <title>SHA-256 - CS Knowledge Tree</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sha256" class="md-skip">
+        <a href="#sha-256" class="md-skip">
           跳转至
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SHA256
+              SHA-256
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,59 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入输出
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#md" class="md-nav__link">
+    <span class="md-ellipsis">
+      与MD结构的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      填充规则
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心压缩过程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      在比特币中的作用
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1024,11 +1224,43 @@
   
 
 
-<h1 id="sha256">SHA256<a class="headerlink" href="#sha256" title="Permanent link">&para;</a></h1>
+<h1 id="sha-256">SHA-256<a class="headerlink" href="#sha-256" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / hash_function/SHA256.md</code></p>
 </blockquote>
-<p><strong>SHA-2</strong>，名称来自于<strong>安全散列算法2</strong>（英语：Secure Hash Algorithm 2）的缩写，是一种<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E9%9B%9C%E6%B9%8A%E5%87%BD%E6%95%B8" title="密码散列函数">密码散列函数</a>算法标准，由<a href="https://zh.wikipedia.org/wiki/%E7%BE%8E%E5%9C%8B%E5%9C%8B%E5%AE%B6%E5%AE%89%E5%85%A8%E5%B1%80" title="美国国家安全局">美国国家安全局</a>研发，由<a href="https://zh.wikipedia.org/wiki/%E7%BE%8E%E5%9B%BD%E5%9B%BD%E5%AE%B6%E6%A0%87%E5%87%86%E4%B8%8E%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E9%99%A2" title="美国国家标准与技术研究院">美国国家标准与技术研究院</a>（NIST）在2001年发布。属于<a href="https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F" title="SHA家族">SHA算法</a>之一，是<a href="https://zh.wikipedia.org/wiki/SHA-1" title="SHA-1">SHA-1</a>的后继者。其下又可再分为六个不同的算法标准，包括了：SHA-224、SHA-256、SHA-384、SHA-512、SHA-512/224、SHA-512/256。</p>
+<p>SHA-256 是 SHA-2 家族中的一种密码哈希函数，输出长度为 256 bit。它常用于完整性校验、数字签名、区块链工作量证明和密钥派生等场景。</p>
+<h2 id="_1">输入输出<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>输入：任意长度的比特串。</li>
+<li>输出：固定长度的 256 bit 摘要。</li>
+<li>目标性质：抗原像、抗第二原像、抗碰撞。</li>
+</ul>
+<h2 id="md">与<a href="../MD%E7%BB%93%E6%9E%84/">MD结构</a>的关系<a class="headerlink" href="#md" title="Permanent link">&para;</a></h2>
+<p>SHA-256 采用 Merkle-Damgård 思路：</p>
+<ol>
+<li>对消息进行填充，使其长度满足分组要求。</li>
+<li>将消息切分为 512 bit 分组。</li>
+<li>用压缩函数逐组更新内部状态。</li>
+<li>输出最终 256 bit 状态作为摘要。</li>
+</ol>
+<h2 id="_2">填充规则<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>设原消息长度为 <span class="arithmatex">\(l\)</span> bit：</p>
+<ol>
+<li>先追加一个 <code>1</code>。</li>
+<li>再追加若干个 <code>0</code>，使长度同余于 <span class="arithmatex">\(448 \pmod{512}\)</span>。</li>
+<li>最后追加 64 bit 的原消息长度编码。</li>
+</ol>
+<p>这种长度填充能让不同长度的消息边界清晰，避免简单拼接歧义。</p>
+<h2 id="_3">核心压缩过程<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>每个 512 bit 分组会扩展为 64 个 32 bit 字。压缩函数使用加法、异或、循环移位、选择函数和多数函数迭代更新 8 个 32 bit 工作变量。</p>
+<p>常见记号：</p>
+<ul>
+<li><code>Ch(x,y,z) = (x ∧ y) ⊕ (¬x ∧ z)</code>：按 <code>x</code> 选择 <code>y</code> 或 <code>z</code>。</li>
+<li><code>Maj(x,y,z) = (x ∧ y) ⊕ (x ∧ z) ⊕ (y ∧ z)</code>：多数函数。</li>
+<li><code>Σ0, Σ1, σ0, σ1</code>：由循环右移和右移组成的扩散函数。</li>
+</ul>
+<h2 id="_4">在比特币中的作用<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>比特币工作量证明可以理解为寻找一个随机数，使区块头的双 SHA-256 哈希值小于目标难度值。这里依赖的不是加密保密性，而是哈希函数的原像搜索困难性。</p>
 
 
 

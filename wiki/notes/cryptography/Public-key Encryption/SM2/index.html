@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,50 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础对象
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sm2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SM2 签名特点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecdsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      与 ECDSA 的区别
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意点
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,6 +1219,35 @@
 <blockquote>
 <p>来源：<code>密码学引论 / Public-key Encryption/SM2.md</code></p>
 </blockquote>
+<p>SM2 是我国商用密码体系中的椭圆曲线公钥密码算法，基于椭圆曲线离散对数问题。它可以用于数字签名、公钥加密和密钥交换。</p>
+<h2 id="_1">基础对象<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>SM2 工作在有限域上的椭圆曲线群中。系统参数通常包括：</p>
+<ul>
+<li>有限域规模。</li>
+<li>椭圆曲线方程参数。</li>
+<li>基点 <span class="arithmatex">\(G\)</span>。</li>
+<li>基点阶 <span class="arithmatex">\(n\)</span>。</li>
+<li>用户私钥 <span class="arithmatex">\(d\)</span>。</li>
+<li>用户公钥 <span class="arithmatex">\(P=dG\)</span>。</li>
+</ul>
+<p>其安全性依赖于：已知 <span class="arithmatex">\(G\)</span> 和 <span class="arithmatex">\(P=dG\)</span> 时，计算 <span class="arithmatex">\(d\)</span> 很困难。</p>
+<h2 id="sm2_1">SM2 签名特点<a class="headerlink" href="#sm2_1" title="Permanent link">&para;</a></h2>
+<p>SM2 签名会把用户身份标识也纳入摘要计算。这样可以把公钥和用户身份绑定起来，降低公钥替换带来的风险。</p>
+<p>基本流程可以概括为：</p>
+<ol>
+<li>由用户身份、曲线参数和公钥计算摘要前缀 <span class="arithmatex">\(Z_A\)</span>。</li>
+<li>对 <span class="arithmatex">\(Z_A || M\)</span> 做哈希，得到消息摘要。</li>
+<li>使用私钥和随机数生成签名 <span class="arithmatex">\((r,s)\)</span>。</li>
+<li>验证者用公钥检查签名等式是否成立。</li>
+</ol>
+<h2 id="ecdsa">与 ECDSA 的区别<a class="headerlink" href="#ecdsa" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SM2 把身份信息显式纳入签名摘要。</li>
+<li>签名方程与 ECDSA 不完全相同。</li>
+<li>随机数仍然必须保密且不可复用，否则可能泄露私钥。</li>
+</ul>
+<h2 id="_2">注意点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>SM2 的安全实现不仅取决于数学算法，也取决于随机数质量、参数验证、公钥验证和侧信道防护。</p>
 
 
 

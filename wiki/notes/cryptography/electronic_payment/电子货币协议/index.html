@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1004,7 +1151,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      目录
+      基本安全性要求
     </span>
   </a>
   
@@ -1013,7 +1160,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      基本安全性要求
+      两种认证模式
     </span>
   </a>
   
@@ -1032,6 +1179,15 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       认钱模式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关概念
     </span>
   </a>
   
@@ -1072,24 +1228,31 @@
 <blockquote>
 <p>来源：<code>密码学引论 / electronic_payment/电子货币协议.md</code></p>
 </blockquote>
-<h2 id="_2">目录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>盲签名</p>
-<h2 id="_3">基本安全性要求<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>议定收款方货币增加数量=议定付款方货币减少数量，且付款方余额不小于0
-- 确认交易相关信息的真实性
-</code></pre></div>
-<p>实质为认证系统（<a href="../../digital_signature/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/">数字签名</a>+加密）</p>
-<p>两种模式：被认证的主体来划分
-     认证电子货币--确认电子货币为某合法机构发行（认钱，钱是否合法）
-     认证电子货币拥有者--确认拥有者账户（认人）</p>
+<h2 id="_2">基本安全性要求<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>议定收款方货币增加数量等于议定付款方货币减少数量。</li>
+<li>付款方余额不小于 0。</li>
+<li>确认交易相关信息的真实性。</li>
+</ul>
+<p>电子货币协议本质上是一类认证系统，通常结合<a href="../../digital_signature/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/">数字签名</a>、加密和协议级状态检查。</p>
+<h2 id="_3">两种认证模式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>按被认证的主体划分，可以分为两类：</p>
+<ul>
+<li>认证电子货币：确认电子货币由合法机构发行，也就是“认钱”。</li>
+<li>认证电子货币拥有者：确认拥有者账户或持卡人身份，也就是“认人”。</li>
+</ul>
 <h2 id="_4">认人模式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>确认交易方账户相关信息的真实性
-    目前电子货币使用最广泛的形式
-    比如<a href="../SET%E5%8D%8F%E8%AE%AE/">SET协议</a>、<a href="../3D-Secure/">3D-Secure</a></p>
+<p>确认交易方账户相关信息的真实性</p>
+<p>这是目前电子货币中使用最广泛的形式，例如<a href="../SET%E5%8D%8F%E8%AE%AE/">SET协议</a>、<a href="../3D-Secure/">3D-Secure</a>。</p>
 <h2 id="_5">认钱模式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>确认货币本身的合法性
-    防止货币伪造和重复花费
-    电子现金<a href="../E-cash/">E-cash</a>,预付卡</p>
+<p>确认货币本身的合法性</p>
+<p>这种模式重点防止货币伪造和重复花费，例如电子现金 <a href="../E-cash/">E-cash</a> 和预付卡。</p>
+<h2 id="_6">相关概念<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../E-cash/#盲签名">E-cash</a></li>
+<li><a href="../%E5%8F%8C%E8%8A%B1%E9%97%AE%E9%A2%98/">双花问题</a></li>
+<li><a href="../../digital_signature/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/">数字签名</a></li>
+</ul>
 
 
 

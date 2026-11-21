@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,56 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么引入线程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="为什么引入线程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      应用的需要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      开销的考虑
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能的考虑
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,7 +1225,18 @@
 <blockquote>
 <p>来源：<code>操作系统 / note/进程管理/线程/线程模型.md</code></p>
 </blockquote>
-<p>轻量级线程</p>
+<h2 id="_2">为什么引入线程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">应用的需要<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>可以提高用户交互体验</p>
+<h3 id="_4">开销的考虑<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>进程的创建、撤销、通信、切换都需要系统调用，时间/空间开销大，限制了并发度的提高</p>
+<p>线程的开销小
+创建一个新线程花费时间少（撤销亦如此）
+两个线程切换花费时间少
+同一进程内的线程之间相互通信无须调用内核（共享内存和文件）</p>
+<h3 id="_5">性能的考虑<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>线程可以提高性能，提高并发的颗粒
+轻量级进程</p>
 <p>线程是操作系统能够进行运算调度的最小单位，包含在进程之中，是进程中的实际运作单位</p>
 <p>进程：资源拥有者</p>
 <p>多个线程共享资源</p>
@@ -1038,6 +1246,8 @@
 车间：进程
 工人：线程</p>
 <p>是否对内存资源占有？</p>
+<p>在同一个进程中并行运行多个线程，是对在同一台计算机上并行运行多个进程的模拟</p>
+<p>进程把资源集中在一起供线程之间共享使用</p>
 <p>进程就类似C++的class，线程类似内部的函数</p>
 
 

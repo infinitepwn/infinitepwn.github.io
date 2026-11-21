@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1013,7 +1160,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      报文类型
+      版本
     </span>
   </a>
   
@@ -1022,7 +1169,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      常见方法
+      报文类型
     </span>
   </a>
   
@@ -1031,7 +1178,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      连接方式
+      常见方法
     </span>
   </a>
   
@@ -1040,7 +1187,7 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      状态码
+      连接方式
     </span>
   </a>
   
@@ -1048,6 +1195,15 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      状态码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       相关笔记
     </span>
@@ -1093,30 +1249,42 @@
 <h2 id="_1">定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>HTTP（HyperText Transfer Protocol，超文本传输协议）用于在浏览器和 Web 服务器之间传输超文本文档。</p>
 <p>默认端口号是 80，HTTP 使用 <a href="../../%E8%BF%90%E8%BE%93%E5%B1%82/TCP%E5%8D%8F%E8%AE%AE/">TCP协议</a> 提供可靠传输。</p>
-<h2 id="_2">报文类型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">版本<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>HTTP/0.9,HTTP/1.0,HTTP/1.1
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260618142733479.png" /></p>
+<h2 id="_3">报文类型<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li>请求报文：客户向服务器请求资源。</li>
-<li>响应报文：服务器向客户返回状态和资源。</li>
+<li>
+<p>请求报文：客户向服务器请求资源。
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260618142831313.png" />
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260618143034762.png" />
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260618143240661.png" /></p>
+</li>
+<li>
+<p>响应报文：服务器向客户返回状态和资源。
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260618143559527.png" /></p>
+</li>
 </ul>
-<h2 id="_3">常见方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">常见方法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>GET：请求读取资源。</li>
 <li>POST：向服务器提交数据。</li>
 <li>HEAD：只请求响应首部。</li>
 </ul>
-<h2 id="_4">连接方式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">连接方式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li>非持续连接：每请求一个对象就建立一次 TCP 连接。</li>
 <li>持续连接：多个对象可以复用同一条 TCP 连接。</li>
 </ul>
-<h2 id="_5">状态码<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6">状态码<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
-<li>2xx：成功。</li>
+<li>1xx: 信息，服务器收到请求，需要请求者继续执行操作</li>
+<li>2xx: 成功</li>
 <li>3xx：重定向。</li>
 <li>4xx：客户端错误。</li>
 <li>5xx：服务器错误。</li>
 </ul>
-<h2 id="_6">相关笔记<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_7">相关笔记<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../%E5%BA%94%E7%94%A8%E5%B1%82/">应用层</a></li>
 <li><a href="../../%E8%BF%90%E8%BE%93%E5%B1%82/TCP%E5%8D%8F%E8%AE%AE/">TCP协议</a></li>

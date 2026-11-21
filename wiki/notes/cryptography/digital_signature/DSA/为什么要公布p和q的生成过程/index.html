@@ -20,7 +20,7 @@
     
     
       
-        <title>为什么要公布p和q的生成过程 - CS Knowledge Tree</title>
+        <title>为什么要公布 p 和 q 的生成过程 - CS Knowledge Tree</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pq" class="md-skip">
+        <a href="#p-q" class="md-skip">
           跳转至
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              为什么要公布p和q的生成过程
+              为什么要公布 p 和 q 的生成过程
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,50 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数的作用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么不能只公布结果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      公布生成过程的意义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      类比
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1024,10 +1215,28 @@
   
 
 
-<h1 id="pq">为什么要公布p和q的生成过程<a class="headerlink" href="#pq" title="Permanent link">&para;</a></h1>
+<h1 id="p-q">为什么要公布 p 和 q 的生成过程<a class="headerlink" href="#p-q" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / digital_signature/DSA/为什么要公布p和q的生成过程.md</code></p>
 </blockquote>
+<p>在 DSA 等离散对数签名方案中，参数 <span class="arithmatex">\(p\)</span> 和 <span class="arithmatex">\(q\)</span> 会影响整个系统的安全性。公布生成过程的目的，是让使用者确信参数不是被恶意挑选的。</p>
+<h2 id="_1">参数的作用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><span class="arithmatex">\(p\)</span>：定义有限域 <span class="arithmatex">\(\mathbb{Z}_p\)</span>。</li>
+<li><span class="arithmatex">\(q\)</span>：通常是 <span class="arithmatex">\(p-1\)</span> 的大素因子，用来定义阶为 <span class="arithmatex">\(q\)</span> 的子群。</li>
+<li><span class="arithmatex">\(g\)</span>：子群生成元。</li>
+</ul>
+<p>签名安全性依赖于该子群中的离散对数问题困难。</p>
+<h2 id="_2">为什么不能只公布结果<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>如果参数生成过程不透明，参数生成者可能构造带有陷门的参数，使自己能更容易求解离散对数或制造签名风险。即使攻击不明显，使用者也很难判断参数是否公平。</p>
+<h2 id="_3">公布生成过程的意义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>可验证：任何人都能复现或检查参数生成是否符合规则。</li>
+<li>防后门：降低参数生成者暗中植入陷门的可能。</li>
+<li>建立信任：公开标准参数需要让不同实现者都能接受。</li>
+</ul>
+<h2 id="_4">类比<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>这和椭圆曲线标准参数需要解释随机种子来源类似：密码系统不仅要“看起来安全”，还要尽量避免参数选择阶段隐藏特殊结构。</p>
 
 
 

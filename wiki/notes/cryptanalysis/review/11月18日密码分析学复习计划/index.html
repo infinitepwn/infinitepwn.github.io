@@ -1,0 +1,1519 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/cryptanalysis/review/11%E6%9C%8818%E6%97%A5%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>11 月 18 日密码分析学复习计划 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-18" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11 月 18 日密码分析学复习计划
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      大纲给出的考试依据
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      每天怎么复习
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 12 日（周四）：基础与普通差分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 13 日（周五）：差分变形与线性入门
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 14 日（周六）：线性分析主攻
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 15 日（周日）：积分与中间相遇
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-16-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 16 日（周一）：中间相遇补充、杂凑与 MAC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 17 日（周二）：闭卷综合演练
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-18_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 18 日（周三）：考前轻复习
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-17_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 月 17 日：自拟闭卷模拟
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11 月 17 日：自拟闭卷模拟">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      完成后再看：核对要点
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#90" class="md-nav__link">
+    <span class="md-ellipsis">
+      如果每天只有约 90 分钟
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/cryptanalysis/review/11月18日密码分析学复习计划.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/cryptanalysis/review/11月18日密码分析学复习计划.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="11-18">11 月 18 日密码分析学复习计划<a class="headerlink" href="#11-18" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>密码分析学 / review/11月18日密码分析学复习计划.md</code></p>
+</blockquote>
+<p>考试日期：2026 年 11 月 18 日（周三）。这份安排覆盖 11 月 12 日至 17 日，暂按每天约 3～4 小时制定；12 日若剩余时间不够，先完成当天的范围确认和差分自测，把未完成的学习顺延到 13 日。</p>
+<p>11 月 18 日为期末考试，本计划按《密码分析学》2026 修订教学大纲安排。</p>
+<h2 id="_1">大纲给出的考试依据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>大纲 PDF 第 18～19 页写明：期末为<strong>闭卷笔试</strong>，卷面 100 分，主要题型为选择、填空、简答分析题；期末考试和平时成绩各占总成绩的 50%。大纲的<strong>拟定编题分配</strong>如下：</p>
+<table>
+<thead>
+<tr>
+<th>大纲章节</th>
+<th style="text-align: right;">计划分值</th>
+<th>复习侧重点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本概念与模型</td>
+<td style="text-align: right;">5</td>
+<td>攻击者能力、区分与分割、密钥恢复模型</td>
+</tr>
+<tr>
+<td>Enigma</td>
+<td style="text-align: right;">5</td>
+<td>密钥空间计算、crib 和环路</td>
+</tr>
+<tr>
+<td>差分类</td>
+<td style="text-align: right;">25</td>
+<td>DDT、传播、差分及变形、概率和密钥恢复</td>
+</tr>
+<tr>
+<td>线性类</td>
+<td style="text-align: right;">25</td>
+<td>LAT、掩码传播、堆积引理、算法 1／2、差分—线性</td>
+</tr>
+<tr>
+<td>积分分析</td>
+<td style="text-align: right;">10</td>
+<td>特殊集合及传播、AES 三轮区分器</td>
+</tr>
+<tr>
+<td>中间相遇</td>
+<td style="text-align: right;">15</td>
+<td>相遇条件、独立性、数据／时间／存储复杂度</td>
+</tr>
+<tr>
+<td>杂凑函数</td>
+<td style="text-align: right;">10</td>
+<td>生日与 4-tree、第二原像、比特追踪</td>
+</tr>
+<tr>
+<td>消息认证码</td>
+<td style="text-align: right;">5</td>
+<td>三类伪造目标及实例</td>
+</tr>
+</tbody>
+</table>
+<p>相关密钥攻击在大纲中占 0～2 学时，未单列考试分值，放在八章主线之后复习。课件里的杂凑与 MAC 章节编号与大纲不同，按内容对应即可。</p>
+<h2 id="_2">每天怎么复习<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>先用约 20 分钟闭卷回忆前一天的结论，再学当天内容。每个攻击至少能回答：<strong>攻击者知道什么、要达到什么目标、利用什么现象、如何筛选候选、数据／时间／存储复杂度是多少、结论依赖什么假设</strong>。最后对照笔记订正，记下不会的内容，第二天再测一次。</p>
+<p>安排闭卷回忆和隔日复习，是为了把知识从“看着认识”变成能独立写出；课堂检索练习与间隔复习的研究可作方法参考：<a href="https://pubmed.ncbi.nlm.nih.gov/22082095/">课堂测验研究</a>、<a href="https://pubmed.ncbi.nlm.nih.gov/19076480/">间隔复习研究</a>。</p>
+<h2 id="11-12">11 月 12 日（周四）：基础与普通差分<a class="headerlink" href="#11-12" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：按大纲盘点。</strong> 快速标记会做、模糊、不会的章节。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>35 分钟：基础和 Enigma。</strong> 看<a href="../../notes/01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%E6%A6%82%E8%BF%B0/">密码分析学概述</a>、<a href="../../notes/01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE/">基本假设</a>与<a href="../../notes/02-%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/%E7%A0%B4%E8%A7%A3Enigma%E6%9C%BA/">破解 Enigma 机</a>，说清攻击模型、密钥空间计算和 crib 环路的作用。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>95 分钟：普通差分。</strong> 看<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86%E6%94%BB%E5%87%BB/">差分攻击</a>，手算给定 S 盒的 DDT；说明密钥异或、S 盒和置换层的差分传播，比较差分路线与差分。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>40 分钟：CipherFour 密钥恢复。</strong> 闭卷写出“采样 → 去噪 → 猜末轮子密钥 → 命中计数 → 验证”，说明正误密钥的区别及信噪比。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：自测订正。</strong> 解释为什么正确密钥遇到一个未命中的明文对时不能立即删除。</li>
+</ul>
+<h2 id="11-13">11 月 13 日（周五）：差分变形与线性入门<a class="headerlink" href="#11-13" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：回忆前一天的 DDT 和计数步骤。</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>30 分钟：<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E6%88%AA%E6%96%AD%E5%B7%AE%E5%88%86/">截断差分</a>。</strong> 解释星号、具体差分如何合并，以及采样结构体如何产生明文对。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>45 分钟：<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/">不可能差分</a>。</strong> 画出中间相错；解释触发禁忌条件为何删除候选、Feistel 例子的左右顺序，以及搜索时如何检测矛盾。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>35 分钟：<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E9%A3%9E%E5%8E%BB%E6%9D%A5%E5%99%A8%E6%94%BB%E5%87%BB/">飞去来器与矩形攻击</a>。</strong> 画出四元组，比较经典与增强版的查询条件、单个四元组概率和随机基准。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>65 分钟：<a href="../../notes/04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">线性分析</a>入门。</strong> 手算 LAT 表项，区分计数、偏差、相关度及掩码在 S 盒和线性层的传播。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：对照与自测。</strong> 普通差分“命中加分”，不可能差分“触发禁忌则删除”，截断差分“只约束部分位置”。</li>
+</ul>
+<h2 id="11-14">11 月 14 日（周六）：线性分析主攻<a class="headerlink" href="#11-14" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：闭卷回忆 LAT、偏差和掩码传播。</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>65 分钟：<a href="../../notes/04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">线性分析</a>传播。</strong> 手算至少一个 LAT 表项，解释线性层掩码如何传播，并比较单条线性路线与随机基准。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>70 分钟：堆积引理与密钥恢复。</strong> 推导独立近似的偏差，比较 Matsui 算法 1、算法 2 的判定依据和恢复步骤。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>40 分钟：<a href="../../notes/04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">差分—线性分析</a>。</strong> 画出差分与线性的连接，计算偏差并写明条件。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>15 分钟：<a href="../../notes/05-%E7%A7%AF%E5%88%86%E5%88%86%E6%9E%90/Square%E6%94%BB%E5%87%BB/">Square 攻击</a>预习。</strong> 区分活跃、常数和平衡三类性质。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>10 分钟：手算自测。</strong> 两个独立近似的偏差均为 <span class="arithmatex">\(1/4\)</span>，异或后的偏差和成立概率是多少？</li>
+</ul>
+<h2 id="11-15">11 月 15 日（周日）：积分与中间相遇<a class="headerlink" href="#11-15" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：闭卷回忆偏差、相关度和堆积引理。</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>80 分钟：<a href="../../notes/05-%E7%A7%AF%E5%88%86%E5%88%86%E6%9E%90/Square%E6%94%BB%E5%87%BB/">Square 攻击</a>。</strong> 说明特殊集合在各部件的传播、AES 三轮积分区分器及扩展一轮恢复密钥；练习用状态性质描述搜索规则。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>105 分钟：<a href="../../notes/06-%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87/%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87%E6%94%BB%E5%87%BB/">中间相遇攻击</a>。</strong> 手推双重 DES 的建表、查表、候选数和复筛；比较完整状态与部分比特相遇，解释独立猜测和匹配信息量的重要性。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>15 分钟：整理复杂度。</strong> 分别写出数据、时间、存储及其计量单位；不要把密钥位数直接当成攻击复杂度。</li>
+</ul>
+<h2 id="11-16-mac">11 月 16 日（周一）：中间相遇补充、杂凑与 MAC<a class="headerlink" href="#11-16-mac" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：回忆积分传播和双重 DES。</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>45 分钟：<a href="../../notes/06-%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87/%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87%E6%94%BB%E5%87%BB/">中间相遇攻击</a>补充。</strong> 理解 2K3DES 拼切、AES 特殊集合映射区分器的基本思想及适用条件。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>80 分钟：<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/">杂凑函数</a>。</strong> 分别复习<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E5%B9%BF%E4%B9%89%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB/">生日攻击与 4-tree</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E7%AC%AC%E4%BA%8C%E5%8E%9F%E5%83%8F%E6%94%BB%E5%87%BB/">第二原像</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E5%85%B7%E4%BD%93%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB/">MD4 比特追踪</a>：能抽象 4-sum 问题，解释长度扩展和桥接，说明布尔函数与模加的差分传播、消息修改的作用。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>40 分钟：<a href="../../notes/08-%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81/%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/">消息认证码</a>。</strong> 区分通用、选择性和存在性伪造；手推密钥前缀长度扩展或 CBC-MAC 变长伪造。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：纸面自动化建模。</strong> 用小 S 盒解释如何由 DDT／LAT 判断可达传播，把可达条件写为约束并搜索区分器；可对照<a href="../../labs/lab4/report.pdf">实验四报告</a>。重点练习传播规则和约束的纸面表达。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>15 分钟：列出三个最不熟的点</strong>，留到次日订正。</li>
+</ul>
+<h2 id="11-17">11 月 17 日（周二）：闭卷综合演练<a class="headerlink" href="#11-17" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>100 分钟：自设限时闭卷模拟。</strong> 不看笔记，限时 100 分钟完成下方覆盖八章的练习。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>70 分钟：订正。</strong> 只回看做错或说不清的推导，把错误原因记在同一页：概念混淆、公式条件遗漏、计算错误或步骤不完整。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>30 分钟：整理最后一页。</strong> 只保留攻击模型、关键公式、复杂度单位和各方法的判据。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>20 分钟：口头复述。</strong> 抽 3 个方法，每个用两分钟讲清“条件 → 过程 → 判据 → 成本”。</li>
+</ul>
+<h2 id="11-18_1">11 月 18 日（周三）：考前轻复习<a class="headerlink" href="#11-18_1" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 考前有空时用 20～30 分钟看最后一页和错题，重点回忆容易写反的判据。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 看清考试时间、地点和所需用品；避免考前临时展开全新章节。</li>
+</ul>
+<h2 id="11-17_1">11 月 17 日：自拟闭卷模拟<a class="headerlink" href="#11-17_1" title="Permanent link">&para;</a></h2>
+<p>下面按大纲拟定分值编排自测题，包含计算与简答分析。先独立完成，再看核对要点。</p>
+<ol>
+<li><strong>基本概念（5 分）。</strong> Kerckhoffs 假设对算法和密钥各有什么要求？已知明文与选择明文攻击有什么区别？</li>
+<li><strong>Enigma（5 分）。</strong> 从 5 个不同转子中选 3 个并排序，每个转子有 26 个初始位置，忽略环设置和接线板，共多少种设置？说明 crib 与环路如何帮助分割搜索。</li>
+<li><strong>差分类（25 分）。</strong> 给定 2 比特 S 盒 <span class="arithmatex">\(S=(0,1,3,2)\)</span>，按输入 <span class="arithmatex">\(0,1,2,3\)</span> 排列，求 <span class="arithmatex">\(\operatorname{DDT}[1,1]\)</span> 及差分概率。说明普通差分和不可能差分分别如何处理满足判据的候选密钥；再解释截断差分的 <span class="arithmatex">\(*\)</span> 和飞去来器的中间连接。</li>
+<li><strong>线性类（25 分）。</strong> 对同一 S 盒，输入、输出掩码均为二进制 <span class="arithmatex">\(10\)</span>，求线性等式成立的输入数、偏差及相关度。两个独立近似的偏差均为 <span class="arithmatex">\(1/4\)</span> 时，求异或后的偏差和成立概率；简述 Matsui 算法 1、2 及差分—线性的连接思路。</li>
+<li><strong>积分（10 分）。</strong> AES 的一个字节遍历全部 256 个值、其他字节固定时，如何描述初始集合？说明三轮积分区分器的平衡性质，以及向后扩一轮后如何检验候选密钥。</li>
+<li><strong>中间相遇（15 分）。</strong> 以双重 DES 为例，写出相遇方程、两侧建表和查表的步骤；估计一对明密文后错误候选数、计算时间与存储，并说明下一对明密文的作用。</li>
+<li><strong>杂凑函数（10 分）。</strong> 64 位随机杂凑值下，取 <span class="arithmatex">\(2^{32}\)</span> 个不同消息时碰撞概率约为多少？解释 4-tree 的列表问题与普通碰撞的区别，以及 MD 强化下第二原像攻击为何要对齐长度。</li>
+<li><strong>消息认证码（5 分）。</strong> 区分通用、选择性和存在性伪造。若单分组查询 <span class="arithmatex">\(m\)</span> 得到 CBC-MAC 标签 <span class="arithmatex">\(t=E_K(m)\)</span>，构造一个变长消息及其有效标签，并说明适用前提。</li>
+</ol>
+<h3 id="_3">完成后再看：核对要点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ol>
+<li>算法可公开，密钥需保密；已知明文是观察已有明密文对，选择明文可主动选取查询输入。</li>
+<li>设置数为 <span class="arithmatex">\(5\cdot4\cdot3\cdot26^3=1\,054\,560\)</span>；crib 是猜测的明密文对应，环路有助于消除部分未知接线板影响。</li>
+<li>四个输入均使输出差分为 <span class="arithmatex">\(1\)</span>，所以 DDT 项为 <span class="arithmatex">\(4\)</span>，概率为 <span class="arithmatex">\(1\)</span>。高概率差分给候选密钥计数；若逆运算触发不可能差分则排除候选。截断差分的 <span class="arithmatex">\(*\)</span> 表示该位置未固定。</li>
+<li>四个输入都满足掩码等式，因此成立数为 <span class="arithmatex">\(4\)</span>、偏差为 <span class="arithmatex">\(1/2\)</span>、相关度为 <span class="arithmatex">\(1\)</span>。两个独立近似合并后偏差为 <span class="arithmatex">\(2(1/4)^2=1/8\)</span>，成立概率为 <span class="arithmatex">\(5/8\)</span>。</li>
+<li>初始活跃字节取遍 <span class="arithmatex">\(2^8\)</span> 个值；课件所示 AES 三轮后各字节异或和为 <span class="arithmatex">\(0\)</span>。扩展一轮时猜测相关末轮密钥，部分解密并检验平衡性质。</li>
+<li>相遇方程为 <span class="arithmatex">\(E_{K_1}(P)=D_{K_2}(C)\)</span>。理想随机匹配近似下，一对明密文产生约 <span class="arithmatex">\(2^{112-64}=2^{48}\)</span> 个错误候选；初筛约 <span class="arithmatex">\(2^{57}\)</span> 次单 DES 运算，存储约 <span class="arithmatex">\(2^{56}\)</span> 条表项。另一对用于复筛。</li>
+<li>碰撞概率约 <span class="arithmatex">\(1-e^{-1/2}\approx39.3\%\)</span>。4-tree 的 <span class="arithmatex">\(2^{n/3}\)</span> 量级适用于能生成相应独立随机列表的 4-sum 问题；强化 MD 的桥接需使新旧消息长度与后续填充吻合。</li>
+<li>若允许变长消息，可输出 <span class="arithmatex">\(m\|(t\oplus m)\)</span> 及标签 <span class="arithmatex">\(t\)</span>：第二轮输入为 <span class="arithmatex">\(t\oplus(t\oplus m)=m\)</span>。固定长度 CBC-MAC 会拒绝长度不符的伪造消息。</li>
+</ol>
+<p>计算题使用题目给定的 S 盒及其 DDT、LAT。课件例题与实验的 S 盒分别查表。</p>
+<h2 id="90">如果每天只有约 90 分钟<a class="headerlink" href="#90" title="Permanent link">&para;</a></h2>
+<p>按大纲拟定权重先覆盖差分类与线性类，再复习积分和中间相遇；其余章节至少掌握基本目标和典型例子，不要完全跳过。每天先完成当天最核心的一项和自测，11 月 17 日至少留 45 分钟做闭卷混合题与订正。自动化部分练习传播规则和约束的纸面表达；相关密钥放在八章主线之后。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

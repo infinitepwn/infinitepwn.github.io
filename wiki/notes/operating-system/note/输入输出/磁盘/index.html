@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1013,7 +1160,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      访问时间
+      低级格式化
     </span>
   </a>
   
@@ -1022,7 +1169,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      磁盘调度
+      访问时间
     </span>
   </a>
   
@@ -1030,6 +1177,51 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘调度
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘调度算法对比
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘与 SSD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      与文件系统的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       相关
     </span>
@@ -1081,23 +1273,90 @@
 <li>扇区：磁道上的最小可寻址区域。</li>
 <li>柱面：多个盘面上半径相同的磁道集合。</li>
 </ul>
-<h2 id="_3">访问时间<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">低级格式化<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>低级格式化会在磁盘上划分磁道和扇区，并写入扇区头、纠错码等控制信息。</p>
+<p>为了提高连续读写性能，传统磁盘还会考虑：</p>
+<ul>
+<li>柱面斜进：切换磁头或柱面时，让相邻逻辑块错开一点，减少等待旋转的时间。</li>
+<li>交错：让逻辑上连续的扇区在物理上不完全相邻，给控制器留下处理时间。</li>
+</ul>
+<h2 id="_4">访问时间<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>磁盘访问时间通常包括：</p>
 <ul>
 <li>寻道时间：磁头移动到目标磁道。</li>
 <li>旋转延迟：等待目标扇区转到磁头下方。</li>
 <li>传输时间：实际读写数据。</li>
 </ul>
-<h2 id="_4">磁盘调度<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">磁盘调度<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%B0%83%E5%BA%A6/%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1/">先来先服务</a>：按请求到达顺序处理。</li>
-<li>最短寻道时间优先：优先处理离当前磁头最近的请求。</li>
-<li>电梯算法：磁头按一个方向移动，沿途处理请求。</li>
+<li><a href="../../%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%B0%83%E5%BA%A6/%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1/">先来先服务</a>：按请求到达顺序处理。
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260624002938864.png" />
+按照序列移动就行了</li>
+<li>最短寻道时间优先：优先处理离当前磁头最近的请求。
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260624003011793.png" />
+有可能导致饥饿现象</li>
+<li>电梯算法(SCAN)：磁头按一个方向移动，沿途处理请求。
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260624003121948.png" />
+到头再回来</li>
 </ul>
-<h2 id="_5">相关<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>调度算法的目标是减少平均寻道距离，同时避免某些请求长时间得不到服务。</p>
+<h2 id="_6">磁盘调度算法对比<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>思想</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>按请求到达顺序处理</td>
+<td>公平、简单</td>
+<td>平均寻道时间可能很长</td>
+</tr>
+<tr>
+<td>SSTF</td>
+<td>选择距离当前磁头最近的请求</td>
+<td>平均寻道距离较短</td>
+<td>远处请求可能饥饿</td>
+</tr>
+<tr>
+<td>SCAN</td>
+<td>磁头像电梯一样单向移动并处理沿途请求</td>
+<td>兼顾效率和公平</td>
+<td>边缘磁道等待特征不同</td>
+</tr>
+<tr>
+<td>C-SCAN</td>
+<td>只在一个方向服务，到边界后快速回到起点</td>
+<td>等待时间更均匀</td>
+<td>回程不服务请求</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">错误处理<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>磁盘可能出现坏扇区或读写错误。操作系统和磁盘控制器通常会配合处理：</p>
+<ul>
+<li>使用 ECC 检测和纠正少量位错误。</li>
+<li>读失败时重试。</li>
+<li>把坏扇区重映射到备用扇区。</li>
+<li>对无法恢复的错误向文件系统或应用报告。</li>
+</ul>
+<p>不能因为一个扇区损坏就放弃整个磁盘，但必须避免继续把重要数据写到不可靠区域。</p>
+<h2 id="ssd">磁盘与 SSD<a class="headerlink" href="#ssd" title="Permanent link">&para;</a></h2>
+<p>机械磁盘的主要开销来自寻道时间和旋转延迟；SSD 没有机械移动部件，随机访问速度更快。</p>
+<p>但 SSD 有擦写次数、擦除块、磨损均衡等问题，因此文件系统和设备驱动也需要适配其特性。</p>
+<h2 id="_8">与文件系统的关系<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>磁盘是块设备，负责读写块；<a href="../../%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">文件系统</a>负责把文件名、目录、权限和文件偏移转换成具体磁盘块。</p>
+<p>因此应用程序看到的是文件，操作系统底层操作的是块设备。</p>
+<h2 id="_9">相关<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../DMA/">DMA</a></li>
 <li><a href="../../%E6%A6%82%E8%BF%B0/%E4%B8%AD%E6%96%AD/">中断</a></li>
+<li><a href="../RAID/">RAID</a></li>
 <li><a href="../../%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">文件系统</a></li>
 </ul>
 

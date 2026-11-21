@@ -1,0 +1,1811 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/cryptanalysis/review/%E6%A8%A1%E6%8B%9F%E8%AF%95%E5%8D%B7/%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%E6%9C%9F%E6%9C%AB%E6%A8%A1%E6%8B%9F%E8%AF%95%E5%8D%B7%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88%E4%B8%8E%E8%AF%84%E5%88%86%E8%A6%81%E7%82%B9/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>参考答案与评分要点 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              参考答案与评分要点
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#40" class="md-nav__link">
+    <span class="md-ellipsis">
+      一至三 客观题（40 分）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一至三 客观题（40 分）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      单项选择（每题 3 分，共 18 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      多项选择（每题 5 分，共 10 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      填空（每空 2 分，共 12 分）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-feistel-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      15 Feistel 结构（15 分）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15 Feistel 结构（15 分）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）正反向传播（4 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）中间矛盾与区分器（4 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-6-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）扩展第 6 轮（4 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）结构与错误候选期望（3 分）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      16 线性路线与差分—线性分析（15 分）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16 线性路线与差分—线性分析（15 分）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）掩码传播与整体近似（4 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）合并偏差（3 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3matsui-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）Matsui 判定（3 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）差分—线性连接（5 分）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-aes-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      17 AES 积分分析（10 分）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17 AES 积分分析（10 分）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）集合性质与平衡原因（4 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）逆末轮检验（3 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）数据与计算量（3 分）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      18 中间相遇与杂凑结构分析（17 分）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18 中间相遇与杂凑结构分析（17 分）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）相遇方程与候选（3 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）完整中间值匹配（5 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）截断中间标签（4 分）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）同长度第二原像拼接（5 分）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      19 实验思考（3 分）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      章节分值核对
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      订正时优先检查
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/cryptanalysis/review/模拟试卷/密码分析学期末模拟试卷参考答案与评分要点.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/cryptanalysis/review/模拟试卷/密码分析学期末模拟试卷参考答案与评分要点.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">参考答案与评分要点<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>密码分析学 / review/模拟试卷/密码分析学期末模拟试卷参考答案与评分要点.md</code></p>
+</blockquote>
+<p><strong>期中风格修订版配套答案　满分 100 分</strong></p>
+<p>先独立完成试卷，再核对本册。等价表达与正确替代方法均可给分；后续小问沿用前问错误数值，但方法正确时，可酌情给方法分。</p>
+<h2 id="40">一至三 客观题（40 分）<a class="headerlink" href="#40" title="Permanent link">&para;</a></h2>
+<h3 id="3-18">单项选择（每题 3 分，共 18 分）<a class="headerlink" href="#3-18" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>答案</td>
+<td>A</td>
+<td>D</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>通过一个环路只表示暂未被排除，不能证明全部密钥正确。</li>
+<li>增强版的优势涉及查询模型和候选四元组组织方式，不可单凭单个四元组概率比较整套攻击。</li>
+<li><span class="arithmatex">\(\varepsilon=3/8-1/2=-1/8\)</span>，相关度 <span class="arithmatex">\(c=2\varepsilon=-1/4\)</span>。负偏差仍可利用。</li>
+<li>错误匹配期望为 <span class="arithmatex">\(2^{30+30-40}=2^{20}\)</span>。</li>
+<li>理想 <span class="arithmatex">\(n\)</span> 比特输出的通用碰撞工作量级为 <span class="arithmatex">\(2^{n/2}\)</span>。</li>
+<li>新消息首块后的链值为 <span class="arithmatex">\(t\)</span>，次块后的链值为 <span class="arithmatex">\(E_K(t\oplus m\oplus t)=E_K(m)=t\)</span>。新消息长度不同于已查询的单块消息，构成伪造。</li>
+</ol>
+<h3 id="5-10">多项选择（每题 5 分，共 10 分）<a class="headerlink" href="#5-10" title="Permanent link">&para;</a></h3>
+<p><strong>7. A、C、E。</strong> 任意确定函数都保持零差分；双射性才保证非零输入差分不变成零。普通差分用统计偏向判断，不能因一次未命中而删键。不可能差分用逻辑矛盾排除候选。截断差分概率未必为 1。</p>
+<p><strong>8. A、C、E。</strong> 近似强弱应看偏差绝对值；线性层掩码按转置反向传播；堆积引理需要相应独立性。一个路线为零，不能推出所有路线合并的线性包也为零。</p>
+<p>评分：全对 5 分；少选且无错选 2 分；错选或未选 0 分。</p>
+<h3 id="2-12">填空（每空 2 分，共 12 分）<a class="headerlink" href="#2-12" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>答案与说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>选择明文。</td>
+</tr>
+<tr>
+<td>10</td>
+<td><span class="arithmatex">\(4\times3\times2\times26^3=421824\)</span>。仅表达式正确即可。</td>
+</tr>
+<tr>
+<td>11</td>
+<td><span class="arithmatex">\(2^6\times2^6\times2=2^{13}\)</span> 次。题目明确不缓存，因此不取 <span class="arithmatex">\(2^{12}\)</span>。</td>
+</tr>
+<tr>
+<td>12</td>
+<td><span class="arithmatex">\(-4/2^6=-1/16\)</span>。</td>
+</tr>
+<tr>
+<td>13</td>
+<td><span class="arithmatex">\(2^{20+20}\cdot2^{-20}=2^{20}\)</span>。</td>
+</tr>
+<tr>
+<td>14</td>
+<td><span class="arithmatex">\(2^{-t}\)</span>。</td>
+</tr>
+</tbody>
+</table>
+<!-- PAGEBREAK -->
+
+<h2 id="15-feistel-15">15 Feistel 结构（15 分）<a class="headerlink" href="#15-feistel-15" title="Permanent link">&para;</a></h2>
+<h3 id="14">（1）正反向传播（4 分）<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p><img alt="图 1 答案　两路传播在第 3 轮状态处比较" src="../%E8%AF%95%E5%8D%B7%E9%85%8D%E5%9B%BE/feistel-answer.pdf" /></p>
+<p>正反向状态如图。<span class="arithmatex">\(\beta,\delta\)</span> 分别为 <span class="arithmatex">\(F_2,F_4\)</span> 在输入差分 <span class="arithmatex">\(\alpha\)</span> 时的输出差分；由 <span class="arithmatex">\(\alpha\ne0\)</span> 与双射性，两者均非零。评分：正向两状态、反向两状态、两个非零结论、双射依据各 1 分。</p>
+<h3 id="24">（2）中间矛盾与区分器（4 分）<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<p>由正向第 2 轮状态，记第 3 轮函数的输出差分为 <span class="arithmatex">\(\gamma\)</span>。由于输入差分为 <span class="arithmatex">\(\beta\ne0\)</span> 且 <span class="arithmatex">\(F_3\)</span> 双射，<span class="arithmatex">\(\gamma\ne0\)</span>，所以</p>
+<div class="arithmatex">\[
+\Delta_3=(\beta,\alpha\oplus\gamma),\qquad
+\alpha\oplus\gamma\ne\alpha.
+\]</div>
+<p>反向却要求第 3 轮右支差分等于 <span class="arithmatex">\(\alpha\)</span>，产生矛盾。因此得到五轮不可能差分 <span class="arithmatex">\((\alpha,0)\not\to(0,\alpha)\)</span>。若观察到这样的五轮明密文对，则不可能来自题设密码；随机置换则可能产生该差分。评分：正向式、非零依据、矛盾与不可能差分结论、观察结果解释各 1 分。</p>
+<h3 id="3-6-4">（3）扩展第 6 轮（4 分）<a class="headerlink" href="#3-6-4" title="Permanent link">&para;</a></h3>
+<p>按题设顺序，一轮逆变换为</p>
+<div class="arithmatex">\[
+R^{-1}_{\kappa}(C_L,C_R)
+=\bigl(C_R\oplus F_6(C_L;\kappa),\ C_L\bigr).
+\]</div>
+<p>要使其差分成为禁忌的 <span class="arithmatex">\((0,\alpha)\)</span>，先过滤 <span class="arithmatex">\(\Delta C_L=\alpha\)</span>；再检查</p>
+<div class="arithmatex">\[
+F_6(C_L;\kappa)\oplus F_6(C'_L;\kappa)=C_R\oplus C'_R.
+\]</div>
+<p>满足等式即排除 <span class="arithmatex">\(\kappa\)</span>，因为该候选会让真实数据违反五轮必然性质。普通高概率差分允许正确密钥遇到未命中的数据对，需累积统计证据，不能照此规则删键。评分：逆式、预筛、排除式及方向、与普通差分区别各 1 分。</p>
+<h3 id="43">（4）结构与错误候选期望（3 分）<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p>每结构有 <span class="arithmatex">\(\binom{2^{16}}2\approx2^{31}\)</span> 个无序对，预筛后约 <span class="arithmatex">\(2^{15}\)</span> 对。（1 分。）<span class="arithmatex">\(s\)</span> 个结构后，错误候选期望约为</p>
+<div class="arithmatex">\[
+(2^{16}-1)(1-2^{-16})^{s2^{15}}
+\approx(2^{16}-1)e^{-s/2}.
+\]</div>
+<p>故期望小于 1 的准则为 <span class="arithmatex">\((2^{16}-1)e^{-s/2}&lt;1\)</span>，等价于 <span class="arithmatex">\(s&gt;2\ln(2^{16}-1)\)</span>。（期望式与不等式共 1 分。）这只是题设近似模型下的期望准则，不能严格保证唯一；存活候选仍需验证。（1 分。）</p>
+<!-- PAGEBREAK -->
+
+<h2 id="16-15">16 线性路线与差分—线性分析（15 分）<a class="headerlink" href="#16-15" title="Permanent link">&para;</a></h2>
+<h3 id="14_1">（1）掩码传播与整体近似（4 分）<a class="headerlink" href="#14_1" title="Permanent link">&para;</a></h3>
+<p>反向展开中间线性层的掩码奇偶和：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+0010\cdot V_L\oplus0011\cdot V_R
+&amp;=0010\cdot(U_L\oplus U_R)\oplus0011\cdot U_R\\
+&amp;=0010\cdot U_L\oplus0001\cdot U_R.
+\end{aligned}
+\]</div>
+<p>故 <span class="arithmatex">\(U_L,U_R\)</span> 上的掩码分别为 <span class="arithmatex">\(0010,0001\)</span>，恰与第一层输出相接。四个近似异或时，中间状态项抵消，得到 <span class="arithmatex">\(\alpha=(1001,1100),\ \beta=(0101,1000)\)</span>，密钥奇偶项为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\theta(K)={}&amp;1001\cdot K_{0,L}\oplus1100\cdot K_{0,R}\\
+&amp;\oplus0101\cdot K_{2,L}\oplus1000\cdot K_{2,R}.
+\end{aligned}
+\]</div>
+<p>评分：传播展开、两个中间掩码、整体输入输出掩码、密钥项各 1 分。</p>
+<h3 id="23">（2）合并偏差（3 分）<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>四个相关度依次为 <span class="arithmatex">\(-1/2,1/2,1/4,1/2\)</span>，按题设独立模型，</p>
+<div class="arithmatex">\[
+c_F=\left(-\frac12\right)\left(\frac12\right)
+\left(\frac14\right)\left(\frac12\right)=-\frac1{32},\qquad
+\varepsilon_F=\frac{c_F}{2}=-\frac1{64},\qquad
+p_F=\frac{31}{64}.
+\]</div>
+<p>相关度、偏差、概率各 1 分。用 <span class="arithmatex">\(\varepsilon_F=2^3\prod_i\varepsilon_i\)</span> 也可。</p>
+<h3 id="3matsui-3">（3）Matsui 判定（3 分）<a class="headerlink" href="#3matsui-3" title="Permanent link">&para;</a></h3>
+<p>猜 <span class="arithmatex">\(\theta(K)=0\)</span>。（1 分。）在 <span class="arithmatex">\(\theta=0\)</span> 时，等式左侧为零的概率为 <span class="arithmatex">\(31/64&lt;1/2\)</span>；在 <span class="arithmatex">\(\theta=1\)</span> 时为 <span class="arithmatex">\(33/64&gt;1/2\)</span>。观测 <span class="arithmatex">\(T=60&lt;128/2=64\)</span>，故按负偏差的判定规则选前者。（1 分。）</p>
+<p>此时只是统计猜测一个密钥奇偶组合，不是完整密钥，也不保证这次猜测一定正确。（1 分。）</p>
+<h3 id="45">（4）差分—线性连接（5 分）<a class="headerlink" href="#45" title="Permanent link">&para;</a></h3>
+<p>设单次近似误差为 <span class="arithmatex">\(Z\)</span>，即 <span class="arithmatex">\(\alpha\cdot P\oplus\beta\cdot C=\theta(K)\oplus Z\)</span>，且 <span class="arithmatex">\(\Pr[Z=0]=1/2+\varepsilon_F\)</span>。对两条文本异或，密钥项消去：</p>
+<div class="arithmatex">\[
+\beta\cdot(C\oplus C')
+=\alpha\cdot(P\oplus P')\oplus Z\oplus Z'.
+\]</div>
+<p>接口偏差为 <span class="arithmatex">\(\varepsilon_d=3/4-1/2=1/4\)</span>。三项独立时，</p>
+<div class="arithmatex">\[
+\varepsilon_{\mathrm{DL}}=4\varepsilon_d\varepsilon_F^2
+=\frac1{4096},\qquad
+\Pr[\beta\cdot(C\oplus C')=0]=\frac12+\frac1{4096}=\frac{2049}{4096}.
+\]</div>
+<p>将一个局部偏差变号后，整体线性偏差变为 <span class="arithmatex">\(+1/64\)</span>；差分—线性偏差仍为 <span class="arithmatex">\(+1/4096\)</span>。两次线性误差的相关度相乘形成平方，其符号消失，最终符号由接口偏差决定。</p>
+<p>评分：异或关系、接口偏差、最终偏差、最终概率、两种符号变化及原因各 1 分。</p>
+<!-- PAGEBREAK -->
+
+<h2 id="17-aes-10">17 AES 积分分析（10 分）<a class="headerlink" href="#17-aes-10" title="Permanent link">&para;</a></h2>
+<h3 id="14_2">（1）集合性质与平衡原因（4 分）<a class="headerlink" href="#14_2" title="Permanent link">&para;</a></h3>
+<p><img alt="图 3 答案　起始位置为第 0 行第 0 列" src="../%E8%AF%95%E5%8D%B7%E9%85%8D%E5%9B%BE/aes-answer.pdf" /></p>
+<p>第 1 轮后第一列为 <span class="arithmatex">\(A\)</span>，其余为 <span class="arithmatex">\(C\)</span>；第 2 轮后 16 字节均为 <span class="arithmatex">\(A\)</span>；第 3 轮后均能保证 <span class="arithmatex">\(B\)</span>。（三个状态各 1 分。）</p>
+<p>第一轮 S 盒是双射，仍保持活动字节取遍；该字节位于第 0 行，SR 不改变其列；MC 的非零系数乘法是字节上的双射，故第一列每个字节都取遍。第二轮 SR 将这一列的四个 <span class="arithmatex">\(A\)</span> 分散到四列，各列只有一个 <span class="arithmatex">\(A\)</span>，经 MC 后每列均为 <span class="arithmatex">\(A\)</span>。</p>
+<p>第三轮 SB 与 SR 后，各字节仍分别取遍，故各自异或和为零。MC 是线性组合：其输出字节跨结构的异或和等于各输入字节异或和的相应线性组合，仍为零。ARK 加入的同一常数重复 256 次，异或也为零；此时一般只能保证平衡，不保证取遍。（平衡依据 1 分。）</p>
+<h3 id="23_1">（2）逆末轮检验（3 分）<a class="headerlink" href="#23_1" title="Permanent link">&para;</a></h3>
+<p>令 <span class="arithmatex">\(\mathcal S\)</span> 为一个结构的 256 个密文。猜测 <span class="arithmatex">\(\kappa=K_4[\pi(j)]\)</span>，计算</p>
+<div class="arithmatex">\[
+T_j(\kappa)=\bigoplus_{C\in\mathcal S}
+S^{-1}\bigl(C[\pi(j)]\oplus\kappa\bigr).
+\]</div>
+<p>正确密钥使 <span class="arithmatex">\(T_j(\kappa)=0\)</span>；若非零则排除，若为零只保留为候选，继续用其他结构检验。这里先逆 ARK，再对应 SR 的位置逆 SB；末轮无 MC，因此无需猜测同列多个密钥字节来拆开列混合。评分：位置及逆变换 1 分；异或平衡式 1 分；正确排除和保留含义 1 分。</p>
+<h3 id="33">（3）数据与计算量（3 分）<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>每个字节初始有 255 个错误候选，两个独立结构后剩余期望为</p>
+<div class="arithmatex">\[
+255(2^{-8})^2=\frac{255}{65536}\approx2^{-8}.
+\]</div>
+<p>按题设朴素实现，逆 S 盒调用数为</p>
+<div class="arithmatex">\[
+16\times256\times2\times256=2^{21}.
+\]</div>
+<p>评分：初始错误候选数及两结构存活概率 1 分；剩余期望 1 分；运算数 1 分。这里的单位是逆 S 盒调用，不是完整 AES 加密。</p>
+<!-- PAGEBREAK -->
+
+<h2 id="18-17">18 中间相遇与杂凑结构分析（17 分）<a class="headerlink" href="#18-17" title="Permanent link">&para;</a></h2>
+<h3 id="13">（1）相遇方程与候选（3 分）<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+E_{K_1}(P)=D_{K_2}(C).
+\]</div>
+<p>枚举全部 <span class="arithmatex">\(K_1\)</span>，存储 <span class="arithmatex">\((E_{K_1}(P),K_1)\)</span>；枚举全部 <span class="arithmatex">\(K_2\)</span>，按 <span class="arithmatex">\(D_{K_2}(C)\)</span> 查表。相同中间值对应的所有 <span class="arithmatex">\(K_1\)</span> 都要保留，并与当前 <span class="arithmatex">\(K_2\)</span> 组成候选。一次相遇只满足一对明密文，可能是错误匹配，需额外数据验证。评分：方程 1 分；建查表并保留重复值全部候选 1 分；复筛原因 1 分。</p>
+<h3 id="25">（2）完整中间值匹配（5 分）<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+T_{\mathrm{初筛}}=2^{40}+2^{40}=2^{41},\qquad M=2^{40}\text{ 条表项}.
+\]</div>
+<p>一个已知明密文对带来 48 比特约束，故错误候选期望约为 <span class="arithmatex">\(2^{80-48}=2^{32}\)</span>。再用一组近似独立的明密文验证后，错误候选期望约为 <span class="arithmatex">\(2^{80-96}=2^{-16}\)</span>。</p>
+<p>逐一验证初筛候选的成本为 <span class="arithmatex">\(O(2^{32})\)</span>，小于 <span class="arithmatex">\(2^{41}\)</span> 的主项。穷举完整双密钥需要 <span class="arithmatex">\(2^{80}\)</span> 量级的候选尝试；中间相遇用 <span class="arithmatex">\(2^{40}\)</span> 条表项，显著节省时间。评分：初筛时间、存储、首对错误候选、第二对复筛期望、时间换存储解释各 1 分。</p>
+<h3 id="34">（3）截断中间标签（4 分）<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<p>只匹配 24 比特时，错误候选期望为</p>
+<div class="arithmatex">\[
+2^{80-24}=2^{56}.
+\]</div>
+<p>若逐个处理这些候选，至少还需 <span class="arithmatex">\(\Omega(2^{56})\)</span> 单位操作，所以总时间不能只写 <span class="arithmatex">\(2^{41}\)</span>；候选处理已成为主项。</p>
+<p>保留 <span class="arithmatex">\(\ell\)</span> 比特且要求期望不超过 <span class="arithmatex">\(2^{40}\)</span>，有</p>
+<div class="arithmatex">\[
+2^{80-\ell}\le2^{40}\quad\Longrightarrow\quad\ell\ge40.
+\]</div>
+<p>评分：<span class="arithmatex">\(2^{56}\)</span> 1 分；指出处理成本和瓶颈 1 分；正确不等式 1 分；阈值 1 分。</p>
+<h3 id="45_1">（4）同长度第二原像拼接（5 分）<a class="headerlink" href="#45_1" title="Permanent link">&para;</a></h3>
+<p>选取长为 <span class="arithmatex">\(600-1=599\)</span> 块的可扩展前缀 <span class="arithmatex">\(P_{599}\)</span>，构造</p>
+<div class="arithmatex">\[
+M'=P_{599}\parallel B\parallel m_{601}\parallel\cdots\parallel m_{1024}.
+\]</div>
+<p>处理前 599 块到达 <span class="arithmatex">\(H_{\mathrm{exp}}\)</span>，再处理桥接块到达目标的 <span class="arithmatex">\(H_{600}\)</span>，随后接相同后缀，因而到达相同最终数据链值。（前缀长度、正确后缀各 1 分。）</p>
+<p>总长为 <span class="arithmatex">\(599+1+(1024-600)=1024\)</span> 块，与目标相同；相同长度产生相同的强化填充，所以最终杂凑也相同。（1 分。）若仅命中 <span class="arithmatex">\(H_7\)</span>，需 6 块前缀，不在允许的 10 至 1033 块范围内，不能按该方式对齐。（1 分。）还须验证 <span class="arithmatex">\(M'\ne M\)</span>，否则不构成第二原像。（1 分。）</p>
+<!-- PAGEBREAK -->
+
+<h2 id="19-3">19 实验思考（3 分）<a class="headerlink" href="#19-3" title="Permanent link">&para;</a></h2>
+<p>本题无唯一答案，按实际经历与论证评分。应包含：攻击模型与目标（1 分）；一个具体问题及原因（1 分）；相应修复、验证方式（1 分）。仅说明“运行成功”而没有验证对象，不足以证明结果正确。</p>
+<p><strong>可参考的作答结构：</strong>“在某实验中，我能获得……，希望恢复/区分……；曾观察到……，定位到……；修改……后，用……检验，并确认……。”填入真实经历即可，不要求与以下例子相同。</p>
+<p><strong>例子：</strong>在线性分析实验中，使用已知明密文统计一个密钥奇偶组合；最初只保留正 LAT 表项，造成合法的负相关路线被漏掉。修正为保留所有非零表项，并分别追踪符号与绝对值；再用小 S 盒穷举核对 LAT，检查正、负偏差时的计数判定方向。若实际做的是差分、积分或建模实验，提供同样具体的证据也可满分。</p>
+<h2 id="_2">章节分值核对<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>本卷依照教学大纲的编题分值安排；期中卷用于参考题型与设问风格。题量与题型内部的分值不机械复刻期中卷，以覆盖期末范围。</p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>分值</th>
+<th>对应题目</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基础与实验方法</td>
+<td>5</td>
+<td>9（2）、19（3）</td>
+</tr>
+<tr>
+<td>Enigma</td>
+<td>5</td>
+<td>1（3）、10（2）</td>
+</tr>
+<tr>
+<td>差分类分析</td>
+<td>25</td>
+<td>2（3）、7（5）、11（2）、15（15）</td>
+</tr>
+<tr>
+<td>线性类分析</td>
+<td>25</td>
+<td>3（3）、8（5）、12（2）、16（15）</td>
+</tr>
+<tr>
+<td>积分分析</td>
+<td>10</td>
+<td>17（10）</td>
+</tr>
+<tr>
+<td>中间相遇</td>
+<td>15</td>
+<td>4（3）、18（1）至（3）（12）</td>
+</tr>
+<tr>
+<td>杂凑函数分析</td>
+<td>10</td>
+<td>5（3）、13（2）、18（4）（5）</td>
+</tr>
+<tr>
+<td>消息认证码</td>
+<td>5</td>
+<td>6（3）、14（2）</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>100</td>
+<td>客观题 40；简答分析 60</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">订正时优先检查<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>第 15 题：始终使用题设的左右支顺序；五轮结论与六轮逆式必须相互一致。</li>
+<li>第 16 题：负偏差不等于负概率；线性误差出现两次时，要保留平方带来的符号变化。</li>
+<li>第 17 题：逆向计算必须包含逆 S 盒与正确的字节位置，不能直接把密文异或和当作内部平衡量。</li>
+<li>第 18 题：候选验证计入时间；同长度拼接时桥接块自身也占一块。</li>
+</ul>
+<p>本卷为自拟练习，不代表实际期末题目。涉及概率相乘、错误密钥随机化的结果，均受各题列明的模型假设限制。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

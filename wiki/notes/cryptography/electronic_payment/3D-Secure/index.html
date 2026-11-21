@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      特点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      部署层次
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      与SET协议的区别
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,11 +1210,18 @@
 <blockquote>
 <p>来源：<code>密码学引论 / electronic_payment/3D-Secure.md</code></p>
 </blockquote>
-<p>SET协议的失败，2003年VISA在全球范围内采用新的标准3D-Secure
-优势：设计简化，应用广泛
-问题：认证持卡人、商家可得到支付卡相关信息、依赖SSL/TLS，缺乏消息层面的保障
-<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260601152841549.png" />
-在网络的每一层都能部署，但是越底层，泄露的信息越多，因为加密的同时把协议的头部也加密了，传输过程中，必然在节点被解密</p>
+<p>SET 协议落地失败后，VISA 在 2003 年左右推动 3D-Secure 作为新的在线支付认证标准。</p>
+<h2 id="_1">特点<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>优势：设计简化，应用更广。</li>
+<li>目标：认证持卡人，降低盗刷风险。</li>
+<li>问题：商家仍可能得到支付卡相关信息；协议依赖 SSL/TLS，缺乏消息层面的端到端保障。</li>
+</ul>
+<p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260601152841549.png" /></p>
+<h2 id="_2">部署层次<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在网络的每一层都能部署，但是越底层，泄露的信息越多，因为加密的同时把协议的头部也加密了，传输过程中，必然在节点被解密</p>
+<h2 id="set">与<a href="../SET%E5%8D%8F%E8%AE%AE/">SET协议</a>的区别<a class="headerlink" href="#set" title="Permanent link">&para;</a></h2>
+<p>SET 更强调在商户、支付网关和银行之间用证书、签名与加密保护订单和支付信息。3D-Secure 更像是在现有银行卡支付流程中增加一道身份认证层，落地成本较低，因此实际应用更广。</p>
 
 
 

@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      定理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      与模平方根的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      密码学意义
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,6 +1210,28 @@
 <blockquote>
 <p>来源：<code>密码学引论 / Mathematical-Foundations/欧拉准则.md</code></p>
 </blockquote>
+<p>欧拉准则用于判断一个数在奇素数模 <span class="arithmatex">\(p\)</span> 下是否是二次剩余。</p>
+<h2 id="_2">定理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>设 <span class="arithmatex">\(p\)</span> 是奇素数，且 <span class="arithmatex">\(a \not\equiv 0 \pmod p\)</span>。则：</p>
+<div class="arithmatex">\[
+a^{\frac{p-1}{2}} \equiv
+\begin{cases}
+1 \pmod p, &amp; a \text{ 是模 } p \text{ 的二次剩余} \\
+-1 \pmod p, &amp; a \text{ 是模 } p \text{ 的二次非剩余}
+\end{cases}
+\]</div>
+<p>其中二次剩余表示存在 <span class="arithmatex">\(x\)</span>，使得：</p>
+<div class="arithmatex">\[
+x^2 \equiv a \pmod p
+\]</div>
+<h2 id="_3">与<a href="../%E6%A8%A1%E5%B9%B3%E6%96%B9%E6%A0%B9/">模平方根</a>的关系<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在求解模平方根之前，通常先用欧拉准则判断解是否存在。如果 <span class="arithmatex">\(a\)</span> 是二次非剩余，则方程 <span class="arithmatex">\(x^2 \equiv a \pmod p\)</span> 无解。</p>
+<h2 id="_4">密码学意义<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>用于 Rabin 加密中分析密文是否有平方根。</li>
+<li>用于椭圆曲线密码中判断点的 <span class="arithmatex">\(y\)</span> 坐标是否存在。</li>
+<li>用于构造和分析部分零知识证明协议。</li>
+</ul>
 
 
 

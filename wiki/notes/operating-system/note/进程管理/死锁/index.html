@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,68 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型例子
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      死锁的四个必要条件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      资源分配图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理策略
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      矩阵表示
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,9 +1237,50 @@
 <blockquote>
 <p>来源：<code>操作系统 / note/进程管理/死锁.md</code></p>
 </blockquote>
-<p>资源分配图
-节点、边
-矩阵表示</p>
+<p>上级：<a href="../%E8%BF%9B%E7%A8%8B/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">进程管理</a></p>
+<p>死锁是指一组进程互相等待对方占有的资源，导致这些进程都无法继续推进。</p>
+<h2 id="_2">典型例子<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>进程 A 占有打印机，等待磁盘；进程 B 占有磁盘，等待打印机。两个进程都不释放已有资源，也都等不到需要的资源，于是形成死锁。</p>
+<h2 id="_3">死锁的四个必要条件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>死锁发生必须同时满足四个条件：</p>
+<ul>
+<li>互斥：某些资源一次只能被一个进程使用。</li>
+<li>占有并等待：进程已经占有资源，同时还在等待新的资源。</li>
+<li>不可抢占：资源不能被强制夺走，只能由占有者主动释放。</li>
+<li>循环等待：存在一个进程等待环，每个进程都在等待下一个进程占有的资源。</li>
+</ul>
+<p>只要破坏其中任意一个条件，就可以避免死锁。</p>
+<h2 id="_4">资源分配图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>资源分配图用节点和边描述进程与资源之间的关系：</p>
+<ul>
+<li>进程节点：表示进程。</li>
+<li>资源节点：表示资源类型。</li>
+<li>请求边：进程指向资源，表示进程正在请求该资源。</li>
+<li>分配边：资源指向进程，表示资源已经分配给该进程。</li>
+</ul>
+<p>如果资源分配图中出现环，可能存在死锁；如果每类资源只有一个实例，出现环就表示死锁。</p>
+<h2 id="_5">处理策略<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>鸵鸟算法：忽略死锁问题，适合死锁代价低或极少发生的场景。</li>
+<li>死锁检测与恢复：允许死锁发生，定期检测，发生后通过终止进程或抢占资源恢复。</li>
+<li>死锁避免：分配前判断是否会进入不安全状态，例如银行家算法。</li>
+<li>死锁预防：从制度上破坏死锁四个必要条件之一。</li>
+</ul>
+<h2 id="_6">矩阵表示<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>死锁检测常用矩阵表示资源状态：</p>
+<ul>
+<li>Available：当前可用资源数量。</li>
+<li>Allocation：每个进程已经占有的资源数量。</li>
+<li>Request：每个进程还需要请求的资源数量。</li>
+</ul>
+<p>检测思路是反复寻找一个可以被当前可用资源满足的进程，假设它运行结束并释放资源。如果最后仍有进程无法完成，则这些进程可能处于死锁。</p>
+<h2 id="_7">相关<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../%E8%BF%9B%E7%A8%8B/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">进程管理</a></li>
+<li><a href="../%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/">进程通信</a></li>
+<li>互斥</li>
+<li>同步</li>
+</ul>
 
 
 

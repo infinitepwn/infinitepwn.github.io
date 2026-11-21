@@ -20,7 +20,7 @@
     
     
       
-        <title>Needham-Schroeder协议 - CS Knowledge Tree</title>
+        <title>Needham-Schroeder 协议 - CS Knowledge Tree</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Needham-Schroeder协议
+              Needham-Schroeder 协议
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本思路
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      学习重点
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1024,13 +1206,22 @@
   
 
 
-<h1 id="needham-schroeder">Needham-Schroeder协议<a class="headerlink" href="#needham-schroeder" title="Permanent link">&para;</a></h1>
+<h1 id="needham-schroeder">Needham-Schroeder 协议<a class="headerlink" href="#needham-schroeder" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / key_distribution/symmetry_key/Needham-Schroeder协议.md</code></p>
 </blockquote>
-<p>Q:什么是Needham-Schroeder协议</p>
+<p>Needham-Schroeder 协议用于在通信双方和可信服务器之间分发会话密钥。它的目标是让 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 在没有预共享会话密钥的情况下，借助可信服务器建立一个临时密钥。</p>
 <p><img alt="image-20260519145250036" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20260519145250036.png" /></p>
-<p>问题在于A不知道<span class="arithmatex">\(N_2\)</span>,攻击者可以随便伪造一个<span class="arithmatex">\(N_{2}^*\)</span>,因为<span class="arithmatex">\(N_{2}\)</span>并没有什么明文上的含义，所以不管用什么密钥加密，A那边解密出来都是一个数字，没什么特殊的</p>
+<h2 id="_1">基本思路<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><span class="arithmatex">\(A\)</span> 和服务器共享长期密钥。</li>
+<li><span class="arithmatex">\(B\)</span> 和服务器共享长期密钥。</li>
+<li>服务器生成会话密钥，并分别用双方的长期密钥保护后发送。</li>
+</ul>
+<h2 id="_2">主要问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>问题在于 <span class="arithmatex">\(A\)</span> 不知道 <span class="arithmatex">\(N_2\)</span> 的语义，攻击者可以伪造一个 <span class="arithmatex">\(N_2^*\)</span>。因为 <span class="arithmatex">\(N_2\)</span> 本身没有明确的明文结构或上下文绑定，<span class="arithmatex">\(A\)</span> 解密后只会得到一个数字，难以判断它是否来自真实的 <span class="arithmatex">\(B\)</span>。</p>
+<h2 id="_3">学习重点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>分析密钥分发协议时，不只要看“是否加密”，还要看消息是否绑定了身份、方向、随机数和会话上下文。否则密文可能被重放、转发或替换。</p>
 
 
 

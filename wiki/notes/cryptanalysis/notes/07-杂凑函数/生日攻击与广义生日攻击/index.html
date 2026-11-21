@@ -1,0 +1,1919 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/cryptanalysis/notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E5%B9%BF%E4%B9%89%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>生日攻击与广义生日攻击 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              生日攻击与广义生日攻击
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 生日问题与碰撞概率
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 生日问题与碰撞概率">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 攻击要找什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 先算“全不相同”，再算“至少碰撞一次”
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 碰撞概率的近似式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 需要多少个消息？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 怎样实施生日攻击？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-2n2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6 为什么原像和第二原像不是 \(2^{n/2}\)？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-2-sum-4-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 从 2-SUM 到 4-SUM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 从 2-SUM 到 4-SUM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-2-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 先看 2-SUM：两个列表找相同值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-4-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 4-SUM：四个列表各选一项
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 4-SUM：四个列表各选一项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2n4-4-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么 \(2^{n/4}\) 不是 4-tree 的搜索时间？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 为什么不直接要求两组各自异或为零？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-4-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4-tree：分两层匹配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 4-tree：分两层匹配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 第一层：各自配对，只筛选低位
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 第二层：匹配剩余位，再回溯
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 一个具体的手算例子
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 中间表和最终解有多少？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-xelln3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 为什么取 \(x=\ell=n/3\)？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 复杂度数值例子
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 推广：目标值、更多列表和其他运算
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 推广：目标值、更多列表和其他运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 目标值不为零
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-4-tree-k-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 从 4-tree 推广到 \(k\)-tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 把异或换成模加
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 广义生日问题怎样用于杂凑函数？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/cryptanalysis/notes/07-杂凑函数/生日攻击与广义生日攻击.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/cryptanalysis/notes/07-杂凑函数/生日攻击与广义生日攻击.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">生日攻击与广义生日攻击<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>密码分析学 / notes/07-杂凑函数/生日攻击与广义生日攻击.md</code></p>
+</blockquote>
+<h2 id="1">1. 生日问题与碰撞概率<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 攻击要找什么？<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>生日攻击的目标是找出<strong>任意两条不同的消息</strong>，使它们的杂凑值相同：</p>
+<div class="arithmatex">\[
+M\ne M',\qquad h(M)=h(M').
+\]</div>
+<p>攻击者可以自己选两条消息，不需要先指定其中一条，也不需要先指定杂凑值。这正是它与第二原像攻击的区别。</p>
+<p>先假设不同消息的杂凑值像独立均匀的随机数一样分布。若杂凑值长 <span class="arithmatex">\(n\)</span> 比特，可能的输出总数为</p>
+<div class="arithmatex">\[
+N=2^n.
+\]</div>
+<p>问题变成：从 <span class="arithmatex">\(N\)</span> 个可能的输出中随机抽取 <span class="arithmatex">\(m\)</span> 次，至少出现一对相同值的概率是多少？</p>
+<h3 id="12">1.2 先算“全不相同”，再算“至少碰撞一次”<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>直接算各种碰撞情况比较麻烦。先考虑相反的事件：<span class="arithmatex">\(m\)</span> 个输出全都不相同。依次加入消息：</p>
+<table>
+<thead>
+<tr>
+<th>第几个输出</th>
+<th>要避开的已有值</th>
+<th>不发生碰撞的概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 个</td>
+<td>没有</td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td>第 2 个</td>
+<td>第 1 个输出，共 1 个</td>
+<td><span class="arithmatex">\((N-1)/N\)</span></td>
+</tr>
+<tr>
+<td>第 3 个</td>
+<td>前 2 个输出，共 2 个</td>
+<td><span class="arithmatex">\((N-2)/N\)</span></td>
+</tr>
+<tr>
+<td>第 <span class="arithmatex">\(i+1\)</span> 个</td>
+<td>前 <span class="arithmatex">\(i\)</span> 个输出</td>
+<td><span class="arithmatex">\((N-i)/N\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>把每一步<strong>在此前都没有碰撞的条件下</strong>的概率相乘：</p>
+<div class="arithmatex">\[
+P_{\mathrm{全不同}}
+=1\cdot\frac{N-1}{N}\cdot\frac{N-2}{N}\cdots\frac{N-(m-1)}{N}
+=\prod_{i=0}^{m-1}\left(1-\frac{i}{N}\right).
+\]</div>
+<p>这里按 <span class="arithmatex">\(m\le N\)</span> 写；若 <span class="arithmatex">\(m&gt;N\)</span>，由抽屉原理必然碰撞。因为“全不同”和“至少一对碰撞”互为补事件，所以</p>
+<div class="arithmatex">\[
+P_{\mathrm{碰撞}}=1-P_{\mathrm{全不同}}.
+\]</div>
+<p><strong>生日例子：</strong> 假设 365 天等概率且各人生日独立，23 人生日全不同的概率为 <span class="arithmatex">\(\prod_{i=0}^{22}(1-i/365)\)</span>，因此至少两人生日相同的概率约为 <span class="arithmatex">\(50.73\%\)</span>。这里比较的是<strong>任意两人</strong>，不只是某个人与其他人的生日。</p>
+<h3 id="13">1.3 碰撞概率的近似式<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p>当 <span class="arithmatex">\(m\ll N\)</span> 时，用 <span class="arithmatex">\(\ln(1-x)\approx-x\)</span>：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\ln P_{\mathrm{全不同}}
+&amp;=\sum_{i=0}^{m-1}\ln\left(1-\frac{i}{N}\right)\\
+&amp;\approx-\sum_{i=0}^{m-1}\frac{i}{N}
+=-\frac{m(m-1)}{2N}.
+\end{aligned}
+\]</div>
+<p>两边取指数，再代入 <span class="arithmatex">\(N=2^n\)</span>，得到常用公式：</p>
+<div class="arithmatex">\[
+\boxed{P_{\mathrm{碰撞}}\approx
+1-\exp\!\left(-\frac{m(m-1)}{2\cdot2^n}\right)}.
+\]</div>
+<p>这里 <span class="arithmatex">\(m(m-1)/2\)</span> 恰好是 <span class="arithmatex">\(m\)</span> 个输出能组成的无序对数。每一对相等的概率为 <span class="arithmatex">\(1/N\)</span>，所以<strong>碰撞对数的期望</strong>为</p>
+<div class="arithmatex">\[
+\mathbb E[\text{碰撞对数}]=\binom m2\frac1N
+=\frac{m(m-1)}{2N}.
+\]</div>
+<p>这也解释了为什么只需大约 <span class="arithmatex">\(\sqrt N\)</span> 个输出：因为 <span class="arithmatex">\(m\)</span> 个输出可以组成约 <span class="arithmatex">\(m^2/2\)</span> 对。注意期望碰撞对数和“至少发生一次碰撞”的概率是两个不同的量；概率用上面的 <span class="arithmatex">\(1-e^{-\cdots}\)</span> 计算。</p>
+<h3 id="14">1.4 需要多少个消息？<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p>让碰撞概率约为 <span class="arithmatex">\(1/2\)</span>，则</p>
+<div class="arithmatex">\[
+1-e^{-m(m-1)/(2N)}\approx\frac12
+\quad\Longrightarrow\quad
+m\approx\sqrt{2N\ln2}
+\approx1.177\cdot2^{n/2}.
+\]</div>
+<p>因此，找任意碰撞所需的消息数为 <strong><span class="arithmatex">\(2^{n/2}\)</span> 量级</strong>。其中 <span class="arithmatex">\(1.177\)</span> 是把成功概率指定为约 <span class="arithmatex">\(50\%\)</span> 时的系数，写大 <span class="arithmatex">\(O\)</span> 量级时通常省略。</p>
+<p><strong>64 位例子：</strong> <span class="arithmatex">\(n=64\)</span>，如果选 <span class="arithmatex">\(m=2^{32}\)</span> 条不同消息，则</p>
+<div class="arithmatex">\[
+P_{\mathrm{碰撞}}\approx1-e^{-1/2}\approx39.3\%.
+\]</div>
+<p>要达到约 <span class="arithmatex">\(50\%\)</span>，需要约 <span class="arithmatex">\(1.177\cdot2^{32}\)</span> 条。课件用 <span class="arithmatex">\(2^{32}\)</span> 表示生日攻击的量级，约 <span class="arithmatex">\(50\%\)</span> 成功率对应上面的 <span class="arithmatex">\(1.177\)</span> 系数。</p>
+<p><strong>换一个便于手算的例子：</strong> <span class="arithmatex">\(n=16\)</span>，取 <span class="arithmatex">\(m=256=2^8\)</span> 条不同消息，碰撞概率约为 <span class="arithmatex">\(39.3\%\)</span>；取 302 条时，按精确乘积计算约为 <span class="arithmatex">\(50.07\%\)</span>。</p>
+<h3 id="15">1.5 怎样实施生日攻击？<a class="headerlink" href="#15" title="Permanent link">&para;</a></h3>
+<p>对一个 <span class="arithmatex">\(n\)</span> 比特杂凑函数：</p>
+<ol>
+<li>选择一条此前没用过的消息 <span class="arithmatex">\(M_i\)</span>，计算 <span class="arithmatex">\(y_i=h(M_i)\)</span>。</li>
+<li>在以杂凑值为索引的表中查找 <span class="arithmatex">\(y_i\)</span>。</li>
+<li>如果已有另一条消息 <span class="arithmatex">\(M_j\)</span> 对应同一个 <span class="arithmatex">\(y_i\)</span>，就输出 <span class="arithmatex">\(M_i,M_j\)</span>：它们不同，但杂凑值相同。</li>
+<li>如果没有，就把 <span class="arithmatex">\((y_i,M_i)\)</span> 存表，继续生成消息。</li>
+</ol>
+<p>哈希表的插入和查找按期望常数时间计算；查表时要保存或能恢复原消息，才能最后输出碰撞对。达到常数成功概率时，基本实现的资源为：</p>
+<table>
+<thead>
+<tr>
+<th>资源</th>
+<th>数量级</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>杂凑计算</td>
+<td><span class="arithmatex">\(O(2^{n/2})\)</span> 次</td>
+<td>对不同消息分别求值</td>
+</tr>
+<tr>
+<td>表操作</td>
+<td><span class="arithmatex">\(O(2^{n/2})\)</span> 次</td>
+<td>每次插入或查找按期望 <span class="arithmatex">\(O(1)\)</span> 计算</td>
+</tr>
+<tr>
+<td>存储</td>
+<td><span class="arithmatex">\(O(2^{n/2})\)</span> 条</td>
+<td>保存杂凑值及对应消息或可恢复信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-2n2">1.6 为什么原像和第二原像不是 <span class="arithmatex">\(2^{n/2}\)</span>？<a class="headerlink" href="#16-2n2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>已经固定什么</th>
+<th>攻击者需要找到什么</th>
+<th>理想模型下的通用量级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原像</td>
+<td>杂凑值 <span class="arithmatex">\(y\)</span></td>
+<td>任意 <span class="arithmatex">\(M\)</span>，使 <span class="arithmatex">\(h(M)=y\)</span></td>
+<td><span class="arithmatex">\(2^n\)</span> 次求值</td>
+</tr>
+<tr>
+<td>第二原像</td>
+<td>一条消息 <span class="arithmatex">\(M\)</span></td>
+<td><span class="arithmatex">\(M'\ne M\)</span>，使 <span class="arithmatex">\(h(M')=h(M)\)</span></td>
+<td>一般为 <span class="arithmatex">\(2^n\)</span> 次求值</td>
+</tr>
+<tr>
+<td>碰撞</td>
+<td>不固定任何一方</td>
+<td>任意 <span class="arithmatex">\(M\ne M'\)</span>，使 <span class="arithmatex">\(h(M)=h(M')\)</span></td>
+<td><span class="arithmatex">\(2^{n/2}\)</span> 次求值</td>
+</tr>
+</tbody>
+</table>
+<p>原像和第二原像都有一个<strong>固定目标值</strong>：每试一个新消息，只有一次机会与目标匹配，成功概率约为 <span class="arithmatex">\(2^{-n}\)</span>。碰撞攻击则允许每个新输出和此前所有输出比较，候选对数随消息数平方增长。</p>
+<h2 id="2-2-sum-4-sum">2. 从 2-SUM 到 4-SUM<a class="headerlink" href="#2-2-sum-4-sum" title="Permanent link">&para;</a></h2>
+<h3 id="21-2-sum">2.1 先看 2-SUM：两个列表找相同值<a class="headerlink" href="#21-2-sum" title="Permanent link">&para;</a></h3>
+<p>有两个列表 <span class="arithmatex">\(L_1,L_2\)</span>，其中每个元素是 <span class="arithmatex">\(n\)</span> 比特，目标是各选一个元素，使</p>
+<div class="arithmatex">\[
+x_1\oplus x_2=0,\qquad x_1\in L_1,\ x_2\in L_2.
+\]</div>
+<p>由于 <span class="arithmatex">\(x_1\oplus x_2=0\)</span> 等价于 <span class="arithmatex">\(x_1=x_2\)</span>，2-SUM 就是<strong>找出同时出现在两个列表中的值</strong>。</p>
+<p>例如 <span class="arithmatex">\(L_1=\{001,100,111\}\)</span>，<span class="arithmatex">\(L_2=\{010,100,110\}\)</span>。两个列表都有 <span class="arithmatex">\(100\)</span>，因此 <span class="arithmatex">\(100\oplus100=000\)</span>，找到一个解。</p>
+<p>可以先将 <span class="arithmatex">\(L_1\)</span> 中的值存入哈希表，再逐个拿 <span class="arithmatex">\(L_2\)</span> 的值查表。若各有 <span class="arithmatex">\(a\)</span> 个元素，两表共有 <span class="arithmatex">\(a^2\)</span> 个跨表候选对；每一对相等的概率为 <span class="arithmatex">\(2^{-n}\)</span>，所以匹配对数的期望为</p>
+<div class="arithmatex">\[
+a^2\cdot2^{-n}.
+\]</div>
+<p>令期望约为 1，得到 <span class="arithmatex">\(a\approx2^{n/2}\)</span>。在哈希表查找模型下，读入两表、建表和查表的时间与存储均为 <span class="arithmatex">\(O(2^{n/2})\)</span> 量级。</p>
+<p><strong>与前面的生日攻击有什么关系？</strong> 普通生日攻击在同一批输出中寻找任意一对相同值；这里限定一项来自 <span class="arithmatex">\(L_1\)</span>、另一项来自 <span class="arithmatex">\(L_2\)</span>。两者都利用候选对数随样本数平方增长，因此都有 <span class="arithmatex">\(2^{n/2}\)</span> 的数量级。</p>
+<h3 id="22-4-sum">2.2 4-SUM：四个列表各选一项<a class="headerlink" href="#22-4-sum" title="Permanent link">&para;</a></h3>
+<p>广义生日问题把两个列表推广到多个列表。课件先讨论 <strong>4-SUM</strong>：从四个独立随机列表中各选一项，满足</p>
+<div class="arithmatex">\[
+x_1\oplus x_2\oplus x_3\oplus x_4=0,
+\qquad x_i\in L_i.
+\]</div>
+<p>比如 <span class="arithmatex">\(x_1=0011,x_2=0101,x_3=0110,x_4=0000\)</span> 时，四项异或为零。</p>
+<p>假设每个列表各有 <span class="arithmatex">\(2^x\)</span> 项，每项都是均匀随机的 <span class="arithmatex">\(n\)</span> 比特值。四个列表各选一项，共有 <span class="arithmatex">\(2^{4x}\)</span> 个四元组；每个四元组异或为零的概率为 <span class="arithmatex">\(2^{-n}\)</span>。所以所有四元组中，<strong>期望解数</strong>为</p>
+<div class="arithmatex">\[
+2^{4x}\cdot2^{-n}=2^{4x-n}.
+\]</div>
+<p>令这个期望为 1，得到 <span class="arithmatex">\(x=n/4\)</span>。也就是说，四表各有约 <span class="arithmatex">\(2^{n/4}\)</span> 项时，所有四元组中已经有常数量级的期望解。</p>
+<p>这些解分布在 <span class="arithmatex">\(2^n\)</span> 个四元组中。<strong><span class="arithmatex">\(2^{n/4}\)</span> 是输入列表规模，搜索时间由匹配方法决定。</strong> 接下来设计高效的搜索方法。</p>
+<h4 id="2n4-4-tree">为什么 <span class="arithmatex">\(2^{n/4}\)</span> 不是 4-tree 的搜索时间？<a class="headerlink" href="#2n4-4-tree" title="Permanent link">&para;</a></h4>
+<p>四表各有 <span class="arithmatex">\(2^{n/4}\)</span> 项，四元组共 <span class="arithmatex">\(2^n\)</span> 个，每个四元组成为解的概率为 <span class="arithmatex">\(2^{-n}\)</span>，所以期望解数为 1。这个计算回答的是：<strong>候选组合中期望有多少个解</strong>。</p>
+<p>要实际找到解，可以先写成</p>
+<div class="arithmatex">\[
+x_1\oplus x_2=x_3\oplus x_4.
+\]</div>
+<p>直接生成两边所有的两两异或值，再用散列表或排序匹配。每边需要生成的结果数为</p>
+<div class="arithmatex">\[
+2^{n/4}\cdot2^{n/4}=2^{n/2}.
+\]</div>
+<p>所以，即使四张输入表各只有 <span class="arithmatex">\(2^{n/4}\)</span> 项，<strong>直接两组匹配的时间和中间表空间仍为 <span class="arithmatex">\(2^{n/2}\)</span> 量级</strong>。4-tree 进一步筛选中间结果，将工作量降到 <span class="arithmatex">\(2^{n/3}\)</span> 量级。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>每张输入表</th>
+<th>每张中间表的期望大小</th>
+<th>最终期望解数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不筛选，直接两组匹配</td>
+<td><span class="arithmatex">\(2^{n/4}\)</span></td>
+<td><span class="arithmatex">\(2^{n/2}\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td>4-tree，取 <span class="arithmatex">\(x=\ell=n/3\)</span></td>
+<td><span class="arithmatex">\(2^{n/3}\)</span></td>
+<td><span class="arithmatex">\(2^{n/3}\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>4-tree 增大输入表，是为了在第一层筛掉部分组合之后，仍保留常数量级的期望解。<span class="arithmatex">\(2^{n/4}\)</span> 对应解的<strong>存在规模</strong>，<span class="arithmatex">\(2^{n/3}\)</span> 对应平衡 4-tree <strong>寻找解的时间和空间规模</strong>。</p>
+<h3 id="23">2.3 为什么不直接要求两组各自异或为零？<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>把目标分成两半，可以写成</p>
+<div class="arithmatex">\[
+x_1\oplus x_2=x_3\oplus x_4.
+\]</div>
+<p>一种简单但过强的做法是分别要求 <span class="arithmatex">\(x_1\oplus x_2=0\)</span> 和 <span class="arithmatex">\(x_3\oplus x_4=0\)</span>。它当然能得到解，但每一组都要解决一个 <span class="arithmatex">\(n\)</span> 比特的 2-SUM，列表长度约需 <span class="arithmatex">\(2^{n/2}\)</span>，比 <span class="arithmatex">\(2^{n/4}\)</span> 大得多。</p>
+<p>4-tree 的改进是：<strong>先只要求两组的部分比特为零，再让两组剩下的比特相等。</strong> 不要求两组的整个异或值各自为零。</p>
+<h2 id="3-4-tree">3. 4-tree：分两层匹配<a class="headerlink" href="#3-4-tree" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 第一层：各自配对，只筛选低位<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>令 <span class="arithmatex">\(\operatorname{low}_\ell(x)\)</span> 表示 <span class="arithmatex">\(x\)</span> 的最低 <span class="arithmatex">\(\ell\)</span> 位，设每个原始列表有 <span class="arithmatex">\(2^x\)</span> 项。</p>
+<p>把 <span class="arithmatex">\(L_1,L_2\)</span> 中低 <span class="arithmatex">\(\ell\)</span> 位相等的元素配对，计算异或并保存来源，形成 <span class="arithmatex">\(L_{12}\)</span>；对 <span class="arithmatex">\(L_3,L_4\)</span> 同样操作形成 <span class="arithmatex">\(L_{34}\)</span>：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+L_{12}&amp;=\{(x_1\oplus x_2,x_1,x_2):\operatorname{low}_\ell(x_1)=\operatorname{low}_\ell(x_2)\},\\
+L_{34}&amp;=\{(x_3\oplus x_4,x_3,x_4):\operatorname{low}_\ell(x_3)=\operatorname{low}_\ell(x_4)\}.
+\end{aligned}
+\]</div>
+<p>因为相同的位异或后为零，两个中间表的每个<strong>异或值</strong>都满足</p>
+<div class="arithmatex">\[
+\operatorname{low}_\ell(x_1\oplus x_2)=0,
+\qquad
+\operatorname{low}_\ell(x_3\oplus x_4)=0.
+\]</div>
+<p><span class="arithmatex">\(x_1\)</span> 和 <span class="arithmatex">\(x_2\)</span> 的低位彼此相等，因此异或后低位为零；中间表项保存原始元素，供最后回溯四元组。</p>
+<h3 id="32">3.2 第二层：匹配剩余位，再回溯<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>记 <span class="arithmatex">\(u=x_1\oplus x_2\)</span>、<span class="arithmatex">\(v=x_3\oplus x_4\)</span>。目标等价于 <span class="arithmatex">\(u\oplus v=0\)</span>，也就是 <span class="arithmatex">\(u=v\)</span>。</p>
+<p>第一层已经使 <span class="arithmatex">\(u,v\)</span> 的低 <span class="arithmatex">\(\ell\)</span> 位都为零；所以第二层只需比较剩余的高 <span class="arithmatex">\(n-\ell\)</span> 位。找到 <span class="arithmatex">\(u=v\)</span> 后，根据两条中间表项保存的来源，回溯得到 <span class="arithmatex">\(x_1,x_2,x_3,x_4\)</span>。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>flowchart TD
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    A[L1] --&gt; E[低 ℓ 位匹配]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    B[L2] --&gt; E
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    C[L3] --&gt; F[低 ℓ 位匹配]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    D[L4] --&gt; F
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    E --&gt; G[L12：异或值低位为零]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    F --&gt; H[L34：异或值低位为零]
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    G --&gt; I[比较剩余高位]
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    H --&gt; I
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    I --&gt; J[回溯四个原始元素]
+</code></pre></div>
+<p><img alt="树形合并多个列表，左侧四个列表形成 4-tree 子结构" src="../../../assets/course-slides/birthday-four-tree.png" /></p>
+<p><em>图源：第 12.3.1 节，第 20 页；课件将四表方法推广为多层树。</em></p>
+<h3 id="33">3.3 一个具体的手算例子<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>设每个元素为 4 比特，第一层匹配低 2 位：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+L_1&amp;=\{0000,0101,1110\}, &amp;L_2&amp;=\{0100,1011,1101\},\\
+L_3&amp;=\{0010,0011,1100\}, &amp;L_4&amp;=\{0001,1000,1111\}.
+\end{aligned}
+\]</div>
+<p>先对 <span class="arithmatex">\(L_1,L_2\)</span> 配对：<span class="arithmatex">\(0000\)</span> 与 <span class="arithmatex">\(0100\)</span> 低两位都是 <span class="arithmatex">\(00\)</span>，异或得到 <span class="arithmatex">\(0100\)</span>；<span class="arithmatex">\(0101\)</span> 与 <span class="arithmatex">\(1101\)</span> 低两位都是 <span class="arithmatex">\(01\)</span>，异或得到 <span class="arithmatex">\(1000\)</span>。同样处理 <span class="arithmatex">\(L_3,L_4\)</span>，得到：</p>
+<table>
+<thead>
+<tr>
+<th>中间表</th>
+<th>异或值</th>
+<th>来源配对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(L_{12}\)</span></td>
+<td><span class="arithmatex">\(0100\)</span></td>
+<td><span class="arithmatex">\(0000,0100\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(L_{12}\)</span></td>
+<td><span class="arithmatex">\(1000\)</span></td>
+<td><span class="arithmatex">\(0101,1101\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(L_{34}\)</span></td>
+<td><span class="arithmatex">\(0100\)</span></td>
+<td><span class="arithmatex">\(1100,1000\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(L_{34}\)</span></td>
+<td><span class="arithmatex">\(1100\)</span></td>
+<td><span class="arithmatex">\(0011,1111\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>第二层找到两个表中相同的异或值 <span class="arithmatex">\(0100\)</span>，回溯得到</p>
+<div class="arithmatex">\[
+(x_1,x_2,x_3,x_4)=(0000,0100,1100,1000).
+\]</div>
+<p>验证：<span class="arithmatex">\(0000\oplus0100\oplus1100\oplus1000=0000\)</span>。这里两组异或值都是 <span class="arithmatex">\(0100\)</span>，<strong>并不是两组各自都异或为零</strong>。</p>
+<p>第一层是主动筛选，因此本次 4-tree 找到的是原 4-SUM 解的一部分。例如 <span class="arithmatex">\((0000,1011,0011,1000)\)</span> 也满足四项异或为零，但两组异或值都是 <span class="arithmatex">\(1011\)</span>，低两位不为零，所以未被这次筛选保留。若同一个中间值有多种来源，要保留对应的来源，才能回溯不同候选。</p>
+<h3 id="34">3.4 中间表和最终解有多少？<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<p>四个原始列表各有 <span class="arithmatex">\(2^x\)</span> 项。先看 <span class="arithmatex">\(L_1,L_2\)</span>：</p>
+<ul>
+<li>可能的配对数：<span class="arithmatex">\(2^x\cdot2^x=2^{2x}\)</span>。</li>
+<li>两项低 <span class="arithmatex">\(\ell\)</span> 位相等的概率：<span class="arithmatex">\(2^{-\ell}\)</span>。</li>
+<li>因此 <span class="arithmatex">\(L_{12}\)</span> 的期望项数：<span class="arithmatex">\(2^{2x-\ell}\)</span>。</li>
+</ul>
+<p><span class="arithmatex">\(L_{34}\)</span> 同理。两中间异或值的低 <span class="arithmatex">\(\ell\)</span> 位都为零，高 <span class="arithmatex">\(n-\ell\)</span> 位匹配的概率为 <span class="arithmatex">\(2^{-(n-\ell)}\)</span>，所以最终输出的期望个数为</p>
+<div class="arithmatex">\[
+\underbrace{2^{2x-\ell}}_{L_{12}\text{ 大小}}
+\cdot\underbrace{2^{2x-\ell}}_{L_{34}\text{ 大小}}
+\cdot\underbrace{2^{-(n-\ell)}}_{\text{高位匹配概率}}
+=2^{4x-\ell-n}.
+\]</div>
+<p>第一层可以按低位分桶或哈希连接：先处理两张输入表，再输出实际匹配对。期望成本是 <span class="arithmatex">\(O(2^x+2^{2x-\ell})\)</span>，而不是不论输出多少都只算 <span class="arithmatex">\(2^x\)</span>。第二层同样可用哈希匹配，并记录来源。</p>
+<h3 id="35-xelln3">3.5 为什么取 <span class="arithmatex">\(x=\ell=n/3\)</span>？<a class="headerlink" href="#35-xelln3" title="Permanent link">&para;</a></h3>
+<p>目标是：既要有常数量级的期望解，又希望列表不要太大。</p>
+<p><strong>先看解数。</strong> 要让 <span class="arithmatex">\(2^{4x-\ell-n}\ge1\)</span>，需要</p>
+<div class="arithmatex">\[
+4x-\ell-n\ge0,
+\qquad\text{即}\quad \ell\le4x-n.
+\]</div>
+<p><strong>再看时间复杂度。</strong> 课件最后比较的是各阶段的<strong>时间</strong>。输入表有 <span class="arithmatex">\(2^x\)</span> 项，中间表期望有 <span class="arithmatex">\(2^{2x-\ell}\)</span> 项，建表、匹配和读取这些表的主要时间指数由较大者决定：</p>
+<div class="arithmatex">\[
+\max(x,2x-\ell).
+\]</div>
+<p>按分桶或哈希匹配的实现，准备输入、生成并匹配中间表的期望时间量级为</p>
+<div class="arithmatex">\[
+T=O\!\left(2^x+2^{2x-\ell}\right)
+=O\!\left(2^{\max(x,\,2x-\ell)}\right).
+\]</div>
+<p>这里的两项都是<strong>操作次数</strong>：<span class="arithmatex">\(2^x\)</span> 来自生成并处理输入表，<span class="arithmatex">\(2^{2x-\ell}\)</span> 来自输出和匹配中间表项。完整生成中间表时，每个保留项都要被写出；因此课件第 2 步写的 <span class="arithmatex">\(O(2^x)\)</span> 可用于描述输入分桶或扫描，完整时间还要计入中间表输出。式中的 <span class="arithmatex">\(\max\)</span> 取的是<strong>时间复杂度的指数</strong>。</p>
+<p><strong>空间另算。</strong> 中间表本身的期望大小确实为 <span class="arithmatex">\(2^{2x-\ell}\)</span> 项。若使用存表实现并保留输入表与中间表，峰值空间也为</p>
+<div class="arithmatex">\[
+M=O\!\left(2^x+2^{2x-\ell}\right)
+=O\!\left(2^{\max(x,\,2x-\ell)}\right).
+\]</div>
+<p>时间与空间在这种实现中碰巧有相同的主项，但各自来自不同的计数：<strong>时间计操作，空间计保存的表项</strong>。</p>
+<p>例如 <span class="arithmatex">\(x=10,\ell=6\)</span>，输入表有 <span class="arithmatex">\(2^{10}\)</span> 项、中间表期望有 <span class="arithmatex">\(2^{14}\)</span> 项，写出和匹配中间表需要 <span class="arithmatex">\(2^{14}\)</span> 量级时间；若 <span class="arithmatex">\(x=10,\ell=14\)</span>，中间表期望有 <span class="arithmatex">\(2^6\)</span> 项，但生成与处理输入仍需 <span class="arithmatex">\(2^{10}\)</span> 量级时间。这里两个例子只比较第一层规模，最终是否有足够解还要看前面的解数条件。</p>
+<p>由上面的条件 <span class="arithmatex">\(\ell\le4x-n\)</span>，可知 <span class="arithmatex">\(2x-\ell\ge n-2x\)</span>。因此主要成本的指数至少为 <span class="arithmatex">\(\max(x,n-2x)\)</span>：当 <span class="arithmatex">\(x\)</span> 逐渐增大时，第一项增大、第二项减小，两者相等时取得最小值：</p>
+<div class="arithmatex">\[
+x=n-2x\quad\Longrightarrow\quad x=\frac n3.
+\]</div>
+<p>取 <span class="arithmatex">\(\ell=x=n/3\)</span>，恰好满足解数条件，也使输入表和中间表都约有 <span class="arithmatex">\(2^{n/3}\)</span> 项。最终期望解数约为 1。因此平衡 4-tree 的数据、时间和空间均为</p>
+<div class="arithmatex">\[
+O(2^{n/3})
+\]</div>
+<p>量级。实际按比特数取整；这里的时间采用哈希匹配并计入生成的中间项，比较排序还会有排序开销。</p>
+<h3 id="36">3.6 复杂度数值例子<a class="headerlink" href="#36" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(n=12\)</span>，每个列表 <span class="arithmatex">\(2^4=16\)</span> 项，第一层匹配低 <span class="arithmatex">\(\ell=4\)</span> 位：</p>
+<ol>
+<li>两个输入表共有 <span class="arithmatex">\(16^2=256\)</span> 对，低位相等的概率为 <span class="arithmatex">\(2^{-4}=1/16\)</span>，所以每个中间表期望有 <span class="arithmatex">\(256/16=16\)</span> 项。</li>
+<li>两个中间表各约 16 项，剩余高 8 位相等的概率为 <span class="arithmatex">\(2^{-8}\)</span>，因此最终解数期望为 <span class="arithmatex">\(16\cdot16/2^8=1\)</span>。</li>
+<li>找到匹配后，按来源回溯四个原始元素；没有匹配时，换新列表重复。</li>
+</ol>
+<h2 id="4">4. 推广：目标值、更多列表和其他运算<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 目标值不为零<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>如果要求</p>
+<div class="arithmatex">\[
+x_1\oplus x_2\oplus x_3\oplus x_4=c,
+\]</div>
+<p>把第四表的每一项替换成 <span class="arithmatex">\(x'_4=x_4\oplus c\)</span>，就得到零目标问题：</p>
+<div class="arithmatex">\[
+x_1\oplus x_2\oplus x_3\oplus x'_4=0.
+\]</div>
+<p>求出 <span class="arithmatex">\(x'_4\)</span> 后，通过 <span class="arithmatex">\(x_4=x'_4\oplus c\)</span> 找回原表元素；实施时也可以在新表项中直接保存原来的 <span class="arithmatex">\(x_4\)</span>。</p>
+<h3 id="42-4-tree-k-tree">4.2 从 4-tree 推广到 <span class="arithmatex">\(k\)</span>-tree<a class="headerlink" href="#42-4-tree-k-tree" title="Permanent link">&para;</a></h3>
+<p>当 <span class="arithmatex">\(k=2^h\)</span> 时，可以把 <span class="arithmatex">\(k\)</span> 个列表两两合并，形成一棵 <span class="arithmatex">\(h\)</span> 层树。每层继续筛选一组新的比特，使中间表保持在可处理的规模，最后匹配剩余比特。</p>
+<p>取 <span class="arithmatex">\(b=n/(h+1)\)</span>（先忽略取整），每个原始表约有 <span class="arithmatex">\(2^b\)</span> 项。在均匀随机模型下：</p>
+<ul>
+<li>前 <span class="arithmatex">\(h-1\)</span> 层每次筛去一组 <span class="arithmatex">\(b\)</span> 比特，每张中间表仍约有 <span class="arithmatex">\(2^b\)</span> 项。</li>
+<li>最后两表已经处理过 <span class="arithmatex">\((h-1)b\)</span> 位，剩下 <span class="arithmatex">\(n-(h-1)b=2b\)</span> 位需要匹配；两表各 <span class="arithmatex">\(2^b\)</span> 项，期望得到约 1 个解。</li>
+<li>因此总数据和时间量级为</li>
+</ul>
+<div class="arithmatex">\[
+O\!\left(k\,2^{n/(1+\log_2 k)}\right),
+\]</div>
+<p>空间由同时保存的列表和回溯信息决定。</p>
+<p><strong>8-tree 例子：</strong> <span class="arithmatex">\(k=8=2^3\)</span>，所以 <span class="arithmatex">\(h=3\)</span>、<span class="arithmatex">\(b=n/4\)</span>。八张输入表各有 <span class="arithmatex">\(2^{n/4}\)</span> 项；第一层筛去 <span class="arithmatex">\(n/4\)</span> 位，第二层再筛去 <span class="arithmatex">\(n/4\)</span> 位，最后两张中间表比较剩余 <span class="arithmatex">\(n/2\)</span> 位。前两层各表保持约 <span class="arithmatex">\(2^{n/4}\)</span> 项，最终期望约有一个解。</p>
+<h3 id="43">4.3 把异或换成模加<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p>如果目标是</p>
+<div class="arithmatex">\[
+x_1+x_2+x_3+x_4\equiv0\pmod{2^n},
+\]</div>
+<p>两项和为零的条件变成 <span class="arithmatex">\(x+y\equiv0\)</span>，即 <span class="arithmatex">\(y\equiv-x\)</span>；因此第一层应找<strong>互为相反数的低位</strong>，不再是找低位相等：</p>
+<div class="arithmatex">\[
+x_2\equiv-x_1\pmod{2^\ell},\qquad
+x_4\equiv-x_3\pmod{2^\ell}.
+\]</div>
+<p>计算完整的中间模和值 <span class="arithmatex">\(u=(x_1+x_2)\bmod2^n\)</span> 和 <span class="arithmatex">\(v=(x_3+x_4)\bmod2^n\)</span>，保留进位的影响。第二层找 <span class="arithmatex">\(v\equiv-u\pmod{2^n}\)</span>。</p>
+<p><strong>小例子：</strong> <span class="arithmatex">\(n=4,\ell=2\)</span>，取 <span class="arithmatex">\((x_1,x_2)=(3,1)\)</span>、<span class="arithmatex">\((x_3,x_4)=(15,13)\)</span>。前一组模 16 的和为 <span class="arithmatex">\(4\)</span>，后一组为 <span class="arithmatex">\(12\)</span>；二者低 2 位均为零，且 <span class="arithmatex">\(4+12\equiv0\pmod{16}\)</span>。所以这四项满足目标。模加匹配使用互为相反数的值，并计入进位。</p>
+<h3 id="44">4.4 广义生日问题怎样用于杂凑函数？<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<p>课件举的 AdHash 结构把消息分成多个块，并将各块的杂凑结果相加：</p>
+<div class="arithmatex">\[
+\operatorname{AdHash}(M)=\sum_{i=1}^{k}h(i,M_i)\pmod m.
+\]</div>
+<p>给定目标值 <span class="arithmatex">\(H\)</span>，如果攻击者可以为每个位置生成多种候选消息块，就能得到多个列表：第 <span class="arithmatex">\(i\)</span> 个列表存放不同候选块对应的 <span class="arithmatex">\(h(i,M_i)\)</span>。寻找原像转化为：从每张表各选一项，使这些项之和等于 <span class="arithmatex">\(H\pmod m\)</span>；找到后再沿表项找回对应的消息块。</p>
+<p>这说明广义生日攻击利用的是<strong>具体构造中的多列表求和结构</strong>。普通 <span class="arithmatex">\(n\)</span> 比特杂凑的任意碰撞仍以 <span class="arithmatex">\(2^{n/2}\)</span> 为通用生日攻击基准，不能把 4-tree 的 <span class="arithmatex">\(2^{n/3}\)</span> 直接套到它上面。</p>
+<p>相关笔记：<a href="../%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/">杂凑函数</a>、<a href="../%E5%85%B7%E4%BD%93%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB/">具体杂凑函数的碰撞攻击</a>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

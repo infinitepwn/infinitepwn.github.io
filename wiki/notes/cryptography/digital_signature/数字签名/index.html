@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1000,6 +1147,42 @@
       目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      密钥生成算法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      签名算法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证算法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全目标
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#mac" class="md-nav__link">
@@ -1045,26 +1228,27 @@
 <blockquote>
 <p>来源：<code>密码学引论 / digital_signature/数字签名.md</code></p>
 </blockquote>
-<p>数字签名方案由以下三个概率多项式时间算法组成：</p>
-<p>密钥生成算法</p>
+<p>数字签名方案由以下三个概率多项式时间算法组成。</p>
+<h2 id="_2">密钥生成算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="arithmatex">\[
-KeyGen (sk,vk) ← KeyGen(1^λ)
+(sk,vk) \leftarrow KeyGen(1^\lambda)
 \]</div>
-<p>输入<a href="../%E5%AE%89%E5%85%A8%E5%8F%82%E6%95%B0/">安全参数</a><span class="arithmatex">\(1^λ\)</span>，输出(sk,vk)，其中sk 为签名私钥，vk 为验证公钥。</p>
-<p>签名算法</p>
+<p>输入<a href="../%E5%AE%89%E5%85%A8%E5%8F%82%E6%95%B0/">安全参数</a> <span class="arithmatex">\(1^\lambda\)</span>，输出 <span class="arithmatex">\((sk,vk)\)</span>，其中 <span class="arithmatex">\(sk\)</span> 为签名私钥，<span class="arithmatex">\(vk\)</span> 为验证公钥。</p>
+<h2 id="_3">签名算法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="arithmatex">\[
-Sign: σ ← Sign_{sk}(m)
+\sigma \leftarrow Sign_{sk}(m)
 \]</div>
-<p>输入签名私钥sk 与要签署的消息m，输出签名σ，其中m ∈ M，M 为消息空间。</p>
-<p>验证算法</p>
+<p>输入签名私钥 <span class="arithmatex">\(sk\)</span> 与要签署的消息 <span class="arithmatex">\(m\)</span>，输出签名 <span class="arithmatex">\(\sigma\)</span>，其中 <span class="arithmatex">\(m \in M\)</span>，<span class="arithmatex">\(M\)</span> 为消息空间。</p>
+<h2 id="_4">验证算法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div class="arithmatex">\[
-Vrfy:b ← Vrfyvk(m,σ)
+b \leftarrow Vrfy_{vk}(m,\sigma)
 \]</div>
-<p>输入验证公钥vk，消息m 与签名σ，输出b，其中b ∈ {0,1}。b = 1 表示</p>
-<p>验证通过，即签名是合法的，b = 0 表示验证不通过，即签名不合法。</p>
+<p>输入验证公钥 <span class="arithmatex">\(vk\)</span>、消息 <span class="arithmatex">\(m\)</span> 与签名 <span class="arithmatex">\(\sigma\)</span>，输出 <span class="arithmatex">\(b \in \{0,1\}\)</span>。<span class="arithmatex">\(b=1\)</span> 表示验证通过，<span class="arithmatex">\(b=0\)</span> 表示验证不通过。</p>
+<h2 id="_5">安全目标<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>数字签名的核心安全目标是不可伪造性：攻击者即使见过若干消息的合法签名，也不能为新的消息构造能通过验证的签名。</p>
 <h2 id="mac">与<a href="../../block_cipher/MAC/">MAC</a>的区别<a class="headerlink" href="#mac" title="Permanent link">&para;</a></h2>
-<p>从功能上看，数字签名与消息认证码MAC都能提供认证
-性，即验证消息完整性与消息来源的真实性，但MAC是对称密码， MAC标签的生成方与验证方需要共享相同的秘密密钥k，这意味着不具有公开可验证性，并且验证方同样可以使用k 生成 标签，第三方无法确认标签究竟由谁生成，因此，无法实现<strong>不可否认性</strong>。</p>
+<p>从功能上看，数字签名与消息认证码 MAC 都能提供认证性，即验证消息完整性与消息来源真实性。但 MAC 是对称密码，标签生成方与验证方需要共享相同秘密密钥 <span class="arithmatex">\(k\)</span>。</p>
+<p>这意味着 MAC 不具有公开可验证性，并且验证方同样可以使用 <span class="arithmatex">\(k\)</span> 生成标签。第三方无法确认标签究竟由谁生成，因此无法自然实现<strong>不可否认性</strong>。</p>
 
 
 

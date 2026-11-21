@@ -1,0 +1,1855 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/cryptanalysis/notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86%E6%94%BB%E5%87%BB/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>差分攻击 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              差分攻击
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      差分分析思维导图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心思路：统计“出现得特别多”的差分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 差分与随机基准
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 用 S 盒差分分布表找路线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 用 S 盒差分分布表找路线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ddt" class="md-nav__link">
+    <span class="md-ellipsis">
+      手算一行 DDT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      迭代差分：让同一种差分在轮边界重复出现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cipherfour" class="md-nav__link">
+    <span class="md-ellipsis">
+      CipherFour 四轮例子
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cipherfour" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 利用四轮差分攻击五轮 CipherFour
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 利用四轮差分攻击五轮 CipherFour">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      采样：选明文对
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      预筛：去掉显然无用的密文对
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="预筛：去掉显然无用的密文对">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      课件例题：四种密文差分从哪里来？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      去噪后错误对占多少？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      计数：猜末轮 4 比特子密钥
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="计数：猜末轮 4 比特子密钥">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      课件例题：末轮子密钥如何恢复？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      一个密文对怎样给候选计数？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么计数高的候选更值得检查？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      前 \(2^{4-a}\) 个候选是什么意思？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      课件的“其余 92 位密钥”
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      与不可能差分的关键区别
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      从实验理解差分攻击
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/cryptanalysis/notes/03-差分分析/差分攻击.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/cryptanalysis/notes/03-差分分析/差分攻击.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">差分攻击<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>密码分析学 / notes/03-差分分析/差分攻击.md</code></p>
+</blockquote>
+<h2 id="_2">差分分析思维导图<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><img alt="差分分析思维导图：差分基础、普通差分、截断差分、不可能差分、飞去来器与差分—线性分析" src="../../../assets/study-guides/differential-analysis-mindmap.png" /></p>
+<p>图中按“差分性质 → 传播与判据 → 密钥恢复”整理。先读本篇的普通差分，再分别复习<a href="../%E6%88%AA%E6%96%AD%E5%B7%AE%E5%88%86/">截断差分</a>、<a href="../%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/">不可能差分</a>、<a href="../%E9%A3%9E%E5%8E%BB%E6%9D%A5%E5%99%A8%E6%94%BB%E5%87%BB/">飞去来器与矩形攻击</a>和<a href="../../04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">差分—线性分析</a>。</p>
+<p>普通差分的目标是通过多次命中<strong>累计证据</strong>；不可能差分是在候选密钥下出现禁忌差分时<strong>排除候选</strong>。截断差分中的概率为 1 和概率小于 1 对应的判据也分别标在图中。</p>
+<p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020130756279.png" />
+如果是一轮算法，我们直接差分，就可以把k1消掉，实现对密钥空间的分割，用两个方程就可以分别求出密钥k0k,1</p>
+<p>这里面没有概率的问题，满足方程的可能是正确密钥，不满足的一定不是
+对于两轮的情况
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020131108361.png" />
+我们可以消掉k2,然后这样就变成2的2n，但是还是比较大
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020131239831.png" />
+我们可以利用u到v的高概率差分，直接爆破k2，先把k2出来
+由于这个是概率事件，所以满足方程和不满足的都可能是正确密钥
+但是正确的密钥的概率比较大，错误的密钥就是随机置换
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020131444621.png" />
+这会导致不同的分布
+我们就看对数T服从哪个分布，就能确定密钥是否正确了
+三轮算法下
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020131800421.png" />
+我们原先的一轮差分路线就不够用了，这样我们还是需要2的2n次方
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020131823156.png" />
+我们需要找到两轮的差分</p>
+<h2 id="_3">核心思路：统计“出现得特别多”的差分<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>选择许多具有<strong>相同输入差分</strong>的明文对，寻找经过若干轮后出现概率明显高于随机置换的输出差分。把这个高概率差分当作区分器，再猜少量轮密钥、做局部逆运算，统计各候选密钥使目标差分出现的次数。正确候选预期得分较高，最后还要用额外明密文验证。</p>
+<p>这里采用<strong>累计计数</strong>：命中目标差分就加分，未命中则保持计数；处理足够数据后，按分数筛选候选。<a href="../%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/">不可能差分分析</a>利用概率严格为零的差分，判据和计数方向完全不同。</p>
+<h2 id="1">1. 差分与随机基准<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>对两个输入 <span class="arithmatex">\(X,X'\)</span>，定义异或差分 <span class="arithmatex">\(\Delta X=X\oplus X'\)</span>。选择 <span class="arithmatex">\(P'=P\oplus\alpha\)</span>，观察 <span class="arithmatex">\(r\)</span> 轮后是否得到输出差分 <span class="arithmatex">\(\beta\)</span>：</p>
+<div class="arithmatex">\[
+DP_r(\alpha,\beta)
+=\Pr_P\!\left[E_K^{(r)}(P)\oplus E_K^{(r)}(P\oplus\alpha)=\beta\right].
+\]</div>
+<p>此式对固定密钥 <span class="arithmatex">\(K\)</span>、变化的明文 <span class="arithmatex">\(P\)</span> 而言。若用随机的 <span class="arithmatex">\(n\)</span> 比特置换代替算法，固定非零 <span class="arithmatex">\(\alpha,\beta\)</span> 时，平均命中概率为 <span class="arithmatex">\(1/(2^n-1)\)</span>：不同输入对应不同输出，输出差分只能取 <span class="arithmatex">\(2^n-1\)</span> 个非零值。攻击需要找到明显高于该基准的差分概率。</p>
+<p>异或差分适合课件中的轮结构，因为相同轮密钥会在一对状态中抵消：</p>
+<div class="arithmatex">\[
+(X\oplus k)\oplus(X'\oplus k)=X\oplus X'.
+\]</div>
+<p>比特置换只重新排列差分的位置；非线性 S 盒使差分传播具有不均匀的概率。</p>
+<h2 id="2-s">2. 用 S 盒差分分布表找路线<a class="headerlink" href="#2-s" title="Permanent link">&para;</a></h2>
+<p>对 <span class="arithmatex">\(m\)</span> 比特输入的 S 盒，差分分布表（DDT）的表项为</p>
+<div class="arithmatex">\[
+N_S(a,b)=\#\{x:S(x)\oplus S(x\oplus a)=b\},
+\qquad
+DP_S(a,b)=\frac{N_S(a,b)}{2^m}.
+\]</div>
+<p>每行计数之和为 <span class="arithmatex">\(2^m\)</span>。CipherFour 的 S 盒是 4 比特的：表中 <span class="arithmatex">\(\texttt{2}\to\texttt{2}\)</span> 的计数为 <span class="arithmatex">\(6\)</span>，所以概率为 <span class="arithmatex">\(6/16\)</span>；<span class="arithmatex">\(\texttt{F}\to\texttt{D}\)</span> 的计数为 <span class="arithmatex">\(10\)</span>，概率为 <span class="arithmatex">\(10/16\)</span>。表项为零只说明<strong>该 S 盒的这一步传播</strong>不可能；普通差分攻击主要选用较大的非零表项。</p>
+<h3 id="ddt">手算一行 DDT<a class="headerlink" href="#ddt" title="Permanent link">&para;</a></h3>
+<p>下面用一个 3 比特教学 S 盒演示如何计数：</p>
+<table>
+<thead>
+<tr>
+<th>输入 <span class="arithmatex">\(x\)</span></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(S(x)\)</span></td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>6</td>
+<td>7</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>固定输入差分 <span class="arithmatex">\(a=1\)</span>，依次取 <span class="arithmatex">\(x=0,1,\ldots,7\)</span>，先算配对输入 <span class="arithmatex">\(x\oplus1\)</span>，再算 <span class="arithmatex">\(b=S(x)\oplus S(x\oplus1)\)</span>：</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(x\)</span></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\oplus1\)</span></td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>7</td>
+<td>6</td>
+</tr>
+<tr>
+<td>输出差分 <span class="arithmatex">\(b\)</span></td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>3</td>
+<td>7</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>输出差分 <span class="arithmatex">\(5\)</span> 出现两次，所以 <span class="arithmatex">\(N_S(1,5)=2\)</span>，对应概率 <span class="arithmatex">\(2/8=1/4\)</span>。DDT 按所有输入 <span class="arithmatex">\(x\)</span> 计数：<span class="arithmatex">\((2,3)\)</span> 和 <span class="arithmatex">\((3,2)\)</span> 是同一个无序输入对的两个方向，因此各算一次。</p>
+<p>构造完整 DDT 时，对每个输入差分 <span class="arithmatex">\(a\)</span> 都重复这个过程。读取表格时先确定行 <span class="arithmatex">\(a\)</span> 和列 <span class="arithmatex">\(b\)</span>，再用该计数除以 <span class="arithmatex">\(2^m\)</span>，才能得到传播概率。</p>
+<p><img alt="CipherFour S 盒的差分分布表，行是输入差分，列是输出差分" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/differential-ddt.png" /></p>
+<p><em>图源：第 3.1 节《差分分析-1》，第 30 页。</em></p>
+<p>一条<strong>差分路线</strong>（差分特征）指定每一轮边界的差分，如 <span class="arithmatex">\(\alpha\to\delta_1\to\delta_2\to\beta\)</span>。在课件采用的轮密钥独立、传播近似独立的模型下，路线概率为各轮活跃 S 盒传播概率的乘积。活跃 S 盒越多，乘积通常降得越快，因此找路线时要同时考虑 DDT 和比特置换。</p>
+<p>一个 <span class="arithmatex">\(r\)</span> 轮<strong>差分</strong>只固定头尾 <span class="arithmatex">\(\alpha\to\beta\)</span>，不限制中间经过哪条路线。同一头尾差分的概率，是各条互不重叠的中间差分路线概率之和。</p>
+<h3 id="_4">迭代差分：让同一种差分在轮边界重复出现<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>如果一条经过 <span class="arithmatex">\(r\)</span> 轮的差分路线以 <span class="arithmatex">\(\alpha\)</span> 为输入，又回到相同差分 <span class="arithmatex">\(\alpha\)</span>，就称它为 <span class="arithmatex">\(r\)</span> 轮迭代差分路线：</p>
+<div class="arithmatex">\[
+\alpha\xrightarrow{\ r\text{ 轮}\ }\alpha.
+\]</div>
+<p>这使路线可以重复连接。例如课件中的 CipherFour 一轮存在</p>
+<div class="arithmatex">\[
+(0,0,2,0)\xrightarrow{\ 1\text{ 轮}\ }(0,0,2,0),
+\]</div>
+<p>其活跃 S 盒的差分 <span class="arithmatex">\(\mathtt 2\to\mathtt 2\)</span> 的概率为 <span class="arithmatex">\(6/16\)</span>；后续比特置换使差分仍落在同一位置。重复两次就得到</p>
+<div class="arithmatex">\[
+(0,0,2,0)\xrightarrow{\ 1\text{ 轮}\ }(0,0,2,0)
+\xrightarrow{\ 1\text{ 轮}\ }(0,0,2,0).
+\]</div>
+<p>在课件的独立轮密钥和差分传播近似模型下，这条两轮路线的概率为 <span class="arithmatex">\((6/16)^2\)</span>；同样重复四次得到一条概率约为 <span class="arithmatex">\((6/16)^4\)</span> 的四轮路线。重复利用同一个短路线，减少了构造长路线时要寻找的不同连接条件。</p>
+<p>相乘得到的是<strong>这条指定的迭代路线</strong>的概率。同一头尾差分还可能通过其他中间差分路线出现；总体差分概率应把这些互不重叠的路线贡献加起来。搜索时可以先利用 DDT 找高概率单轮传播，再检查线性层输出是否能回到输入差分，最后验证多轮统计结果。</p>
+<h3 id="cipherfour">CipherFour 四轮例子<a class="headerlink" href="#cipherfour" title="Permanent link">&para;</a></h3>
+<p>取 <span class="arithmatex">\(\alpha=\beta=(0,0,2,0)\)</span>。课件找到至少四条不同路线，每条在上述近似下的概率都是 <span class="arithmatex">\((6/16)^4\approx0.0198\)</span>，因此</p>
+<div class="arithmatex">\[
+DP_4(\alpha,\beta)\ge 4(6/16)^4\approx0.0791\approx0.08.
+\]</div>
+<p>对随机 16 比特置换，指定非零输出差分的基准约为 <span class="arithmatex">\(1/(2^{16}-1)\)</span>。这就是四轮差分的非随机信号；实验测得的频率也在 <span class="arithmatex">\(0.08\)</span> 附近。</p>
+<p><img alt="CipherFour 四轮差分的四条路线，头尾差分相同" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/differential-four-round-trails.png" /></p>
+<p><em>图源：第 3.1 节《差分分析-2》，第 32 页；截取四条路线。</em></p>
+<h2 id="3-cipherfour">3. 利用四轮差分攻击五轮 CipherFour<a class="headerlink" href="#3-cipherfour" title="Permanent link">&para;</a></h2>
+<p>课件采用“4+1”：四轮区分器放在前面，末轮用于恢复局部子密钥。CipherFour 每轮处理四个 4 比特半字节；四轮后目标差分是 <span class="arithmatex">\((0,0,2,0)\)</span>，所以末轮只需重点检查第 3 个半字节（下标 <span class="arithmatex">\(2\)</span>）的白化密钥 <span class="arithmatex">\(k_{5,2}\)</span>，共 4 比特。</p>
+<p><img alt="四轮差分区分器后接一轮 CipherFour" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/differential-cipherfour-five-round.png" /></p>
+<p><em>图源：第 3.1 节《差分分析-3》，第 2 页；截取轮结构。</em></p>
+<h3 id="_5">采样：选明文对<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>选择 <span class="arithmatex">\(m\)</span> 个明文 <span class="arithmatex">\(P_i\)</span>，令 <span class="arithmatex">\(P'_i=P_i\oplus(0,0,2,0)\)</span>，查询两者的五轮密文 <span class="arithmatex">\(C_i,C'_i\)</span>。每对都满足区分器的输入要求，但四轮后只有约 <span class="arithmatex">\(0.08m\)</span> 对预计满足目标输出差分；内部状态无法直接看到。</p>
+<h3 id="_6">预筛：去掉显然无用的密文对<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020132912538.png" />
+输入差分我们可以控制，但是最后输出的中间状态差分我们没办法控制，如果他满足0020，我们叫他正确对，否则就叫他错误对，正确对+正确密钥肯定是能得到正确差分，错误对+正确密钥得不到正确差分，但是吧，我们这个方程，只考虑哪个活跃的S盒，那它虽然得不到0020,但是可能的代ab2c，只要那个2是对的，那错误对加正确密钥也是可以满足这个方程的，然后错误的密钥的话，那就随机了</p>
+<p>若四轮后的差分真是 <span class="arithmatex">\((0,0,2,0)\)</span>，末轮 S 盒的 DDT 要求密文差分属于</p>
+<div class="arithmatex">\[
+\{(0,0,h,0):h\in\{1,2,9,\mathrm A\}\}.
+\]</div>
+<p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20261020133349468.png" />
+不在00h0里的肯定是错误对，但是你h倒退回去未必是2
+不满足的对直接丢弃。预筛保留满足密文差分模式的对，其中混有错误对。课件实验中约 <span class="arithmatex">\(11\%\)</span> 的采样对通过，预筛因此减少了后续计数的噪声。</p>
+<h4 id="_7">课件例题：四种密文差分从哪里来？<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p><img alt="课件：用末轮 S 盒输出差分去噪" src="../../../assets/course-slides/differential-cipherfour-denoising.png" /></p>
+<p><em>图源：《第3.1节 差分分析-3》，第 10 页。以下使用课件例题的 CipherFour S 盒。</em></p>
+<p><strong>第一步，确定正确对。</strong> 明文对满足 <span class="arithmatex">\(\Delta P=(0,0,2,0)\)</span>；如果它在第 4 轮结束时的内部差分也是</p>
+<div class="arithmatex">\[
+\Delta X_4=(0,0,2,0),
+\]</div>
+<p>就叫<strong>正确对</strong>。四轮后不是这个差分的叫错误对。内部状态 <span class="arithmatex">\(X_4\)</span> 不能直接看到，我们只能利用密文进一步筛选。</p>
+<p><strong>第二步，追踪末轮 S 盒。</strong> 本例末轮是并行 S 盒加末尾密钥异或，没有末轮 P 置换。同一轮密钥异或在差分中抵消，四个半字节的输出差分仍按相应 S 盒分别计算。</p>
+<p>输入差分为 0 的三个位置，两个 S 盒输入相同，因此输出差分都是 0。活跃位置输入差分为 <span class="arithmatex">\(\mathtt2\)</span>；查课件的 DDT 第 2 行：</p>
+<table>
+<thead>
+<tr>
+<th>输出差分 <span class="arithmatex">\(h\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathtt1\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathtt2\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathtt9\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathtt A\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DDT 计数</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>概率</td>
+<td style="text-align: right;"><span class="arithmatex">\(6/16\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(6/16\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(2/16\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(2/16\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>四项计数合计 16，说明输入差分为 <span class="arithmatex">\(\mathtt2\)</span> 时，S 盒输出差分只有这四种可能。因此</p>
+<div class="arithmatex">\[
+\Delta X_4=(0,0,2,0)
+\quad\Longrightarrow\quad
+\Delta C\in\{(0,0,h,0):h\in\{1,2,9,\mathtt A\}\}.
+\]</div>
+<p>这里 <span class="arithmatex">\(\mathtt A\)</span> 是十六进制 10，四个位置按从左到右的半字节书写。例如 <span class="arithmatex">\(\Delta C=\mathtt{0090}\)</span> 通过；<span class="arithmatex">\(\mathtt{0030}\)</span> 的活跃位置不是四种允许值，直接丢弃；<span class="arithmatex">\(\mathtt{1020}\)</span> 的第一个半字节非零，也直接丢弃。</p>
+<p><strong>第三步，理解“通过”和“正确”的关系。</strong> 每个正确对都通过筛选，因此不通过的对一定是错误对；通过的对只是<strong>可能</strong>正确。比如课件 DDT 中输入差分 <span class="arithmatex">\(\mathtt4\)</span> 也可能产生输出差分 <span class="arithmatex">\(\mathtt9\)</span>，所以从局部 S 盒传播看，输出 <span class="arithmatex">\(\mathtt9\)</span> 并不能唯一确定输入差分是 <span class="arithmatex">\(\mathtt2\)</span>。还要猜末轮子密钥、逆过 S 盒并统计，才能继续筛选。</p>
+<h4 id="_8">去噪后错误对占多少？<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>记采样对数为 <span class="arithmatex">\(m\)</span>，四轮目标差分的概率估计为 <span class="arithmatex">\(p\approx0.08\)</span>，经过密文筛选的比例为 <span class="arithmatex">\(\epsilon\)</span>。所有正确对都保留，因此</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{正确对数}&amp;\approx mp,\\
+\text{保留总对数}&amp;\approx m\epsilon,\\
+\text{保留的错误对数}&amp;\approx m\epsilon-mp,\\
+\text{去噪后错误对比例}&amp;\approx\frac{\epsilon-p}{\epsilon}.
+\end{aligned}
+\]</div>
+<p>课件对多个密钥测试后，平均每 <span class="arithmatex">\(2^{16}\)</span> 个<strong>有序</strong>采样对保留约 7387 对；以 <span class="arithmatex">\(p\approx0.08\)</span> 估算正确对数：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{正确对}&amp;\approx65536\times0.08\approx5243,\\
+\text{错误对}&amp;\approx7387-5243=2144,\\
+\text{正确对占比}&amp;\approx5243/7387\approx71\%,\\
+\text{错误对占比}&amp;\approx2144/7387\approx29\%.
+\end{aligned}
+\]</div>
+<p>所以这次去噪让正确对占比从约 <span class="arithmatex">\(8\%\)</span> 提高到约 <span class="arithmatex">\(71\%\)</span>，去噪后仍有约 <span class="arithmatex">\(29\%\)</span> 是错误对。课件的 7387 是多组密钥的平均保留数；5243 是用 <span class="arithmatex">\(p\approx0.08\)</span> 估算的正确对数，并非每组密钥都恰好测得该数。</p>
+<p>课件还用随机 16 比特置换作基准：固定非零输入差分后，四种目标密文差分的概率为 <span class="arithmatex">\(4/(2^{16}-1)\approx2^{-14}\)</span>；<span class="arithmatex">\(2^{16}\)</span> 个有序对对应期望约 4 个通过。它是<strong>随机置换基准</strong>，不是本例去噪后错误对的 <span class="arithmatex">\(29\%\)</span>。将有序对去重后，各计数减半，比例不变。</p>
+<h3 id="4">计数：猜末轮 4 比特子密钥<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>对每个保留的密文对和每个候选 <span class="arithmatex">\(\kappa\in\{0,\ldots,15\}\)</span>，检查</p>
+<div class="arithmatex">\[
+S^{-1}(C_{i,2}\oplus\kappa)
+\oplus S^{-1}(C'_{i,2}\oplus\kappa)
+=\texttt{2}.
+\]</div>
+<p>若成立，就给 <span class="arithmatex">\(T[\kappa]\)</span> 加一。因为末轮 S 盒之前的密钥异或不改变差分，正确的 <span class="arithmatex">\(k_{5,2}\)</span> 会让真正满足四轮差分的明文对命中方程。处理全部数据后，按 <span class="arithmatex">\(T[\kappa]\)</span> 排序，再用更多明密文验证高分候选，排除偶然命中的错误密钥。</p>
+<h4 id="_9">课件例题：末轮子密钥如何恢复？<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><img alt="课件：猜测末轮子密钥并用计数器排序" src="../../../assets/course-slides/differential-cipherfour-key-recovery.png" /></p>
+<p><em>图源：《第3.1节 差分分析-3》，第 13 页。这里接着上面的四轮差分与去噪结果。</em></p>
+<p><strong>目标：</strong>只猜第 3 个半字节的末尾白化密钥 <span class="arithmatex">\(k_{5,2}\)</span>。它有 4 比特，共有 <span class="arithmatex">\(2^4=16\)</span> 个候选 <span class="arithmatex">\(\kappa\in\{\mathtt0,\ldots,\mathtt F\}\)</span>。最后一轮没有 P 置换，所以该密文字节位置只需要这 4 位密钥就能逆过 S 盒。</p>
+<p><strong>为什么先异或密钥再逆 S 盒？</strong> 记第四轮输出第 3 个半字节为 <span class="arithmatex">\(X_{4,2}\)</span>，末轮 S 盒前后还有密钥异或，则</p>
+<div class="arithmatex">\[
+C_2=S(X_{4,2}\oplus k_{4,2})\oplus k_{5,2}.
+\]</div>
+<p>给定末尾密钥猜测 <span class="arithmatex">\(\kappa\)</span>，按照加密的相反顺序处理密文：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+C_2&amp;\xrightarrow{\ \oplus\kappa\ }S(X_{4,2}\oplus k_{4,2})
+\xrightarrow{\ S^{-1}\ }X_{4,2}\oplus k_{4,2}
+\quad(\kappa=k_{5,2}).
+\end{aligned}
+\]</div>
+<p>对另一条密文做同样计算，再异或两个结果。若猜测正确，相同的 <span class="arithmatex">\(k_{4,2}\)</span> 被抵消，因此</p>
+<div class="arithmatex">\[
+S^{-1}(C_2\oplus\kappa)\oplus S^{-1}(C'_2\oplus\kappa)
+=X_{4,2}\oplus X'_{4,2}.
+\]</div>
+<p>正确对的第 4 轮输出差分为 <span class="arithmatex">\((0,0,2,0)\)</span>，因此课件使用的检验方程就是</p>
+<div class="arithmatex">\[
+\boxed{S^{-1}(C_2\oplus\kappa)\oplus S^{-1}(C'_2\oplus\kappa)=\mathtt2.}
+\]</div>
+<p><strong>为什么只猜 <span class="arithmatex">\(k_{5,2}\)</span>，不用猜 <span class="arithmatex">\(k_{4,2}\)</span>？</strong> <span class="arithmatex">\(k_{5,2}\)</span> 在末轮 S 盒之后，需要猜它才能把密文送进逆 S 盒；<span class="arithmatex">\(k_{4,2}\)</span> 在 S 盒之前，正确逆运算后对两边作异或时自动抵消。</p>
+<h4 id="_10">一个密文对怎样给候选计数？<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<ol>
+<li>设置 16 个计数器 <span class="arithmatex">\(T[\mathtt0],\ldots,T[\mathtt F]\)</span>，初值全为 0。</li>
+<li>对一个<strong>通过去噪</strong>的密文对，取其第 3 个半字节 <span class="arithmatex">\(C_2,C'_2\)</span>。</li>
+<li>依次代入 16 个 <span class="arithmatex">\(\kappa\)</span>；方程成立时令 <span class="arithmatex">\(T[\kappa]\leftarrow T[\kappa]+1\)</span>。</li>
+<li>对每个保留密文对重复，最后按计数由大到小排列。</li>
+</ol>
+<p>例如某对的 <span class="arithmatex">\(C_2=\mathtt3\)</span>、<span class="arithmatex">\(C'_2=\mathtt2\)</span>，密文差分是 <span class="arithmatex">\(\mathtt1\)</span>，通过末轮活跃位置的去噪条件。对每个猜测检验</p>
+<div class="arithmatex">\[
+S^{-1}(\mathtt3\oplus\kappa)\oplus S^{-1}(\mathtt2\oplus\kappa)=\mathtt2.
+\]</div>
+<p>课件的 S 盒从输入 <span class="arithmatex">\(\mathtt0\)</span> 到 <span class="arithmatex">\(\mathtt F\)</span> 依次为 <code>6 4 C 5 0 7 2 E 1 F 3 D 8 A 9 B</code>。按逆表代入，三个候选例如：</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\kappa\)</span></th>
+<th><span class="arithmatex">\(S^{-1}(\mathtt3\oplus\kappa)\)</span></th>
+<th><span class="arithmatex">\(S^{-1}(\mathtt2\oplus\kappa)\)</span></th>
+<th>异或结果</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathtt0\)</span></td>
+<td><span class="arithmatex">\(\mathtt A\)</span></td>
+<td><span class="arithmatex">\(\mathtt6\)</span></td>
+<td><span class="arithmatex">\(\mathtt C\)</span></td>
+<td>不加分</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathtt6\)</span></td>
+<td><span class="arithmatex">\(\mathtt3\)</span></td>
+<td><span class="arithmatex">\(\mathtt1\)</span></td>
+<td><span class="arithmatex">\(\mathtt2\)</span></td>
+<td><span class="arithmatex">\(T[\mathtt6]\)</span> 加 1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathtt7\)</span></td>
+<td><span class="arithmatex">\(\mathtt1\)</span></td>
+<td><span class="arithmatex">\(\mathtt3\)</span></td>
+<td><span class="arithmatex">\(\mathtt2\)</span></td>
+<td><span class="arithmatex">\(T[\mathtt7]\)</span> 加 1</td>
+</tr>
+</tbody>
+</table>
+<p>枚举 16 个候选，全部解为 <span class="arithmatex">\(\{\mathtt6,\mathtt7,\mathtt8,\mathtt9,\mathtt A,\mathtt B\}\)</span>，共 6 个，与课件 DDT 中 <span class="arithmatex">\(\mathtt2\to\mathtt1\)</span> 的计数一致。这一个密文对会给 6 个计数器各加 1；不同密文对提供不同的候选集合，累计后用于排序。这里演示的是一个局部方程的求解。</p>
+<p>对一个保留对，若密文活跃半字节差分分别是 <span class="arithmatex">\(\mathtt1,\mathtt2,\mathtt9,\mathtt A\)</span>，课件 DDT 对应的方程解数分别为 <span class="arithmatex">\(6,6,2,2\)</span>。课件把四种情况等权平均，得到 <span class="arithmatex">\(\eta=(6+6+2+2)/4=4\)</span>；实际保留对的四种差分出现频率不同时，平均解数应按其实际频率加权。</p>
+<h4 id="_11">为什么计数高的候选更值得检查？<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>本例采用上节的<strong>完整去噪条件</strong>：三个非活跃密文半字节的差分均为 0，活跃半字节差分属于 <span class="arithmatex">\(\{1,2,9,\mathtt A\}\)</span>。当 <span class="arithmatex">\(\kappa\)</span> 是正确的 <span class="arithmatex">\(k_{5,2}\)</span> 时，逆 S 盒方程的左侧就是真实的第 4 轮活跃位置差分：</p>
+<ul>
+<li><strong>正确对</strong>的真实差分为 <span class="arithmatex">\(\mathtt2\)</span>，一定给正确密钥计数器加 1。</li>
+<li>通过完整去噪后，其他三个位置的真实差分为 0；因此<strong>错误对</strong>的活跃位置差分不能是 <span class="arithmatex">\(\mathtt2\)</span>，不会给正确密钥计数器加分。</li>
+<li>对<strong>错误密钥猜测</strong>，部分解密结果只是候选值，正确对或错误对都可能让方程偶然成立，产生其他计数。</li>
+</ul>
+<p>大量对累计后，正确候选得到正确对提供的信号，错误候选也会得到偶然命中的计数。因此按计数排序，保留高分候选，再验证。</p>
+<h4 id="24-a">前 <span class="arithmatex">\(2^{4-a}\)</span> 个候选是什么意思？<a class="headerlink" href="#24-a" title="Permanent link">&para;</a></h4>
+<p>16 个候选按照 <span class="arithmatex">\(T[\kappa]\)</span> 降序排列。课件用 <span class="arithmatex">\(a\)</span> 表示期望的<strong>排序优势</strong>：把候选数量从 <span class="arithmatex">\(2^4\)</span> 减少到 <span class="arithmatex">\(2^{4-a}\)</span>，再继续验证。例如：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">优势 <span class="arithmatex">\(a\)</span></th>
+<th style="text-align: right;">保留候选数 <span class="arithmatex">\(2^{4-a}\)</span></th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8</td>
+<td>16 个候选中保留前 8 个</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td>保留前 4 个</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td>保留前 2 个</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td>只保留第 1 个</td>
+</tr>
+</tbody>
+</table>
+<p>这里 <span class="arithmatex">\(a\)</span> 是<strong>候选规模缩减了多少比特</strong>，具体取多大要结合数据量、排序成功率和后续验证成本。保留多个候选时，应逐一进行后续验证。</p>
+<h4 id="92">课件的“其余 92 位密钥”<a class="headerlink" href="#92" title="Permanent link">&para;</a></h4>
+<p>课件将 <span class="arithmatex">\(k_0,\ldots,k_5\)</span> 六个 16 位轮密钥作为独立未知量，共 <span class="arithmatex">\(6\times16=96\)</span> 位；如果已确定 <span class="arithmatex">\(k_{5,2}\)</span> 的 4 位，就还剩 <span class="arithmatex">\(96-4=92\)</span> 位，可继续使用差分分析或穷举。若排序后保留 <span class="arithmatex">\(2^{4-a}\)</span> 个该半字节候选，直接搭配剩余独立 92 位枚举的规模约为 <span class="arithmatex">\(2^{4-a}\cdot2^{92}=2^{96-a}\)</span>。具体算法有密钥编排关系时，应按实际独立密钥位数计算。</p>
+<p>课件用信噪比粗估排序效果：若目标差分概率为 <span class="arithmatex">\(p\)</span>，预筛保留比例为 <span class="arithmatex">\(\epsilon\)</span>，每个保留对平均给 <span class="arithmatex">\(\eta\)</span> 个候选加分，<span class="arithmatex">\(2^k\)</span> 个计数器的平均噪声约为 <span class="arithmatex">\(m\epsilon\eta/2^k\)</span>，真正符合四轮差分的信号贡献约为 <span class="arithmatex">\(mp\)</span>。本例 <span class="arithmatex">\(p\approx0.08\)</span>、<span class="arithmatex">\(\epsilon\approx0.11\)</span>、<span class="arithmatex">\(\eta\approx4\)</span>、<span class="arithmatex">\(k=4\)</span>，信噪比约为 <span class="arithmatex">\(0.08\times16/(0.11\times4)\approx2.9\)</span>。这是近似指标，实际成功率还取决于样本数及相关性。</p>
+<p>这里只恢复了末轮白化密钥中的 <strong>4 比特</strong>，仍需恢复其余密钥。若不复用明文，采样约需 <span class="arithmatex">\(2m\)</span> 次选择明文查询；时间还要计算预筛和局部逆运算。</p>
+<h2 id="_12">与不可能差分的关键区别<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>普通差分攻击</th>
+<th>不可能差分分析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>利用的事件</td>
+<td>指定头尾差分出现得<strong>偏多</strong>，概率明显高于随机基准</td>
+<td>指定头尾差分<strong>绝不出现</strong>，<span class="arithmatex">\(p=0\)</span></td>
+</tr>
+<tr>
+<td>候选密钥满足检验时</td>
+<td>给候选<strong>加分</strong>，多对累计后排序</td>
+<td>触发禁忌矛盾，<strong>删除</strong>候选</td>
+</tr>
+<tr>
+<td>候选密钥未满足检验时</td>
+<td>保持计数，继续统计其他数据对</td>
+<td>保留候选，继续检查其他数据对</td>
+</tr>
+</tbody>
+</table>
+<p>相关笔记：<a href="../../01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E6%94%BB%E5%87%BB%E6%80%9D%E6%83%B3/">攻击思想</a>、<a href="../%E6%88%AA%E6%96%AD%E5%B7%AE%E5%88%86/">截断差分</a>、<a href="../%E9%A3%9E%E5%8E%BB%E6%9D%A5%E5%99%A8%E6%94%BB%E5%87%BB/">飞去来器攻击</a>、<a href="../%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/">不可能差分分析</a>。</p>
+<h2 id="_13">从实验理解差分攻击<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p><a href="../../../review/%E5%AE%9E%E9%AA%8C%E5%A4%8D%E4%B9%A0/02-%E5%B7%AE%E5%88%86%E8%B7%AF%E5%BE%84%E4%B8%8E%E5%AF%86%E9%92%A5%E6%81%A2%E5%A4%8D/">实验二：差分路径与密钥恢复</a> 将 DDT、路线概率求和、固定密钥频率、末轮去噪与候选计数串成完整实例，并解释了 <code>0x8</code> 与 <code>0x9</code> 为什么严格同分，以及有序配对为何没有把实际明文数翻倍。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

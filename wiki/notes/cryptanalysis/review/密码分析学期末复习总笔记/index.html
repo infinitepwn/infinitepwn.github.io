@@ -1,0 +1,2625 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/cryptanalysis/review/%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%AC%94%E8%AE%B0/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>密码分析学期末复习总笔记 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              密码分析学期末复习总笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一 基本概念与攻击模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一 基本概念与攻击模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 算法公开 密钥保密
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 区分器怎样变成密钥恢复
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 复杂度必须统一对象和单位
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enigma" class="md-nav__link">
+    <span class="md-ellipsis">
+      二 Enigma 机的破解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二 Enigma 机的破解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 结构和两个可利用性质
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 密钥空间计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-crib" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Crib 与环路如何减少搜索
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      三 差分类攻击
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三 差分类攻击">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 普通差分：寻找偏多的差分，给密钥计数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 差分路线与差分的区别
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 如何从区分器恢复密钥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 截断差分：只规定一部分差分信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 不可能差分：触发禁忌就删除密钥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 飞去来器 增强飞去来器和矩形
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      四 线性类攻击
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四 线性类攻击">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lat" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 掩码 偏差 相关度和 LAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 掩码传播不能照抄差分传播
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 堆积引理与线性包
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-matsui-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Matsui 算法 1：判断密钥奇偶位
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-matsui-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Matsui 算法 2：猜边界子密钥，比较偏离程度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 差分—线性：连接的是差分的掩码奇偶值
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#square" class="md-nav__link">
+    <span class="md-ellipsis">
+      五 积分分析与 Square 攻击
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五 积分分析与 Square 攻击">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 四种状态及传播规则
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 为什么 AES 三轮后平衡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 向后扩一轮恢复密钥
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      六 中间相遇攻击
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六 中间相遇攻击">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-des" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 双重 DES 必会推导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 一般形式与部分比特匹配
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2k3des" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 2K3DES 为什么要拼切
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-aes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 AES 的集合映射相遇
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      七 杂凑函数安全性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七 杂凑函数安全性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 三种目标与通用复杂度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 广义生日与 4-tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-md" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 MD 结构、长度扩展与多碰撞
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 长消息第二原像与可扩展消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-md4" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 MD4 碰撞：比特追踪与消息修改
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      八 消息认证码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八 消息认证码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 安全目标与伪造类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 简单杂凑 MAC 的结构性问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cbc-mac-cmac" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 CBC-MAC 的变长伪造与 CMAC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      九 自动化搜索与实验原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="九 自动化搜索与实验原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 从表到合法传播点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 拼接多轮与验证
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      十 易混概念与答题检查
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      十一 考前公式速查
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      资料与章节笔记
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/cryptanalysis/review/密码分析学期末复习总笔记.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/cryptanalysis/review/密码分析学期末复习总笔记.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">密码分析学期末复习总笔记<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>密码分析学 / review/密码分析学期末复习总笔记.md</code></p>
+</blockquote>
+<p>适用考试：2026 年 11 月 18 日期末闭卷笔试。按教学大纲的八章内容整理，重点掌握<strong>攻击利用什么性质、怎样判断密钥、概率怎样计算、复杂度与什么比较</strong>。</p>
+<p>大纲第 18 页的拟定分值如下。</p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th style="text-align: right;">拟定分值</th>
+<th>必须能独立写出的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#一%20基本概念与攻击模型">一 基本概念与模型</a></td>
+<td style="text-align: right;">5</td>
+<td>攻击模型、区分器、密钥恢复、复杂度</td>
+</tr>
+<tr>
+<td><a href="#二%20Enigma%20机的破解">二 Enigma</a></td>
+<td style="text-align: right;">5</td>
+<td>密钥空间、不能自加密、crib 与环路</td>
+</tr>
+<tr>
+<td><a href="#三%20差分类攻击">三 差分类</a></td>
+<td style="text-align: right;">25</td>
+<td>DDT、路线概率、计数与排除、四元组</td>
+</tr>
+<tr>
+<td><a href="#四%20线性类攻击">四 线性类</a></td>
+<td style="text-align: right;">25</td>
+<td>LAT、掩码、偏差、算法 1／2、差分—线性</td>
+</tr>
+<tr>
+<td><a href="#五%20积分分析与%20Square%20攻击">五 积分</a></td>
+<td style="text-align: right;">10</td>
+<td>A／C／B 传播、AES 三轮平衡、末轮恢复</td>
+</tr>
+<tr>
+<td><a href="#六%20中间相遇攻击">六 中间相遇</a></td>
+<td style="text-align: right;">15</td>
+<td>相遇方程、独立枚举、候选数量与资源</td>
+</tr>
+<tr>
+<td><a href="#七%20杂凑函数安全性">七 杂凑</a></td>
+<td style="text-align: right;">10</td>
+<td>生日与 4-tree、第二原像、MD4 消息修改</td>
+</tr>
+<tr>
+<td><a href="#八%20消息认证码">八 MAC</a></td>
+<td style="text-align: right;">5</td>
+<td>三种伪造目标、长度扩展与 CBC-MAC 伪造</td>
+</tr>
+</tbody>
+</table>
+<p>差分、线性、积分、中间相遇合计占拟定分值的 75%。文末另有自动化建模要点、易错对照和公式速查。相关密钥攻击未单列考试分值，作为八章主线之后的拓展内容。</p>
+<p>快速跳转：<a href="#九%20自动化搜索与实验原理">自动化建模</a> · <a href="#十%20易混概念与答题检查">易混概念</a> · <a href="#十一%20考前公式速查">公式速查</a>。</p>
+<h2 id="_2">一 基本概念与攻击模型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1">1 算法公开 密钥保密<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p><strong>Kerckhoffs 原则：</strong> 假设攻击者知道算法与公开参数，安全性应依赖密钥保密。轮间独立性和错误密钥随机性在相应复杂度推导中另行设定。</p>
+<table>
+<thead>
+<tr>
+<th>攻击模型</th>
+<th>攻击者能获得什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>唯密文</td>
+<td>密文</td>
+</tr>
+<tr>
+<td>已知明文</td>
+<td>已有的明文及对应密文</td>
+</tr>
+<tr>
+<td>选择明文</td>
+<td>自选明文并查询加密结果</td>
+</tr>
+<tr>
+<td>选择密文</td>
+<td>自选密文并查询解密结果</td>
+</tr>
+<tr>
+<td>选择文本</td>
+<td>同时具有选择明文和选择密文能力</td>
+</tr>
+</tbody>
+</table>
+<p>“自适应”指后续查询可依赖此前的回答。普通差分通常使用选择明文，线性分析通常使用已知明文，经典飞去来器需要选择明文和自适应选择密文；增强飞去来器可只使用选择明文。</p>
+<h3 id="2">2 区分器怎样变成密钥恢复<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p><strong>区分器</strong>检测具体算法与随机置换的行为差别；<strong>密钥恢复</strong>求出部分或全部密钥。</p>
+<p>常见做法：先找中间若干轮的性质，再猜首尾少量子密钥，部分加解密到区分器的边界，依据统计或矛盾筛选候选，最后验证完整密钥。</p>
+<p><img alt="中间区分器与两端部分密钥猜测" src="../../assets/course-slides/overview-attack-model.png" /></p>
+<p><em>图源：第 1 章课件第 36 页。图中的区分器只覆盖算法的一部分。</em></p>
+<p>三类典型判据要分清：高概率差分是“命中加分”，不可能差分是“触发禁忌则删除”，线性分析是“与一半相比有偏差”。它们可能都要猜末轮密钥，但判断方向不同。</p>
+<h3 id="3">3 复杂度必须统一对象和单位<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>每个攻击都要交代 <strong>数据量 <span class="arithmatex">\(D\)</span>、时间 <span class="arithmatex">\(T\)</span>、存储 <span class="arithmatex">\(M\)</span>、成功率 <span class="arithmatex">\(P_s\)</span></strong>。时间要注明是 S 盒运算、轮函数计算还是完整加密；数据要注明明文条数、明文对数还是四元组数。</p>
+<p>设完整密钥长为 <span class="arithmatex">\(K\)</span> 比特，分组长为 <span class="arithmatex">\(n\)</span> 比特。直接穷举量级为 <span class="arithmatex">\(2^K\)</span> 次完整加密；若找到正确密钥即停止且位置均匀，平均约 <span class="arithmatex">\(2^{K-1}\)</span> 次。比较攻击时应采用同一约定。</p>
+<p>在理想随机密钥模型下，一个错误密钥匹配一组明密文的概率约为 <span class="arithmatex">\(2^{-n}\)</span>。匹配 <span class="arithmatex">\(r\)</span> 组不同输入的明密文后，错误候选期望约为</p>
+<div class="arithmatex">\[
+(2^K-1)2^{-rn}.
+\]</div>
+<p>匹配第一组后，<strong>再通过第二组的条件概率</strong>约为 <span class="arithmatex">\(2^{-n}\)</span>；从头看同时匹配两组的<strong>联合概率</strong>约为 <span class="arithmatex">\(2^{-2n}\)</span>。</p>
+<p><strong>例：</strong> <span class="arithmatex">\(K=80,n=64\)</span>，一组数据后约剩 <span class="arithmatex">\(2^{16}\)</span> 个错误候选，两组后约剩 <span class="arithmatex">\(2^{-48}\)</span> 个。这里统计的是错误候选数的期望。</p>
+<blockquote>
+<p>比较“某攻击是否比穷举快”时，先问：它恢复的是完整 <span class="arithmatex">\(K\)</span> 比特密钥，还是只恢复末轮的 <span class="arithmatex">\(k\)</span> 比特子密钥？还要把剩余密钥的恢复、数据准备与候选验证计入总成本。</p>
+</blockquote>
+<p>详见：<a href="../../notes/01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%E6%A6%82%E8%BF%B0/">密码分析学概述</a>、<a href="../../notes/01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE/">基本假设</a>、<a href="../../notes/01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E8%AE%A1%E7%AE%97%E5%AE%89%E5%85%A8/">计算安全</a>。</p>
+<h2 id="enigma">二 Enigma 机的破解<a class="headerlink" href="#enigma" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">1 结构和两个可利用性质<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<p>信号经过“接线板 → 转子组 → 反射器 → 逆向转子组 → 接线板”。令接线板为 <span class="arithmatex">\(S\)</span>，位置 <span class="arithmatex">\(t\)</span> 的转子组为 <span class="arithmatex">\(R_t\)</span>，反射器为 <span class="arithmatex">\(T\)</span>，则</p>
+<div class="arithmatex">\[
+E_t=S^{-1}R_t^{-1}TR_tS.
+\]</div>
+<p>反射器满足 <span class="arithmatex">\(T^{-1}=T\)</span> 且无不动点，因此相同机器设置下加解密过程相同，并且<strong>任何字母都不会加密为自身</strong>。转子随输入步进，所以不能把整段消息当成一个固定单表替换。</p>
+<h3 id="2_1">2 密钥空间计算<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>从 <span class="arithmatex">\(r\)</span> 个不同转子中选 <span class="arithmatex">\(s\)</span> 个并排序：<span class="arithmatex">\(r!/(r-s)!\)</span>。</li>
+<li>每个转子有 26 个初始位置：<span class="arithmatex">\(26^s\)</span>。</li>
+<li>26 个字母中接 <span class="arithmatex">\(\ell\)</span> 对接线：<span class="arithmatex">\(26!/((26-2\ell)!\,2^\ell\ell!)\)</span>。</li>
+</ul>
+<p>环设置、反射器等参数按题目给定的范围计数。</p>
+<p><strong>例：</strong> 5 选 3 并排序，只计初始位置，忽略环设置与接线板：</p>
+<div class="arithmatex">\[
+5\times4\times3\times26^3=1\,054\,560.
+\]</div>
+<h3 id="3-crib">3 Crib 与环路如何减少搜索<a class="headerlink" href="#3-crib" title="Permanent link">&para;</a></h3>
+<p>Crib 是猜测的明文片段及其与密文的对齐位置。有位置出现明密文字母相同，就直接排除该对齐；其余对齐继续进行环路检验。</p>
+<p>把 crib 的字母关系连成环路。设去掉接线板后的机器为 <span class="arithmatex">\(A_t=R_t^{-1}TR_t\)</span>，则 <span class="arithmatex">\(E_t=S^{-1}A_tS\)</span>。若环路经位置 <span class="arithmatex">\(t_1,\ldots,t_j\)</span> 从字母 <span class="arithmatex">\(a\)</span> 回到 <span class="arithmatex">\(a\)</span>，就要求</p>
+<div class="arithmatex">\[
+(A_{t_j}\cdots A_{t_1})(S(a))=S(a).
+\]</div>
+<p>所以可以先枚举转子设置，检查组合置换是否有相容的不动点；再据此求接线板，并检查接线冲突。<strong>环路中间的接线板因素相消，使联合搜索拆成转子筛选与接线板求解。</strong></p>
+<p><img alt="由 crib 构造的 Enigma 字母环路" src="../../assets/course-slides/enigma-crib-loop.png" /></p>
+<p><em>图源：第 2 章课件第 29 页。环路还需与其他字母关系一起验证。</em></p>
+<p>简答可写成：<strong>猜测 crib → 排除自加密位置 → 构造环路 → 筛转子设置 → 求接线板 → 完整验证。</strong></p>
+<p>详见：<a href="../../notes/02-%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/%E7%A0%B4%E8%A7%A3Enigma%E6%9C%BA/">破解 Enigma 机</a>。</p>
+<h2 id="_3">三 差分类攻击<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1_2">1 普通差分：寻找偏多的差分，给密钥计数<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
+<p><strong>攻击对象是一对文本的差，核心判据是“某个差分出现得比随机情况更频繁”。</strong> 通常使用选择明文：取 <span class="arithmatex">\(P'=P\oplus\alpha\)</span>，观察经过若干轮后的差分是否为 <span class="arithmatex">\(\beta\)</span>。</p>
+<div class="arithmatex">\[
+DP_K(\alpha,\beta)=\Pr_P[E_K(P)\oplus E_K(P\oplus\alpha)=\beta].
+\]</div>
+<p>对随机 <span class="arithmatex">\(n\)</span> 比特置换、固定非零 <span class="arithmatex">\(\alpha,\beta\)</span>，平均基准为 <span class="arithmatex">\(1/(2^n-1)\approx2^{-n}\)</span>。这是完整输出差分的基准；若只检查部分比特，要按实际约束重新计算。</p>
+<p><strong>三种部件的传播必须会写：</strong></p>
+<ul>
+<li>相同密钥异或会抵消：<span class="arithmatex">\((x\oplus k)\oplus(x'\oplus k)=x\oplus x'\)</span>。</li>
+<li>线性层 <span class="arithmatex">\(y=Lx\)</span> 精确传播差分：<span class="arithmatex">\(\Delta y=L\Delta x\)</span>。它保持线性关系，不一定保持差分值不变。</li>
+<li>S 盒的传播由差分分布表 DDT 决定。对 <span class="arithmatex">\(m\)</span> 比特输入，</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+\operatorname{DDT}[a,b]&amp;=\#\{x:S(x)\oplus S(x\oplus a)=b\},\\
+DP_S(a,b)&amp;=\frac{\operatorname{DDT}[a,b]}{2^m}.
+\end{aligned}
+\]</div>
+<p>每行和为 <span class="arithmatex">\(2^m\)</span>；<span class="arithmatex">\(a=0\)</span> 时仅 <span class="arithmatex">\(b=0\)</span> 的计数为 <span class="arithmatex">\(2^m\)</span>；对非零 <span class="arithmatex">\(a\)</span>，解按 <span class="arithmatex">\(x,x\oplus a\)</span> 配对，因此计数为偶数。双射 S 盒的非零输入差分不可能产生零输出差分。</p>
+<p><img alt="CipherFour 的差分分布表" src="../../assets/course-slides/differential-ddt.png" /></p>
+<p><em>图源：第 3.1 节《差分分析-1》，第 30 页。表中是计数，除以 16 才是概率。</em></p>
+<p><strong>手算例：</strong> 课件中 <span class="arithmatex">\(\operatorname{DDT}[\texttt{2},\texttt{2}]=6\)</span>，故概率为 <span class="arithmatex">\(6/16\)</span>。考试给出 S 盒时，枚举所有 <span class="arithmatex">\(x\)</span>，计算 <span class="arithmatex">\(S(x)\oplus S(x\oplus a)\)</span> 并计数；不能照抄另一个 S 盒的表。</p>
+<h3 id="2_2">2 差分路线与差分的区别<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h3>
+<p><strong>差分路线</strong>固定每一轮边界的差分；<strong>差分</strong>只固定头尾，允许经过不同中间状态差分。</p>
+<ul>
+<li>单条路线：在轮密钥独立的乘积模型下，用各活跃 S 盒传播概率相乘估计。</li>
+<li>相同头尾的差分：不同中间差分序列对应互斥事件，应将各路线的真实概率相加。</li>
+</ul>
+<p>CipherFour 课件给出四条同头尾路线，每条近似概率为 <span class="arithmatex">\((6/16)^4\)</span>，故这些路线的合计贡献约为</p>
+<div class="arithmatex">\[
+4(6/16)^4\approx0.0791.
+\]</div>
+<p>“沿一条路线相乘，同头尾不同路线相加”是计算题的关键。<strong>活跃 S 盒</strong>指输入差分非零的 S 盒；若每个活跃 S 盒的概率至多为 <span class="arithmatex">\(p_{\max}\)</span>，含 <span class="arithmatex">\(a\)</span> 个活跃 S 盒的路线在乘积模型下至多为 <span class="arithmatex">\(p_{\max}^{a}\)</span>。</p>
+<h3 id="3_1">3 如何从区分器恢复密钥<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p>将算法拆成“<span class="arithmatex">\(r\)</span> 轮高概率差分 + 末轮”，写出五步即可形成完整答案：</p>
+<ol>
+<li><strong>采样：</strong> 收集输入差分为 <span class="arithmatex">\(\alpha\)</span> 的明文对及其密文。</li>
+<li><strong>预筛：</strong> 利用末轮传播的必要条件，丢弃肯定不可能满足目标差分的数据对。</li>
+<li><strong>猜测：</strong> 枚举影响目标位置的末轮子密钥，部分解密密文。</li>
+<li><strong>计数：</strong> 若还原后的差分为 <span class="arithmatex">\(\beta\)</span>，给该候选加一；统计全部数据后排序。</li>
+<li><strong>验证：</strong> 用额外明密文检验高分候选，继续恢复剩余密钥。</li>
+</ol>
+<p>CipherFour 的末轮半字节检验形如</p>
+<div class="arithmatex">\[
+S^{-1}(C_j\oplus\kappa)\oplus S^{-1}(C'_j\oplus\kappa)=\beta_j.
+\]</div>
+<p><strong>正确对</strong>是命中内部目标差分的文本对；<strong>正确密钥</strong>是实际使用的密钥。统计攻击通过大量文本对的命中次数区分候选。</p>
+<blockquote>
+<p>普通差分里，命中一次只增加证据，未命中一次不能删除密钥。错误候选通常接近随机基准，正确候选预期具有更多命中。</p>
+</blockquote>
+<p>若采样 <span class="arithmatex">\(N\)</span> 对，目标差分概率 <span class="arithmatex">\(p\)</span>，预筛保留比例 <span class="arithmatex">\(\rho\)</span>，每个保留对平均给 <span class="arithmatex">\(\eta\)</span> 个候选加分，猜测 <span class="arithmatex">\(k\)</span> 比特，则课件的信噪比近似为</p>
+<div class="arithmatex">\[
+\mathrm{SNR}\approx\frac{Np}{N\rho\eta/2^k}
+=\frac{2^kp}{\rho\eta}.
+\]</div>
+<p>例如 <span class="arithmatex">\(p\approx0.08,\rho\approx0.11,\eta\approx4,k=4\)</span>，得到约 <span class="arithmatex">\(2.9\)</span>。该比值衡量信号相对平均噪声的强弱。数据量按目标成功率选取，使预期正确对数 <span class="arithmatex">\(Np\)</span> 足以支持候选排序。</p>
+<h3 id="4">4 截断差分：只规定一部分差分信息<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>截断差分研究一个差分集合。例如 <span class="arithmatex">\(*0**\)</span> 只规定第二位为零，其他位任意，代表八个具体差分。若星号定义为“任意值”，它包含零；若题目另用活跃符号表示“非零”，必须区分。</p>
+<p>课件中输入差分 <span class="arithmatex">\(\texttt{2}\)</span> 经 S 盒只能输出 <span class="arithmatex">\(\texttt{1},\texttt{2},\texttt{9},\texttt{A}\)</span>，这些值有共同的零比特，可以合并成一个截断模式。完整差分各自概率可能不高，共同模式的概率却可能为 <span class="arithmatex">\(1\)</span>。经过下一轮时，先传播兼容的具体差分，再提取共同约束。</p>
+<p><strong>明文结构体</strong>用较少查询制造大量数据对：固定其他位置，让一个 <span class="arithmatex">\(m\)</span> 比特位置遍历 <span class="arithmatex">\(2^m\)</span> 个值，可形成</p>
+<div class="arithmatex">\[
+\binom{2^m}{2}\approx2^{2m-1}
+\]</div>
+<p>个无序对。例如活跃一个半字节产生 16 个明文、120 个对。这些对可共享明文，差分值随配对而变化。</p>
+<p>恢复密钥时可在区分器首尾扩轮，猜首轮密钥筛出满足输入要求的对，再猜末轮密钥检验输出模式。若区分器是概率 <span class="arithmatex">\(1\)</span> 的必要条件，违反它可以排除候选；若只是较高概率事件，则仍应统计。因此<strong>“截断”描述约束是否完整，不决定必须计数还是删除。</strong></p>
+<h3 id="5">5 不可能差分：触发禁忌就删除密钥<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p>不可能差分满足 <span class="arithmatex">\(\Pr[\alpha\to\beta]=0\)</span>。最典型的构造是<strong>中间相错</strong>：输入正向必然到达集合 <span class="arithmatex">\(\mathcal A\)</span>，输出反向必然到达集合 <span class="arithmatex">\(\mathcal B\)</span>，在同一轮边界证明</p>
+<div class="arithmatex">\[
+\mathcal A\cap\mathcal B=\varnothing.
+\]</div>
+<p><img alt="不可能差分的中间相错" src="../../assets/course-slides/impossible-miss-in-middle.png" /></p>
+<p><em>图源：《不可能差分分析》，第 14 页。两个方向都要使用必然成立的传播约束。</em></p>
+<p>恢复步骤：扩展首尾轮 → 收集并过滤数据对 → 猜测边界子密钥 → 部分加解密 → <strong>若得到被禁止的内部差分，则删除该候选</strong>。其余候选继续接受后续数据对的检验。</p>
+<p><strong>Feistel 左右顺序易错点。</strong> 若一轮定义为</p>
+<div class="arithmatex">\[
+(L_i,R_i)=(R_{i-1},L_{i-1}\oplus F_i(R_{i-1})),
+\]</div>
+<p>且 <span class="arithmatex">\(F_i\)</span> 为双射，则课件五轮结论在轮内顺序下是</p>
+<div class="arithmatex">\[
+(\alpha,0)\not\xrightarrow{5R}(0,\alpha),\qquad\alpha\ne0.
+\]</div>
+<p>正向两轮得到 <span class="arithmatex">\((\alpha,\beta)\)</span>，<span class="arithmatex">\(\beta\ne0\)</span>；假设末端为 <span class="arithmatex">\((0,\alpha)\)</span>，反向三轮得到 <span class="arithmatex">\((\alpha\oplus\delta,\gamma)\)</span>，<span class="arithmatex">\(\delta\ne0\)</span>，左半支矛盾。若末端额外交换后再记为密文，同一结论写成 <span class="arithmatex">\((\alpha,0)\not\to(\alpha,0)\)</span>。<strong>先标明轮内顺序、末尾交换及逆函数返回顺序，再判断截图中的 <span class="arithmatex">\((0,\alpha)\)</span> 是否写反。</strong></p>
+<p>六轮例子的密文采用 <span class="arithmatex">\(C=(R_6,L_6)\)</span> 时，逆去末轮所得轮内状态为</p>
+<div class="arithmatex">\[
+(L_5,R_5)=(C^L\oplus F_\kappa(C^R),C^R).
+\]</div>
+<p>因此预筛 <span class="arithmatex">\(\Delta C^R=\alpha\)</span> 后，若 <span class="arithmatex">\(F_\kappa(C_i^R)\oplus F_\kappa(C_j^R)=\Delta C^L\)</span>，恰好得到禁忌 <span class="arithmatex">\((0,\alpha)\)</span>，应删除 <span class="arithmatex">\(\kappa\)</span>。</p>
+<p><strong>复杂度计算。</strong> 课件六轮例子设分组长 <span class="arithmatex">\(b\)</span>、末轮子密钥长 <span class="arithmatex">\(k\)</span>，每个结构体约有 <span class="arithmatex">\(2^{b/2}\)</span> 个明文，过滤后约 <span class="arithmatex">\(2^{b/2-1}\)</span> 对。独立近似下，一个结构体使错误候选留存比例约为 <span class="arithmatex">\(e^{-1/2}\)</span>；<span class="arithmatex">\(s\)</span> 个结构体后约剩 <span class="arithmatex">\((2^k-1)e^{-s/2}\)</span> 个。候选虽然递减，仍要遍历最初的 <span class="arithmatex">\(2^k\)</span> 个候选并处理数据对，课件模型约需 <span class="arithmatex">\(2^{k+b/2+1.34}\)</span> 次轮函数运算，若六次轮函数计作一次完整六轮加密，约为 <span class="arithmatex">\(2^{k+b/2-1.24}\)</span> 次完整加密。几何级数只改变常数因子，没有消除对 <span class="arithmatex">\(k\)</span> 的指数增长。这里 <span class="arithmatex">\(k\)</span> 是末轮子密钥长度，<span class="arithmatex">\(K\)</span> 才是完整密钥长度：若两者相同，直接穷举往往更便宜；若只恢复局部子密钥，应计入剩余密钥恢复成本后与 <span class="arithmatex">\(2^K\)</span> 比较。</p>
+<h3 id="6">6 飞去来器 增强飞去来器和矩形<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>把密码拆成两段：上段有 <span class="arithmatex">\(\alpha\to\beta\)</span>、概率 <span class="arithmatex">\(p\)</span>；下段有 <span class="arithmatex">\(\phi\to\gamma\)</span>、概率 <span class="arithmatex">\(q\)</span>。将连接线性层并入其中一段后，若 <span class="arithmatex">\(\beta\ne\phi\)</span>，不能沿同一对文本直接串接；若把线性层 <span class="arithmatex">\(A\)</span> 单列，则串接条件是 <span class="arithmatex">\(A\beta=\phi\)</span>。飞去来器用四个文本，让上段差分对应横边、下段对应竖边，在中间建立平行四边形关系。</p>
+<p><img alt="飞去来器四元组" src="../../assets/course-slides/boomerang-quartet.png" /></p>
+<p><em>图源：第 3.3 节《飞去来器攻击和矩形攻击》，第 6 页。线性或仿射连接层保持“四个状态异或为零”的关系。</em></p>
+<p><strong>经典飞去来器：</strong> 选择 <span class="arithmatex">\(P_1,P_2\)</span> 使差分为 <span class="arithmatex">\(\alpha\)</span>，取得 <span class="arithmatex">\(C_1,C_2\)</span>；主动构造 <span class="arithmatex">\(C_3=C_1\oplus\gamma,C_4=C_2\oplus\gamma\)</span> 并查询解密；检查 <span class="arithmatex">\(P_3\oplus P_4=\alpha\)</span>。它需要选择明文和选择密文能力。在两段差分适用且相关性可忽略的课件模型下，两次上段、两次下段的成功贡献约为 <span class="arithmatex">\(p^2q^2\)</span>。</p>
+<p><strong>增强飞去来器：</strong> 只选两对输入差分均为 <span class="arithmatex">\(\alpha\)</span> 的明文，观察密文侧两个跨对差分是否均为 <span class="arithmatex">\(\gamma\)</span>。由于无法主动构造密文，中间跨对差分还要偶然对齐，多出约 <span class="arithmatex">\(2^{-n}\)</span> 的代价。</p>
+<p>下表取非零 <span class="arithmatex">\(\alpha,\gamma\)</span>，只统计非退化四元组。经典版排除 <span class="arithmatex">\(C_1\oplus C_2=\gamma\)</span> 的情形，否则只是把原密文对交换后解密，会自动成功；增强版要求四个明文互不相同。</p>
+<table>
+<thead>
+<tr>
+<th>对一个候选四元组的模型</th>
+<th>经典飞去来器</th>
+<th>增强飞去来器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>具体密码成功概率近似</td>
+<td><span class="arithmatex">\(p^2q^2\)</span></td>
+<td><span class="arithmatex">\(2^{-n}p^2q^2\)</span></td>
+</tr>
+<tr>
+<td>随机置换基准近似</td>
+<td><span class="arithmatex">\(2^{-n}\)</span></td>
+<td><span class="arithmatex">\(2^{-2n}\)</span></td>
+</tr>
+<tr>
+<td>相对随机基准的概率比</td>
+<td><span class="arithmatex">\(2^np^2q^2\)</span></td>
+<td><span class="arithmatex">\(2^np^2q^2\)</span></td>
+</tr>
+<tr>
+<td>查询能力</td>
+<td>选择明文与选择密文</td>
+<td>选择明文</td>
+</tr>
+</tbody>
+</table>
+<p>“增强”体现在<strong>候选四元组数的平方增长和选择明文模型</strong>。准备 <span class="arithmatex">\(N\)</span> 个明文对，可以配出约 <span class="arithmatex">\(\binom N2\)</span> 个候选四元组，期望成功数约为 <span class="arithmatex">\(\binom N2 2^{-n}p^2q^2\)</span>。大量候选积累出可检测的统计信号。</p>
+<p><strong>矩形攻击</strong>进一步汇总相容的中间差分。常见独立近似下，令 <span class="arithmatex">\(p_\beta=\Pr[\alpha\to\beta]\)</span>、<span class="arithmatex">\(q_\phi=\Pr[\phi\to\gamma]\)</span>，用 <span class="arithmatex">\(\widehat p^{\,2}=\sum_\beta p_\beta^2\)</span>、<span class="arithmatex">\(\widehat q^{\,2}=\sum_\phi q_\phi^2\)</span> 汇总贡献，形式类似 <span class="arithmatex">\(2^{-n}\widehat p^{\,2}\widehat q^{\,2}\)</span>。计算时先将同头尾路线合成差分概率，再对相容中间差分的概率分别平方求和；沿用前述独立近似。</p>
+<p>详见：<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86%E6%94%BB%E5%87%BB/">普通差分</a>、<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E6%88%AA%E6%96%AD%E5%B7%AE%E5%88%86/">截断差分</a>、<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/">不可能差分</a>、<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E9%A3%9E%E5%8E%BB%E6%9D%A5%E5%99%A8%E6%94%BB%E5%87%BB/">飞去来器与矩形</a>。</p>
+<h2 id="_4">四 线性类攻击<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="1-lat">1 掩码 偏差 相关度和 LAT<a class="headerlink" href="#1-lat" title="Permanent link">&para;</a></h3>
+<p>线性分析研究<strong>比特的异或和是否有偏差</strong>，通常使用已知明文。掩码 <span class="arithmatex">\(a\)</span> 指出选择哪些比特，内积定义为 <span class="arithmatex">\(a\cdot x=\bigoplus_i a_ix_i\)</span>。例如 <span class="arithmatex">\(a=101\)</span> 表示取 <span class="arithmatex">\(x_1\oplus x_3\)</span>。</p>
+<p>对 S 盒研究 <span class="arithmatex">\(a\cdot x\oplus b\cdot S(x)=0\)</span>，设成立输入数为 <span class="arithmatex">\(N_0\)</span>，输入宽度为 <span class="arithmatex">\(m\)</span>，则</p>
+<div class="arithmatex">\[
+p=\frac{N_0}{2^m},\qquad
+\varepsilon=p-\frac12,\qquad
+c=2\varepsilon=2p-1.
+\]</div>
+<p>本笔记采用中心化 LAT：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\operatorname{LAT}[a,b]&amp;=N_0-2^{m-1},\\
+\varepsilon&amp;=\frac{\operatorname{LAT}[a,b]}{2^m},\\
+c&amp;=\frac{\operatorname{LAT}[a,b]}{2^{m-1}}.
+\end{aligned}
+\]</div>
+<p>有的材料把 <span class="arithmatex">\(N_0\)</span>、Walsh 值 <span class="arithmatex">\(2N_0-2^m\)</span> 或相关度也称作 LAT；<strong>先看定义再换算</strong>。例如 4 比特 S 盒有 12 个输入满足等式，则 <span class="arithmatex">\(p=3/4,\varepsilon=1/4,c=1/2\)</span>，此处 LAT 项为 4，Walsh 值为 8。负偏差同样有用，只是等式更倾向不成立。</p>
+<p>双射 S 盒中，非零单侧掩码的线性比特均匀，故 <span class="arithmatex">\(\operatorname{LAT}[a,0]=\operatorname{LAT}[0,b]=0\)</span>（<span class="arithmatex">\(a,b\ne0\)</span>）；<span class="arithmatex">\((0,0)\)</span> 是恒真式，没有攻击价值。若输入输出等宽且 <span class="arithmatex">\(m\ge2\)</span>，此定义下 LAT 项为偶数。</p>
+<h3 id="2_3">2 掩码传播不能照抄差分传播<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h3>
+<p>若 <span class="arithmatex">\(y=Lx\)</span>，有</p>
+<div class="arithmatex">\[
+b\cdot y=(L^{\mathsf T}b)\cdot x,
+\qquad a=L^{\mathsf T}b.
+\]</div>
+<p>差分沿数据方向用 <span class="arithmatex">\(L\)</span> 传播；掩码的相容条件用转置 <span class="arithmatex">\(L^{\mathsf T}\)</span>。密钥异或满足 <span class="arithmatex">\(b\cdot(x\oplus k)=b\cdot x\oplus b\cdot k\)</span>，引入固定密钥奇偶项，不改变偏差绝对值。</p>
+<p><img alt="线性掩码的异或与分支规则" src="../../assets/course-slides/linear-mask-propagation.png" /></p>
+<p><em>图源：第 4.1 节《线性分析》，第 54 页。</em></p>
+<ul>
+<li>异或结点 <span class="arithmatex">\(y=x_1\oplus x_2\)</span>：输出掩码 <span class="arithmatex">\(b\)</span> 分别传给两个输入。</li>
+<li>复制结点 <span class="arithmatex">\(x\mapsto(x,x)\)</span>：两个输出掩码 <span class="arithmatex">\(b_1,b_2\)</span> 在输入合并为 <span class="arithmatex">\(b_1\oplus b_2\)</span>。</li>
+<li>S 盒：选择 LAT 非零的掩码对，并使相邻部件的中间掩码抵消。</li>
+</ul>
+<h3 id="3_2">3 堆积引理与线性包<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h3>
+<p>对相互独立的二值误差 <span class="arithmatex">\(Z_i\)</span>，设 <span class="arithmatex">\(\Pr[Z_i=0]=1/2+\varepsilon_i\)</span>，则</p>
+<div class="arithmatex">\[
+\varepsilon_{\oplus}=2^{s-1}\prod_{i=1}^s\varepsilon_i,
+\qquad c_{\oplus}=\prod_{i=1}^sc_i.
+\]</div>
+<p><strong>手算例：</strong> 两个独立近似的偏差都为 <span class="arithmatex">\(1/4\)</span>，异或后偏差为 <span class="arithmatex">\(2(1/4)^2=1/8\)</span>，等式成立概率为 <span class="arithmatex">\(5/8\)</span>。若其中一个偏差为 <span class="arithmatex">\(-1/4\)</span>，结果为 <span class="arithmatex">\(-1/8\)</span>，概率为 <span class="arithmatex">\(3/8\)</span>。异或后的偏差用堆积引理计算。</p>
+<p>一条<strong>线性路线</strong>固定各层掩码；同头尾的所有路线构成<strong>线性包</strong>。路线贡献具有符号，固定密钥下整体相关度是各路线带符号贡献之和，可能相互增强或抵消；求和时保留每条路线的符号。</p>
+<h3 id="4-matsui-1">4 Matsui 算法 1：判断密钥奇偶位<a class="headerlink" href="#4-matsui-1" title="Permanent link">&para;</a></h3>
+<p>设线性近似为 <span class="arithmatex">\(a\cdot P\oplus b\cdot C=\theta(K)\)</span>，以概率 <span class="arithmatex">\(p=1/2+\varepsilon\)</span> 成立。统计 <span class="arithmatex">\(N\)</span> 组明密文中左侧为零的次数 <span class="arithmatex">\(T\)</span>：</p>
+<table>
+<thead>
+<tr>
+<th>已知偏差符号</th>
+<th><span class="arithmatex">\(T&gt;N/2\)</span></th>
+<th><span class="arithmatex">\(T&lt;N/2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\varepsilon&gt;0\)</span></td>
+<td>猜 <span class="arithmatex">\(\theta=0\)</span></td>
+<td>猜 <span class="arithmatex">\(\theta=1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\varepsilon&lt;0\)</span></td>
+<td>猜 <span class="arithmatex">\(\theta=1\)</span></td>
+<td>猜 <span class="arithmatex">\(\theta=0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>统一记法：<span class="arithmatex">\((T-N/2)\varepsilon&gt;0\)</span> 时猜零，小于零时猜一；恰好相等则无法据此区分。算法 1 恢复<strong>一个密钥比特的线性组合</strong>。</p>
+<p>下标例子应保持一致：若 <span class="arithmatex">\(u=P\oplus k_0,v=C\oplus k_1\)</span>，把 <span class="arithmatex">\(a\cdot u\oplus b\cdot v=0\)</span> 展开，右侧就是 <span class="arithmatex">\(a\cdot k_0\oplus b\cdot k_1\)</span>。</p>
+<h3 id="5-matsui-2">5 Matsui 算法 2：猜边界子密钥，比较偏离程度<a class="headerlink" href="#5-matsui-2" title="Permanent link">&para;</a></h3>
+<p>用前 <span class="arithmatex">\(r\)</span> 轮近似攻击 <span class="arithmatex">\(r+1\)</span> 轮算法。对每个末轮子密钥候选 <span class="arithmatex">\(\kappa\)</span>，部分解密得到 <span class="arithmatex">\(Y_\kappa\)</span>，统计</p>
+<div class="arithmatex">\[
+T_\kappa=\#\{i:a\cdot P_i\oplus b\cdot Y_{\kappa,i}=0\},
+\qquad\text{评分}=|T_\kappa-N/2|.
+\]</div>
+<p>正确候选保留近似的偏差，计数可能高于或低于 <span class="arithmatex">\(N/2\)</span>；未知密钥奇偶项决定方向。在错误密钥随机化近似下，错误候选更接近 <span class="arithmatex">\(N/2\)</span>。因此<strong>按绝对偏离排序</strong>，再验证高分候选并恢复剩余密钥。</p>
+<p>频率的抽样波动约为 <span class="arithmatex">\(O(N^{-1/2})\)</span>，要识别偏差 <span class="arithmatex">\(|\varepsilon|\)</span>，固定成功率下通常需 <span class="arithmatex">\(N=O(|\varepsilon|^{-2})\)</span>。候选数量和目标成功率决定具体数据量。朴素枚举 <span class="arithmatex">\(k\)</span> 比特候选的局部运算时间约为 <span class="arithmatex">\(O(N2^k)\)</span>，数据复杂度与计算时间要分开写。</p>
+<h3 id="6_1">6 差分—线性：连接的是差分的掩码奇偶值<a class="headerlink" href="#6_1" title="Permanent link">&para;</a></h3>
+<p>拆分 <span class="arithmatex">\(E=E_1\circ E_0\)</span>。前段作用在一对明文上，产生中间差分 <span class="arithmatex">\(\Delta X=X\oplus X'\)</span>；后段使用线性近似 <span class="arithmatex">\(\lambda\cdot X\oplus\mu\cdot Y=0\)</span>，单次偏差为 <span class="arithmatex">\(\varepsilon\)</span>。</p>
+<p>接口需要的不是完整 <span class="arithmatex">\(\Delta X\)</span>，而是</p>
+<div class="arithmatex">\[
+\Pr[\lambda\cdot\Delta X=0]=\frac12+\varepsilon_d.
+\]</div>
+<p>将两次后段近似异或，中间项合成 <span class="arithmatex">\(\lambda\cdot\Delta X\)</span>。若两个线性误差与接口奇偶误差可按独立模型处理，三项应用堆积引理得到</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Pr[\mu\cdot(Y\oplus Y')=0]&amp;=\frac12+4\varepsilon_d\varepsilon^2,\\
+\varepsilon_{\mathrm{DL}}&amp;=4\varepsilon_d\varepsilon^2.
+\end{aligned}
+\]</div>
+<p>两个典型情形必须区分：</p>
+<ul>
+<li>截断差分保证 <span class="arithmatex">\(\lambda\cdot\Delta X=0\)</span>：<span class="arithmatex">\(\varepsilon_d=1/2\)</span>，故整体偏差为 <span class="arithmatex">\(2\varepsilon^2\)</span>。</li>
+<li>一条概率为 <span class="arithmatex">\(p\)</span> 的差分保证该奇偶值为零，并<strong>额外假设其他情况奇偶均匀</strong>：接口为零概率 <span class="arithmatex">\(p+(1-p)/2=(1+p)/2\)</span>，故 <span class="arithmatex">\(\varepsilon_d=p/2\)</span>，整体偏差为 <span class="arithmatex">\(2p\varepsilon^2\)</span>。若保证奇偶为一，则符号反向。</li>
+</ul>
+<p>例如接口恒为零、后段偏差 <span class="arithmatex">\(\varepsilon=1/4\)</span>，整体偏差为 <span class="arithmatex">\(1/8\)</span>、成立概率为 <span class="arithmatex">\(5/8\)</span>。若只有概率 <span class="arithmatex">\(p=1/4\)</span> 的上述路线且其余情况均匀，则偏差为 <span class="arithmatex">\(1/32\)</span>、概率为 <span class="arithmatex">\(17/32\)</span>。</p>
+<p>计算 <span class="arithmatex">\(\varepsilon_d\)</span> 时，汇总产生相同接口奇偶值的所有差分。获得整体偏差后，统计输出差分的掩码奇偶值即可区分；恢复密钥则继续扩首尾轮并检验候选。数据量通常按 <span class="arithmatex">\(|\varepsilon_{\mathrm{DL}}|^{-2}\)</span> 估计。</p>
+<p>详见：<a href="../../notes/04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">线性分析</a>、<a href="../../notes/04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">差分—线性分析</a>。</p>
+<h2 id="square">五 积分分析与 Square 攻击<a class="headerlink" href="#square" title="Permanent link">&para;</a></h2>
+<p>积分分析观察<strong>一组明文经过加密后，在同一位置形成的多重集性质</strong>。普通差分关注一对文本的差值；Square 则利用整组文本的异或和。</p>
+<h3 id="1_3">1 四种状态及传播规则<a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h3>
+<p>以下以一组 <span class="arithmatex">\(256\)</span> 个字节为例：</p>
+<table>
+<thead>
+<tr>
+<th>记号</th>
+<th>含义</th>
+<th>能否保证异或和为零</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(A\)</span>：活跃</td>
+<td><span class="arithmatex">\(0,\ldots,255\)</span> 恰好各出现一次</td>
+<td>能</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(C\)</span>：常数</td>
+<td><span class="arithmatex">\(256\)</span> 个值相同</td>
+<td>能，因为出现偶数次</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(B\)</span>：平衡</td>
+<td>全部值的异或和为 <span class="arithmatex">\(0\)</span>，不要求遍历</td>
+<td>能</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(?\)</span>：未知</td>
+<td>没有足够信息确定上述性质</td>
+<td>不能保证</td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(C\)</span> 都蕴含平衡，但 <span class="arithmatex">\(B\)</span> 不一定是 <span class="arithmatex">\(A\)</span> 或 <span class="arithmatex">\(C\)</span>；<span class="arithmatex">\(?\)</span> 也不代表异或和一定非零。这里的字节值来自<strong>不同明文的同一位置</strong>。</p>
+<p>必须会用的传播规则：</p>
+<ul>
+<li><strong>固定密钥异或</strong>：<span class="arithmatex">\(A\)</span> 仍为 <span class="arithmatex">\(A\)</span>，<span class="arithmatex">\(C\)</span> 仍为 <span class="arithmatex">\(C\)</span>；偶数个元素的 <span class="arithmatex">\(B\)</span> 仍为 <span class="arithmatex">\(B\)</span>。</li>
+<li><strong>可逆字节 S 盒</strong>：保持 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(C\)</span>，但一般不保持只有 <span class="arithmatex">\(B\)</span> 的集合。</li>
+<li><strong>字节位置置换</strong>：只移动性质所在的位置。</li>
+<li><strong>线性混合</strong>：输入各位置都平衡，输出也平衡，因为可以交换线性运算与整组异或的顺序。</li>
+<li><strong>一个 <span class="arithmatex">\(A\)</span> 与若干 <span class="arithmatex">\(C\)</span> 组合</strong>：若活跃字节的线性系数非零，仍为 <span class="arithmatex">\(A\)</span>。多个 <span class="arithmatex">\(A\)</span> 混合通常只能保证 <span class="arithmatex">\(B\)</span>；它们来自同一组明文，不能擅自当作互相独立。</li>
+</ul>
+<h3 id="2-aes">2 为什么 AES 三轮后平衡<a class="headerlink" href="#2-aes" title="Permanent link">&para;</a></h3>
+<p>选择 <span class="arithmatex">\(2^8=256\)</span> 个明文，使一个字节遍历全部值，其余 <span class="arithmatex">\(15\)</span> 个字节固定。初始轮密钥异或不改变这个结构。</p>
+<ol>
+<li><strong>第 1 轮后，一列四个 <span class="arithmatex">\(A\)</span>。</strong> 字节代换和行移位保持单个 <span class="arithmatex">\(A\)</span>；列混合的每个输出是该 <span class="arithmatex">\(A\)</span> 的非零倍数异或常数，所以该列四个字节都遍历。</li>
+<li><strong>第 2 轮后，十六个 <span class="arithmatex">\(A\)</span>。</strong> 字节代换保持遍历；行移位把四个 <span class="arithmatex">\(A\)</span> 分散到四列，每列一个；列混合又使每列四个字节都成为 <span class="arithmatex">\(A\)</span>。</li>
+<li><strong>第 3 轮后，十六个 <span class="arithmatex">\(B\)</span>。</strong> 字节代换保持十六个位置的遍历性，行移位只换位置；列混合把若干平衡字节序列线性组合，故每个输出位置仍平衡。此时不再保证遍历。</li>
+</ol>
+<p><img alt="AES 三轮积分区分器：一个活跃字节传播为十六个平衡字节" src="../../assets/course-slides/square-three-round-integral.png" /></p>
+<p>图源：《第5.1节 Square攻击》第 9 页。</p>
+<p>记第 <span class="arithmatex">\(i\)</span> 个明文经三轮后的第 <span class="arithmatex">\(j\)</span> 个字节为 <span class="arithmatex">\(Y_{i,j}\)</span>，则</p>
+<div class="arithmatex">\[
+\bigoplus_{i=0}^{255}Y_{i,j}=0,\qquad j=0,\ldots,15.
+\]</div>
+<p><strong>答题要点：</strong> 三轮平衡来自可逆代换保持遍历、线性层保持异或和；再过一轮非线性代换，单凭 <span class="arithmatex">\(B\)</span> 已不能继续推出平衡。</p>
+<h3 id="3_3">3 向后扩一轮恢复密钥<a class="headerlink" href="#3_3" title="Permanent link">&para;</a></h3>
+<p>对<strong>第 4 轮没有 MixColumns</strong> 的四轮 AES，猜末轮一个密钥字节 <span class="arithmatex">\(\kappa\)</span>，对每个密文做字节级部分解密：</p>
+<div class="arithmatex">\[
+T_j(\kappa)=\bigoplus_{i=0}^{255}S^{-1}(C_{i,j}\oplus\kappa).
+\]</div>
+<p>行移位只决定它对应三轮输出的哪个位置，不影响平衡检验。正确密钥必有 <span class="arithmatex">\(T_j(\kappa)=0\)</span>；非零即可删除候选，零则继续用其他结构检查。</p>
+<p>在错误密钥随机化近似下，一个结构让错误字节候选通过的概率约为 <span class="arithmatex">\(2^{-8}\)</span>。若 <span class="arithmatex">\(s\)</span> 个结构能近似独立过滤，一个字节的错误候选期望约为</p>
+<div class="arithmatex">\[
+(2^8-1)2^{-8s}.
+\]</div>
+<p>一个结构后约剩一个错误候选，继续用其他结构筛选，再结合密钥编排与明密文验证。</p>
+<p><strong>工作量例子：</strong> 每个结构需要 <span class="arithmatex">\(256\)</span> 个选择明文；猜一个字节的 <span class="arithmatex">\(256\)</span> 个候选、对每个候选处理 <span class="arithmatex">\(256\)</span> 条数据，共约 <span class="arithmatex">\(2^{16}\)</span> 次逆 S 盒运算。处理 <span class="arithmatex">\(16\)</span> 个字节约 <span class="arithmatex">\(2^{20}\)</span> 次逆 S 盒运算。外加轮包含 MixColumns 时，按列处理混合及相关密钥依赖。</p>
+<p>详见：<a href="../../notes/05-%E7%A7%AF%E5%88%86%E5%88%86%E6%9E%90/Square%E6%94%BB%E5%87%BB/">Square 攻击</a>。</p>
+<h2 id="_5">六 中间相遇攻击<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>中间相遇（MITM）把运算分为两段：从明文正向算，从密文反向算，在中间状态或某种关系上比较。它省时间的关键是<strong>两边能分别枚举较小的未知量</strong>，并用足够多的匹配信息排除错误组合；常以大量存储为代价。</p>
+<h3 id="1-des">1 双重 DES 必会推导<a class="headerlink" href="#1-des" title="Permanent link">&para;</a></h3>
+<p>两个独立的 <span class="arithmatex">\(56\)</span> 位密钥满足</p>
+<div class="arithmatex">\[
+C=E_{K_2}(E_{K_1}(P)),\qquad E_{K_1}(P)=D_{K_2}(C).
+\]</div>
+<p><img alt="双重 DES 的中间状态及建表查表过程" src="../../assets/course-slides/mitm-double-des.png" /></p>
+<p>图源：《第6章 中间相遇攻击》第 7 页。</p>
+<p>已知一对明密文 <span class="arithmatex">\((P,C)\)</span>：</p>
+<ol>
+<li>枚举 <span class="arithmatex">\(2^{56}\)</span> 个 <span class="arithmatex">\(K_1\)</span>，存储 <span class="arithmatex">\((E_{K_1}(P),K_1)\)</span>，按中间值建表。同一个值对应多个密钥时全部保留。</li>
+<li>枚举 <span class="arithmatex">\(2^{56}\)</span> 个 <span class="arithmatex">\(K_2\)</span>，计算 <span class="arithmatex">\(D_{K_2}(C)\)</span> 并查表。每次相等给出候选密钥对。</li>
+<li>用额外明密文验证候选。相遇只是必要条件，不能保证候选正确。</li>
+</ol>
+<p>在理想随机匹配近似下，错误密钥对匹配一个 <span class="arithmatex">\(64\)</span> 位中间值的概率约为 <span class="arithmatex">\(2^{-64}\)</span>。因此第一对数据后，错误候选期望数为</p>
+<div class="arithmatex">\[
+2^{112}\cdot2^{-64}=2^{48}.
+\]</div>
+<p>第二对不同明密文再提供约 <span class="arithmatex">\(64\)</span> 位约束，错误候选期望降为</p>
+<div class="arithmatex">\[
+2^{48}\cdot2^{-64}=2^{-16}.
+\]</div>
+<table>
+<thead>
+<tr>
+<th>资源</th>
+<th>数量及计量单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据</td>
+<td>约两对已知明密文，必要时继续验证</td>
+</tr>
+<tr>
+<td>初筛时间</td>
+<td><span class="arithmatex">\(2^{56}+2^{56}=2^{57}\)</span> 次单 DES 运算</td>
+</tr>
+<tr>
+<td>复筛时间</td>
+<td>约 <span class="arithmatex">\(2\cdot2^{48}\)</span> 次单 DES 运算，低于初筛主项</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>约 <span class="arithmatex">\(2^{56}\)</span> 条中间值及对应密钥的表项</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么强于穷举？</strong> 直接枚举的是 <span class="arithmatex">\(2^{112}\)</span> 个密钥对；中间相遇分别做两个 <span class="arithmatex">\(2^{56}\)</span> 规模的列表。<span class="arithmatex">\(112\)</span> 位是密钥对的长度，不等于这种攻击下的时间安全强度。<span class="arithmatex">\(2^{57}\)</span> 次单 DES 约相当于 <span class="arithmatex">\(2^{56}\)</span> 次双重 DES；比较复杂度要先统一单位。</p>
+<h3 id="2_4">2 一般形式与部分比特匹配<a class="headerlink" href="#2_4" title="Permanent link">&para;</a></h3>
+<p>设正向专用未知位为 <span class="arithmatex">\(k_f\)</span> 位，反向专用未知位为 <span class="arithmatex">\(k_b\)</span> 位，共同依赖 <span class="arithmatex">\(k_j\)</span> 位；三者按不同的独立密钥位计数。每固定一个共同猜测，就建立并匹配两个表。忽略每次局部计算代价的差别，初筛时间与存储约为</p>
+<div class="arithmatex">\[
+T_{\mathrm{初筛}}\sim2^{k_j}(2^{k_f}+2^{k_b}),\qquad
+M\sim2^{\min(k_f,k_b)}\text{ 条表项}.
+\]</div>
+<p>每个共同猜测依次处理并复用同一张表，密钥位按独立自由位计数。若只能比较 <span class="arithmatex">\(\ell\)</span> 位、总独立猜测位数 <span class="arithmatex">\(k=k_f+k_b+k_j\)</span>，错误候选期望约为</p>
+<div class="arithmatex">\[
+N_{\mathrm{错}}\approx2^{k-\ell}.
+\]</div>
+<p>少匹配一些位可能让两侧更容易独立计算，却会增加后续验证量。<strong>总时间必须包括建表、查表、处理匹配项和复筛</strong>；候选过多时，列举或验证候选反而成为主项。</p>
+<p><strong>计算例子：</strong> 两边各有 <span class="arithmatex">\(32\)</span> 位独立密钥，只匹配 <span class="arithmatex">\(24\)</span> 位。初筛约 <span class="arithmatex">\(2^{33}\)</span> 次局部计算，但错误候选约 <span class="arithmatex">\(2^{64-24}=2^{40}\)</span> 个，因此不能仅报 <span class="arithmatex">\(2^{33}\)</span> 的总时间。还需增加有效匹配信息，或计入处理这 <span class="arithmatex">\(2^{40}\)</span> 个候选的成本。</p>
+<h3 id="3-2k3des">3 2K3DES 为什么要拼切<a class="headerlink" href="#3-2k3des" title="Permanent link">&para;</a></h3>
+<p>两密钥三重 DES 为</p>
+<div class="arithmatex">\[
+C=E_{K_1}(D_{K_2}(E_{K_1}(P))).
+\]</div>
+<p>同一个 <span class="arithmatex">\(K_1\)</span> 出现在首尾，普通切分时两边密钥依赖重叠。课件的拼切方法固定内部值为 <span class="arithmatex">\(0\)</span>：先对所有 <span class="arithmatex">\(K_2\)</span> 存储 <span class="arithmatex">\(D_{K_2}(0)\)</span>；对每个 <span class="arithmatex">\(K_1\)</span> 猜测选择</p>
+<div class="arithmatex">\[
+P=D_{K_1}(0),
+\]</div>
+<p>查询其真实密文 <span class="arithmatex">\(C\)</span>，再计算 <span class="arithmatex">\(D_{K_1}(C)\)</span> 查表。猜对时，第一层输出确为 <span class="arithmatex">\(0\)</span>，所以满足</p>
+<div class="arithmatex">\[
+D_{K_1}(C)=D_{K_2}(0).
+\]</div>
+<p>这个模型的计算量、表项数和<strong>选择明文查询数</strong>均为 <span class="arithmatex">\(2^{56}\)</span> 量级。</p>
+<h3 id="4-aes">4 AES 的集合映射相遇<a class="headerlink" href="#4-aes" title="Permanent link">&para;</a></h3>
+<p>相遇对象还可以是“<span class="arithmatex">\(256\)</span> 个输入对应的输出序列”。课件的约简轮 AES 示例从一个字节遍历、其余固定的集合出发，研究四轮后的一个输出字节如何随输入变化。</p>
+<p>该有序映射受轮结构及有限参数约束，可能的映射远少于任意 <span class="arithmatex">\(256\)</span> 项字节表。攻击可先预计算允许的映射，再猜前后附加轮的相关子密钥，通过部分加密、部分解密构造映射并查表。<strong>映射不在表中便排除猜测；在表中仍需验证。</strong></p>
+<p>它与 Square 都可使用结构化明文集合，但检验条件不同：Square 检验异或和是否为零；映射相遇检验整组输入输出关系是否属于允许集合。课件分析七轮 AES-256，采用 <span class="arithmatex">\(1+4+2\)</span> 结构，分别计算预计算、在线时间、数据与存储。</p>
+<p>详见：<a href="../../notes/06-%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87/%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87%E6%94%BB%E5%87%BB/">中间相遇攻击</a>。</p>
+<h2 id="_6">七 杂凑函数安全性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="1_4">1 三种目标与通用复杂度<a class="headerlink" href="#1_4" title="Permanent link">&para;</a></h3>
+<p>设输出为 <span class="arithmatex">\(n\)</span> 比特。<strong>先问哪一端被指定，再选复杂度公式。</strong></p>
+<table>
+<thead>
+<tr>
+<th>攻击目标</th>
+<th>题目给定</th>
+<th>攻击者寻找</th>
+<th>理想模型下的工作量级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原像</td>
+<td>摘要 <span class="arithmatex">\(y\)</span></td>
+<td><span class="arithmatex">\(H(M)=y\)</span> 的消息 <span class="arithmatex">\(M\)</span></td>
+<td><span class="arithmatex">\(2^n\)</span></td>
+</tr>
+<tr>
+<td>第二原像</td>
+<td>消息 <span class="arithmatex">\(M\)</span></td>
+<td><span class="arithmatex">\(M'\ne M\)</span> 且 <span class="arithmatex">\(H(M')=H(M)\)</span></td>
+<td>普通固定目标约 <span class="arithmatex">\(2^n\)</span></td>
+</tr>
+<tr>
+<td>碰撞</td>
+<td>无须指定消息或摘要</td>
+<td>任意两个不同消息且摘要相同</td>
+<td><span class="arithmatex">\(2^{n/2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>碰撞必然存在，安全性要求的是<strong>难以找到碰撞</strong>。长消息的第二原像攻击利用迭代结构，可能偏离上表的理想随机函数基准。</p>
+<p>对 <span class="arithmatex">\(q\)</span> 个不同消息，假设输出独立且均匀，生日碰撞概率为</p>
+<div class="arithmatex">\[
+P_{\mathrm{coll}}
+=1-\prod_{i=0}^{q-1}(1-i/2^n)
+\approx1-\exp\left(-\frac{q(q-1)}{2^{n+1}}\right).
+\]</div>
+<ul>
+<li><span class="arithmatex">\(q=2^{n/2}\)</span> 时，概率约为 <span class="arithmatex">\(1-e^{-1/2}=39.3\%\)</span>。</li>
+<li>达到约 <span class="arithmatex">\(50\%\)</span>，需 <span class="arithmatex">\(q\approx\sqrt{2\ln2}\,2^{n/2}\approx1.177\,2^{n/2}\)</span>。</li>
+<li>直接存表法的时间、存储均为 <span class="arithmatex">\(O(2^{n/2})\)</span>。</li>
+</ul>
+<p><strong>小题：</strong>64 比特杂凑值，取 <span class="arithmatex">\(2^{32}\)</span> 条消息，碰撞概率约为 <span class="arithmatex">\(39.3\%\)</span>；复杂度仍称 <span class="arithmatex">\(2^{32}\)</span> 量级。</p>
+<h3 id="2-4-tree">2 广义生日与 4-tree<a class="headerlink" href="#2-4-tree" title="Permanent link">&para;</a></h3>
+<p>4-SUM 的目标是从四个列表各选一项，使</p>
+<div class="arithmatex">\[
+x_1\oplus x_2\oplus x_3\oplus x_4=0,\qquad x_i\in L_i.
+\]</div>
+<p>四表各含 <span class="arithmatex">\(2^x\)</span> 个独立随机 <span class="arithmatex">\(n\)</span> 比特元素。4-tree 分两层处理：先合并 <span class="arithmatex">\(L_1,L_2\)</span> 以及 <span class="arithmatex">\(L_3,L_4\)</span>，仅保留异或值低 <span class="arithmatex">\(\ell\)</span> 位为零的对；再匹配两中间表剩余的 <span class="arithmatex">\(n-\ell\)</span> 位。用分桶或排序找低位匹配，避免把所有原始对全部列出。</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{每个中间表的期望大小}&amp;=2^{2x-\ell},\\
+\text{最终保留的期望解数}&amp;=2^{4x-\ell-n}.
+\end{aligned}
+\]</div>
+<p>平衡输入与中间表大小，取 <span class="arithmatex">\(x=\ell=n/3\)</span>，得到常数量级的期望解数，时间与空间约为 <span class="arithmatex">\(2^{n/3}\)</span>，忽略取整和排序等因子。搜索未命中时重新生成列表。</p>
+<p><img alt="广义生日攻击的树形合并" src="../../assets/course-slides/birthday-four-tree.png" /></p>
+<p><em>课件第 12.3.1 节第 20 页；图中的四表子树对应 4-tree。</em></p>
+<p><strong>两种规模的区别：</strong>四表各取 <span class="arithmatex">\(2^{n/4}\)</span> 项时，全部四元组的期望解数约为 1；4-tree 取 <span class="arithmatex">\(2^{n/3}\)</span> 项，是为了让逐层筛选后仍保留常数量级的解。这里求解的是独立随机列表的 4-SUM，普通杂凑碰撞仍使用生日界。</p>
+<h3 id="3-md">3 MD 结构、长度扩展与多碰撞<a class="headerlink" href="#3-md" title="Permanent link">&para;</a></h3>
+<p>MD 迭代结构为</p>
+<div class="arithmatex">\[
+H_0=IV,\qquad H_i=f(H_{i-1},M_i).
+\]</div>
+<p>两条路径一旦在同一位置得到相同链值，后续处理相同分组就始终相同。<strong>最终填充也属于后续分组</strong>，长度不能忽略。</p>
+<p>当摘要直接暴露完整末尾链值，且已知消息长度时，可以由 <span class="arithmatex">\(H(M)\)</span> 继续算出</p>
+<div class="arithmatex">\[
+H(M\parallel\operatorname{pad}(M)\parallel X).
+\]</div>
+<p>这称为长度扩展。扩展消息保留原填充，所以得到的是上式摘要，而非 <span class="arithmatex">\(H(M\parallel X)\)</span>。MD 强化编码长度，仍允许这种扩展。</p>
+<p>多碰撞：从当前链值找两个不同分组但终点相同，再从这个共同终点重复。做 <span class="arithmatex">\(r\)</span> 级，每级二选一，得到 <span class="arithmatex">\(2^r\)</span> 条等长消息。每级采用生日搜索时，构造这些选择所需工作约为 <span class="arithmatex">\(r2^{n/2}\)</span> 次压缩计算；显式列出全部消息的成本另算。等长保证最后填充一致。</p>
+<h3 id="4_1">4 长消息第二原像与可扩展消息<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
+<p>目标消息有约 <span class="arithmatex">\(2^d\)</span> 块，因而提供约 <span class="arithmatex">\(2^d\)</span> 个可用的不同中间状态。随机试验一个新链值，命中其中任意一个的概率约为 <span class="arithmatex">\(2^{d-n}\)</span>，预计桥接成本约为 <span class="arithmatex">\(2^{n-d}\)</span>。</p>
+<p><strong>没有长度强化：</strong>若从 <span class="arithmatex">\(IV\)</span> 经新分组 <span class="arithmatex">\(B\)</span> 到达目标的 <span class="arithmatex">\(H_i\)</span>，接上原后缀就可得到相同末尾状态。但新消息通常变短，不能把这一步原样用于带长度编码的情况。</p>
+<p><strong>有长度强化：</strong>先构造可扩展消息。第 <span class="arithmatex">\(j\)</span> 级提供长度分别为 <span class="arithmatex">\(1\)</span> 和 <span class="arithmatex">\(1+2^j\)</span> 的两条同终点路径，<span class="arithmatex">\(j=0,\ldots,d-1\)</span>。各级选长或短，得到长度覆盖</p>
+<div class="arithmatex">\[
+d,\ d+1,\ldots,d+2^d-1
+\]</div>
+<p>且终点均为 <span class="arithmatex">\(H_{\mathrm{exp}}\)</span> 的前缀族。这些前缀在最终填充之前汇合到同一<strong>中间链值</strong>。</p>
+<p><img alt="不同长度前缀到达相同链值的可扩展消息" src="../../assets/course-slides/hash-expandable-message.png" /></p>
+<p><em>课件第 12.2 节第 11 页。</em></p>
+<p>目标状态表只收录 <span class="arithmatex">\(d+1\le i\le\min(L,d+2^d)\)</span> 的 <span class="arithmatex">\(H_i\)</span>，保证 <span class="arithmatex">\(i-1\)</span> 落在前缀可选长度内。接下来寻找桥接分组 <span class="arithmatex">\(B\)</span>，使 <span class="arithmatex">\(f(H_{\mathrm{exp}},B)=H_i\)</span>；选用长度恰为 <span class="arithmatex">\(i-1\)</span> 块的可扩展前缀，再接 <span class="arithmatex">\(B\)</span> 和原后缀 <span class="arithmatex">\(M_{i+1}\parallel\cdots\parallel M_L\)</span>。这样接入位置和总长度都相同，最终填充也相同。最后核对 <span class="arithmatex">\(M'\ne M\)</span>。</p>
+<p>在理想压缩函数、足够可用且近似互异的目标状态等假设下，总工作量级为</p>
+<div class="arithmatex">\[
+d2^{n/2}+2^{n-d}+2^d.
+\]</div>
+<p>三项依次对应构造各级碰撞、桥接尝试、长路径及目标状态处理；计量单位是压缩函数计算。存储还需考虑目标状态表。当目标消息长约 <span class="arithmatex">\(2^{n/2}\)</span> 块、即 <span class="arithmatex">\(d\approx n/2\)</span> 时，主指数接近生日搜索。</p>
+<h3 id="5-md4">5 MD4 碰撞：比特追踪与消息修改<a class="headerlink" href="#5-md4" title="Permanent link">&para;</a></h3>
+<p>MD4 的消息块为 512 比特，链值为 128 比特，由四个 32 比特字组成；压缩过程有三轮、每轮 16 步，包含布尔函数、模 <span class="arithmatex">\(2^{32}\)</span> 加法、循环移位，最后与输入链值逐字前馈相加。同一输入链值下，最终四字状态相同就使压缩输出相同。</p>
+<p>碰撞构造的主线是：<strong>选择消息差分 → 设计最终归零的状态差分路线 → 推出充分位条件 → 修改消息满足条件 → 验证完整碰撞。</strong></p>
+<ul>
+<li><strong>布尔函数：</strong>第一轮 <span class="arithmatex">\(F(X,Y,Z)=(X\land Y)\lor(\neg X\land Z)\)</span>，逐位由 <span class="arithmatex">\(X\)</span> 决定选 <span class="arithmatex">\(Y\)</span> 或 <span class="arithmatex">\(Z\)</span>。限制对应位可控制差分是否传出。</li>
+<li><strong>模加：</strong>进位影响更高位；不能把模减差分直接当作异或差分。带符号位变化比单个模减值包含更多信息。</li>
+<li><strong>循环移位：</strong>移动比特位置；先确定进位造成的具体位变化，再追踪移位后的差分。</li>
+<li><strong>局部碰撞：</strong>某一段引入的差分在后续步骤抵消；完整碰撞还要让最终压缩输出相同。</li>
+</ul>
+<p>单步消息修改利用第一轮消息字的自由度：例如</p>
+<div class="arithmatex">\[
+d_1=(d_0+F(a_1,b_0,c_0)+m_1)\lll7,
+\]</div>
+<p>先调整 <span class="arithmatex">\(d_1\)</span> 使其满足位条件，再反解</p>
+<div class="arithmatex">\[
+m_1=(d_1\ggg7)-d_0-F(a_1,b_0,c_0)\pmod{2^{32}}.
+\]</div>
+<p>多步修改则联动修改并补偿多个消息字，满足后轮条件同时尽量保留前轮条件。修改后必须维持消息对的规定差分并检查另一条计算路径。</p>
+<p>按条件独立且均匀的粗略模型，122 个条件同时成立的概率为 <span class="arithmatex">\(2^{-122}\)</span>。消息修改主动满足其中一些条件，提高<strong>构造出的候选对</strong>的成功率；总成本包括修改与验证。</p>
+<p>进一步推导见：<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E5%B9%BF%E4%B9%89%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB/">生日攻击与广义生日攻击</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E7%AC%AC%E4%BA%8C%E5%8E%9F%E5%83%8F%E6%94%BB%E5%87%BB/">第二原像攻击</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E5%85%B7%E4%BD%93%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB/">具体杂凑函数的碰撞攻击</a>。</p>
+<h2 id="_7">八 消息认证码<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="1_5">1 安全目标与伪造类型<a class="headerlink" href="#1_5" title="Permanent link">&para;</a></h3>
+<p>MAC 使用共享密钥验证消息完整性和来源。保密性由加密提供，不可否认性由数字签名实现，防重放由协议中的序号等机制实现。</p>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>攻击者做到什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通用伪造</td>
+<td>能给任意指定的新消息生成有效标签，无须恢复密钥</td>
+</tr>
+<tr>
+<td>选择性伪造</td>
+<td>在获取查询结果前指定目标消息，再为它生成有效标签</td>
+</tr>
+<tr>
+<td>存在性伪造</td>
+<td>至少找到一条未查询的新消息及其有效标签，内容可自由选择</td>
+</tr>
+</tbody>
+</table>
+<p><strong>选择消息攻击描述查询能力，选择性伪造描述攻击目标。</strong>EUF-CMA 要求攻击者即便能查询自选消息的标签，仍难以伪造未查询消息。恢复密钥后即可计算任意消息的标签。</p>
+<p>若密钥 <span class="arithmatex">\(k\)</span> 位、标签 <span class="arithmatex">\(t\)</span> 位，通用穷举密钥量级为 <span class="arithmatex">\(2^k\)</span> 次离线计算；理想标签盲猜每次成功率 <span class="arithmatex">\(2^{-t}\)</span>，<span class="arithmatex">\(q\)</span> 次独立在线尝试在小概率范围内约为 <span class="arithmatex">\(q/2^t\)</span>。比较两种攻击时须区分在线验证次数与离线计算次数。</p>
+<h3 id="2-mac">2 简单杂凑 MAC 的结构性问题<a class="headerlink" href="#2-mac" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>构造</th>
+<th>核心漏洞与必要条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>密钥前缀 <span class="arithmatex">\(H(K\parallel M)\)</span></td>
+<td>摘要为完整链值、密钥长度已知或猜对且编码允许扩展时，可做长度扩展</td>
+</tr>
+<tr>
+<td>密钥后缀 <span class="arithmatex">\(H(M\parallel K)\)</span></td>
+<td>先找等长、分组对齐消息的内部链值碰撞，追加同一密钥后标签相同</td>
+</tr>
+<tr>
+<td>简单封装 <span class="arithmatex">\(H(K\parallel M\parallel K)\)</span></td>
+<td>内部碰撞可沿相同后缀传播；最终标签碰撞未必就是内部碰撞</td>
+</tr>
+</tbody>
+</table>
+<p>前缀伪造的正确写法是：已知 <span class="arithmatex">\(T=H(K\parallel M)\)</span>，输出</p>
+<div class="arithmatex">\[
+M^*=M\parallel\operatorname{pad}(K\parallel M)\parallel X,
+\]</div>
+<p>从链值 <span class="arithmatex">\(T\)</span> 继续处理 <span class="arithmatex">\(X\)</span>，并按扩展后的总长度填充，得到其标签。原填充字节必须成为伪造消息的一部分。</p>
+<p>后缀构造中，若离线找到 <span class="arithmatex">\(M,M'\)</span> 在加入 <span class="arithmatex">\(K\)</span> 之前的链值相同，查询 <span class="arithmatex">\(M\)</span> 的标签便可移用于未查询的 <span class="arithmatex">\(M'\)</span>。典型理想生日模型成本约为 <span class="arithmatex">\(2^{n/2}\)</span> 次离线工作加一次在线查询。普通截断摘要相等不足以推出内部状态相等。</p>
+<p>封装构造要区分内部与外部碰撞：内部状态相同则附加相同后缀后仍碰撞；仅最终短标签相同则未必如此。可用共同后缀查询来筛选候选，再换未查询的新后缀完成伪造，总成本包括寻找、筛选碰撞和生成伪造。HMAC 的内外层密钥处理见<a href="../../notes/08-%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81/%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/">消息认证码</a>。</p>
+<h3 id="3-cbc-mac-cmac">3 CBC-MAC 的变长伪造与 CMAC<a class="headerlink" href="#3-cbc-mac-cmac" title="Permanent link">&para;</a></h3>
+<p>CBC-MAC 使用固定零初值：</p>
+<div class="arithmatex">\[
+c_0=0,\qquad c_i=E_K(c_{i-1}\oplus m_i),\qquad T=c_\ell.
+\]</div>
+<p>基本形式要求消息长度固定且预先约定。若直接支持可变长消息，查询一块 <span class="arithmatex">\(m\)</span> 得 <span class="arithmatex">\(t=E_K(m)\)</span>，则新消息</p>
+<div class="arithmatex">\[
+m\parallel(t\oplus m)
+\]</div>
+<p>的标签仍为 <span class="arithmatex">\(t\)</span>，因为第二轮为 <span class="arithmatex">\(E_K(t\oplus(t\oplus m))=E_K(m)=t\)</span>。这是针对变长消息接口的存在性伪造；固定长度接口会拒绝长度不符的消息。</p>
+<p><img alt="CBC-MAC 可变长消息的一次查询伪造" src="../../assets/course-slides/mac-cbc-variable-forgery.png" /></p>
+<p><em>课件第 13 章第 15 页。</em></p>
+<p>CMAC 区分末块情况：令 <span class="arithmatex">\(L=E_K(0^b)\)</span>，通过有限域倍乘得到 <span class="arithmatex">\(K_1=\operatorname{dbl}(L)\)</span>、<span class="arithmatex">\(K_2=\operatorname{dbl}(K_1)\)</span>；倍乘实现为左移一位，并在原最高位为 1 时异或规定的约减常数。非空消息的完整末块异或 <span class="arithmatex">\(K_1\)</span>，不完整末块先补 <code>1</code> 再补 <code>0</code>，异或 <span class="arithmatex">\(K_2\)</span>。空消息也走填充分支。最后执行分组加密，可按要求截断标签。子密钥记号采用 <a href="https://csrc.nist.gov/pubs/sp/800/38/b/upd1/final">NIST SP 800-38B</a>，课件第 16 页对应标注已在此更正。</p>
+<p>另一种思路是在前面加入无歧义的消息长度编码；只在末尾附加长度不自动保证安全，因为攻击者仍可能先让两条链在长度块之前相遇。</p>
+<p><strong>闭卷自测：</strong>说出前缀 MAC 伪造消息中为何必须保留旧填充；不看公式手推 CBC-MAC 的上述两分组伪造，并指出攻击成立的长度条件。完整推导见<a href="../../notes/08-%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81/%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/">消息认证码</a>。</p>
+<h2 id="_8">九 自动化搜索与实验原理<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>闭卷复习要能解释“怎样把传播规律写成约束”，并能用小例核对正确性。</p>
+<h3 id="1_6">1 从表到合法传播点<a class="headerlink" href="#1_6" title="Permanent link">&para;</a></h3>
+<p>对于一个 4 比特 S 盒，把输入输出坐标统一编码为</p>
+<div class="arithmatex">\[
+x=(a_3,a_2,a_1,a_0,b_3,b_2,b_1,b_0)\in\{0,1\}^8.
+\]</div>
+<p>差分合法点取 DDT 非零位置；非零相关线性传播点取 LAT 非零位置，<strong>负的 LAT 表项也要保留</strong>。全零点表示未激活部件，局部模型通常保留；全局搜索时再排除输入全零等平凡解。</p>
+<p>令合法点集为 <span class="arithmatex">\(V\)</span>，非法点集为 <span class="arithmatex">\(Q=\{0,1\}^8\setminus V\)</span>，与 lab4 报告的 <span class="arithmatex">\(x,Q\)</span> 记号一致。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>核心表达</th>
+<th>要说明的正确性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>one-hot</td>
+<td>每个 <span class="arithmatex">\(v\in V\)</span> 配一个二进制变量 <span class="arithmatex">\(\lambda_v\)</span>，要求 <span class="arithmatex">\(\sum_v\lambda_v=1\)</span>、<span class="arithmatex">\(x=\sum_v\lambda_vv\)</span></td>
+<td>恰好选中一个合法点</td>
+</tr>
+<tr>
+<td>逐点排除</td>
+<td>对每个 <span class="arithmatex">\(q\in Q\)</span> 要求 <span class="arithmatex">\(\sum_{q_j=0}x_j+\sum_{q_j=1}(1-x_j)\ge1\)</span></td>
+<td>只排除 <span class="arithmatex">\(x=q\)</span>，其余二进制点满足</td>
+</tr>
+<tr>
+<td>逻辑化简</td>
+<td>用逻辑式刻画合法／非法赋值，再化为约束</td>
+<td>化简前后接受的二进制点必须相同</td>
+</tr>
+<tr>
+<td>凸包</td>
+<td>写出 <span class="arithmatex">\(\operatorname{conv}(V)\)</span> 的等式、不等式，再要求 <span class="arithmatex">\(x\)</span> 为二进制</td>
+<td>可行二进制点恰好是 <span class="arithmatex">\(V\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>逐点排除例：</strong> 排除 <span class="arithmatex">\(q=(0,1,0)\)</span>，使用 <span class="arithmatex">\(x_1+(1-x_2)+x_3\ge1\)</span>；只有 <span class="arithmatex">\(x=q\)</span> 时左边为零。</p>
+<h3 id="2_5">2 拼接多轮与验证<a class="headerlink" href="#2_5" title="Permanent link">&para;</a></h3>
+<p>把 S 盒约束与异或、置换、线性层传播约束相连，固定边界条件，搜索可行路线或优化权重。差分路线常用权重 <span class="arithmatex">\(-\log_2 p_i\)</span> 相加；在线性单路线的乘积模型下，可用 <span class="arithmatex">\(-\log_2|c_i|\)</span> 相加，符号另行追踪。分别按差分概率和线性相关度计算权重。</p>
+<p>“活跃 S 盒最少”通常只是寻找高概率路线的起点：同样数量的活跃 S 盒可以选到不同概率／相关度的表项。</p>
+<p>对每个 S 盒枚举全部 <span class="arithmatex">\(2^8=256\)</span> 个赋值，检查模型接受的点是否与目标表项完全一致；再验证多轮边界、概率和实际统计。精确差分模型经求解器证明无解，就得到对应的不可能差分；超时表示搜索尚未完成。有解时继续核对实际状态与密钥的一致性。</p>
+<p>实验对照：<a href="../../labs/lab4/report.pdf">lab4 报告</a>。</p>
+<h2 id="_9">十 易混概念与答题检查<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>易混处</th>
+<th>应当怎样区分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通差分与不可能差分</td>
+<td>高概率命中是正证据；触发零概率事件是反证，删除猜测</td>
+</tr>
+<tr>
+<td>未出现与不可能</td>
+<td>有限样本中零次不等于数学概率为零</td>
+</tr>
+<tr>
+<td>截断差分与积分</td>
+<td>前者描述一对状态的差分模式；后者描述一整个集合的取值或异或和</td>
+</tr>
+<tr>
+<td>差分概率与线性偏差</td>
+<td><span class="arithmatex">\(p\)</span> 是事件概率，<span class="arithmatex">\(\varepsilon=p-1/2\)</span> 是相对一半的偏离</td>
+</tr>
+<tr>
+<td>线性偏差与相关度</td>
+<td><span class="arithmatex">\(c=2\varepsilon\)</span>；堆积时相关度直接相乘</td>
+</tr>
+<tr>
+<td>增强飞去来器与经典飞去来器</td>
+<td>查询模型与四元组构造不同，不能仅比较公式中的 <span class="arithmatex">\(p^2q^2\)</span></td>
+</tr>
+<tr>
+<td>单条路线与所有路线</td>
+<td>差分概率对互斥路线求和；线性包的带符号贡献可能相消</td>
+</tr>
+<tr>
+<td>区分与密钥恢复</td>
+<td>有区分器还需猜测边界子密钥、筛选、恢复其余密钥</td>
+</tr>
+<tr>
+<td>中间相遇与中间相错</td>
+<td>相遇找两侧相等的状态；相错证明两侧允许集合没有交集</td>
+</tr>
+<tr>
+<td>碰撞与第二原像</td>
+<td>碰撞可同时选两条消息；第二原像的目标消息已给定</td>
+</tr>
+<tr>
+<td>长度扩展与碰撞</td>
+<td>长度扩展是继续迭代算新摘要，本身不要求两条消息摘要相同</td>
+</tr>
+<tr>
+<td>平衡 B 与活跃 A</td>
+<td>A 说明取遍全部值；B 只说明异或和为零</td>
+</tr>
+<tr>
+<td>复杂度较低与实际可行</td>
+<td>还要看数据、存储、攻击模型及目标成功率</td>
+</tr>
+</tbody>
+</table>
+<p><strong>简答题可用这一顺序组织：</strong> 给出攻击模型和目标；定义内部可利用性质；说明采样与猜测步骤；写清计数／筛除判据；计算数据、时间和存储；注明独立性、随机密钥及轮数等条件。</p>
+<p><strong>计算题交卷前检查：</strong> 是计数还是归一化概率？是否少了 <span class="arithmatex">\(1/2\)</span> 或平方？指数中的密钥是主密钥还是子密钥？比较的是轮函数还是完整加密？是否把结构体产生的配对数当成查询数？</p>
+<h2 id="_10">十一 考前公式速查<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>下面各式沿用相应章节的条件；概率乘积及随机候选估计一般需要独立或随机行为近似。</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>公式或结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S 盒差分</td>
+<td><span class="arithmatex">\(p(a\to b)=\operatorname{DDT}[a,b]/2^m\)</span></td>
+</tr>
+<tr>
+<td>本笔记 LAT 约定</td>
+<td><span class="arithmatex">\(\operatorname{LAT}=N_0-2^{m-1}\)</span>，<span class="arithmatex">\(\varepsilon=\operatorname{LAT}/2^m\)</span>，<span class="arithmatex">\(c=2\varepsilon\)</span></td>
+</tr>
+<tr>
+<td>差分单路线</td>
+<td><span class="arithmatex">\(p_{\rm trail}\approx\prod_i p_i\)</span></td>
+</tr>
+<tr>
+<td>线性堆积</td>
+<td><span class="arithmatex">\(\varepsilon_{\rm total}=2^{r-1}\prod_i\varepsilon_i\)</span>，<span class="arithmatex">\(c_{\rm total}=\prod_i c_i\)</span></td>
+</tr>
+<tr>
+<td>线性数据量级</td>
+<td><span class="arithmatex">\(N\asymp\varepsilon^{-2}\)</span>，目标成功率等影响常数</td>
+</tr>
+<tr>
+<td>经典飞去来器</td>
+<td><span class="arithmatex">\(p^2q^2\)</span>，随机基准约 <span class="arithmatex">\(2^{-n}\)</span></td>
+</tr>
+<tr>
+<td>增强飞去来器</td>
+<td>单个候选四元组约 <span class="arithmatex">\(2^{-n}p^2q^2\)</span>，随机基准约 <span class="arithmatex">\(2^{-2n}\)</span></td>
+</tr>
+<tr>
+<td>差分—线性</td>
+<td><span class="arithmatex">\(\varepsilon_{\rm DL}\approx4\varepsilon_d\varepsilon^2\)</span>，<span class="arithmatex">\(\varepsilon\)</span> 为后段单次线性偏差</td>
+</tr>
+<tr>
+<td>Square 末轮检验</td>
+<td>在相应末轮结构下，<span class="arithmatex">\(\bigoplus_i S^{-1}(C_i[j]\oplus k)=0\)</span></td>
+</tr>
+<tr>
+<td>双重 DES 相遇</td>
+<td><span class="arithmatex">\(E_{K_1}(P)=D_{K_2}(C)\)</span>；时间约 <span class="arithmatex">\(2^{57}\)</span> 次 DES，存储约 <span class="arithmatex">\(2^{56}\)</span> 项</td>
+</tr>
+<tr>
+<td>两列表随机匹配</td>
+<td>列表长 <span class="arithmatex">\(N_1,N_2\)</span>，比对 <span class="arithmatex">\(t\)</span> 比特，错误匹配期望约 <span class="arithmatex">\(N_1N_2/2^t\)</span></td>
+</tr>
+<tr>
+<td>生日概率</td>
+<td><span class="arithmatex">\(P_{\rm coll}\approx1-\exp[-N(N-1)/2^{n+1}]\)</span></td>
+</tr>
+<tr>
+<td>理想 <span class="arithmatex">\(n\)</span> 比特杂凑</td>
+<td>碰撞约 <span class="arithmatex">\(2^{n/2}\)</span>；原像、一般第二原像约 <span class="arithmatex">\(2^n\)</span></td>
+</tr>
+<tr>
+<td>平衡 4-tree</td>
+<td>四个可生成的随机列表各长约 <span class="arithmatex">\(2^{n/3}\)</span>，时间和存储约 <span class="arithmatex">\(2^{n/3}\)</span> 量级</td>
+</tr>
+<tr>
+<td>MAC 独立盲猜</td>
+<td><span class="arithmatex">\(t\)</span> 比特标签，<span class="arithmatex">\(q\)</span> 次独立机会：<span class="arithmatex">\(1-(1-2^{-t})^q\approx q2^{-t}\)</span>，小概率时成立</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">资料与章节笔记<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>范围依据为用户提供的《教学大纲-密码分析学2026修订》PDF 第 6～18 页，其中第 18 页列考试形式与拟定编题分值。各节图源标注对应课件，图文件保存在 <code>assets/course-slides/</code>。</p>
+<p>详细推导可按章节进入：<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86%E6%94%BB%E5%87%BB/">差分攻击</a>、<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E6%88%AA%E6%96%AD%E5%B7%AE%E5%88%86/">截断差分</a>、<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/">不可能差分分析</a>、<a href="../../notes/03-%E5%B7%AE%E5%88%86%E5%88%86%E6%9E%90/%E9%A3%9E%E5%8E%BB%E6%9D%A5%E5%99%A8%E6%94%BB%E5%87%BB/">飞去来器攻击</a>、<a href="../../notes/04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">线性分析</a>、<a href="../../notes/04-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/%E5%B7%AE%E5%88%86-%E7%BA%BF%E6%80%A7%E5%88%86%E6%9E%90/">差分—线性分析</a>、<a href="../../notes/05-%E7%A7%AF%E5%88%86%E5%88%86%E6%9E%90/Square%E6%94%BB%E5%87%BB/">Square 攻击</a>、<a href="../../notes/06-%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87/%E4%B8%AD%E9%97%B4%E7%9B%B8%E9%81%87%E6%94%BB%E5%87%BB/">中间相遇攻击</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/">杂凑函数</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E7%AC%AC%E4%BA%8C%E5%8E%9F%E5%83%8F%E6%94%BB%E5%87%BB/">第二原像攻击</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E5%B9%BF%E4%B9%89%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB/">生日与广义生日</a>、<a href="../../notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E5%85%B7%E4%BD%93%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB/">具体杂凑碰撞</a>、<a href="../../notes/08-%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81/%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/">消息认证码</a>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

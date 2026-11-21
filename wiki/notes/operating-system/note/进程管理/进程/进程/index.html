@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1013,7 +1160,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      多道程序设计
+      进程映像(实体)
     </span>
   </a>
   
@@ -1022,7 +1169,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      进程的状态
+      多道程序设计
     </span>
   </a>
   
@@ -1031,7 +1178,7 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      进程控制块
+      进程的状态
     </span>
   </a>
   
@@ -1039,6 +1186,15 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      进程控制块
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       进程的控制
     </span>
@@ -1082,30 +1238,54 @@
 <p>来源：<code>操作系统 / note/进程管理/进程/进程.md</code></p>
 </blockquote>
 <h2 id="_2"><a href="../%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/">进程模型</a><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>一个进程就是一个正在执行的程序的实例
-<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260603163839833.png" /></p>
-<p>每个进程自认为有一个独立的虚拟CPU，拥有自己的程序计数器，但实际上是一个CPU在不同的进程之间相互切换，形成一种伪并行</p>
-<h2 id="_3"><a href="../%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">多道程序设计</a><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>[!concept] 进程
+一个进程就是一个正在执行的程序的实例。</p>
+<p>进程不仅包含程序代码，还包含运行时的数据、栈、堆和操作系统维护的控制信息。</p>
+</blockquote>
+<p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260603163839833.png" /></p>
+<blockquote>
+<p>[!concept] 进程地址空间
+进程将地址空间分为 text 正文段、Data 数据段和 Stack 栈段。</p>
+<p>text 段保存程序代码，Data 段保存变量等数据，Stack 段保存函数调用和局部上下文。</p>
+<p>[!warning] 易混点
+stack 有两个常见翻译：堆栈、栈。</p>
+<p>这里的“堆栈”不是“堆 + 栈”。</p>
+</blockquote>
+<p>栈用来压入和换出寄存器(把值从寄存器复制到内存，会形成这种数据结构)</p>
+<p>数据传输指令是内存和寄存器之间传送数据的命令，如sw，lw</p>
+<p>对于动态数据结构，如链表等，存放这类结构的内存段称为堆，就在data的上面，和堆栈相向而生
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260621152832036.png" /></p>
+<h2 id="_3">进程映像(实体)<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>[!concept] 进程映像
+进程映像 = 程序段 + 数据段 + <a href="../%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97/">PCB</a>。</p>
+<p>每个进程自认为有一个独立的虚拟 CPU，拥有自己的程序计数器；实际上是 CPU 在不同进程之间快速切换，形成伪并行。</p>
+</blockquote>
+<h2 id="_4"><a href="../%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">多道程序设计</a><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>在任何多编程系统中，CPU都会快速从进程切换到进程，每个进程运行数十或数百毫秒。虽然严格来说，在任何时刻，CPU只运行一个进程，但在1秒内，它可能会在其中几个进程上工作，给人一种并行的错觉。有时人们在这种情况下谈论伪并行，将其与多处理器系统（具有两个或多个共享相同物理内存的CPU）的真正硬件并行性形成对比。人们很难跟踪多个并行的活动。</p>
 <p>在任意时刻只有一个程序是活跃的</p>
 <p>利用多进程可以提高CPU的利用率</p>
-<p>不妨设</p>
+<blockquote>
+<p>[!formula] CPU 利用率
+不妨设：</p>
 <div class="arithmatex">\[
 p = \frac{等待IO的时间}{停留在内存中的时间}
 \]</div>
-<p>我们认为这是一个概率，如果内存中同时有n个进程，那么所有进程都在等待io的时候，CPU会空转，否则CPU都在运行，因此</p>
+<p>如果内存中同时有 n 个进程，那么所有进程都在等待 I/O 时 CPU 会空转，否则 CPU 可以继续运行：</p>
 <div class="arithmatex">\[
 CPU利用率 = 1-p^n
 \]</div>
 <p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260603165603491.png" />
 显然，等待IO的时间越少，CPU利用率越高
 另一方面，n越大，CPU利用率也越高</p>
+</blockquote>
 <p>增大内存是一个有效提高CPU利用率的方法，因为进程需要占据内存，内存越大，内存中同时运行的进程的就越多，n越大，CPU利用率也就越大</p>
-<h2 id="_4"><a href="../%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81/">进程的状态</a><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5"><a href="../%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81/">进程的状态</a><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>进程包括运行态、就绪态和阻塞态，操作系统控制进程状态之间的转换</p>
-<h2 id="_5"><a href="../%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97/">进程控制块</a><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6"><a href="../%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97/">进程控制块</a><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>操作系统通过进程控制块PCB来控制进程的切换，这个过程叫做<a href="../../../%E6%A6%82%E8%BF%B0/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/">上下文切换</a></p>
-<h2 id="_6"><a href="../%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8E%A7%E5%88%B6/">进程的控制</a><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_7"><a href="../%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8E%A7%E5%88%B6/">进程的控制</a><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 
 
 

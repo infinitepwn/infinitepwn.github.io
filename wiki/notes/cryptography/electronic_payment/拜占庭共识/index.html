@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题来源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      与区块链的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      目标
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,7 +1210,24 @@
 <blockquote>
 <p>来源：<code>密码学引论 / electronic_payment/拜占庭共识.md</code></p>
 </blockquote>
+<p>拜占庭共识研究的是：在部分节点可能故障、撒谎或恶意作恶的情况下，诚实节点如何仍然对同一个结果达成一致。</p>
 <p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260602154905855.png" /></p>
+<h2 id="_2">问题来源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在分布式系统中，节点可能出现两类错误：</p>
+<ul>
+<li>崩溃故障：节点停止响应。</li>
+<li>拜占庭故障：节点可以发送任意错误信息，甚至对不同对象发送不同说法。</li>
+</ul>
+<p>拜占庭故障更难处理，因为系统不能简单地区分“网络延迟”和“恶意欺骗”。</p>
+<h2 id="_3">与区块链的关系<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><a href="../%E6%AF%94%E7%89%B9%E5%B8%81/">比特币</a>没有使用传统的拜占庭容错投票协议，而是用工作量证明和<a href="../%E6%9C%80%E9%95%BF%E9%93%BE%E5%8E%9F%E5%88%99/">最长链原则</a>近似解决开放网络中的共识问题。它把投票权从“节点数量”转化为“算力比例”，从而提高女巫攻击成本。</p>
+<h2 id="_4">目标<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>一个拜占庭共识协议通常希望满足：</p>
+<ul>
+<li>一致性：诚实节点不会决定不同结果。</li>
+<li>有效性：如果诚实节点输入相同值，最终应决定这个值。</li>
+<li>终止性：诚实节点最终能得到结果。</li>
+</ul>
 
 
 

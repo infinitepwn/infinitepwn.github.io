@@ -20,7 +20,7 @@
     
     
       
-        <title>Bellare-Rogaway协议 - CS Knowledge Tree</title>
+        <title>Bellare-Rogaway 协议 - CS Knowledge Tree</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bellare-Rogaway协议
+              Bellare-Rogaway 协议
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1024,11 +1171,24 @@
   
 
 
-<h1 id="bellare-rogaway">Bellare-Rogaway协议<a class="headerlink" href="#bellare-rogaway" title="Permanent link">&para;</a></h1>
+<h1 id="bellare-rogaway">Bellare-Rogaway 协议<a class="headerlink" href="#bellare-rogaway" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / key_distribution/symmetry_key/Bellare-Rogaway协议.md</code></p>
 </blockquote>
 <p><img alt="image-20260519154629738" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20260519154629738.png" /></p>
+<h1 id="bellare-rogaway_1">Bellare-Rogaway 协议<a class="headerlink" href="#bellare-rogaway_1" title="Permanent link">&para;</a></h1>
+<p>Bellare-Rogaway 协议常用于讨论可证明安全的认证密钥交换。它强调在形式化安全模型中定义攻击者能力、会话匹配和密钥安全。</p>
+<h2 id="_1">核心关注点<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>认证：通信实体是否确认对方身份。</li>
+<li>密钥新鲜性：会话密钥是否没有被旧会话或泄露信息影响。</li>
+<li>会话匹配：两个实例是否认为彼此处于同一个协议会话中。</li>
+<li>攻击模型：攻击者可以监听、篡改、重放消息，也可能查询部分会话密钥。</li>
+</ul>
+<h2 id="_2">学习意义<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>传统协议分析容易停留在“看起来没有问题”的层面。Bellare-Rogaway 风格的模型把安全目标写成形式化游戏，使协议安全性可以被归约到基础密码假设。</p>
+<h2 id="_3">与其他协议的关系<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>可以把 <a href="../Needham-Schroeder%E5%8D%8F%E8%AE%AE/">Needham-Schroeder协议</a> 和 <a href="../Kerberos-V5/">Kerberos-V5</a> 看成具体协议，把 Bellare-Rogaway 看成分析认证密钥交换协议的一种理论框架。</p>
 
 
 

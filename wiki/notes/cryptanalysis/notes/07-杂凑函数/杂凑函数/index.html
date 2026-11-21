@@ -1,0 +1,1766 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal computer science knowledge tree for systems, networking, cryptography, and engineering practice.">
+      
+      
+      
+        <link rel="canonical" href="https://infinitepwn.github.io/cs-knowledge-tree/notes/cryptanalysis/notes/07-%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>杂凑函数 - CS Knowledge Tree</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-header__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS Knowledge Tree
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              杂凑函数
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  学习路线
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../knowledge/computer-systems/" class="md-tabs__link">
+          
+  
+  知识树
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../stacks/systems/" class="md-tabs__link">
+          
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../courses/" class="md-tabs__link">
+          
+  
+  课程仓库
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="CS Knowledge Tree" class="md-nav__button md-logo" aria-label="CS Knowledge Tree" data-md-component="logo">
+      
+  <img src="../../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    CS Knowledge Tree
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/infinitepwn/cs-knowledge-tree" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    infinitepwn/cs-knowledge-tree
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学习路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    知识树
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            知识树
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学与安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    编程与工程实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stacks/embedded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    嵌入式方向
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程仓库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            课程仓库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../courses/computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-networking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operating-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptography/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码学引论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机系统原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 杂凑函数做什么
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 杂凑函数做什么">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      杂凑值能提供什么？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 三种安全性质与攻击目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 通用攻击和理想复杂度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 通用攻击和理想复杂度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 原像和普通第二原像：固定目标
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 碰撞：生日攻击
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-merkledamgard" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Merkle–Damgård 迭代结构
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Merkle–Damgård 迭代结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 一块一块计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 为什么末尾要编码长度？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 中间状态相同为什么有用？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 分组密码怎样构造压缩函数？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 长度扩展攻击
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 长度扩展攻击">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 为什么知道摘要就能继续？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 密钥前缀 MAC 的例子
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 长消息第二原像攻击
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 长消息第二原像攻击">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 可扩展消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 桥接并对齐长度
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-2-sum-4-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 广义生日攻击：从 2-SUM 到 4-tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 具体杂凑函数的碰撞：比特追踪与消息修改
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 具体杂凑函数的碰撞：比特追踪与消息修改">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-md4" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 MD4 的压缩过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 比特追踪
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 消息修改
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 考前对照
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关笔记
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/edit/main/docs/notes/cryptanalysis/notes/07-杂凑函数/杂凑函数.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/infinitepwn/cs-knowledge-tree/raw/main/docs/notes/cryptanalysis/notes/07-杂凑函数/杂凑函数.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">杂凑函数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>来源：<code>密码分析学 / notes/07-杂凑函数/杂凑函数.md</code></p>
+</blockquote>
+<h2 id="1">1. 杂凑函数做什么<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>杂凑函数（Hash 函数）将任意长度的消息映射为固定长度的杂凑值，也叫摘要：</p>
+<div class="arithmatex">\[
+H:\{0,1\}^*\longrightarrow\{0,1\}^n,\qquad M\longmapsto H(M).
+\]</div>
+<p>消息长度可以变化，输出始终为 <span class="arithmatex">\(n\)</span> 比特；同一条消息每次计算得到相同的摘要。杂凑函数本身没有密钥。</p>
+<p>输入空间远大于输出空间，所以一定存在不同消息 <span class="arithmatex">\(M,M'\)</span> 使 <span class="arithmatex">\(H(M)=H(M')\)</span>，这叫<strong>碰撞</strong>。抗碰撞安全要求攻击者难以找到这样的消息对。</p>
+<h3 id="_2">杂凑值能提供什么？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>完整性检查：</strong> 若可信渠道提供了文件的正确摘要，就可以比较下载文件的摘要，发现文件是否被改变。</li>
+<li><strong>数字签名：</strong> 通常先计算消息摘要，再按签名方案签名，使签名运算处理固定长度的值。</li>
+<li><strong>不能单独证明来源：</strong> 杂凑函数没有密钥，任何人都能给自己修改后的消息重新计算摘要。如果消息和摘要都可被替换，单凭摘要无法认证发送者；消息认证需要 MAC 或数字签名等机制。</li>
+</ul>
+<h2 id="2">2. 三种安全性质与攻击目标<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>性质</th>
+<th>给定条件</th>
+<th>攻击者的目标</th>
+<th>谁能选择消息？</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抗原像</td>
+<td>指定目标值 <span class="arithmatex">\(y\)</span></td>
+<td>找到 <span class="arithmatex">\(M\)</span>，使 <span class="arithmatex">\(H(M)=y\)</span></td>
+<td>可选择 <span class="arithmatex">\(M\)</span>，但目标 <span class="arithmatex">\(y\)</span> 已固定</td>
+</tr>
+<tr>
+<td>抗第二原像</td>
+<td>指定消息 <span class="arithmatex">\(M\)</span></td>
+<td>找到 <span class="arithmatex">\(M'\ne M\)</span>，使 <span class="arithmatex">\(H(M')=H(M)\)</span></td>
+<td><span class="arithmatex">\(M\)</span> 已固定，只选择 <span class="arithmatex">\(M'\)</span></td>
+</tr>
+<tr>
+<td>抗碰撞</td>
+<td>给定杂凑算法</td>
+<td>找到 <span class="arithmatex">\(M\ne M'\)</span>，使 <span class="arithmatex">\(H(M)=H(M')\)</span></td>
+<td>两条消息都可由攻击者选择</td>
+</tr>
+</tbody>
+</table>
+<p><strong>例子：</strong></p>
+<ul>
+<li>给定一段摘要，找一条能产生它的消息：原像。</li>
+<li>给定一份已经确定的合同，找另一份内容不同但摘要相同的合同：第二原像。</li>
+<li>自己设计两份不同合同，让它们的摘要相同：碰撞。</li>
+</ul>
+<p>碰撞问题给攻击者的选择空间更大，不能把“找到任意碰撞”直接说成“可以针对任意指定文件找到第二原像”。</p>
+<h2 id="3">3. 通用攻击和理想复杂度<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>把不同消息的 <span class="arithmatex">\(n\)</span> 比特输出看作独立均匀随机值，有 <span class="arithmatex">\(2^n\)</span> 种可能输出。以下复杂度的单位是<strong>杂凑函数求值次数</strong>。</p>
+<h3 id="31">3.1 原像和普通第二原像：固定目标<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>每试一条新消息，命中固定目标摘要的概率为 <span class="arithmatex">\(2^{-n}\)</span>。试 <span class="arithmatex">\(q\)</span> 条不同消息，至少命中一次的概率为</p>
+<div class="arithmatex">\[
+P_{\mathrm{命中}}=1-(1-2^{-n})^q.
+\]</div>
+<p><span class="arithmatex">\(q\)</span> 很小时约为 <span class="arithmatex">\(q/2^n\)</span>；取 <span class="arithmatex">\(q=2^n\)</span> 时约为 <span class="arithmatex">\(1-e^{-1}\approx63.2\%\)</span>。因此原像和普通固定目标的第二原像搜索工作量约为 <span class="arithmatex">\(2^n\)</span>。</p>
+<p>工作量按达到常数成功率计量，原像和第二原像攻击的 <span class="arithmatex">\(2^n\)</span> 次试验也采用这一口径。原像问题的目标值取自实际输出。</p>
+<h3 id="32">3.2 碰撞：生日攻击<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>生成 <span class="arithmatex">\(q\)</span> 条不同消息，每个新杂凑值都可以与此前所有杂凑值比较。<span class="arithmatex">\(q\)</span> 条消息共有 <span class="arithmatex">\(q(q-1)/2\)</span> 对，因此碰撞概率近似为</p>
+<div class="arithmatex">\[
+P_{\mathrm{碰撞}}\approx1-\exp\!\left(-\frac{q(q-1)}{2^{n+1}}\right).
+\]</div>
+<p>令概率约为 <span class="arithmatex">\(50\%\)</span>，得到 <span class="arithmatex">\(q\approx1.177\cdot2^{n/2}\)</span>。所以碰撞搜索的通用工作量为 <span class="arithmatex">\(2^{n/2}\)</span> 量级。若当前没有找到，就继续计算并查表；已经生成的结果可以继续使用。</p>
+<p>例如 <span class="arithmatex">\(n=64\)</span> 时，<span class="arithmatex">\(2^{32}\)</span> 条消息的碰撞概率约为 <span class="arithmatex">\(39.3\%\)</span>；约 <span class="arithmatex">\(1.177\cdot2^{32}\)</span> 条时达到 <span class="arithmatex">\(50\%\)</span>。用哈希表保存结果的基本实现还需要 <span class="arithmatex">\(2^{n/2}\)</span> 量级的存储和表操作。完整推导见 <a href="../%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E5%B9%BF%E4%B9%89%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB/">生日攻击与广义生日攻击</a>。</p>
+<table>
+<thead>
+<tr>
+<th>攻击目标</th>
+<th>理想通用工作量</th>
+<th>主要原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原像</td>
+<td><span class="arithmatex">\(2^n\)</span></td>
+<td>新输出匹配固定目标</td>
+</tr>
+<tr>
+<td>普通第二原像</td>
+<td><span class="arithmatex">\(2^n\)</span></td>
+<td>新输出匹配指定消息的摘要</td>
+</tr>
+<tr>
+<td>碰撞</td>
+<td><span class="arithmatex">\(2^{n/2}\)</span></td>
+<td>两条消息都可选择，候选对数约为样本数的平方</td>
+</tr>
+</tbody>
+</table>
+<p>这些是按理想随机输出估计的通用基准。利用具体结构时，第二原像或碰撞的成本可能不同；分组长度、消息长度、存储和攻击者能力也要分别说明。</p>
+<h2 id="4-merkledamgard">4. Merkle–Damgård 迭代结构<a class="headerlink" href="#4-merkledamgard" title="Permanent link">&para;</a></h2>
+<p>MD 结构把处理任意长度消息的问题转化为反复调用固定输入长度的压缩函数。</p>
+<h3 id="41">4.1 一块一块计算<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>设消息先填充并分成 <span class="arithmatex">\(b\)</span> 比特分组 <span class="arithmatex">\(M_1,\ldots,M_t\)</span>。压缩函数接受一个 <span class="arithmatex">\(n\)</span> 比特链值和一个消息分组，输出新的 <span class="arithmatex">\(n\)</span> 比特链值：</p>
+<div class="arithmatex">\[
+f:\{0,1\}^n\times\{0,1\}^b\longrightarrow\{0,1\}^n.
+\]</div>
+<p>从固定初始值 <span class="arithmatex">\(H_0=IV\)</span> 开始，依次计算</p>
+<div class="arithmatex">\[
+H_i=f(H_{i-1},M_i),\quad i=1,\ldots,t;
+\qquad H(M)=H_t.
+\]</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>flowchart LR
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    A[IV = H0] --&gt; B[压缩 f]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    B --&gt; C[H1] --&gt; D[压缩 f] --&gt; E[H2] --&gt; F[继续处理] --&gt; G[Ht / 摘要]
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    M1[M1] --&gt; B
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    M2[M2] --&gt; D
+</code></pre></div>
+<p>每一步的 <span class="arithmatex">\(H_i\)</span> 是<strong>中间链值</strong>；最后一个 <span class="arithmatex">\(H_t\)</span> 是这里直接输出的摘要。真正计算时，每个 <span class="arithmatex">\(M_i\)</span> 都是填充后的分组，填充也要参与计算。</p>
+<h3 id="42">4.2 为什么末尾要编码长度？<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>MD 强化填充除了补齐分组，还会编码原始消息长度。它让填充后的完整消息结构包含长度信息。不同长度的消息使用不同的长度编码；即使中间链值相同，后续仍要处理各自的填充块。</p>
+<p>因此做路径拼接时，除了检查链值相同，还要检查<strong>后缀和最终填充是否一致</strong>。常用方法是让两条消息的总长度一致，再连接相同的后缀。</p>
+<p><strong>填充小例子：</strong> 假设某教学构造的分组长为 16 比特，长度字段为 8 比特，填充规则为“先补 <span class="arithmatex">\(1\)</span>，再补若干个 <span class="arithmatex">\(0\)</span>，最后附上原消息长度”。原消息 <span class="arithmatex">\(M=10110\)</span> 长 5 比特，长度编码为 <span class="arithmatex">\(00000101\)</span>，故填充后的一块是</p>
+<div class="arithmatex">\[
+\underbrace{10110}_{M}\parallel\underbrace{1\,00\,00000101}_{\operatorname{pad}(M)}.
+\]</div>
+<p>总长度为 <span class="arithmatex">\(5+1+2+8=16\)</span> 比特。这个例子展示长度如何进入最后一块；不同算法的分组长度和长度字段规则按各自定义处理。</p>
+<h3 id="43">4.3 中间状态相同为什么有用？<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p>压缩函数是确定性的。如果两条消息处理到某个位置时链值相同，那么继续输入相同的后续分组，就会得到相同的后续链值：</p>
+<div class="arithmatex">\[
+H_i=H'_j,\quad B\text{ 相同}
+\quad\Longrightarrow\quad
+f(H_i,B)=f(H'_j,B).
+\]</div>
+<p>这一点是多碰撞、长消息第二原像攻击以及若干 MAC 分析的基础。最终摘要相同还要结合消息长度与填充一起判断。</p>
+<p>多碰撞还可用于分析杂凑函数的组合：先构造 MD5 多碰撞，再在候选消息中寻找 SHA-1 碰撞。具体构造、概率和复杂度见<a href="../%E7%AC%AC%E4%BA%8C%E5%8E%9F%E5%83%8F%E6%94%BB%E5%87%BB/">第二原像攻击笔记中的拼接例子</a>。</p>
+<h3 id="44">4.4 分组密码怎样构造压缩函数？<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<p>课件中的 Davies–Meyer 形式，以消息分组 <span class="arithmatex">\(M_i\)</span> 作为分组密码的密钥、链值 <span class="arithmatex">\(H_{i-1}\)</span> 作为输入，并将加密结果与原链值异或：</p>
+<div class="arithmatex">\[
+H_i=f(H_{i-1},M_i)=E_{M_i}(H_{i-1})\oplus H_{i-1}.
+\]</div>
+<p>这里消息分组与分组密码密钥的长度按该构造匹配，异或输入链值称为<strong>前馈</strong>。给定 <span class="arithmatex">\(M_i\)</span>，令 <span class="arithmatex">\(H_{i-1}=E_{M_i}^{-1}(0)\)</span>，就有 <span class="arithmatex">\(H_i=H_{i-1}\)</span>；这样的状态称为固定点。它可用于调整某些攻击中路径的长度，详见 <a href="../%E7%AC%AC%E4%BA%8C%E5%8E%9F%E5%83%8F%E6%94%BB%E5%87%BB/">第二原像攻击</a>。</p>
+<h2 id="5">5. 长度扩展攻击<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 为什么知道摘要就能继续？<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p>对直接输出完整末尾链值的 MD 构造，<span class="arithmatex">\(H(M)\)</span> 就是处理完 <span class="arithmatex">\(M\)</span> <strong>及其原填充</strong>后的状态。攻击者知道该摘要和原消息长度后，可以把摘要当作继续迭代的起点，计算</p>
+<div class="arithmatex">\[
+H\bigl(M\parallel\operatorname{pad}(M)\parallel X\bigr).
+\]</div>
+<p>新计算还要按扩展后的总长度处理最终填充。上式中间包含原填充，通常不等于 <span class="arithmatex">\(H(M\parallel X)\)</span>。</p>
+<h3 id="52-mac">5.2 密钥前缀 MAC 的例子<a class="headerlink" href="#52-mac" title="Permanent link">&para;</a></h3>
+<p>假设系统错误地使用</p>
+<div class="arithmatex">\[
+T=H(K\parallel M)
+\]</div>
+<p>作为认证标签。攻击者拿到消息 <span class="arithmatex">\(M\)</span> 和标签 <span class="arithmatex">\(T\)</span>，并知道或猜测 <span class="arithmatex">\(|K|\)</span>。令 <span class="arithmatex">\(L=|K|+|M|\)</span>，就能计算 <span class="arithmatex">\(K\parallel M\)</span> 的填充字节 <span class="arithmatex">\(\operatorname{pad}_L\)</span>；再以 <span class="arithmatex">\(T\)</span> 为链值，继续处理追加内容 <span class="arithmatex">\(X\)</span>，得到</p>
+<div class="arithmatex">\[
+T'=H(K\parallel M\parallel\operatorname{pad}_L\parallel X).
+\]</div>
+<p>攻击者提交的新消息是 <span class="arithmatex">\(M'=M\parallel\operatorname{pad}_L\parallel X\)</span>，标签是 <span class="arithmatex">\(T'\)</span>。验证方计算 <span class="arithmatex">\(H(K\parallel M')\)</span> 时，处理的正是上式，因此会接受这个标签。</p>
+<p><img alt="密钥前缀结构的长度扩展示意" src="../../../assets/course-slides/mac-length-extension.png" /></p>
+<p><em>图源：第 13 章消息认证码课件。</em></p>
+<p>对于直接输出完整末尾链值、且验证方接受填充字节的 MD 前缀 MAC，攻击者从摘要继续计算即可伪造，无需恢复 <span class="arithmatex">\(K\)</span>。HMAC 的构造与原理见 <a href="../../08-%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81/%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/">消息认证码</a>。</p>
+<h2 id="6">6. 长消息第二原像攻击<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>目标是：给定 <span class="arithmatex">\(M\)</span>，找到不同的 <span class="arithmatex">\(M'\)</span>，使 <span class="arithmatex">\(H(M')=H(M)\)</span>。一般的随机搜索约需 <span class="arithmatex">\(2^n\)</span> 次求值；MD 的长消息结构能提供多个可供桥接的中间状态。</p>
+<h3 id="61">6.1 可扩展消息<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<p>可扩展消息是<strong>从同一初始状态出发、长度不同但到达同一个中间链值</strong>的一族消息块序列。通过逐级构造短路径和长路径，可以选择不同长度，同时保持共同终点 <span class="arithmatex">\(H_{\mathrm{exp}}\)</span>。</p>
+<p><img alt="课件中的可扩展消息结构" src="../../../assets/course-slides/hash-expandable-message.png" /></p>
+<p><em>图源：第 12.2 节课件。</em></p>
+<h3 id="62">6.2 桥接并对齐长度<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<p>设目标消息处理到第 <span class="arithmatex">\(i\)</span> 个分组后的状态为 <span class="arithmatex">\(H_i\)</span>。寻找桥接分组 <span class="arithmatex">\(B\)</span>，使</p>
+<div class="arithmatex">\[
+f(H_{\mathrm{exp}},B)=H_i.
+\]</div>
+<p>再选长度为 <span class="arithmatex">\(i-1\)</span> 块的可扩展前缀，接上 <span class="arithmatex">\(B\)</span> 和目标消息从第 <span class="arithmatex">\(i+1\)</span> 块开始的后缀。两条消息在处理到第 <span class="arithmatex">\(i\)</span> 块时链值相同，后缀相同；如果总长度也相同，最终长度填充一致，摘要就相同。最后确认新消息与原消息不同。</p>
+<p><img alt="桥接到目标消息的中间状态" src="../../../assets/course-slides/hash-second-preimage-link.png" /></p>
+<p><em>图源：第 12.2 节课件。</em></p>
+<p>设有约 <span class="arithmatex">\(2^d\)</span> 个可接入的不同目标中间状态，一次随机桥接命中它们之一的概率约为 <span class="arithmatex">\(2^{d-n}\)</span>，桥接工作量约为 <span class="arithmatex">\(2^{n-d}\)</span> 次压缩计算。课件模型的总工作量约为</p>
+<div class="arithmatex">\[
+d2^{n/2}+2^{n-d}+2^d,
+\]</div>
+<p>分别对应构造各级碰撞、桥接搜索，以及长路径构造和目标状态处理。详细构造和长度范围见 <a href="../%E7%AC%AC%E4%BA%8C%E5%8E%9F%E5%83%8F%E6%94%BB%E5%87%BB/">第二原像攻击</a>。</p>
+<h2 id="7-2-sum-4-tree">7. 广义生日攻击：从 2-SUM 到 4-tree<a class="headerlink" href="#7-2-sum-4-tree" title="Permanent link">&para;</a></h2>
+<p>普通生日攻击找两个输出相等；广义生日问题则从多个列表各选一项，让它们的和达到指定目标。以异或 4-SUM 为例：</p>
+<div class="arithmatex">\[
+x_1\oplus x_2\oplus x_3\oplus x_4=0,\qquad x_i\in L_i.
+\]</div>
+<p>4-tree 先将 <span class="arithmatex">\(L_1,L_2\)</span> 和 <span class="arithmatex">\(L_3,L_4\)</span> 分别配对，筛选使每组异或值的低 <span class="arithmatex">\(\ell\)</span> 位为零；再匹配两组异或值的剩余高位，回溯得到四个原始元素。</p>
+<p><img alt="广义生日问题的树形合并" src="../../../assets/course-slides/birthday-four-tree.png" /></p>
+<p><em>图源：第 12.3.1 节课件，第 20 页；图示为多列表树的推广。</em></p>
+<p>当四表均可提供独立均匀的 <span class="arithmatex">\(n\)</span> 比特候选、选取平衡参数 <span class="arithmatex">\(\ell=n/3\)</span> 时，每个输入表和中间表约有 <span class="arithmatex">\(2^{n/3}\)</span> 项，时间与空间为 <span class="arithmatex">\(2^{n/3}\)</span> 量级。这个复杂度适用于相应的多列表求和问题；普通杂凑碰撞的生日基准仍为 <span class="arithmatex">\(2^{n/2}\)</span>。</p>
+<p>更一般地，若每个输入表有 <span class="arithmatex">\(2^x\)</span> 项，低 <span class="arithmatex">\(\ell\)</span> 位相等的概率为 <span class="arithmatex">\(2^{-\ell}\)</span>，则每张中间表的期望项数为 <span class="arithmatex">\(2^{2x-\ell}\)</span>；两中间表再匹配剩余 <span class="arithmatex">\(n-\ell\)</span> 位，最终期望解数为 <span class="arithmatex">\(2^{4x-\ell-n}\)</span>。取 <span class="arithmatex">\(x=\ell=n/3\)</span>，输入表、中间表规模平衡，期望得到约 1 个解。</p>
+<p>课件的 AdHash 例子把各消息块的杂凑值作模加；当攻击者能为各位置生成候选块时，寻找目标杂凑值可转化为多列表模加问题。算法、参数推导及模加例子见 <a href="../%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E5%B9%BF%E4%B9%89%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB/">生日攻击与广义生日攻击</a>。</p>
+<h2 id="8">8. 具体杂凑函数的碰撞：比特追踪与消息修改<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p>通用生日攻击把杂凑值当作随机结果；结构攻击研究压缩函数内部运算，主动构造更容易碰撞的消息对。课件以 MD4 为例。</p>
+<h3 id="81-md4">8.1 MD4 的压缩过程<a class="headerlink" href="#81-md4" title="Permanent link">&para;</a></h3>
+<p>MD4 将填充后的消息分为 512 比特的分组。每个分组拆为 16 个 32 比特消息字；128 比特链值拆为四个 32 比特状态字。压缩函数共三轮、每轮 16 步，每一步使用布尔函数、模 <span class="arithmatex">\(2^{32}\)</span> 加法、循环移位和消息字更新状态。</p>
+<p><img alt="MD4 的压缩函数结构" src="../../../assets/course-slides/md4-compression.png" /></p>
+<p><em>图源：第 12.3.2 节课件。</em></p>
+<h3 id="82">8.2 比特追踪<a class="headerlink" href="#82" title="Permanent link">&para;</a></h3>
+<p>选取有差异的消息对，逐步分析各状态字的比特差异，寻找能使最终状态差分消失的路线。重点看：</p>
+<ul>
+<li><strong>布尔函数：</strong> 输出差分取决于各输入比特及其差分；给输入施加条件，可以控制差分是否传出。</li>
+<li><strong>模加：</strong> 某一位的差异会通过进位影响更高位，分析时要逐位追踪进位。</li>
+<li><strong>循环移位：</strong> 改变差异所在位置，不改变比特值本身。</li>
+</ul>
+<p>例如 MD4 第一轮使用 <span class="arithmatex">\(F(X,Y,Z)=(X\land Y)\lor(\neg X\land Z)\)</span>。对每一位，若 <span class="arithmatex">\(X=1\)</span>，输出取 <span class="arithmatex">\(Y\)</span>；若 <span class="arithmatex">\(X=0\)</span>，输出取 <span class="arithmatex">\(Z\)</span>。因此固定或约束对应的 <span class="arithmatex">\(X\)</span> 位，就能控制这一位的输出跟随哪个输入；具体差分还要结合两条计算路径的输入值一起分析。</p>
+<h3 id="83">8.3 消息修改<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
+<p>先为目标差分路线列出需要满足的状态比特条件，再利用可选择的消息字调整中间状态，使更多条件主动成立；仍不满足的条件再通过生成候选和检查来处理。最终应实际计算完整杂凑，确认两条消息不同且摘要相同。</p>
+<p><img alt="消息修改的课件示意" src="../../../assets/course-slides/md4-message-modification.png" /></p>
+<p><em>图源：第 12.3.2 节课件。详细路线和单步反解见 <a href="../%E5%85%B7%E4%BD%93%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB/">具体杂凑函数的碰撞攻击</a>。</em></p>
+<h2 id="9">9. 考前对照<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>关键回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>给定摘要找消息、给定消息找同摘要消息、自己找一对同摘要消息？</td>
+<td>分别是原像、第二原像、碰撞</td>
+</tr>
+<tr>
+<td>为什么碰撞需要约 <span class="arithmatex">\(2^{n/2}\)</span> 个消息？</td>
+<td><span class="arithmatex">\(q\)</span> 个消息可以组成约 <span class="arithmatex">\(q^2/2\)</span> 对</td>
+</tr>
+<tr>
+<td>长度扩展得到的是哪条消息的摘要？</td>
+<td><span class="arithmatex">\(M\parallel\operatorname{pad}(M)\parallel X\)</span>，不是直接的 <span class="arithmatex">\(M\parallel X\)</span></td>
+</tr>
+<tr>
+<td>强化 MD 的第二原像为什么需要可扩展消息？</td>
+<td>在桥接到目标中间状态后，使新旧消息长度与填充对齐</td>
+</tr>
+<tr>
+<td>4-tree 为什么先筛低位？</td>
+<td>控制中间表规模，再匹配剩余高位</td>
+</tr>
+<tr>
+<td>MD4 的消息修改有什么作用？</td>
+<td>利用消息字自由度主动满足差分路线中的状态条件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">相关笔记<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%E6%A6%82%E8%BF%B0/">密码分析学概述</a></li>
+<li><a href="../../01-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E6%94%BB%E5%87%BB%E6%80%9D%E6%83%B3/">攻击思想</a></li>
+<li><a href="../%E7%AC%AC%E4%BA%8C%E5%8E%9F%E5%83%8F%E6%94%BB%E5%87%BB/">第二原像攻击</a></li>
+<li><a href="../%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E5%B9%BF%E4%B9%89%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB/">生日攻击与广义生日攻击</a></li>
+<li><a href="../%E5%85%B7%E4%BD%93%E6%9D%82%E5%87%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB/">具体杂凑函数的碰撞攻击</a></li>
+<li><a href="../../08-%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81/%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81/">消息认证码</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/infinitepwn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="../../../../../assets/javascripts/mathjax/tex-svg.js"></script>
+      
+    
+  </body>
+</html>

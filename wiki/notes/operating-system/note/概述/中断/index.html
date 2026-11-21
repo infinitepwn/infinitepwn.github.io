@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1052,6 +1199,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断向量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断流程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      例子
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1090,13 +1264,51 @@
 <p>将处理器控制权交给特定的处理程序</p>
 <h2 id="_2">中断的分类<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="_3">硬中断<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>为了支持CPU和设备之间的通信
+<p>也叫做外部中断
+为了支持CPU和设备之间的通信
 IO引发的中断</p>
 <h3 id="_4">异常<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>表示CPU执行指令时本身出现的问题</p>
 <h3 id="_5">软中断<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>通过执行指令而人为的进入中断处理</p>
+<p>也叫陷入中断，访管中断
+通过执行指令而人为的进入中断处理</p>
 <h2 id="_6">进入中断程序<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p><img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260620224610184.png" /></p>
+<h2 id="_7">中断向量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>靠近内存底部的固定区域，存放着中断向量表
+<img alt="image.png" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/20260621155854276.png" />
+他对应中断服务例程ISR</p>
+<h2 id="_8">中断流程<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>硬件将PSW，PC寄存器等压入堆栈</p>
+</li>
+<li>
+<p>硬件从中断向量加载新的PC(旧的PC被存起来了)</p>
+</li>
+<li>
+<p>汇编语言保存寄存器值(操作系统完成)</p>
+</li>
+<li>
+<p>汇编语言设置新的堆栈(给ISP用的)</p>
+</li>
+<li>
+<p>C中断服务例程运行</p>
+</li>
+<li>
+<p>调度程序决定下一个将运行的进程</p>
+</li>
+<li>
+<p>C过程返回至汇编代码</p>
+</li>
+<li>
+<p>汇编语言过程开始运行新的当前进程</p>
+</li>
+</ol>
+<h2 id="_9">例子<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>在<span class="arithmatex">\(\mu C/OS-II\)</span>中，硬件会把PC(断点)、PSW、寄存器压入堆栈，可能是MSP，也可能是PSP，具体看状态</p>
+<p>软中断过程中，保存断点和程序状态字，将CPU由用户态改为内核态是由硬件完成的，</p>
+<p>然后取中断向量，找到ISR地址，更新LR，然后中断返回，出栈8个寄存器，然后根据LR调整SP</p>
 
 
 

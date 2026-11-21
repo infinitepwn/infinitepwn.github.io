@@ -20,7 +20,7 @@
     
     
       
-        <title>Kerberos-V5 - CS Knowledge Tree</title>
+        <title>Kerberos V5 - CS Knowledge Tree</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Kerberos-V5
+              Kerberos V5
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      参与方
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心思想
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全要点
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1024,12 +1206,27 @@
   
 
 
-<h1 id="kerberos-v5">Kerberos-V5<a class="headerlink" href="#kerberos-v5" title="Permanent link">&para;</a></h1>
+<h1 id="kerberos-v5">Kerberos V5<a class="headerlink" href="#kerberos-v5" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / key_distribution/symmetry_key/Kerberos-V5.md</code></p>
 </blockquote>
-<p>Q:什么是Kerberos-V5协议</p>
+<p>Kerberos 是基于对称密码的网络认证协议，用于在不安全网络中让客户端和服务端相互认证。它可以看作对 <a href="../Needham-Schroeder%E5%8D%8F%E8%AE%AE/">Needham-Schroeder协议</a> 思路的工程化改进。</p>
 <p><img alt="image-20260519154759657" src="https://raw.githubusercontent.com/infinitepwn/note_picbed/main/image-20260519154759657.png" /></p>
+<h2 id="_1">参与方<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Client：请求访问服务的用户或主机。</li>
+<li>AS：Authentication Server，认证服务器。</li>
+<li>TGS：Ticket Granting Server，票据授权服务器。</li>
+<li>Server：实际提供服务的服务器。</li>
+</ul>
+<h2 id="_2">核心思想<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>用户先向 AS 证明身份，得到访问 TGS 的票据；之后再用这个票据向 TGS 申请访问具体服务的票据。服务端通过票据确认客户端身份，而不需要每个服务都直接保存用户口令。</p>
+<h2 id="_3">安全要点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>使用时间戳和票据有效期降低重放攻击风险。</li>
+<li>客户端口令不直接在网络上传输。</li>
+<li>KDC 是系统信任中心，一旦 KDC 被攻破，整个域的认证安全都会受影响。</li>
+</ul>
 
 
 

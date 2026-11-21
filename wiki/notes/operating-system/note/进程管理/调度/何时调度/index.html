@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1004,18 +1151,33 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
+      不可进程切换的情况(在这个情况下不能进行进程切换)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="不可进程切换的情况(在这个情况下不能进行进程切换)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
       非抢占式调度算法
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       抢占式调度算法
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1060,11 +1222,17 @@
 3. 当一个进程阻塞后，需要调度，比如因为信号量的原因，需要等待
 4. 当I/O中断发生之后，需要调度。如果中断来自I/O设备，设备完成工作之后，是否让新就绪的程序运行？
 5. 时钟中断：硬件时钟会提供特定频率的周期性中断，可以在这些时间执行调度程序</p>
-<p>根据如何处理<a href="../%E6%97%B6%E9%92%9F%E4%B8%AD%E6%96%AD/">时钟中断</a>，可以将调度算法分为两类</p>
-<h3 id="_2">非抢占式调度算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h2 id="_2">不可进程切换的情况(在这个情况下不能进行进程切换)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ol>
+<li>处理中断时</li>
+<li>进程处于内核临界区</li>
+<li>执行原语时
+根据如何处理<a href="../%E6%97%B6%E9%92%9F%E4%B8%AD%E6%96%AD/">时钟中断</a>，可以将调度算法分为两类</li>
+</ol>
+<h3 id="_3">非抢占式调度算法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>进程可以一直运行，直到堵塞，或者进程自动释放CPU
 也就是说，时钟中断并不会挂起进程，不会进行调度</p>
-<h3 id="_3">抢占式调度算法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">抢占式调度算法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>相比之下，抢占式调度算法选择一个进程，并使其最多运行一段时间。如果它在时间间隔结束时仍在运行，则会暂停，调度器会选择另一个进程来运行（如果可用）。抢占式调度需要在时间间隔结束时发生时钟中断，以便将CPU的控制权还给调度器。如果没有可用的时钟，非抢占式调度是唯一的选择。</p>
 
 

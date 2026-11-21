@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1012,6 +1159,15 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      进程的终止
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       进程的层次结构
     </span>
@@ -1100,10 +1256,15 @@
 <p>谁来创建进程？进程创建进程！</p>
 <p>不管什么情况，一个新的进程总是由一个已经存在的进程执行系统调用来创建的。这个进程可能是一个运行的用户进程，或是由键盘或鼠标唤醒的系统进程，抑或是批处理进程</p>
 <p>在unix系统中，只有一个fork系统调用可以用来创建进程</p>
-<p>这个系统调用会创建一个与调用进程相同的副本，两个就形成父进程和子进程的关系</p>
-<p>父进程和子进程拥有相同的内存映像</p>
-<p>子进程需要执行execve或者其他类似的系统调用，以修改内存映像并运行一个新的程序</p>
-<h2 id="_3">进程的层次结构<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>这个系统调用会创建一个与调用进程相同的<strong>副本</strong>，两个就形成父进程和子进程的关系</p>
+<ol>
+<li>父进程和子进程拥有相同的内存映像(只是复制)</li>
+<li>子进程需要执行execve或者其他类似的系统调用，以修改内存映像并运行一个新的程序</li>
+<li>父进程和子进程是并发的</li>
+<li>父进程和子进程拥有不同的地址空间</li>
+</ol>
+<h2 id="_3">进程的终止<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">进程的层次结构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><strong>进程的层次结构</strong>就是由父进程创建子进程而形成的树形关系</p>
 <h3 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
 <p>进程和它的所有子进程以及后裔共同组成一个进程组

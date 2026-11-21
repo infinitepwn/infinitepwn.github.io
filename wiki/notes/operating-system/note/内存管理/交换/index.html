@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1022,7 +1169,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      局限
+      换出和换入
     </span>
   </a>
   
@@ -1030,6 +1177,33 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      交换区
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      局限
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      与分页式虚拟内存的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       待补
     </span>
@@ -1083,16 +1257,32 @@
 <li>回收它占用的内存。</li>
 <li>进程再次被调度时，再把它从磁盘读回内存。</li>
 </ol>
-<h2 id="_4">局限<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_4">换出和换入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>换出：把进程从内存写到外存，释放物理内存。</li>
+<li>换入：把进程从外存读回内存，让它继续运行。</li>
+</ul>
+<p>如果系统使用<a href="../%E5%8A%A8%E6%80%81%E5%9C%B0%E5%9D%80%E9%87%8D%E5%AE%9A%E4%BD%8D/">动态地址重定位</a>，进程换回时不一定要回到原来的物理地址，只要更新基址寄存器或页表即可。</p>
+<h2 id="_5">交换区<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>交换区通常是磁盘上的一块专门区域，用来保存被换出的进程或页面。</p>
+<p>它和普通文件系统的目标不同：普通文件系统强调文件组织和持久保存，交换区强调快速读写临时运行状态。</p>
+<h2 id="_6">局限<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
 <li>整个进程换入换出，开销较大。</li>
 <li>磁盘速度远低于内存，频繁交换会严重降低性能。</li>
 <li>后续的<a href="../%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">虚拟内存</a>通常以页为单位换入换出，比整体交换更灵活。</li>
 </ul>
-<h2 id="_5">待补<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_7">与分页式虚拟内存的关系<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>早期交换通常以整个进程为单位。分页式虚拟内存把单位缩小到页，只换入当前需要的页面。</p>
+<p>这带来两个好处：</p>
+<ul>
+<li>不需要把整个进程都装入内存。</li>
+<li>内存压力大时，可以只换出暂时不用的页。</li>
+</ul>
+<p>但分页换入换出更依赖页表、缺页异常和<a href="../%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/">页面置换算法</a>。</p>
+<h2 id="_8">待补<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 交换区和普通文件系统的区别</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 与分页式虚拟内存的对比</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 交换区布局示例</li>
 </ul>
 
 

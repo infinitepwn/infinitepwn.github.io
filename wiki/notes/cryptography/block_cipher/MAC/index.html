@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本模型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      与数字签名的区别
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,6 +1210,20 @@
 <blockquote>
 <p>来源：<code>密码学引论 / block_cipher/MAC.md</code></p>
 </blockquote>
+<p>MAC（Message Authentication Code，消息认证码）用于保证消息的完整性和来源真实性。</p>
+<h2 id="_1">基本模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>MAC 方案通常包含三个算法：</p>
+<ul>
+<li><code>Gen(1^λ)</code>：输入安全参数，生成共享密钥 <span class="arithmatex">\(k\)</span>。</li>
+<li><code>Mac_k(m)</code>：输入密钥和消息，输出标签 <span class="arithmatex">\(t\)</span>。</li>
+<li><code>Vrfy_k(m,t)</code>：输入密钥、消息和标签，输出验证结果 <span class="arithmatex">\(b \in \{0,1\}\)</span>。</li>
+</ul>
+<p>只有掌握同一个密钥 <span class="arithmatex">\(k\)</span> 的实体才能生成和验证合法标签。</p>
+<h2 id="_2">安全目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>攻击者即使能看到许多消息及其标签，也不能为新消息伪造一个能通过验证的标签。这个目标通常称为存在性不可伪造性。</p>
+<h2 id="_3">与<a href="../../digital_signature/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/">数字签名</a>的区别<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>MAC 是对称机制，生成方和验证方共享同一个秘密密钥，因此验证者也能生成标签。它适合双方或小范围系统内部认证，但不提供公开可验证性，也不能自然支持不可否认性。</p>
+<p>数字签名使用签名私钥和验证公钥，任何人都可以验证签名，但只有私钥持有者能生成签名，因此更适合公开场景。</p>
 
 
 

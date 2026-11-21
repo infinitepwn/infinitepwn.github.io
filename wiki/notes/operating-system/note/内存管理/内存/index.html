@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1003,6 +1150,33 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存中通常有什么
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      进程地址空间中的常见区域
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作系统关心的问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       相关
     </span>
@@ -1047,9 +1221,35 @@
 </blockquote>
 <p>上级：<a href="../%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a></p>
 <p>内存是程序运行时存放代码和数据的主要存储区域。操作系统负责分配、回收、保护和抽象内存。</p>
-<h2 id="_2">相关<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">内存中通常有什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>内核代码和内核数据结构。</li>
+<li>正在运行进程的代码段、数据段、堆和栈。</li>
+<li>文件缓存和 I/O 缓冲区。</li>
+<li>页表、进程控制块等管理数据。</li>
+</ul>
+<p>用户程序不能直接任意访问整块物理内存。操作系统通过硬件保护机制把用户空间和内核空间隔离开。</p>
+<h2 id="_3">进程地址空间中的常见区域<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>代码段：保存程序指令，通常只读。</li>
+<li>数据段：保存全局变量和静态变量。</li>
+<li>堆：用于动态分配内存，通常向高地址增长。</li>
+<li>栈：保存函数调用、局部变量和返回地址，通常向低地址增长。</li>
+</ul>
+<p>这些区域是进程看到的逻辑布局，实际物理内存中不一定连续。</p>
+<h2 id="_4">操作系统关心的问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>如何为新进程分配内存。</li>
+<li>如何在进程退出后回收内存。</li>
+<li>如何阻止越界访问。</li>
+<li>如何在内存不足时使用<a href="../%E4%BA%A4%E6%8D%A2/">交换</a>或<a href="../%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">虚拟内存</a>。</li>
+<li>如何减少碎片，提高内存利用率。</li>
+</ul>
+<h2 id="_5">相关<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/">存储器的层次结构</a></li>
+<li><a href="../%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4/">地址空间</a></li>
+<li><a href="../%E7%A9%BA%E9%97%B2%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">空闲内存管理</a></li>
 <li><a href="../%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">虚拟内存</a></li>
 <li><a href="../%E4%BA%A4%E6%8D%A2/">交换</a></li>
 </ul>

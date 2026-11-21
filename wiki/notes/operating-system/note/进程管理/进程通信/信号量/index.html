@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1082,22 +1229,27 @@
 <p>来源：<code>操作系统 / note/进程管理/进程通信/信号量.md</code></p>
 </blockquote>
 <p>上级：<a href="../%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/">进程通信</a></p>
-<p>信号量是用于解决<a href="../%E5%90%8C%E6%AD%A5/">同步</a>和<a href="../%E4%BA%92%E6%96%A5/">互斥</a>问题的整数变量，只能通过原子操作 P 和 V 修改。</p>
+<blockquote>
+<p>[!concept] 信号量
+信号量是用于解决<a href="../%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/">进程同步</a>和<a href="../%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5/">进程互斥</a>问题的整数变量，只能通过原子操作 P 和 V 修改。</p>
+</blockquote>
 <h2 id="pv">P/V 操作<a class="headerlink" href="#pv" title="Permanent link">&para;</a></h2>
-<ul>
-<li>P 操作：申请资源。若信号量大于 0，则减 1 后继续；否则阻塞等待。</li>
-<li>V 操作：释放资源。信号量加 1，并可能唤醒等待进程。</li>
-</ul>
+<blockquote>
+<p>[!flow] P/V 操作
+- P 操作：申请资源。若信号量大于 0，则减 1 后继续；否则阻塞等待。
+- V 操作：释放资源。信号量加 1，并可能唤醒等待进程。</p>
+</blockquote>
 <h2 id="_2">二元信号量<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>二元信号量只取 0 或 1，常用于实现<a href="../%E4%BA%92%E6%96%A5/">互斥</a>。</p>
+<p>二元信号量只取 0 或 1，常用于实现<a href="../%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5/">进程互斥</a>。</p>
 <h2 id="_3">计数信号量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>计数信号量表示某类资源的可用数量，适合管理多个同类资源。</p>
 <h2 id="_4">使用注意<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<ul>
-<li>P/V 顺序错误可能导致<a href="../../%E6%AD%BB%E9%94%81/">死锁</a>。</li>
-<li>遗漏 V 操作可能导致其他进程永久等待。</li>
-<li>过度使用会让程序可读性下降。</li>
-</ul>
+<blockquote>
+<p>[!warning] 使用注意
+- P/V 顺序错误可能导致<a href="../../%E6%AD%BB%E9%94%81/">死锁</a>。
+- 遗漏 V 操作可能导致其他进程永久等待。
+- 过度使用会让程序可读性下降。</p>
+</blockquote>
 <h2 id="_5">相关<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/">生产者-消费者问题</a></li>

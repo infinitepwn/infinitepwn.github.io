@@ -20,7 +20,7 @@
     
     
       
-        <title>Denning-Sacco攻击 - CS Knowledge Tree</title>
+        <title>Denning-Sacco 攻击 - CS Knowledge Tree</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Denning-Sacco攻击
+              Denning-Sacco 攻击
             
           </span>
         </div>
@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,41 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      攻击思路
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      根本原因
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      防护思路
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1024,10 +1206,26 @@
   
 
 
-<h1 id="denning-sacco">Denning-Sacco攻击<a class="headerlink" href="#denning-sacco" title="Permanent link">&para;</a></h1>
+<h1 id="denning-sacco">Denning-Sacco 攻击<a class="headerlink" href="#denning-sacco" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>密码学引论 / key_distribution/symmetry_key/Denning-Sacco攻击.md</code></p>
 </blockquote>
+<p>Denning-Sacco 攻击说明：只靠加密发送旧会话密钥并不能保证协议安全。如果旧会话密钥泄露，攻击者可能重放旧票据，让接收方误以为正在建立新会话。</p>
+<h2 id="_1">攻击思路<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在某些基于票据的密钥分发协议中，服务器会把会话密钥和身份信息加密后交给通信方。如果攻击者保存了旧票据，并在后来获得旧会话密钥，就可能重放旧消息来冒充一方。</p>
+<h2 id="_2">根本原因<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>票据缺少足够的新鲜性保证。</li>
+<li>会话密钥泄露后，旧会话消息仍可能被接受。</li>
+<li>协议没有把时间戳、随机数或有效期检查设计得足够严格。</li>
+</ul>
+<h2 id="_3">防护思路<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>在票据中加入时间戳和有效期。</li>
+<li>使用挑战-响应证明当前仍掌握密钥。</li>
+<li>明确绑定通信双方身份和会话上下文。</li>
+</ul>
+<p><a href="../Kerberos-V5/">Kerberos-V5</a>通过票据有效期和时间戳机制缓解这类重放风险。</p>
 
 
 

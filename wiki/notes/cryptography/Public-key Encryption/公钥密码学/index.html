@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -994,6 +1141,59 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型困难假设
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关笔记
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      待补主题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      学习线索
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,16 +1228,43 @@
 <blockquote>
 <p>来源：<code>密码学引论 / Public-key Encryption/公钥密码学.md</code></p>
 </blockquote>
-<p>素性检测与因子分解</p>
-<p><a href="../Rabin%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">Rabin加密算法</a></p>
-<p>ElGamal加密</p>
-<p>Merkle-Hellman背包加密</p>
-<p>密钥封装机制</p>
-<p>椭圆曲线加密</p>
-<p><a href="../SM2/">SM2</a></p>
-<p>离散对数</p>
-<p>后量子密码</p>
-<p>公钥密码学的数学基础</p>
+<p>公钥密码学使用一对相关密钥：公钥公开用于加密或验证，私钥保密用于解密或签名。它解决了对称密码中“通信前必须先共享秘密密钥”的问题。</p>
+<h2 id="_2">核心问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>加密：任何人都能用公钥加密，只有私钥持有者能解密。</li>
+<li>数字签名：私钥持有者生成签名，任何人都能用公钥验证。</li>
+<li>密钥协商：通信双方在公开信道上协商出共享密钥。</li>
+</ul>
+<h2 id="_3">典型困难假设<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>大整数分解困难：RSA、Rabin。</li>
+<li>离散对数困难：ElGamal、Diffie-Hellman、DSA。</li>
+<li>椭圆曲线离散对数困难：ECC、SM2。</li>
+<li>格问题等后量子困难问题：部分后量子密码方案。</li>
+</ul>
+<h2 id="_4">相关笔记<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../Rabin%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">Rabin加密算法</a></li>
+<li><a href="../SM2/">SM2</a></li>
+<li><a href="../../key_distribution/public_key/Diffie-Hellman%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE/">Diffie-Hellman密钥交换协议</a></li>
+<li><a href="../../digital_signature/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/">数字签名</a></li>
+<li><a href="../../Mathematical-Foundations/%E6%A8%A1%E5%B9%B3%E6%96%B9%E6%A0%B9/">模平方根</a></li>
+<li><a href="../../Mathematical-Foundations/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/">欧拉定理</a></li>
+<li><a href="../../Mathematical-Foundations/%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86/">费马小定理</a></li>
+</ul>
+<h2 id="_5">待补主题<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>素性检测与因子分解</li>
+<li>ElGamal加密</li>
+<li>Merkle-Hellman背包加密</li>
+<li>密钥封装机制</li>
+<li>椭圆曲线加密</li>
+<li>离散对数</li>
+<li>后量子密码</li>
+<li>公钥密码学的数学基础</li>
+</ul>
+<h2 id="_6">学习线索<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>理解公钥密码时，可以按“数学困难问题 -&gt; 算法构造 -&gt; 正确性证明 -&gt; 安全性目标 -&gt; 实际协议”的顺序整理。这样能避免只记公式而不知道协议为什么成立。</p>
 
 
 

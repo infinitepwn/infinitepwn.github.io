@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1022,7 +1169,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      和操作系统的关系
+      大致关系
     </span>
   </a>
   
@@ -1030,6 +1177,15 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      和操作系统的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       待补
     </span>
@@ -1086,12 +1242,18 @@
 <li>时间局部性：最近访问过的数据，短时间内可能再次访问。</li>
 <li>空间局部性：访问某个地址后，附近地址也可能很快被访问。</li>
 </ul>
-<h2 id="_4">和操作系统的关系<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>例如顺序遍历数组时，访问 <code>a[i]</code> 后很可能继续访问 <code>a[i + 1]</code>。这就是空间局部性。循环中反复访问同一个变量，则体现时间局部性。</p>
+<h2 id="_4">大致关系<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>越靠近 CPU 的存储层次，速度越快、容量越小、单位价格越高；越远离 CPU，速度越慢、容量越大、单位价格越低。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>寄存器 -&gt; Cache -&gt; 主存 -&gt; SSD/磁盘
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>速度：快 -&gt; 慢
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>容量：小 -&gt; 大
+</code></pre></div>
+<p>Cache 和 TLB 主要由硬件管理；主存、外存之间的数据移动则需要操作系统参与，例如<a href="../%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">虚拟内存</a>和<a href="../%E4%BA%A4%E6%8D%A2/">交换</a>。</p>
+<h2 id="_5">和操作系统的关系<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>操作系统通过<a href="../%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">虚拟内存</a>、<a href="../%E4%BA%A4%E6%8D%A2/">交换</a>和页面置换等机制，在主存和外存之间移动数据，让程序获得比物理内存更灵活的地址空间。</p>
-<h2 id="_5">待补<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6">待补<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Cache、TLB、主存、外存的速度/容量对比</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 局部性原理例子</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 存储层次对页面置换算法的影响</li>
 </ul>
 

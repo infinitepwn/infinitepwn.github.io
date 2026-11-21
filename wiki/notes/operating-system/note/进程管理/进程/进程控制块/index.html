@@ -968,6 +968,153 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法设计与分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cryptanalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密码分析学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cybersecurity-lab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络安全实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../finite-field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    有限域
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1095,11 +1242,11 @@
 <h1 id="_1">进程控制块<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>来源：<code>操作系统 / note/进程管理/进程/进程控制块.md</code></p>
-</blockquote>
-<p>PCB：Process Control Block</p>
-<p>又称<strong>进程描述符、进程属性</strong></p>
-<p>操作系统用于管理控制进程的一个专门数据结构，记录进程的各种属性，描述进程的动态变化过程</p>
+<p>[!concept] PCB
+PCB：Process Control Block，又称<strong>进程描述符、进程属性</strong>。</p>
+<p>操作系统用于管理控制进程的一个专门数据结构，记录进程的各种属性，描述进程的动态变化过程。</p>
 <p>PCB 是操作系统为每个进程维护的一张“档案表”。</p>
+</blockquote>
 <p>里面可能记录：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>进程 ID：PID
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>进程状态：运行、就绪、阻塞
@@ -1113,8 +1260,11 @@
 </code></pre></div>
 <p>操作系统靠 PCB 来管理进程。</p>
 <p>比如进程 A 正在运行，突然时间片到了，操作系统要切换到进程 B。它会先把 A 当前的寄存器、PC 等信息保存到 A 的 PCB 中，然后从 B 的 PCB 中恢复 B 的运行状态。</p>
-<p>PCB是系统感知进程存在的唯一标志</p>
-<p>进程与PCB是一一对应的</p>
+<blockquote>
+<p>[!warning] 关键结论
+PCB 是系统感知进程存在的唯一标志。</p>
+<p>进程与 PCB 是一一对应的。</p>
+</blockquote>
 <p>进程表：所有进程的PCB集合</p>
 <p>链表</p>
 <p>多个链表：</p>
