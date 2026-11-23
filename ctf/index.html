@@ -1,0 +1,524 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CTF 笔记 | InfinitePwn's Blog</title><meta name="author" content="InfinitePwn"><meta name="copyright" content="InfinitePwn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fc"><meta name="description" content="按公钥密码、格与背包、哈希与流密码、Web、逆向和工具整理的 CTF 笔记，附历次比赛题解与原题入口。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CTF 笔记">
+<meta property="og:url" content="https://infinitepwn.github.io/ctf/">
+<meta property="og:site_name" content="InfinitePwn&#39;s Blog">
+<meta property="og:description" content="按公钥密码、格与背包、哈希与流密码、Web、逆向和工具整理的 CTF 笔记，附历次比赛题解与原题入口。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/188052472?s=200&v=4">
+<meta property="article:author" content="InfinitePwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/188052472?s=200&v=4"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://infinitepwn.github.io/ctf/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+
+
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#101828')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fc')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+
+
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+
+
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":false,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CTF 笔记',
+  isHighlightShrink: undefined,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/custom.css"><script src="/js/anime-effects.js"></script><meta name="generator" content="Hexo 8.1.1"><style>
+.type-ctf .layout.hide-aside {
+  max-width: 1130px;
+}
+#page.ctf-page {
+  padding: clamp(22px, 5vw, 62px);
+}
+.ctf-page {
+  --ctf-link: #2555a3;
+  --ctf-rule: #dae1e9;
+}
+[data-theme='dark'] .ctf-page {
+  --ctf-link: #91bbff;
+  --ctf-rule: #364255;
+}
+.ctf-page [hidden] { display: none !important; }
+.ctf-page .ctf-header {
+  margin: 0 0 1.7rem;
+  border-bottom: 1px solid var(--ctf-rule);
+  padding-bottom: 1.5rem;
+}
+.ctf-header h1 {
+  margin: .3rem 0 .15rem;
+  color: var(--ipn-text-strong);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
+}
+.ctf-header p { margin: .5rem 0 1rem; color: var(--ipn-text-muted); }
+.ctf-page .ctf-back, .ctf-related a, .ctf-examples a {
+  color: var(--ctf-link);
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+.ctf-back { font-size: .9rem; }
+.ctf-search label { display: block; margin-bottom: .2rem; font-weight: 600; }
+.ctf-search input {
+  width: 100%;
+  max-width: 32rem;
+  border: 1px solid var(--ctf-rule);
+  border-radius: 5px;
+  padding: .55rem .85rem;
+  background: var(--card-bg, white);
+  color: var(--ipn-text-strong);
+  font: inherit;
+}
+.ctf-search input:focus-visible, .ctf-page a:focus-visible {
+  outline: 2px solid var(--ctf-link);
+  outline-offset: 3px;
+}
+.ctf-status { display: block; color: var(--ipn-text-muted); margin-top: .4rem; }
+.ctf-columns {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) minmax(0, 3.4fr);
+  gap: clamp(20px, 4vw, 58px);
+  align-items: start;
+}
+.ctf-nav { position: sticky; top: 5rem; }
+.ctf-nav p { font-size: .9rem; margin: 0 0 .6rem; color: var(--ipn-text-muted); }
+.ctf-nav a {
+  display: block;
+  padding: .3rem 0;
+  color: var(--ipn-text-strong);
+  line-height: 1.55;
+}
+.ctf-page a:hover { color: var(--ctf-link); text-decoration: underline; }
+.ctf-group { scroll-margin-top: 5rem; margin-bottom: 2.25rem; }
+.ctf-group h2 {
+  font-size: 1.45rem; line-height: 1.4;
+  border-bottom: 2px solid var(--ctf-rule);
+  margin: 0; padding: 0 0 .5rem;
+  color: var(--ipn-text-strong);
+}
+.ctf-group ul { margin: 0; padding: 0; list-style: none; }
+.ctf-entry { border-bottom: 1px solid var(--ctf-rule); padding: .85rem 0; }
+.ctf-entry:last-child { border-bottom: 0; }
+.ctf-entry > a {
+  font-size: 1.1rem; font-weight: 650; color: var(--ctf-link);
+  overflow-wrap: anywhere;
+}
+.ctf-entry p { margin: .2rem 0 0; color: var(--ipn-text-muted); line-height: 1.65; }
+.ctf-entry time { font: .87rem/1.6 ui-monospace, monospace; color: var(--ipn-text-muted); margin-right: .65rem; white-space: nowrap; }
+.ctf-related, .ctf-examples { font-size: .94rem; }
+.ctf-entry .ctf-related a + a { margin-left: 1em; }
+.ctf-page { font-size: 1rem; line-height: 1.7; }
+@media (max-width: 720px) {
+  .ctf-columns { display: block; }
+  .ctf-nav { position: static; margin-bottom: 1.6rem; }
+  .ctf-nav div { display: flex; flex-wrap: wrap; gap: .3rem 1rem; }
+  .ctf-nav a { color: var(--ctf-link); }
+  .ctf-entry time { display: block; }
+}
+.ctf-entry details { margin-top: .4rem; font-size: .95rem; }
+.ctf-entry summary { color: var(--ctf-link); cursor: pointer; width: fit-content; }
+.ctf-entry details ul { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; padding: .35rem 0 .1rem 1rem; }
+.ctf-entry details a { color: var(--ctf-link); text-decoration: underline; text-underline-offset: .18em; overflow-wrap: anywhere; }
+.ctf-order { margin: .5rem 0 0; color: var(--ipn-text-muted); font-size: .94rem; }
+</style></head><body><div class="bg-animation" id="web_bg"></div><script>(() => {
+  const arr = ["background: linear-gradient(135deg,;"]
+  const webBgDiv = document.getElementById('web_bg')
+
+  const setRandomBg = () => {
+    webBgDiv.style = arr[Math.floor(Math.random() * arr.length)]
+    requestAnimationFrame(() => webBgDiv.classList.add('bg-animation'))
+  }
+
+  document.addEventListener('pjax:send', () => {
+    webBgDiv.style = ''
+    webBgDiv.classList.remove('bg-animation')
+  })
+
+  document.addEventListener('pjax:complete', setRandomBg)
+  document.addEventListener('DOMContentLoaded', setRandomBg)
+})()
+</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://avatars.githubusercontent.com/u/188052472?s=200&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">52</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/knowledge/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/wiki/"><i class="fa-fw fas fa-sitemap"></i><span> Wiki</span></a></div><div class="menus_item"><a class="site-page" href="/posts-index/"><i class="fa-fw fas fa-list"></i><span> 文章索引</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/CTF/"><i class="fa-fw fas fa-folder-open"></i><span> CTF 归档</span></a></div></div></div></div><div class="page type-ctf" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">InfinitePwn's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/knowledge/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/wiki/"><i class="fa-fw fas fa-sitemap"></i><span> Wiki</span></a></div><div class="menus_item"><a class="site-page" href="/posts-index/"><i class="fa-fw fas fa-list"></i><span> 文章索引</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/CTF/"><i class="fa-fw fas fa-folder-open"></i><span> CTF 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout hide-aside" id="content-inner"><div id="page" class="ctf-page">
+<header class="ctf-header"><a class="ctf-back" href="/posts-index/#CTF">文章索引</a>
+<h1>CTF 笔记</h1>
+<p>40 篇原文 · 6 个专题 · 14 场比赛</p>
+<div class="ctf-search" hidden><label for="ctf-q">筛选笔记</label>
+<input type="search" id="ctf-q" placeholder="输入知识点、比赛或题名" autocomplete="off">
+<output class="ctf-status" for="ctf-q" aria-live="polite"></output></div></header>
+<div class="ctf-columns"><nav class="ctf-nav" aria-label="CTF 笔记目录"><p>目录</p><div>
+<a href="#crypto-public-key">公钥密码与数论</a>
+<a href="#crypto-lattice">格与背包问题</a>
+<a href="#crypto-primitives">哈希与流密码</a>
+<a href="#web">Web</a>
+<a href="#reverse">逆向工程</a>
+<a href="#tools">常用工具与密码库</a>
+<a href="#contests">比赛题解</a>
+</div></nav><div class="ctf-sections">
+<section class="ctf-group" id="crypto-public-key"><h2>公钥密码与数论</h2>
+<ul>
+<li class="ctf-entry"><a href="/2025/07/29/2025-07-29_RSA%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">RSA 与数论基础</a>
+<p>从扩展欧几里得算法读起，再看公钥指数、模数和私钥指数各自对应的问题</p>
+<p class="ctf-examples">相关例题 · <a href="/2025/05/17/2025-05-17_BYUCTF2025-crypto-wp/#1-Many-Primes">BYUCTF · Many Primes</a></p>
+</li>
+<li class="ctf-entry"><a href="/2025/09/09/2025-09-09_RSA%E9%80%89%E6%8B%A9%E5%AF%86%E6%96%87%E6%94%BB%E5%87%BB/">RSA 奇偶性与选择密文</a>
+<p>用例子和数学归纳法说明，明文的奇偶信息如何确定它所在的区间</p>
+</li>
+<li class="ctf-entry"><a href="/2025/07/17/2025-07-17_signature/">数字签名与 ECDSA</a>
+<p>公钥、私钥和证书的关系，以及 ECDSA 的签名与验证</p>
+</li>
+<li class="ctf-entry"><a href="/2025/08/14/2025-08-14_infinite_blog/">Revenge · 二次同余方程</a>
+<p>两次差分、最大公因数与中国剩余定理在这道题中的联系</p>
+</li>
+</ul></section>
+<section class="ctf-group" id="crypto-lattice"><h2>格与背包问题</h2>
+<ul>
+<li class="ctf-entry"><a href="/2025/06/07/2025-06-07_%E8%8B%A6%E8%AF%BB%E6%A0%BC%E5%AF%86%E7%A0%81-lattice/">格基础与 LLL</a>
+<p>从格基和 Gram–Schmidt 正交化，到最短向量问题与 LLL 约化</p>
+<p class="ctf-examples">相关例题 · <a href="/2025/03/08/2025-03-08_GHCTF2025wp/#5-baby-lattice">GHCTF · baby_lattice</a></p>
+</li>
+<li class="ctf-entry"><a href="/2025/04/14/2025-04-14_knapack%E9%97%AE%E9%A2%98/">背包问题与 Merkle–Hellman 密码</a>
+<p>背包加密如何表示成子集和问题，以及 HGAME 例题里的格</p>
+<p class="ctf-examples">相关例题 · <a href="/2025/08/25/2025-08-25_%E6%96%B0%E7%94%9F%E8%B5%9Bwp/#2-ezbag">新生赛 · ezbag</a></p>
+</li>
+<li class="ctf-entry"><a href="/2025/06/09/2025-06-09_Coppersmith%E5%BD%92%E7%BA%B3/">Coppersmith 与多项式小根</a>
+<p>从模多项式的小根问题入手，整理 Howgrave-Graham 引理</p>
+</li>
+<li class="ctf-entry"><a href="/2025/08/17/2025-08-17_LWE%E5%AD%A6%E4%B9%A0/">LWE 学习笔记</a>
+<p>对照高位和低位两种消息编码，读密钥生成、加密和解密的推导</p>
+<p class="ctf-related"><a href="/2025/08/17/2025-08-17_infinite_blog/">同日的另一份 LWE 笔记</a></p>
+</li>
+</ul></section>
+<section class="ctf-group" id="crypto-primitives"><h2>哈希与流密码</h2>
+<ul>
+<li class="ctf-entry"><a href="/2025/06/08/2025-06-08_%E8%8B%A6%E8%AF%BB%E5%AF%86%E7%A0%81%E5%AD%A6%E5%BC%95%E8%AE%BA--hash/">哈希函数的安全性质</a>
+<p>区分原像、第二原像与碰撞，最后用 ezhash 题目串起这些概念</p>
+</li>
+<li class="ctf-entry"><a href="/2025/07/09/2025-07-09_%E5%93%88%E5%B8%8C%E9%95%BF%E5%BA%A6%E6%8B%93%E5%B1%95%E6%94%BB%E5%87%BB/">哈希长度扩展与 HMAC</a>
+<p>对照 MAC、HMAC 和 Merkle–Damgård 结构，文中以 MD5 和 SM3 为例</p>
+</li>
+<li class="ctf-entry"><a href="/2025/08/05/2025-08-05_lsfr/">线性反馈移位寄存器（LFSR）</a>
+<p>Fibonacci 型 LFSR 的反馈多项式、矩阵表示与序列周期</p>
+</li>
+<li class="ctf-entry"><a href="/2025/08/31/2025-08-31_infinite_blog/">CSP 密码学课程笔记</a>
+<p>从古典密码、分组密码读到密钥交换、零知识证明和 TLS</p>
+</li>
+</ul></section>
+<section class="ctf-group" id="web"><h2>Web</h2>
+<ul>
+<li class="ctf-entry"><a href="/2025/04/12/2025-04-12_webnote/">Web 基础笔记</a>
+<p>HTTP 请求、302 跳转、Cookie 与基础认证，以及几道 Web 练习题</p>
+</li>
+<li class="ctf-entry"><a href="/2024/12/03/2024-12-03_webwp/">攻防世界与 CTFHub · Web 练习</a>
+<p>早期 Web 做题记录，收录 get_post、view_source、cookie 等题</p>
+</li>
+<li class="ctf-entry"><a href="/2025/08/20/2025-08-20_infinite_blog/">SQL 注入笔记</a>
+<p>对照数字型和字符型参数，观察 SQL 语句的结构</p>
+</li>
+<li class="ctf-entry"><a href="/2025/07/16/2025-07-16_Certification/">JWT 与数字证书格式</a>
+<p>JWT 的组成，以及 PEM、DER 等证书格式</p>
+</li>
+</ul></section>
+<section class="ctf-group" id="reverse"><h2>逆向工程</h2>
+<ul>
+<li class="ctf-entry"><a href="/2025/06/27/2025-06-27_reverse_note/">PE 文件与壳</a>
+<p>DOS 头、NT 头、壳的类型，以及 NSS 的 ezC 练习</p>
+</li>
+<li class="ctf-entry"><a href="/2025/07/04/2025-07-04_reverse%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/">逆向中的字符串比较</a>
+<p>用一段字符串判等函数梳理比较逻辑</p>
+</li>
+<li class="ctf-entry"><a href="/2025/02/03/2025-02-03_reverse/">逆向入门题复现</a>
+<p>babyxor、babycrack 与 b@se64 等题的分析记录</p>
+</li>
+</ul></section>
+<section class="ctf-group" id="tools"><h2>常用工具与密码库</h2>
+<ul>
+<li class="ctf-entry"><a href="/2025/05/30/2025-05-30_z3%E7%9A%84%E4%BD%BF%E7%94%A8/">Z3 约束求解</a>
+<p>用不等式与位运算举例，比较两类约束的写法</p>
+</li>
+<li class="ctf-entry"><a href="/2025/07/10/2025-07-10_sympy%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/">SymPy 矩阵运算</a>
+<p>矩阵行简化、特征值与特征向量，以及三元线性方程组的求解</p>
+<p class="ctf-examples">相关例题 · <a href="/2025/08/25/2025-08-25_Lilctf2025/#1-ez-math">LilCTF · ez_math</a></p>
+</li>
+<li class="ctf-entry"><a href="/2025/07/11/2025-07-11_openssl%E4%BD%BF%E7%94%A8/">OpenSSL 的大数与椭圆曲线接口</a>
+<p>BIGNUM、EC_GROUP 和 EC_POINT 分别表示什么</p>
+</li>
+<li class="ctf-entry"><a href="/2025/07/19/2025-07-19_infinite_blog/">GmSSL 与 SM2</a>
+<p>SM2 密钥的 PEM 表示、数字签名、公钥加密和密钥交换</p>
+</li>
+</ul></section>
+<section class="ctf-group" id="contests"><h2>比赛题解</h2><p class="ctf-order">按题解发表日期倒序</p>
+<ul>
+<li class="ctf-entry"><time datetime="2025-08-25">2025-08-25</time> <a href="/2025/08/25/2025-08-25_Lilctf2025/">LilCTF 2025</a>
+<p>ez_math 的矩阵特征值、mid_math 的离散对数，以及 linear 中的格</p>
+<details><summary>题目直达（3）</summary><ul><li><a href="/2025/08/25/2025-08-25_Lilctf2025/#1-ez-math">ez_math</a></li>
+<li><a href="/2025/08/25/2025-08-25_Lilctf2025/#2-mid-math">mid_math</a></li>
+<li><a href="/2025/08/25/2025-08-25_Lilctf2025/#3-linear">linear</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-08-25">2025-08-25</time> <a href="/2025/08/25/2025-08-25_%E6%96%B0%E7%94%9F%E8%B5%9Bwp/">新生赛</a>
+<p>ezfactor 的两种分解思路，以及 ezbag、ez_bag_revenge 两道背包题</p>
+<details><summary>题目直达（3）</summary><ul><li><a href="/2025/08/25/2025-08-25_%E6%96%B0%E7%94%9F%E8%B5%9Bwp/#1-ezfactor">ezfactor</a></li>
+<li><a href="/2025/08/25/2025-08-25_%E6%96%B0%E7%94%9F%E8%B5%9Bwp/#2-ezbag">ezbag</a></li>
+<li><a href="/2025/08/25/2025-08-25_%E6%96%B0%E7%94%9F%E8%B5%9Bwp/#5-ez-bag-revenge">ez_bag_revenge</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-08-20">2025-08-20</time> <a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/">SWPU-NSSCTF 2025</a>
+<p>17 道 Crypto 题和 8 道 Web 题，包括 Vigenère、Big RSA 和 Do_you_know_http</p>
+<details><summary>题目直达（16）</summary><ul><li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#1-%E6%8B%9F%E6%80%81%E7%AD%BE%E5%88%B0%E9%A2%98">拟态签到题</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#2-base%EF%BC%9F%EF%BC%9F">base？？</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#3-%E5%AE%B6%E4%BA%BA%E4%BB%AC%EF%BC%81%E8%B0%81%E6%87%82%E5%95%8A%EF%BC%8CRSA%E7%AD%BE%E5%88%B0%E9%83%BD%E4%B8%8D%E4%BC%9A">家人们！谁懂啊，RSA签到都不会</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#4-Happy">Happy</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#5-Crypto7">Crypto7</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#6-Crypto4">Crypto4</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#7-Crypto6">Crypto6</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#8-Big-RSA">Big RSA</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#9-Vigenere">Vigenère</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#12-Is-the-only-base">Is the only base</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#13-factorb">factorb</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#14-yafu">yafu</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#15-e%E7%9A%84%E5%AD%A6%E9%97%AE">e的学问</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#16-childRSA">childRSA</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#17-Crypto1">Crypto1</a></li>
+<li><a href="/2025/08/20/2025-08-20_SWPU-NSSCTF2025/#18-Crazy-Rsa-Tech">Crazy_Rsa_Tech</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-07-10">2025-07-10</time> <a href="/2025/07/10/2025-07-10_%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0/">熵密杯 2024 · 赛后复现</a>
+<p>前三道 puzzle 和后面的协同签名题，复现于 2025 年 7 月</p>
+<details><summary>题目直达（5）</summary><ul><li><a href="/2025/07/10/2025-07-10_%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0/#1-puzzle1">puzzle1</a></li>
+<li><a href="/2025/07/10/2025-07-10_%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0/#2-puzzle2">puzzle2</a></li>
+<li><a href="/2025/07/10/2025-07-10_%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0/#3-puzzle3">puzzle3</a></li>
+<li><a href="/2025/07/10/2025-07-10_%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0/#4-%E5%8D%8F%E5%90%8C%E7%AD%BE%E5%90%8Dflag1">协同签名flag1</a></li>
+<li><a href="/2025/07/10/2025-07-10_%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0/#5-flag2">flag2</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-06-08">2025-06-08</time> <a href="/2025/06/08/2025-06-08_HNCTF2025/">H&amp;NCTF 2025 · Crypto</a>
+<p>收录 lcgp、哈基coke、ezfactor 系列和 Three vertical lines</p>
+<p class="ctf-related"><a href="/2025/06/08/2025-06-08_HNCTF2025-crypto/">同场另一篇，含「为什么出题人的rsa总是ez」</a> <a href="/2025/08/23/2025-08-23_infinite_blog/">8 月整理稿，含 Three vertical lines</a></p>
+<details><summary>题目直达（7）</summary><ul><li><a href="/2025/06/08/2025-06-08_HNCTF2025/#lcgp">lcgp</a></li>
+<li><a href="/2025/06/08/2025-06-08_HNCTF2025/#%E5%93%88%E5%9F%BAcoke">哈基coke</a></li>
+<li><a href="/2025/06/08/2025-06-08_HNCTF2025/#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86">数据处理</a></li>
+<li><a href="/2025/06/08/2025-06-08_HNCTF2025/#ezfactor">ezfactor</a></li>
+<li><a href="/2025/06/08/2025-06-08_HNCTF2025/#ez-factor-pro">ez-factor-pro</a></li>
+<li><a href="/2025/06/08/2025-06-08_HNCTF2025/#Three-vertical-lines">Three vertical lines</a></li>
+<li><a href="/2025/06/08/2025-06-08_HNCTF2025-crypto/#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84rsa%E6%80%BB%E6%98%AFez">为什么出题人的rsa总是ez</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-05-25">2025-05-25</time> <a href="/2025/05/25/2025-05-25_Litctf-crypto-wp/">LitCTF 2025 · Crypto</a>
+<p>basic、ez_math 和 baby，涉及矩阵 RSA 和格约化</p>
+<details><summary>题目直达（3）</summary><ul><li><a href="/2025/05/25/2025-05-25_Litctf-crypto-wp/#1-basic">basic</a></li>
+<li><a href="/2025/05/25/2025-05-25_Litctf-crypto-wp/#2-ez-math">ez_math</a></li>
+<li><a href="/2025/05/25/2025-05-25_Litctf-crypto-wp/#4-baby">baby</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-05-25">2025-05-25</time> <a href="/2025/05/25/2025-05-25_%E9%BB%84%E6%B2%B3%E6%B5%81%E5%9F%9Fwp/">黄河流域 · Lattice</a>
+<p>一道格题，以及 Babai 最近平面算法</p>
+<details><summary>题目直达（1）</summary><ul><li><a href="/2025/05/25/2025-05-25_%E9%BB%84%E6%B2%B3%E6%B5%81%E5%9F%9Fwp/#1-Lattice">Lattice</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-05-17">2025-05-17</time> <a href="/2025/05/17/2025-05-17_BYUCTF2025-crypto-wp/">BYUCTF 2025 · Crypto</a>
+<p>Many Primes、PEM、Real-Smooth 和 Choose Your RSA 等五道题</p>
+<details><summary>题目直达（5）</summary><ul><li><a href="/2025/05/17/2025-05-17_BYUCTF2025-crypto-wp/#1-Many-Primes">Many Primes</a></li>
+<li><a href="/2025/05/17/2025-05-17_BYUCTF2025-crypto-wp/#2-PEM">PEM</a></li>
+<li><a href="/2025/05/17/2025-05-17_BYUCTF2025-crypto-wp/#3-Real-Smooth">Real-Smooth</a></li>
+<li><a href="/2025/05/17/2025-05-17_BYUCTF2025-crypto-wp/#4-Anaken21sec1">Anaken21sec1</a></li>
+<li><a href="/2025/05/17/2025-05-17_BYUCTF2025-crypto-wp/#5-Choose-Your-RSA">Choose Your RSA</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-05-16">2025-05-16</time> <a href="/2025/05/16/2025-05-16_actf%E7%88%86%E9%9B%B6/">ACTF · 赛后笔记</a>
+<p>eazy_log 和 AAALLL，后者涉及部分 Vandermonde 背包问题</p>
+<details><summary>题目直达（2）</summary><ul><li><a href="/2025/05/16/2025-05-16_actf%E7%88%86%E9%9B%B6/#1-eazy-log">eazy_log</a></li>
+<li><a href="/2025/05/16/2025-05-16_actf%E7%88%86%E9%9B%B6/#2-AAALLL">AAALLL</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-05-12">2025-05-12</time> <a href="/2025/05/12/2025-05-12_%E8%BD%A9%E8%BE%95%E6%9D%AFcrypto-wp/">轩辕杯 · Crypto</a>
+<p>从简单编码到 easy_rsa、babyrsa、dp 和 DIladila</p>
+<details><summary>题目直达（5）</summary><ul><li><a href="/2025/05/12/2025-05-12_%E8%BD%A9%E8%BE%95%E6%9D%AFcrypto-wp/#1-%E7%AE%80%E5%8D%95%E7%BC%96%E7%A0%81">简单编码</a></li>
+<li><a href="/2025/05/12/2025-05-12_%E8%BD%A9%E8%BE%95%E6%9D%AFcrypto-wp/#2-easy-rsa">easy_rsa</a></li>
+<li><a href="/2025/05/12/2025-05-12_%E8%BD%A9%E8%BE%95%E6%9D%AFcrypto-wp/#3-babyrsa">babyrsa</a></li>
+<li><a href="/2025/05/12/2025-05-12_%E8%BD%A9%E8%BE%95%E6%9D%AFcrypto-wp/#4-dp">dp</a></li>
+<li><a href="/2025/05/12/2025-05-12_%E8%BD%A9%E8%BE%95%E6%9D%AFcrypto-wp/#5-DIladila">DIladila</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-05-10">2025-05-10</time> <a href="/2025/05/10/2025-05-10_hashctf2025/">HashCTF 2025</a>
+<p>收录 Crypto、AI 和 Misc 题，simple_PIR 等题保留了当时未解出的思路</p>
+<details><summary>题目直达（5）</summary><ul><li><a href="/2025/05/10/2025-05-10_hashctf2025/#%E4%B8%80%E3%80%81simple-equation">simple_equation</a></li>
+<li><a href="/2025/05/10/2025-05-10_hashctf2025/#%E4%BA%8C%E3%80%81coll-415-md5">coll_415 -md5</a></li>
+<li><a href="/2025/05/10/2025-05-10_hashctf2025/#%E4%B8%89%E3%80%81simple-PIR-%E6%9C%AA%E8%A7%A3%E5%87%BA">simple_PIR（未解出）</a></li>
+<li><a href="/2025/05/10/2025-05-10_hashctf2025/#%E5%9B%9B%E3%80%81Don%E2%80%99t-lose-patience-%E6%9C%AA%E8%A7%A3%E5%87%BA">Don’t lose patience（未解出）</a></li>
+<li><a href="/2025/05/10/2025-05-10_hashctf2025/#%E4%B8%80%E3%80%81zkprime">zkprime</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-04-10">2025-04-10</time> <a href="/2025/04/10/2025-04-10_XYCTF/">XYCTF</a>
+<p>Division 的伪随机数与 Complex_sigin 的复数 RSA</p>
+<details><summary>题目直达（2）</summary><ul><li><a href="/2025/04/10/2025-04-10_XYCTF/#1-Division">Division</a></li>
+<li><a href="/2025/04/10/2025-04-10_XYCTF/#2-Complex-sigin">Complex_sigin</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-03-08">2025-03-08</time> <a href="/2025/03/08/2025-03-08_GHCTF2025wp/">GHCTF 2025</a>
+<p>AI 题 Cat girl，以及 baby_factor、baby_lattice、RSA_and_DSA 等 Crypto 题</p>
+<details><summary>题目直达（8）</summary><ul><li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#1-baby-factor">baby_factor</a></li>
+<li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#2-baby-sigin">baby_sigin</a></li>
+<li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#3-baby-femat">baby_femat</a></li>
+<li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#4-baby-factor-revenge">baby_factor_revenge</a></li>
+<li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#5-baby-lattice">baby_lattice</a></li>
+<li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#6-MIMT-RSA">MIMT RSA</a></li>
+<li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#7-RSA-and-DSA">RSA_and_DSA</a></li>
+<li><a href="/2025/03/08/2025-03-08_GHCTF2025wp/#8-EZ-Fermat-bag-PRO-Unsolved%EF%BC%89">EZ_Fermat_bag_PRO（未解出）</a></li></ul></details>
+</li>
+<li class="ctf-entry"><time datetime="2025-01-17">2025-01-17</time> <a href="/2025/01/17/2025-01-17_%E6%98%A5%E7%A7%8BGAME-WP/">春秋 GAME</a>
+<p>简单算术、easy_flask 和「通往哈希的旅程」三道题</p>
+<details><summary>题目直达（2）</summary><ul><li><a href="/2025/01/17/2025-01-17_%E6%98%A5%E7%A7%8BGAME-WP/#%E4%B8%80%E3%80%81%E7%AE%80%E5%8D%95%E7%AE%97%E6%9C%AF">简单算术</a></li>
+<li><a href="/2025/01/17/2025-01-17_%E6%98%A5%E7%A7%8BGAME-WP/#%E4%B8%89%E3%80%81%E9%80%9A%E5%BE%80%E5%93%88%E5%B8%8C%E7%9A%84%E6%97%85%E7%A8%8B">通往哈希的旅程</a></li></ul></details>
+</li>
+</ul></section>
+</div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By InfinitePwn</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章、标签和知识库入口" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div><script>
+(() => {
+  const search = document.querySelector('.ctf-search')
+  const input = search.querySelector('input')
+  const status = search.querySelector('output')
+  const groups = [...document.querySelectorAll('.ctf-group')].map(section => {
+    const groupName = section.id + ' ' + section.querySelector('h2').textContent
+    const entries = [...section.querySelectorAll('.ctf-entry')].map(element => {
+      const details = element.querySelector('details')
+      return {
+        element, details, wasOpen: false,
+        text: (groupName + ' ' + element.textContent).toLowerCase(),
+        problems: details ? details.querySelector('ul').textContent.toLowerCase() : ''
+      }
+    })
+    return { section, entries, link: document.querySelector(`.ctf-nav a[href="#${section.id}"]`) }
+  })
+
+  let filtering = false
+  function filter() {
+    const words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean)
+    let matches = 0
+    for (const { section, entries, link } of groups) {
+      let visible = 0
+      for (const entry of entries) {
+        const { element, text, details } = entry
+        element.hidden = !words.every(word => text.includes(word))
+        if (!element.hidden) visible++
+        if (details && (words.length || filtering)) {
+          if (!filtering) entry.wasOpen = details.open
+          details.open = entry.wasOpen || (!element.hidden && words.some(word => entry.problems.includes(word)))
+        }
+      }
+      matches += visible
+      section.hidden = visible === 0
+      link.hidden = section.hidden
+    }
+    document.querySelector('.ctf-nav').hidden = matches === 0
+    filtering = words.length > 0
+    status.textContent = words.length ? (matches ? `找到 ${matches} 个条目` : '没有匹配的笔记，试试比赛名或题名。') : ''
+  }
+
+  input.addEventListener('input', filter)
+  search.hidden = false
+  filter()
+})()
+</script></body></html>
