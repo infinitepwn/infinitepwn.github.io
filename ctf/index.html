@@ -141,103 +141,7 @@
   isHighlightShrink: undefined,
   isToc: false,
   pageType: 'page'
-}</script><link rel="stylesheet" href="/css/custom.css"><script src="/js/anime-effects.js"></script><meta name="generator" content="Hexo 8.1.1"><style>
-.type-ctf .layout.hide-aside {
-  max-width: 1130px;
-}
-#page.ctf-page {
-  padding: clamp(22px, 5vw, 62px);
-}
-.ctf-page {
-  --ctf-link: #2555a3;
-  --ctf-rule: #dae1e9;
-}
-[data-theme='dark'] .ctf-page {
-  --ctf-link: #91bbff;
-  --ctf-rule: #364255;
-}
-.ctf-page [hidden] { display: none !important; }
-.ctf-page .ctf-header {
-  margin: 0 0 1.7rem;
-  border-bottom: 1px solid var(--ctf-rule);
-  padding-bottom: 1.5rem;
-}
-.ctf-header h1 {
-  margin: .3rem 0 .15rem;
-  color: var(--ipn-text-strong);
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.2;
-}
-.ctf-header p { margin: .5rem 0 1rem; color: var(--ipn-text-muted); }
-.ctf-page .ctf-back, .ctf-related a, .ctf-examples a {
-  color: var(--ctf-link);
-  text-decoration: underline;
-  text-underline-offset: .18em;
-}
-.ctf-back { font-size: .9rem; }
-.ctf-search label { display: block; margin-bottom: .2rem; font-weight: 600; }
-.ctf-search input {
-  width: 100%;
-  max-width: 32rem;
-  border: 1px solid var(--ctf-rule);
-  border-radius: 5px;
-  padding: .55rem .85rem;
-  background: var(--card-bg, white);
-  color: var(--ipn-text-strong);
-  font: inherit;
-}
-.ctf-search input:focus-visible, .ctf-page a:focus-visible {
-  outline: 2px solid var(--ctf-link);
-  outline-offset: 3px;
-}
-.ctf-status { display: block; color: var(--ipn-text-muted); margin-top: .4rem; }
-.ctf-columns {
-  display: grid;
-  grid-template-columns: minmax(9rem, 1fr) minmax(0, 3.4fr);
-  gap: clamp(20px, 4vw, 58px);
-  align-items: start;
-}
-.ctf-nav { position: sticky; top: 5rem; }
-.ctf-nav p { font-size: .9rem; margin: 0 0 .6rem; color: var(--ipn-text-muted); }
-.ctf-nav a {
-  display: block;
-  padding: .3rem 0;
-  color: var(--ipn-text-strong);
-  line-height: 1.55;
-}
-.ctf-page a:hover { color: var(--ctf-link); text-decoration: underline; }
-.ctf-group { scroll-margin-top: 5rem; margin-bottom: 2.25rem; }
-.ctf-group h2 {
-  font-size: 1.45rem; line-height: 1.4;
-  border-bottom: 2px solid var(--ctf-rule);
-  margin: 0; padding: 0 0 .5rem;
-  color: var(--ipn-text-strong);
-}
-.ctf-group ul { margin: 0; padding: 0; list-style: none; }
-.ctf-entry { border-bottom: 1px solid var(--ctf-rule); padding: .85rem 0; }
-.ctf-entry:last-child { border-bottom: 0; }
-.ctf-entry > a {
-  font-size: 1.1rem; font-weight: 650; color: var(--ctf-link);
-  overflow-wrap: anywhere;
-}
-.ctf-entry p { margin: .2rem 0 0; color: var(--ipn-text-muted); line-height: 1.65; }
-.ctf-entry time { font: .87rem/1.6 ui-monospace, monospace; color: var(--ipn-text-muted); margin-right: .65rem; white-space: nowrap; }
-.ctf-related, .ctf-examples { font-size: .94rem; }
-.ctf-entry .ctf-related a + a { margin-left: 1em; }
-.ctf-page { font-size: 1rem; line-height: 1.7; }
-@media (max-width: 720px) {
-  .ctf-columns { display: block; }
-  .ctf-nav { position: static; margin-bottom: 1.6rem; }
-  .ctf-nav div { display: flex; flex-wrap: wrap; gap: .3rem 1rem; }
-  .ctf-nav a { color: var(--ctf-link); }
-  .ctf-entry time { display: block; }
-}
-.ctf-entry details { margin-top: .4rem; font-size: .95rem; }
-.ctf-entry summary { color: var(--ctf-link); cursor: pointer; width: fit-content; }
-.ctf-entry details ul { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; padding: .35rem 0 .1rem 1rem; }
-.ctf-entry details a { color: var(--ctf-link); text-decoration: underline; text-underline-offset: .18em; overflow-wrap: anywhere; }
-.ctf-order { margin: .5rem 0 0; color: var(--ipn-text-muted); font-size: .94rem; }
-</style></head><body><div class="bg-animation" id="web_bg"></div><script>(() => {
+}</script><link rel="stylesheet" href="/css/custom.css"><script src="/js/anime-effects.js"></script><meta name="generator" content="Hexo 8.1.1"><link rel="stylesheet" href="/ctf/catalog.css"></head><body><div class="bg-animation" id="web_bg"></div><script>(() => {
   const arr = ["background: linear-gradient(135deg,;"]
   const webBgDiv = document.getElementById('web_bg')
 
@@ -257,11 +161,13 @@
 </script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://avatars.githubusercontent.com/u/188052472?s=200&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">52</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/knowledge/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/wiki/"><i class="fa-fw fas fa-sitemap"></i><span> Wiki</span></a></div><div class="menus_item"><a class="site-page" href="/posts-index/"><i class="fa-fw fas fa-list"></i><span> 文章索引</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/CTF/"><i class="fa-fw fas fa-folder-open"></i><span> CTF 归档</span></a></div></div></div></div><div class="page type-ctf" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">InfinitePwn's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/knowledge/"><i class="fa-fw fas fa-book-open"></i><span> 知识库</span></a></div><div class="menus_item"><a class="site-page" href="/wiki/"><i class="fa-fw fas fa-sitemap"></i><span> Wiki</span></a></div><div class="menus_item"><a class="site-page" href="/posts-index/"><i class="fa-fw fas fa-list"></i><span> 文章索引</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/CTF/"><i class="fa-fw fas fa-folder-open"></i><span> CTF 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout hide-aside" id="content-inner"><div id="page" class="ctf-page">
 <header class="ctf-header"><a class="ctf-back" href="/posts-index/#CTF">文章索引</a>
 <h1>CTF 笔记</h1>
-<p>40 篇原文 · 6 个专题 · 14 场比赛</p>
+<p class="ctf-stats"><span><b>40</b> 篇原文</span><span><b>6</b> 个专题</span><span><b>14</b> 场比赛</span></p></header>
+
+<div class="ctf-columns">
 <div class="ctf-search" hidden><label for="ctf-q">筛选笔记</label>
 <input type="search" id="ctf-q" placeholder="输入知识点、比赛或题名" autocomplete="off">
-<output class="ctf-status" for="ctf-q" aria-live="polite"></output></div></header>
-<div class="ctf-columns"><nav class="ctf-nav" aria-label="CTF 笔记目录"><p>目录</p><div>
+<output class="ctf-status" for="ctf-q" aria-live="polite"></output></div>
+<nav class="ctf-nav" aria-label="CTF 笔记目录"><p>目录</p><div>
 <a href="#crypto-public-key">公钥密码与数论</a>
 <a href="#crypto-lattice">格与背包问题</a>
 <a href="#crypto-primitives">哈希与流密码</a>
@@ -270,6 +176,7 @@
 <a href="#tools">常用工具与密码库</a>
 <a href="#contests">比赛题解</a>
 </div></nav><div class="ctf-sections">
+
 <section class="ctf-group" id="crypto-public-key"><h2>公钥密码与数论</h2>
 <ul>
 <li class="ctf-entry"><a href="/2025/07/29/2025-07-29_RSA%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">RSA 与数论基础</a>
@@ -493,6 +400,30 @@
     return { section, entries, link: document.querySelector(`.ctf-nav a[href="#${section.id}"]`) }
   })
 
+
+  let currentSection
+  function updateLocation() {
+    let next
+    for (const group of groups) {
+      if (group.section.hidden) continue
+      if (next && group.section.getBoundingClientRect().top > 110) break
+      next = group
+    }
+    if (next === currentSection) return
+    if (currentSection) currentSection.link.removeAttribute('aria-current')
+    if (next) next.link.setAttribute('aria-current', 'location')
+    currentSection = next
+  }
+
+  let frame = 0
+  function scheduleLocation() {
+    if (frame) return
+    frame = requestAnimationFrame(() => {
+      frame = 0
+      updateLocation()
+    })
+  }
+
   let filtering = false
   function filter() {
     const words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean)
@@ -514,9 +445,13 @@
     }
     document.querySelector('.ctf-nav').hidden = matches === 0
     filtering = words.length > 0
+    scheduleLocation()
     status.textContent = words.length ? (matches ? `找到 ${matches} 个条目` : '没有匹配的笔记，试试比赛名或题名。') : ''
   }
 
+  window.addEventListener('scroll', scheduleLocation, { passive: true })
+  window.addEventListener('resize', scheduleLocation)
+  window.addEventListener('pageshow', scheduleLocation)
   input.addEventListener('input', filter)
   search.hidden = false
   filter()
