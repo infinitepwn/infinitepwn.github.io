@@ -1448,7 +1448,7 @@
 <p>来源：<code>算法设计与分析 / notes/03-级数求和与递推关系.md</code></p>
 </blockquote>
 <p><a href="../slides/lecture-03.pdf">课程 PPT</a> · <a href="../../%E5%A4%8D%E6%9D%82%E6%80%A7%E5%88%86%E6%9E%90/">复杂性分析</a> · <a href="../04-%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95%E4%B8%80/">分治算法（一）</a></p>
-<p>循环的代价可以写成各轮成本之和。递归的代价先写成「子调用代价 + 当前调用自己的代价」，再想办法去掉等式右边的 <span class="arithmatex">\(T\)</span></p>
+<p>循环做了多少工作，可以把每一轮加起来。递归也一样，例如归并排序处理 <span class="arithmatex">\([7,2,5,3]\)</span>，左右两半各比较一次，排成 <span class="arithmatex">\([2,7]\)</span> 和 <span class="arithmatex">\([3,5]\)</span>，最后合并再比较三次。写成递推式时，前两次算在两个子调用里，最后三次算在当前调用里</p>
 <h2 id="_1">级数求和<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1501,6 +1501,10 @@ S
 <p>所以这是 <span class="arithmatex">\(\Theta(1)\)</span>。用「项数乘最大项」只能得到 <span class="arithmatex">\(O(n)\)</span>，相邻两项的比值能给出更紧的界</p>
 <h3 id="_4">例子：二分查找的平均层数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>假设 <span class="arithmatex">\(n=2^k-1\)</span>、元素互异，把目标落在的 <span class="arithmatex">\(n\)</span> 个键和 <span class="arithmatex">\(n+1\)</span> 个空隙当成 <span class="arithmatex">\(2n+1\)</span> 个等概率事件。访问一个中点算比较一次。在这棵满树中，第 <span class="arithmatex">\(t\)</span> 层有 <span class="arithmatex">\(2^{t-1}\)</span> 个成功查找位置，所有失败查找都会访问 <span class="arithmatex">\(k\)</span> 层</p>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%203%20-%20Series_Summation_and_Recurrence_Relation.pdf" data-slide-page="28" data-slide-crop="0.22,0.11,0.78,0.735">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%203%20-%20Series_Summation_and_Recurrence_Relation.pdf#page=28" aria-label="七键二分查找各层的命中位置，三个颜色各标出一、二、三次比较能命中的键">查看课件原图</a>
+<figcaption>从左往右编号，紫色的第 4 位一次命中，黄色的第 2、6 位各比较两次，粉色的第 1、3、5、7 位各比较三次</figcaption>
+</figure>
 <div class="arithmatex">\[
 \begin{aligned}
 E[C_n]
@@ -1511,7 +1515,7 @@ E[C_n]
 \]</div>
 <p>例如 <span class="arithmatex">\(n=7\)</span> 时，比较 <span class="arithmatex">\(1,2,3\)</span> 次的事件分别有 <span class="arithmatex">\(1,2,12\)</span> 个，平均为 <span class="arithmatex">\(41/15\)</span> 次。元素与空隙等概率是这道题的假设，换一个目标分布就要重新给各事件加权</p>
 <h2 id="_5">递推关系的三种解法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>递推式需要配初值才能确定一列数。例如 Fibonacci 数列有 <span class="arithmatex">\(F_0=0,F_1=1\)</span> 和 <span class="arithmatex">\(F_n=F_{n-1}+F_{n-2}\)</span>。同样的递推式换一组初值，就会生成另一列数</p>
+<p>递推式还要说明缩到哪里停。归并排序只剩一个元素时不用比较，所以最坏比较次数 <span class="arithmatex">\(W(1)=0\)</span>。Fibonacci 数列也是先给 <span class="arithmatex">\(F_0=0,F_1=1\)</span>，再用 <span class="arithmatex">\(F_n=F_{n-1}+F_{n-2}\)</span> 算后面的项</p>
 <h3 id="_6">直接迭代：一直展开到初值<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>汉诺塔把 <span class="arithmatex">\(n-1\)</span> 个小盘先移走，移动最大盘，再把小盘移回来。记移动次数为 <span class="arithmatex">\(T(n)\)</span>，则 <span class="arithmatex">\(T(0)=0\)</span>，<span class="arithmatex">\(T(n)=2T(n-1)+1\)</span></p>
 <div class="arithmatex">\[
@@ -1520,11 +1524,11 @@ T(n)=2^jT(n-j)+\sum_{i=0}^{j-1}2^i
 <p>取 <span class="arithmatex">\(j=n\)</span> 得 <span class="arithmatex">\(T(n)=2^n-1\)</span>。若只展开几层来猜式子，可以把通式代入递推式，再检查初值。这里的子问题规模每次少 <span class="arithmatex">\(1\)</span>，展开深度是 <span class="arithmatex">\(n\)</span></p>
 <p>插入排序的最坏比较次数也是每次少一个元素，但只有一个子问题。对已排好的前 <span class="arithmatex">\(n-1\)</span> 个元素做一次最坏插入需要 <span class="arithmatex">\(n-1\)</span> 次比较，所以 <span class="arithmatex">\(W(n)=W(n-1)+n-1\)</span>。逐层展开只是在加等差数列，得到 <span class="arithmatex">\(W(n)=n(n-1)/2\)</span></p>
 <h3 id="_7">换元：把折半改写成下标减一<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>对归并排序的最坏比较次数，先考虑 <span class="arithmatex">\(n=2^k\)</span></p>
+<p>记 <span class="arithmatex">\(W(n)\)</span> 为归并排序的最坏比较次数，先考虑 <span class="arithmatex">\(n=2^k\)</span>。给两半排序，最多比较 <span class="arithmatex">\(2W(n/2)\)</span> 次。合并时，每次比较两个表头，拿走较小的一个。有一边取空以后，另一边直接接上，所以这步最多比较 <span class="arithmatex">\(n-1\)</span> 次</p>
 <div class="arithmatex">\[
 W(n)=2W(n/2)+n-1,\qquad W(1)=0
 \]</div>
-<p>定义 <span class="arithmatex">\(U_k=W(2^k)/2^k\)</span>，两边按本轮规模归一化后就得到</p>
+<p>令 <span class="arithmatex">\(U_k=W(2^k)/2^k\)</span>，把上面的式子两边都除以 <span class="arithmatex">\(2^k\)</span>。左边变成 <span class="arithmatex">\(U_k\)</span>，右边的两个子问题合起来变成 <span class="arithmatex">\(2W(2^{k-1})/2^k=W(2^{k-1})/2^{k-1}=U_{k-1}\)</span>，最后一次归并的代价变成 <span class="arithmatex">\(1-2^{-k}\)</span></p>
 <div class="arithmatex">\[
 U_k=U_{k-1}+1-2^{-k}
 \]</div>
@@ -1547,7 +1551,7 @@ nC_n-(n-1)C_{n-1}
 \]</div>
 <p>右边是 <span class="arithmatex">\(\Theta(1/n)\)</span>，累加得到 <span class="arithmatex">\(C_n=\Theta(n\log n)\)</span>。若继续拆成 <span class="arithmatex">\(-2/n+4/(n+1)\)</span>，还能得到 <span class="arithmatex">\(C_n=2(n+1)H_n-4n\)</span></p>
 <h3 id="_9">递归树：按层算当前调用做的事<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p>每个结点只记当前调用的额外工作 <span class="arithmatex">\(f(m)\)</span>，子调用的工作交给孩子结点。对 <span class="arithmatex">\(T(n)=aT(n/b)+f(n)\)</span>，以 <span class="arithmatex">\(n=b^k\)</span> 为例</p>
+<p>用开头的四个元素画树，根结点只记最后合并的 <span class="arithmatex">\(3\)</span> 次比较，左右孩子各记 <span class="arithmatex">\(1\)</span> 次，三个结点合计 <span class="arithmatex">\(5\)</span> 次。一般写成 <span class="arithmatex">\(T(n)=aT(n/b)+f(n)\)</span> 时，<span class="arithmatex">\(a\)</span> 是每次调用分出的子问题数，<span class="arithmatex">\(n/b\)</span> 是每个子问题的大小，<span class="arithmatex">\(f(n)\)</span> 是当前调用直接做的工作。以 <span class="arithmatex">\(n=b^k\)</span> 为例，可以逐层数结点和比较次数</p>
 <table>
 <thead>
 <tr>
@@ -1627,6 +1631,7 @@ T(n)=T(n/3)+T(2n/3)+\Theta(n)
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           

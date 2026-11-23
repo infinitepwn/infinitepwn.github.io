@@ -1538,13 +1538,18 @@ C(T)=C(T')+f_a+f_b
 <p>而每棵二叉归并树都恰好做 <span class="arithmatex">\(n-1\)</span> 次合并，因此用各步最坏比较次数之和作为代价时，总量为 <span class="arithmatex">\(\sum_i s_i d_i-(n-1)\)</span>。两个目标都由 Huffman 的合并规则最小化</p>
 <p>例如文件长度仍用 <span class="arithmatex">\(2,3,7,8\)</span>，每次合并最短两个，写入量为 <span class="arithmatex">\(5+12+20=37\)</span>。若先合并长度 <span class="arithmatex">\(7,8\)</span> 的文件，再连续并入长度 <span class="arithmatex">\(3,2\)</span> 的文件，写入量是 <span class="arithmatex">\(15+18+20=53\)</span></p>
 <h2 id="dijkstra">Dijkstra 单源最短路<a class="headerlink" href="#dijkstra" title="Permanent link">&para;</a></h2>
-<p>给定有向图或无向图和源点 <span class="arithmatex">\(s\)</span>，边权满足 <span class="arithmatex">\(w(u,v)\ge0\)</span>。记 <span class="arithmatex">\(\delta(s,v)\)</span> 为实际最短距离，<span class="arithmatex">\(d[v]\)</span> 是算法目前找到的最短路长度。每次选出 <span class="arithmatex">\(d\)</span> 最小的未确定顶点，把这个值确定下来，再用它更新相邻顶点</p>
+<p>从 <span class="arithmatex">\(s\)</span> 到 <span class="arithmatex">\(a\)</span>，直走要 <span class="arithmatex">\(4\)</span>。如果先花 <span class="arithmatex">\(1\)</span> 到 <span class="arithmatex">\(b\)</span>，再花 <span class="arithmatex">\(2\)</span> 到 <span class="arithmatex">\(a\)</span>，总共只要 <span class="arithmatex">\(3\)</span>。所以刚看到直达边时，可以先把 <span class="arithmatex">\(4\)</span> 写下来，等算到经 <span class="arithmatex">\(b\)</span> 的路线再把它改成 <span class="arithmatex">\(3\)</span></p>
+<p>Dijkstra 算法用来求单源最短路，有向图和无向图都适用，要求每条边的权重满足 <span class="arithmatex">\(w(u,v)\ge0\)</span>。记 <span class="arithmatex">\(\delta(s,v)\)</span> 为从 <span class="arithmatex">\(s\)</span> 到 <span class="arithmatex">\(v\)</span> 的实际最短距离，<span class="arithmatex">\(d[v]\)</span> 为当前找到的最短路线的长度，称为<strong>暂定距离</strong>。每次取出暂定距离最小的未确定点，确定它的最短距离，再用它去更新相邻顶点</p>
 <h3 id="_3">松弛与优先队列<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>如果已经找到一条到 <span class="arithmatex">\(u\)</span> 的路，接上 <span class="arithmatex">\(u\to v\)</span> 就得到一条到 <span class="arithmatex">\(v\)</span> 的候选路线。仅在更短时更新</p>
+<p>刚才把 <span class="arithmatex">\(4\)</span> 改成 <span class="arithmatex">\(3\)</span> 的操作叫<strong>松弛</strong>。设到 <span class="arithmatex">\(u\)</span> 已有一条长度为 <span class="arithmatex">\(d[u]\)</span> 的路，就试着接上边 <span class="arithmatex">\(u\to v\)</span>。若这条路更短，就记下新长度，并把 <span class="arithmatex">\(v\)</span> 的前驱改成 <span class="arithmatex">\(u\)</span>，方便最后把整条路径找回来</p>
 <div class="arithmatex">\[
 \text{若 }d[u]+w(u,v)&lt;d[v],\qquad
 d[v]\leftarrow d[u]+w(u,v),\quad \operatorname{prev}[v]\leftarrow u
 \]</div>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%207%20-%20Greedy_Algorithm%20%28II%29.pdf" data-slide-page="87" data-slide-crop="0.18,0.29,0.82,0.8">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%207%20-%20Greedy_Algorithm%20%28II%29.pdf#page=87" aria-label="Dijkstra 从顶点 1 出发，取出顶点 6 后更新距离和前驱">查看课件原图</a>
+<figcaption>取出顶点 6 后，经 1 → 6 → 2 的长度是 3 + 2 = 5，小于原先直达的 10，所以把顶点 2 的暂定距离降到 5，前驱改成 6</figcaption>
+</figure>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>d[s] = 0，其余 d[v] = ∞，prev[v] 为空
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>把所有顶点放入以 d 为键的最小优先队列
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -1558,7 +1563,7 @@ d[v]\leftarrow d[u]+w(u,v),\quad \operatorname{prev}[v]\leftarrow u
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>            在队列里降低 v 的键
 </code></pre></div>
 <p>沿前驱数组从终点回溯到 <span class="arithmatex">\(s\)</span> 可以恢复一条最短路。无法到达的顶点保留距离 <span class="arithmatex">\(\infty\)</span></p>
-<p>例如有 <span class="arithmatex">\(s\to a(4)\)</span>、<span class="arithmatex">\(s\to b(1)\)</span>、<span class="arithmatex">\(b\to a(2)\)</span>、<span class="arithmatex">\(b\to c(5)\)</span>、<span class="arithmatex">\(a\to c(1)\)</span>，括号内是边权</p>
+<p>在开头的例子里再加两条边，<span class="arithmatex">\(b\to c\)</span> 的权重为 <span class="arithmatex">\(5\)</span>，<span class="arithmatex">\(a\to c\)</span> 的权重为 <span class="arithmatex">\(1\)</span>。表里每一行都记录出队的点处理完之后的距离</p>
 <table>
 <thead>
 <tr>
@@ -1595,9 +1600,10 @@ d[v]\leftarrow d[u]+w(u,v),\quad \operatorname{prev}[v]\leftarrow u
 </tr>
 </tbody>
 </table>
-<p>例如 <span class="arithmatex">\(a\)</span> 的距离虽然先被更新为 <span class="arithmatex">\(4\)</span>，但取出 <span class="arithmatex">\(b\)</span> 后才发现 <span class="arithmatex">\(s\to b\to a\)</span> 更短。真正确定 <span class="arithmatex">\(a\)</span> 的距离是在 <span class="arithmatex">\(a\)</span> 从队列取出时</p>
+<p>怎么知道表里的距离已经确定？看对应的点有没有出队。取出 <span class="arithmatex">\(b\)</span> 后，<span class="arithmatex">\(a\)</span> 的记录降到 <span class="arithmatex">\(3\)</span>，仍是暂定值。下一行取出 <span class="arithmatex">\(a\)</span> 时，<span class="arithmatex">\(3\)</span> 才确定下来。<span class="arithmatex">\(c\)</span> 也一样，先记下 <span class="arithmatex">\(6\)</span>，后来改成 <span class="arithmatex">\(4\)</span>，直到 <span class="arithmatex">\(c\)</span> 自己出队才确定</p>
 <h3 id="_4">为什么出队时可以确定距离<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>源点 <span class="arithmatex">\(s\)</span> 第一个出队，距离为 <span class="arithmatex">\(0\)</span>。设 <span class="arithmatex">\(S\)</span> 是已经确定距离的顶点集合，当前选出的点是 <span class="arithmatex">\(u\)</span>。取一条 <span class="arithmatex">\(s\)</span> 到 <span class="arithmatex">\(u\)</span> 的最短路，设 <span class="arithmatex">\(y\)</span> 是其上第一个不在 <span class="arithmatex">\(S\)</span> 的顶点，<span class="arithmatex">\(x\)</span> 是 <span class="arithmatex">\(y\)</span> 的前驱。由于 <span class="arithmatex">\(x\in S\)</span>，处理 <span class="arithmatex">\(x\)</span> 时已松弛边 <span class="arithmatex">\((x,y)\)</span>。最短路的前缀也是到对应点的最短路，所以</p>
+<p>如果去队首的点还有一条更短的路，那么走这条路时，总有一步要从已确定的点走到队列中还没确定的点。看它第一次跨出去的那条边，就能拿这条路和队首的记录比较</p>
+<p>源点 <span class="arithmatex">\(s\)</span> 第一个出队，距离为 <span class="arithmatex">\(0\)</span>。记已确定的顶点集合为 <span class="arithmatex">\(S\)</span>。若队首 <span class="arithmatex">\(u\)</span> 的记录有限，取一条从 <span class="arithmatex">\(s\)</span> 到 <span class="arithmatex">\(u\)</span> 的最短路，设它第一次离开 <span class="arithmatex">\(S\)</span> 时经过边 <span class="arithmatex">\((x,y)\)</span>。<span class="arithmatex">\(x\)</span> 已经出过队，处理它时试过经这条边到 <span class="arithmatex">\(y\)</span>，所以 <span class="arithmatex">\(d[y]\)</span> 至多是这条最短路走到 <span class="arithmatex">\(y\)</span> 时的长度。这段路也必须是到 <span class="arithmatex">\(y\)</span> 的最短路，否则换前半段就能把通往 <span class="arithmatex">\(u\)</span> 的整条路缩短</p>
 <div class="arithmatex">\[
 d[y]\le d[x]+w(x,y)=\delta(s,y)
 \]</div>
@@ -1691,6 +1697,7 @@ w(T')=w(T)+w(e)-w(e')\le w(T)
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           

@@ -1482,9 +1482,10 @@
 <div class="algorithm-demo" data-algorithm="interval" data-intervals="1-4, 3-5, 0-6, 4-7, 8-11"></div>
 <script defer src="https://infinitepwn.github.io/wiki/assets/algorithm-demo.js"></script>
 <h3 id="_2">归纳证明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>设贪心已经选出的 <span class="arithmatex">\(k\)</span> 个任务恰好构成某个最优解 <span class="arithmatex">\(O\)</span> 的前缀。<span class="arithmatex">\(k=0\)</span> 时任取一个最优解即可</p>
-<p>若贪心下一步选了任务 <span class="arithmatex">\(g\)</span>，<span class="arithmatex">\(O\)</span> 必须还有后续任务，否则可以直接把 <span class="arithmatex">\(g\)</span> 接到 <span class="arithmatex">\(O\)</span> 后面，得到更大的相容集。设 <span class="arithmatex">\(O\)</span> 的下一个任务是 <span class="arithmatex">\(j\)</span>。<span class="arithmatex">\(j\)</span> 和 <span class="arithmatex">\(g\)</span> 都能接在前缀后，且按贪心规则有 <span class="arithmatex">\(f_g\le f_j\)</span>。把 <span class="arithmatex">\(j\)</span> 换成 <span class="arithmatex">\(g\)</span> 后，原先能接在 <span class="arithmatex">\(j\)</span> 后面的任务也都能接在 <span class="arithmatex">\(g\)</span> 后面，所以任务数保持不变。于是，贪心选出的前 <span class="arithmatex">\(k+1\)</span> 个任务也是某个最优解的前缀</p>
-<p>算法停止时已经没有能接在这个前缀后面的任务，因此该最优解已经被完整选出</p>
+<p>比如一组安排是 <span class="arithmatex">\([0,5)\to[5,7)\to[8,10)\)</span>。如果还有任务 <span class="arithmatex">\([1,3)\)</span>，可以拿它换掉第一项。剩下两项仍在时刻 <span class="arithmatex">\(5\)</span> 和 <span class="arithmatex">\(8\)</span> 开始，完全用不着改时间，整组还是三项</p>
+<p>证明时，假设有一组最优安排已经和贪心的前 <span class="arithmatex">\(k\)</span> 项一致。<span class="arithmatex">\(k=0\)</span> 时任取一组最优安排即可。设接下来贪心选 <span class="arithmatex">\(g\)</span>，这组最优安排选 <span class="arithmatex">\(j\)</span>。如果最优安排已经排完，就可以直接接上 <span class="arithmatex">\(g\)</span>，得到更多任务，这与它最优矛盾</p>
+<p>两项都能接在前 <span class="arithmatex">\(k\)</span> 项之后，且贪心选结束最早的，所以 <span class="arithmatex">\(f_g\le f_j\)</span>。把 <span class="arithmatex">\(j\)</span> 换成 <span class="arithmatex">\(g\)</span> 后，后面的任务原来就从 <span class="arithmatex">\(f_j\)</span> 或更晚开始，现在全都还能接上。换完任务数没变，这组安排仍然最优，且前 <span class="arithmatex">\(k+1\)</span> 项和贪心一致</p>
+<p>重复下去。贪心停下时已经没有任务能接上，和它一致的那组最优安排也排完了</p>
 <h3 id="_3">其他规则为什么会失败<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>最早开始</strong>。对 <span class="arithmatex">\([0,5),[1,2),[2,3),[3,4)\)</span>，会先选 <span class="arithmatex">\([0,5)\)</span>，只能完成一项。后三个区间可以全部选上</li>
@@ -1544,6 +1545,10 @@ L_{\max}=\max_j L_j,\qquad L_j=C_j-d_j
 <div class="arithmatex">\[
 L'_j=F-d_j\le F-d_i=L_i,\qquad L'_i\le L_i
 \]</div>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%206%20-%20Greedy_Algorithm%20%28I%29.pdf" data-slide-page="46" data-slide-crop="0.265,0.229,0.735,0.553">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%206%20-%20Greedy_Algorithm%20%28I%29.pdf#page=46" aria-label="相邻任务 j 和 i 互换，两个任务整体的起止时刻保持相同">查看课件原图</a>
+<figcaption>图中上排先做 j 再做 i，下排反过来。两项的总处理时间相同，所以右端 t* 就是两种顺序共同的完成时刻 F</figcaption>
+</figure>
 <p>因此交换后这对任务的最大延迟不超过交换前的最大延迟。每次交换消去一个截止时间逆序，直到按 <span class="arithmatex">\(d_j\)</span> 升序排列。同一截止时间 <span class="arithmatex">\(d\)</span> 的任务可以任意排序，因为它们作为一组连续执行，组内最大延迟都是<strong>这组结束时刻减去 <span class="arithmatex">\(d\)</span></strong></p>
 <h2 id="fractional-knapsack">可分背包（Fractional Knapsack）<a class="headerlink" href="#fractional-knapsack" title="Permanent link">&para;</a></h2>
 <p>每件物品可以分割，<span class="arithmatex">\(x_i\in[0,1]\)</span> 表示取物品 <span class="arithmatex">\(i\)</span> 的比例。假设 <span class="arithmatex">\(w_i&gt;0\)</span>、<span class="arithmatex">\(v_i\ge0\)</span>，问题为</p>
@@ -1575,6 +1580,7 @@ x_i=\min\left\{1,\frac{R}{w_i}\right\},\qquad R\leftarrow R-x_iw_i
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           

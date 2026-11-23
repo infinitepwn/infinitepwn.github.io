@@ -1576,7 +1576,8 @@ T(n)=\sum_{i=1}^{k}T(n_i)+f(n)
 <p>如果剩余芯片数是奇数，先取落单芯片 <span class="arithmatex">\(x\)</span>，让其他所有芯片报告 <span class="arithmatex">\(x\)</span> 的好坏。<span class="arithmatex">\(x\)</span> 是好的时候，至少一半的报告为好。<span class="arithmatex">\(x\)</span> 是坏的时候，超过一半的报告为坏。所以前一种情况可以直接返回 <span class="arithmatex">\(x\)</span>，后一种情况丢掉 <span class="arithmatex">\(x\)</span> 再配对</p>
 <p>每轮花 <span class="arithmatex">\(O(n)\)</span> 次测试，最多保留约一半，最坏共 <span class="arithmatex">\(\Theta(n)\)</span> 次测试。只剩一两枚时，由严格过半可知它们都是好的</p>
 <h2 id="_6">选择问题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>给出第 <span class="arithmatex">\(k\)</span> 小只需要定位它的秩。每一步确定哪些元素肯定排到目标之前或之后，就能省去它们之间的排序工作</p>
+<p>把数从小到大排好，第几个数就是第几小，这个位次叫秩。比如 <span class="arithmatex">\([5,1,3]\)</span> 排完后是 <span class="arithmatex">\([1,3,5]\)</span>，中位数就是中间的 <span class="arithmatex">\(3\)</span>，也就是第 <span class="arithmatex">\(2\)</span> 小。遇到重复值时每一个都占一个位置，例如 <span class="arithmatex">\([2,2,5,9]\)</span> 的第 <span class="arithmatex">\(2\)</span> 小仍然是 <span class="arithmatex">\(2\)</span></p>
+<p>如果共有奇数个元素，中位数是第 <span class="arithmatex">\((n+1)/2\)</span> 小，对应从 <span class="arithmatex">\(0\)</span> 开始的下标 <span class="arithmatex">\(\lfloor n/2\rfloor\)</span>。偶数个数有两个中间位置，第 <span class="arithmatex">\(n/2\)</span> 小和第 <span class="arithmatex">\(n/2+1\)</span> 小。题目可能取靠左的、靠右的，或者取这两个数的平均</p>
 <h3 id="_7">同时找最大值和最小值<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>两个独立扫描需要 <span class="arithmatex">\(2n-2\)</span> 次比较。先让元素两两比较，每对较小者只与当前最小值比较，较大者只与当前最大值比较</p>
 <ul>
@@ -1588,7 +1589,13 @@ T(n)=\sum_{i=1}^{k}T(n_i)+f(n)
 <p>把互异元素排成淘汰赛，冠军用 <span class="arithmatex">\(n-1\)</span> 次比较找出。第二大的元素只能输给最大值，因此只需要在冠军的直接对手里找最大值</p>
 <p>例如 <span class="arithmatex">\([5,3,6,7,2,1,4,8]\)</span> 按相邻位置配对，<span class="arithmatex">\(8\)</span> 依次击败 <span class="arithmatex">\(4,2,7\)</span>，在这三者中取最大得到 <span class="arithmatex">\(7\)</span>。平衡淘汰赛的冠军最多打 <span class="arithmatex">\(\lceil\log_2 n\rceil\)</span> 场，总比较次数最多为 <span class="arithmatex">\(n+\lceil\log_2 n\rceil-2\)</span>，<span class="arithmatex">\(n\)</span> 为 <span class="arithmatex">\(2\)</span> 的整数次幂时每条路径都达到这个场数</p>
 <h3 id="quickselect">Quickselect：只递归到目标所在的一侧<a class="headerlink" href="#quickselect" title="Permanent link">&para;</a></h3>
-<p>把划分后的三段记为 <span class="arithmatex">\(L,E,R\)</span>，<span class="arithmatex">\(k\)</span> 从 <span class="arithmatex">\(1\)</span> 开始编号</p>
+<p>跟着下面的演示找 <span class="arithmatex">\([9,2,5,2,7,2,5,1]\)</span> 的第 <span class="arithmatex">\(5\)</span> 小。演示每轮取当前区间的第一个数当枢轴，用它把数分成小于、等于和大于三段</p>
+<ol>
+<li>第一轮先用 <span class="arithmatex">\(9\)</span>。其他七个数都比它小，所以去左段继续找第 <span class="arithmatex">\(5\)</span> 小</li>
+<li>第二轮才轮到 <span class="arithmatex">\(2\)</span>。比它小的有一个 <span class="arithmatex">\(1\)</span>，等于它的有三个 <span class="arithmatex">\(2\)</span>，合起来已经占了前四名。丢开这四个数，到右段找第 <span class="arithmatex">\(5-4=1\)</span> 小</li>
+<li>第三轮用 <span class="arithmatex">\(5\)</span>。右段的三个数是两个 <span class="arithmatex">\(5\)</span> 和一个 <span class="arithmatex">\(7\)</span>，前两名都等于 <span class="arithmatex">\(5\)</span>，所以第 <span class="arithmatex">\(1\)</span> 小就是 <span class="arithmatex">\(5\)</span></li>
+</ol>
+<p>把小于、等于、大于枢轴的三段记为 <span class="arithmatex">\(L,E,R\)</span>，<span class="arithmatex">\(k\)</span> 是当前这段要找的第几小。段内顺序可以先放着，光数每段有几个数，就知道它占哪些名次</p>
 <table>
 <thead>
 <tr>
@@ -1611,17 +1618,18 @@ T(n)=\sum_{i=1}^{k}T(n_i)+f(n)
 </tr>
 </tbody>
 </table>
-<p>例如在 <span class="arithmatex">\([3,4,8,2,5,9,10]\)</span> 找第 <span class="arithmatex">\(4\)</span> 小，若枢轴是 <span class="arithmatex">\(4\)</span>，左边有两个元素，<span class="arithmatex">\(4\)</span> 占一个位置，所以要到 <span class="arithmatex">\([8,5,9,10]\)</span> 里找第 <span class="arithmatex">\(1\)</span> 小，得到 <span class="arithmatex">\(5\)</span></p>
+<p>只留下左段时，从原来的起点数，<span class="arithmatex">\(k\)</span> 照旧。只留下右段时，要跳过左段和等值段所有的名次，所以从 <span class="arithmatex">\(k\)</span> 里减掉这两段的长度</p>
 <div class="algorithm-demo" data-algorithm="quickselect" data-array="9, 2, 5, 2, 7, 2, 5, 1" data-k="5"></div>
 <script defer src="https://infinitepwn.github.io/wiki/assets/algorithm-demo.js"></script>
 <p>每次若恰好只排除一个元素，总成本为 <span class="arithmatex">\(\Theta(n^2)\)</span>。若随机选枢轴，至少约一半概率抽到中间一半的秩，这时递归规模至多约 <span class="arithmatex">\(3n/4\)</span>。在规模还没缩到 <span class="arithmatex">\(3n/4\)</span> 之前，每轮成本至多 <span class="arithmatex">\(O(n)\)</span>，期望至多常数轮就能达到这个规模。继续按几何级数加起来，期望总时间为 <span class="arithmatex">\(\Theta(n)\)</span></p>
 <h3 id="median-of-medians">Median of Medians：给划分比例一个确定性保证<a class="headerlink" href="#median-of-medians" title="Permanent link">&para;</a></h3>
+<p>选到很靠前或很靠后的枢轴，每轮可能只丢掉一个数。五个一组的办法先找各组的中位数，再从这些中位数里挑居中的那个来做枢轴</p>
 <ol>
 <li>每五个元素分一组，组内排序后取中位数，最后一组可以少于五个</li>
 <li>递归求这些组中位数的中位数 <span class="arithmatex">\(p\)</span>，用 <span class="arithmatex">\(p\)</span> 划分原数组</li>
 <li>用 Quickselect 的秩判断，只对含有答案的一侧递归</li>
 </ol>
-<p>约一半的组中位数 <span class="arithmatex">\(\ge p\)</span>。其中每个五元组都有三个元素 <span class="arithmatex">\(\ge p\)</span>，所以原数组中至少 <span class="arithmatex">\(3n/10-O(1)\)</span> 个元素 <span class="arithmatex">\(\ge p\)</span>。同理至少 <span class="arithmatex">\(3n/10-O(1)\)</span> 个元素 <span class="arithmatex">\(\le p\)</span>。三路划分时两侧各自最多剩 <span class="arithmatex">\(7n/10+O(1)\)</span> 个元素，重复键也能用这两个非严格不等式处理</p>
+<p>拿一组排好的 <span class="arithmatex">\([1,3,5,7,9]\)</span> 举例。只要组中位数 <span class="arithmatex">\(5\ge p\)</span>，这一组的 <span class="arithmatex">\(5,7,9\)</span> 就都 <span class="arithmatex">\(\ge p\)</span>。至少一半的组中位数满足这个条件，扣掉可能不满五个的最后一组，仍能数出至少 <span class="arithmatex">\(3n/10-O(1)\)</span> 个 <span class="arithmatex">\(\ge p\)</span> 的元素。从中位数往小的一边数，也能找出同样多的 <span class="arithmatex">\(\le p\)</span> 的元素。因此三路划分后，两侧各自最多剩 <span class="arithmatex">\(7n/10+O(1)\)</span> 个元素，相等的值都放在中段</p>
 <div class="arithmatex">\[
 T(n)\le T(\lceil n/5\rceil)+T(7n/10+O(1))+O(n)
 \]</div>

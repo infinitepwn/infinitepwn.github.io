@@ -1633,7 +1633,8 @@ A(n)
 <p>例如 <span class="arithmatex">\(P=[2,3,4],x=2\)</span>。初始值为 <span class="arithmatex">\(2\)</span>，两轮分别加 <span class="arithmatex">\(3\cdot2\)</span>、<span class="arithmatex">\(4\cdot4\)</span>，得 <span class="arithmatex">\(24\)</span>。这个版本做 <span class="arithmatex">\(2n\)</span> 次标量乘法和 <span class="arithmatex">\(n\)</span> 次加法。若使用 Horner 法，从最高次项往回做 <span class="arithmatex">\(y\leftarrow yx+P[i]\)</span>，乘法可减为 <span class="arithmatex">\(n\)</span> 次，渐近量级仍为 <span class="arithmatex">\(\Theta(n)\)</span>。</p>
 <p>插入排序的外层不变量是“前缀已经有序”，归并排序合并前需要两个子区间分别有序，相应步骤见<a href="../%E5%BC%95%E8%AE%BA/#算法分析初步排序">引论</a>。</p>
 <h2 id="_7">五种渐近记号<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>统一假设 <span class="arithmatex">\(f(n)\ge0\)</span>、<span class="arithmatex">\(g(n)&gt;0\)</span> 在充分大的 <span class="arithmatex">\(n\)</span> 上成立。令 <span class="arithmatex">\(r_n=f(n)/g(n)\)</span>。下表中的约束都要对每个 <span class="arithmatex">\(n\ge n_0\)</span> 成立，<span class="arithmatex">\(n_0\)</span> 可以依赖所选的常数。</p>
+<p>在有序数组 <span class="arithmatex">\([2,4,6,8,10,12,14]\)</span> 里找 <span class="arithmatex">\(15\)</span>。顺序查找要把 <span class="arithmatex">\(7\)</span> 项都看一遍，二分查找依次看 <span class="arithmatex">\(8,12,14\)</span>，比较 <span class="arithmatex">\(3\)</span> 次就知道目标不在数组里。如果数组有 <span class="arithmatex">\(15\)</span> 项，最坏分别要比较 <span class="arithmatex">\(15\)</span> 次和 <span class="arithmatex">\(4\)</span> 次。顺序查找的最坏次数随项数一起增加，是 <span class="arithmatex">\(O(n)\)</span>。二分每比较一次，就把剩余范围缩到原来的一半以内，项数翻倍时最坏只多一次比较，是 <span class="arithmatex">\(O(\log n)\)</span>。</p>
+<p>下面用 <span class="arithmatex">\(f(n)\)</span> 表示要分析的次数，用 <span class="arithmatex">\(g(n)\)</span> 作参照。当 <span class="arithmatex">\(n\)</span> 充分大时，假设 <span class="arithmatex">\(f(n)\ge0\)</span>、<span class="arithmatex">\(g(n)&gt;0\)</span>，令 <span class="arithmatex">\(r_n=f(n)/g(n)\)</span>。下表的不等式要对每个 <span class="arithmatex">\(n\ge n_0\)</span> 成立，起点 <span class="arithmatex">\(n_0\)</span> 可以随所选的常数而变。</p>
 <table>
 <thead>
 <tr>
@@ -1670,7 +1671,7 @@ A(n)
 </tr>
 </tbody>
 </table>
-<p>把 <span class="arithmatex">\(O(g)\)</span> 看成允许所有符合定义的函数组成的集合。写 <span class="arithmatex">\(f(n)=O(g(n))\)</span> 是常见记法，含义是 <span class="arithmatex">\(f\in O(g)\)</span>。求出 <span class="arithmatex">\(W(n)\)</span> 或 <span class="arithmatex">\(A(n)\)</span> 后都可以给它套渐近界，例如“顺序查找的最坏比较次数为 <span class="arithmatex">\(\Theta(n)\)</span>”。先选输入情况，再选上界、下界或紧界。</p>
+<p>例如对 <span class="arithmatex">\(n\ge1\)</span>，有 <span class="arithmatex">\(3n+2\le5n\)</span>。从这里就能写出 <span class="arithmatex">\(3n+2=O(n)\)</span>，常数取 <span class="arithmatex">\(5\)</span>，起点取 <span class="arithmatex">\(1\)</span>。<span class="arithmatex">\(O\)</span> 说明所写的是上界。若要说分析的是哪种输入情况，可以写清楚 <span class="arithmatex">\(W(n)\)</span> 或 <span class="arithmatex">\(A(n)\)</span>，例如顺序查找最坏比较 <span class="arithmatex">\(W(n)=n\)</span> 次，因此 <span class="arithmatex">\(W(n)=\Theta(n)\)</span>。</p>
 <h3 id="_8">同一个函数可以有多个上界<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>设 <span class="arithmatex">\(f(n)=32n^2+17n+1\)</span>。当 <span class="arithmatex">\(n\ge1\)</span>，有</p>
 <div class="arithmatex">\[
@@ -1696,6 +1697,10 @@ A(n)
 (\log n)^k,\quad n^\alpha,\quad n,\quad
 n\log n,\quad n^d,\quad c^n,\quad n!,\quad n^n
 \]</div>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%202%20-%20Complexity_Analysis.pdf" data-slide-page="86" data-slide-crop="0.148,0.103,0.858,0.979">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%202%20-%20Complexity_Analysis.pdf#page=86" aria-label="输入项数与操作次数关系图，依次画出常数、对数、线性、线性对数、平方、指数和阶乘曲线">查看课件原图</a>
+<figcaption>沿横轴向右看，平方曲线比线性对数曲线上升得更快。输入从 1000 项增至 2000 项时，n² 增为原来的 4 倍，n log₂ n 增为原来的约 2.2 倍</figcaption>
+</figure>
 <ul>
 <li><strong>对数换底</strong>。<span class="arithmatex">\(\log_a n=\log_b n/\log_b a\)</span>，当底数 <span class="arithmatex">\(a,b\)</span> 是大于 <span class="arithmatex">\(1\)</span> 的常数时，只相差一个常数因子</li>
 <li><strong>正次幂快于对数</strong>。对任意 <span class="arithmatex">\(\alpha&gt;0\)</span>，用洛必达法则有 <span class="arithmatex">\(\lim_{x\to\infty}(\ln x)/x^\alpha=\lim_{x\to\infty}1/(\alpha x^\alpha)=0\)</span></li>
@@ -1803,6 +1808,7 @@ x-1&lt;\lfloor x\rfloor\le x\le\lceil x\rceil&lt;x+1.
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           

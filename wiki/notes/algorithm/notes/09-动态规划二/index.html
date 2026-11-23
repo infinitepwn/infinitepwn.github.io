@@ -1407,7 +1407,12 @@
 </blockquote>
 <p><a href="../slides/lecture-09.pdf">Lecture 9 课件</a></p>
 <h2 id="_1">矩阵链相乘<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>给定 <span class="arithmatex">\(n\)</span> 个矩阵 <span class="arithmatex">\(A_1,\ldots,A_n\)</span>，其中 <span class="arithmatex">\(A_i\)</span> 的尺寸为 <span class="arithmatex">\(p_{i-1}\times p_i\)</span>。要算 <span class="arithmatex">\(A_1A_2\cdots A_n\)</span>，矩阵保持原有次序，括号的位置可以根据尺寸调整。对于普通的矩阵乘法，<span class="arithmatex">\((a\times b)(b\times c)\)</span> 需要 <span class="arithmatex">\(abc\)</span> 次标量乘法</p>
+<p>有三个矩阵 <span class="arithmatex">\(A,B,C\)</span>，尺寸分别是 <span class="arithmatex">\(10\times100\)</span>、<span class="arithmatex">\(100\times5\)</span>、<span class="arithmatex">\(5\times50\)</span>。按朴素矩阵乘法，<span class="arithmatex">\(a\times b\)</span> 的矩阵乘 <span class="arithmatex">\(b\times c\)</span> 的矩阵，结果有 <span class="arithmatex">\(ac\)</span> 格，每格要做一次长度为 <span class="arithmatex">\(b\)</span> 的点积，因此共需 <span class="arithmatex">\(a\cdot b\cdot c\)</span> 次标量乘法。拿这个规则分别数一下两种括号</p>
+<ul>
+<li>先算 <span class="arithmatex">\(AB\)</span>，得到 <span class="arithmatex">\(10\times5\)</span>，再乘 <span class="arithmatex">\(C\)</span>，共需 <span class="arithmatex">\(10\cdot100\cdot5+10\cdot5\cdot50=7500\)</span> 次</li>
+<li>先算 <span class="arithmatex">\(BC\)</span>，得到 <span class="arithmatex">\(100\times50\)</span>，再用 <span class="arithmatex">\(A\)</span> 乘它，共需 <span class="arithmatex">\(100\cdot5\cdot50+10\cdot100\cdot50=75000\)</span> 次</li>
+</ul>
+<p>两种写法保持 <span class="arithmatex">\(A,B,C\)</span> 的顺序，矩阵乘法的结合律保证它们得到同一个 <span class="arithmatex">\(10\times50\)</span> 的结果。括号决定先产生哪个中间矩阵，后面运算用到的尺寸会随之变化。推广到 <span class="arithmatex">\(n\)</span> 个相邻可乘的矩阵 <span class="arithmatex">\(A_1,\ldots,A_n\)</span>，记 <span class="arithmatex">\(A_i\)</span> 的尺寸为 <span class="arithmatex">\(p_{i-1}\times p_i\)</span>，目标就是找到总乘法次数最少的括号方案</p>
 <p>比如课件中的四个矩阵尺寸分别为 <span class="arithmatex">\(50\times20\)</span>、<span class="arithmatex">\(20\times1\)</span>、<span class="arithmatex">\(1\times10\)</span>、<span class="arithmatex">\(10\times100\)</span></p>
 <table>
 <thead>
@@ -1433,7 +1438,7 @@
 </table>
 <p>这里最大的节省来自让最后一次相乘的公共维度变成 <span class="arithmatex">\(1\)</span>。一般情况下，要同时考虑每个切分点对应的左、右子链代价和最后一次相乘</p>
 <h3 id="_2">为什么能枚举最后一刀<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>设 <span class="arithmatex">\(C(i,j)\)</span> 为计算 <span class="arithmatex">\(A_i\cdots A_j\)</span> 的最少标量乘法次数。任何一组完整括号的最外层都可以写成 <span class="arithmatex">\((A_i\cdots A_k)(A_{k+1}\cdots A_j)\)</span>，<span class="arithmatex">\(i\le k&lt;j\)</span></p>
+<p>例如 <span class="arithmatex">\((AB)C\)</span> 最后拿 <span class="arithmatex">\(AB\)</span> 和 <span class="arithmatex">\(C\)</span> 相乘，切分点就在第二个矩阵后面。一段矩阵链 <span class="arithmatex">\(A_i\cdots A_j\)</span> 也一样，最终会把切分点 <span class="arithmatex">\(k\)</span> 两侧各自算出的矩阵相乘，两段分别是 <span class="arithmatex">\(A_i\cdots A_k\)</span> 和 <span class="arithmatex">\(A_{k+1}\cdots A_j\)</span>。把算完整段所需的最少标量乘法次数记作 <span class="arithmatex">\(C(i,j)\)</span>，只需依次试 <span class="arithmatex">\(i\le k&lt;j\)</span> 的切分点</p>
 <p>两段的结果矩阵尺寸分别是 <span class="arithmatex">\(p_{i-1}\times p_k\)</span>、<span class="arithmatex">\(p_k\times p_j\)</span>，各段内部括号怎么放都不影响这两个尺寸。因此可以用各段自己的最优括号替换原括号，最后一次相乘代价照旧</p>
 <div class="arithmatex">\[
 C(i,i)=0,\qquad
@@ -1486,6 +1491,10 @@ C(i,j)=\min_{i\le k&lt;j}
 </tr>
 </tbody>
 </table>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%209%20-%20Dynamic_Programming%20%28II%29.pdf" data-slide-page="24" data-slide-crop="0.13126253,0.21174377,0.87074148,0.81494662">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%209%20-%20Dynamic_Programming%20%28II%29.pdf#page=24" aria-label="五矩阵的代价表、彩色切分表和括号恢复">查看课件原图</a>
+<figcaption>先在上表找到黄色的最小代价 C(1,5) = 11875，再从下表黄色的 s(1,5) = 3 出发，查两个橙色子区间的切分点来展开括号</figcaption>
+</figure>
 <p>在 <span class="arithmatex">\(C(1,5)\)</span> 处取 <span class="arithmatex">\(k=3\)</span>，依次查 <span class="arithmatex">\(C(1,3)\)</span> 和 <span class="arithmatex">\(C(4,5)\)</span> 的切分，恢复 <span class="arithmatex">\((A_1(A_2A_3))(A_4A_5)\)</span>。总次数可以手算为 <span class="arithmatex">\(7875+1000+30\cdot5\cdot20=11875\)</span></p>
 <h2 id="obst">最优二叉搜索树（OBST）<a class="headerlink" href="#obst" title="Permanent link">&para;</a></h2>
 <p>有序键为 <span class="arithmatex">\(x_1&lt;\cdots&lt;x_n\)</span>。查找命中 <span class="arithmatex">\(x_i\)</span> 的概率记为 <span class="arithmatex">\(b_i\)</span>，落在空隙 <span class="arithmatex">\((x_i,x_{i+1})\)</span> 的概率记为 <span class="arithmatex">\(a_i\)</span>，其中 <span class="arithmatex">\(x_0=-\infty\)</span>、<span class="arithmatex">\(x_{n+1}=+\infty\)</span>。每个空隙对应一个查找失败位置</p>
@@ -1494,11 +1503,12 @@ C(i,j)=\min_{i\le k&lt;j}
 A(T)=\sum_{i=1}^{n} b_i(1+d(x_i))+\sum_{i=0}^{n}a_i d(I_i).
 \]</div>
 <h3 id="_4">为什么转移要加区间总权重<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>设 <span class="arithmatex">\(F(i,j)\)</span> 为只建键 <span class="arithmatex">\(x_i,\ldots,x_j\)</span> 时的最小加权比较次数，保留这些键和周围空隙的原始概率，不在区间内重新归一化。这个子问题涵盖的查询总概率为</p>
+<p>假设有 <span class="arithmatex">\(100\)</span> 次查询，其中 <span class="arithmatex">\(16\)</span> 次会进入当前子树。这 <span class="arithmatex">\(16\)</span> 次都要在子树的根比较一次，因此这一次比较对所有查询的平均次数贡献 <span class="arithmatex">\(16/100=0.16\)</span>。这也是子问题要沿用原始概率的原因</p>
+<p>设 <span class="arithmatex">\(F(i,j)\)</span> 为只用键 <span class="arithmatex">\(x_i,\ldots,x_j\)</span> 建树时，这些查询从进入子树开始，对总期望比较次数的最小贡献。哪些查询会进入这棵子树？一部分命中区间里的键，另一部分落在这些键之间或两侧相邻的空隙。把两部分的概率加起来，记作 <span class="arithmatex">\(W(i,j)\)</span></p>
 <div class="arithmatex">\[
 W(i,j)=\sum_{t=i}^{j}b_t+\sum_{t=i-1}^{j}a_t.
 \]</div>
-<p>若取 <span class="arithmatex">\(x_k\)</span> 作根，区间内每次查询都要与它比较一次，因此根这一层贡献刚好是 <span class="arithmatex">\(W(i,j)\)</span>。比较后，命中 <span class="arithmatex">\(x_k\)</span> 的查询结束，其余按大小进入两棵子树，由各自的子问题继续计算</p>
+<p>选 <span class="arithmatex">\(x_k\)</span> 作根后，第一次比较的贡献是 <span class="arithmatex">\(W(i,j)\)</span>。命中 <span class="arithmatex">\(x_k\)</span> 的查询到此结束，其余按大小进入左右子树。左右子树要做的后续比较，分别由两个更小的区间子问题算出</p>
 <div class="arithmatex">\[
 F(i,i-1)=0,\qquad
 F(i,j)=W(i,j)+\min_{i\le k\le j}
@@ -1532,6 +1542,7 @@ F(i,j)=W(i,j)+\min_{i\le k\le j}
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           

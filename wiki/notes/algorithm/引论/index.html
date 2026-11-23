@@ -1639,7 +1639,7 @@
 <h2 id="_3">算法设计初步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="roi">投资回报问题（ROI）<a class="headerlink" href="#roi" title="Permanent link">&para;</a></h3>
 <h4 id="_4">建模<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
-<p>有 <span class="arithmatex">\(m\)</span> 枚硬币可投资给 <span class="arithmatex">\(n\)</span> 个项目。将 <span class="arithmatex">\(x\)</span> 枚硬币投给项目 <span class="arithmatex">\(i\)</span> 时，收益为 <span class="arithmatex">\(f_i(x)\)</span>。</p>
+<p>手里有 5 枚硬币，可以分给 4 个项目。每个项目都有一张表，写着投 0 枚、1 枚、2 枚……各能赚多少。要决定的是每个项目投几枚，让四项收益加起来最多。用 <span class="arithmatex">\(m\)</span> 表示硬币总数，<span class="arithmatex">\(n\)</span> 表示项目数，<span class="arithmatex">\(f_i(x)\)</span> 就是第 <span class="arithmatex">\(i\)</span> 个项目投 <span class="arithmatex">\(x\)</span> 枚的收益。</p>
 <ul>
 <li><strong>输入</strong>：<span class="arithmatex">\(n,m\)</span> 以及 <span class="arithmatex">\(f_i(x)\)</span>，其中 <span class="arithmatex">\(i\in[n]\)</span>、<span class="arithmatex">\(x\in\{0,\ldots,m\}\)</span>。</li>
 <li><strong>输出</strong>：投资向量 <span class="arithmatex">\(\langle x_1,x_2,\ldots,x_n\rangle\)</span>。</li>
@@ -1650,21 +1650,21 @@
 \max \sum_{i=1}^{n} f_i(x_i).
 \]</div>
 <h4 id="_5">暴力算法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<p>枚举每个满足约束的投资向量，计算总收益，取其中最大值。只要解空间可枚举，这种方法就容易设计且一定正确，但未必高效。</p>
-<p>候选解是方程</p>
+<p>先试两枚硬币、两个项目。第一个项目可以拿 0、1、2 枚，第二个项目拿余下的。这样只有三种分法，分别是 <span class="arithmatex">\((0,2)\)</span>、<span class="arithmatex">\((1,1)\)</span> 和 <span class="arithmatex">\((2,0)\)</span>。每种分法都查两次表，把收益加起来，再挑收益最高的。这就是枚举。</p>
+<p>把第 <span class="arithmatex">\(i\)</span> 个项目分到的硬币数记作 <span class="arithmatex">\(x_i\)</span>。硬币恰好分完，所以</p>
 <div class="arithmatex">\[
 x_1+x_2+\cdots+x_n=m
 \]</div>
-<p>的非负整数解。由“隔板法”（stars and bars），候选解个数为</p>
+<p>每个 <span class="arithmatex">\(x_i\)</span> 都是非负整数。现在回到 5 枚硬币和 4 个项目。把 5 枚硬币排成一行，插入 3 块隔板就分成了 4 段，每段对应一个项目。两块隔板挨在一起，中间那一段就是 0 枚。共 8 个位置，选出 3 个放隔板，其余位置自然放硬币。这就是隔板法，推广到 <span class="arithmatex">\(m\)</span> 枚硬币和 <span class="arithmatex">\(n\)</span> 个项目，分法共有</p>
 <div class="arithmatex">\[
 \binom{m+n-1}{n-1}=\frac{(m+n-1)!}{m!(n-1)!}.
 \]</div>
-<p>例如 <span class="arithmatex">\(m=5,n=4\)</span> 时，共有 <span class="arithmatex">\(\binom{8}{3}=56\)</span> 种分配。在讲义的收益表中，最优解为</p>
+<p>代入 <span class="arithmatex">\(m=5,n=4\)</span>，一共要比较 <span class="arithmatex">\(\binom{8}{3}=56\)</span> 种分法。按课件中的收益表查完，最高收益是 61，对应的分法是</p>
 <div class="arithmatex">\[
 \langle1,0,3,1\rangle,
 \qquad f_1(1)+f_2(0)+f_3(3)+f_4(1)=61.
 \]</div>
-<p>隔板法的对应关系可以直接写出来。比如 <span class="arithmatex">\(\langle1,2,3,1\rangle\)</span> 对应 <span class="arithmatex">\(1\,0\,11\,0\,111\,0\,1\)</span>，<span class="arithmatex">\(1\)</span> 表示硬币，<span class="arithmatex">\(0\)</span> 表示隔板。相邻的两块隔板之间可以没有硬币，对应投资额 <span class="arithmatex">\(0\)</span>。选择 <span class="arithmatex">\(n-1\)</span> 个位置放隔板，就确定了唯一一个分配方案。</p>
+<p>读这个答案时，从左到右看四个数就行。第一项投 1 枚，第二项跳过，第三项投 3 枚，最后一项投剩下的 1 枚。</p>
 <blockquote>
 <p>[!note] 候选数的增长
 <span class="arithmatex">\(\binom{m+n-1}{n-1}\)</span> 是组合级增长；当 <span class="arithmatex">\(m,n\)</span> 同比例增长时，它对 <span class="arithmatex">\(m+n\)</span> 呈指数级增长。若其中一个参数固定，则不能简单地称为对另一参数的指数增长。</p>
@@ -1702,13 +1702,18 @@ T(I)=\sum_{k=1}^{n}(n-k+1)t_{i_k}.
 <div class="arithmatex">\[
 3\times5+5\times4+8\times3+10\times2+15=94.
 \]</div>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%201%20-%20Introduction_to_Algorithms.pdf" data-slide-page="26" data-slide-crop="0.158,0.2493,0.842,0.5203">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%201%20-%20Introduction_to_Algorithms.pdf#page=26" aria-label="SPT 调度时间线，五项任务先后在 3、8、16、26、41 时刻完成">查看课件原图</a>
+<figcaption>每个色块的长度表示处理时间，把五个右端点 3、8、16、26、41 加起来，就得到总完成时间 94</figcaption>
+</figure>
 <h4 id="_8">正确性：交换论证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
-<p>假设某个最优调度中存在相邻的逆序任务 <span class="arithmatex">\(i,j\)</span>，且 <span class="arithmatex">\(t_i&gt;t_j\)</span>。交换二者，其他任务的完成时间不变，而总完成时间的变化为</p>
+<p>先看两项同时到达的任务，一项要 8 分钟，另一项要 3 分钟。长任务先做，两项分别在第 8、11 分钟完成，加起来是 19。短任务先做，完成时刻变成 3 和 11，加起来是 14。两种顺序都在第 11 分钟腾出机器，省下的 5 分钟来自先完成的那项任务。</p>
+<p>把长任务记作 <span class="arithmatex">\(i\)</span>，短任务记作 <span class="arithmatex">\(j\)</span>，用 <span class="arithmatex">\(I\)</span> 和 <span class="arithmatex">\(I&#x27;\)</span> 分别表示交换前、后的顺序。刚才算的 <span class="arithmatex">\(14-19=3-8\)</span>，写成一般形式就是</p>
 <div class="arithmatex">\[
 T(I')-T(I)=t_j-t_i&lt;0.
 \]</div>
-<p>这说明交换后严格更优，与原调度最优矛盾。因此，总存在一个无逆序对的最优调度，即 SPT 顺序。</p>
-<p>可以进一步看出权重为什么这样出现。若这对相邻任务在时刻 <span class="arithmatex">\(s\)</span> 开始，交换前两项完成时间之和为 <span class="arithmatex">\((s+t_i)+(s+t_i+t_j)\)</span>，交换后为 <span class="arithmatex">\((s+t_j)+(s+t_j+t_i)\)</span>。第二项完成时间保持不变，整对任务完成后也会在同一时刻开始处理后续任务。SPT 由排序主导，时间为 <span class="arithmatex">\(O(n\log n)\)</span>。</p>
+<p>把这两项放回一串任务中，交换它们，排在前面的任务照常完成，排在后面的任务也照常开工。只要前面那项比后面那项长，交换一次就能减少总完成时间。一直换到没有这样的相邻任务，队列就按用时从短到长排好了。</p>
+<p>两项用时相同，谁先做都可以。整个算法只需按时长排一次序，时间复杂度为 <span class="arithmatex">\(O(n\log n)\)</span>。</p>
 <blockquote>
 <p>[!warning] 直觉不等于正确性
 贪心算法常来自直觉，但每一个贪心选择都需要证明。一个策略若不正确，只需一个反例即可否定。</p>
@@ -1960,6 +1965,7 @@ NP-hard 是最坏情况下的分类。实例的具体结构会影响实际难度
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           

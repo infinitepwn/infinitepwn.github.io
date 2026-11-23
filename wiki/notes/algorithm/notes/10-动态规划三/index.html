@@ -1450,36 +1450,40 @@ F_0(0)=0,\quad F_0(x)=-\infty\quad(x&gt;0).
 <h2 id="_2">背包<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>第 <span class="arithmatex">\(j\)</span> 种物品的重量为正整数 <span class="arithmatex">\(w_j\)</span>，价值为 <span class="arithmatex">\(v_j\)</span>，容量为整数 <span class="arithmatex">\(W\)</span>。背包允许留空，目标是在总重量<strong>至多</strong>为 <span class="arithmatex">\(W\)</span> 时最大化价值</p>
 <h3 id="_3">两种背包的转移只差一层<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>设 <span class="arithmatex">\(F_j(c)\)</span> 为允许使用前 <span class="arithmatex">\(j\)</span> 种物品、容量至多为 <span class="arithmatex">\(c\)</span> 时的最大价值。基线是 <span class="arithmatex">\(F_0(c)=0\)</span>。如果 <span class="arithmatex">\(c&lt;w_j\)</span>，第 <span class="arithmatex">\(j\)</span> 种物品放不进去，沿用 <span class="arithmatex">\(F_{j-1}(c)\)</span>。当 <span class="arithmatex">\(c\ge w_j\)</span> 时，分两种情况</p>
+<p>先看一个小背包。容量是 <span class="arithmatex">\(4\)</span>，只有一种重量为 <span class="arithmatex">\(2\)</span>、价值为 <span class="arithmatex">\(3\)</span> 的物品。<code>dp[c]</code> 表示容量为 <code>c</code> 时能装出的最大价值，一开始每格都是 <span class="arithmatex">\(0\)</span>。装一件物品会占掉 <span class="arithmatex">\(2\)</span> 的容量，所以更新 <code>dp[4]</code> 时会算 <code>dp[2] + 3</code></p>
+<ul>
+<li><strong>从小到大更新</strong>：先把 <code>dp[2]</code> 改成 <span class="arithmatex">\(3\)</span>。轮到 <code>dp[4]</code> 时，读到的 <code>dp[2]</code> 已经代表装了一件。再加 <span class="arithmatex">\(3\)</span> 就装了第二件，所以 <code>dp[4]</code> 是 <span class="arithmatex">\(6\)</span></li>
+<li><strong>从大到小更新</strong>：先算 <code>dp[4]</code>，这时 <code>dp[2]</code> 还是 <span class="arithmatex">\(0\)</span>，所以只装一件，得到 <span class="arithmatex">\(3\)</span>。后来更新 <code>dp[2]</code> 时，<code>dp[4]</code> 已经算完了</li>
+</ul>
+<p>放回二维表看，第 <span class="arithmatex">\(j\)</span> 行的 <span class="arithmatex">\(F_j(c)\)</span> 表示用前 <span class="arithmatex">\(j\)</span> 种物品、容量为 <span class="arithmatex">\(c\)</span> 时的最大价值。背包可以留空，所以 <span class="arithmatex">\(F_0(c)=0\)</span>。ROI 要把预算恰好分完，只有 <span class="arithmatex">\(F_0(0)=0\)</span>，正预算对应不可行状态。如果 <span class="arithmatex">\(c&lt;w_j\)</span>，第 <span class="arithmatex">\(j\)</span> 种物品放不进去，沿用 <span class="arithmatex">\(F_{j-1}(c)\)</span>。放得进去时，比较不取和取一件的价值</p>
 <table>
 <thead>
 <tr>
 <th>问题</th>
-<th>当前物品再取一件时，剩余容量来自哪里</th>
+<th>取一件后，剩余容量用哪一行</th>
 <th>状态转移</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>完全背包，每种可重复选</td>
-<td>仍可选物品 <span class="arithmatex">\(j\)</span>，读本层</td>
+<td>当前行，还能用第 <span class="arithmatex">\(j\)</span> 种</td>
 <td><span class="arithmatex">\(F_j(c)=\max\{F_{j-1}(c),\,F_j(c-w_j)+v_j\}\)</span></td>
 </tr>
 <tr>
 <td>0-1 背包，每种最多选一次</td>
-<td>物品 <span class="arithmatex">\(j\)</span> 已用过，读上一层</td>
+<td>上一行，只能用前 <span class="arithmatex">\(j-1\)</span> 种</td>
 <td><span class="arithmatex">\(F_j(c)=\max\{F_{j-1}(c),\,F_{j-1}(c-w_j)+v_j\}\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>完全背包固定某个 <span class="arithmatex">\(j\)</span> 后，多取一件只增加常量价值 <span class="arithmatex">\(v_j\)</span>，所以可以用当前层继续向小容量追溯。ROI 的收益函数 <span class="arithmatex">\(f_j(t)\)</span> 可以任意变化，通常要枚举这个项目总共分到多少，才能计入对应的收益</p>
-<p>两种背包压成一维以后都使用 <code>dp[c] = max(dp[c], dp[c-w[j]] + v[j])</code>，循环方向决定 <code>dp[c-w[j]]</code> 是哪一层</p>
-<ul>
-<li>完全背包按 <span class="arithmatex">\(c=w_j,\ldots,W\)</span> <strong>正序</strong>更新，较小的容量已经写入本层值，可以再用物品 <span class="arithmatex">\(j\)</span></li>
-<li>0-1 背包按 <span class="arithmatex">\(c=W,\ldots,w_j\)</span> <strong>倒序</strong>更新，较小的容量还留在上一层，每种物品只用一次</li>
-</ul>
-<p>例如只有一个重量 <span class="arithmatex">\(2\)</span>、价值 <span class="arithmatex">\(3\)</span> 的物品，容量为 <span class="arithmatex">\(4\)</span>。正序更新会先得到 <span class="arithmatex">\(dp[2]=3\)</span>，接着得到 <span class="arithmatex">\(dp[4]=6\)</span>，允许用两件。倒序计算 <span class="arithmatex">\(dp[4]\)</span> 时读到的 <span class="arithmatex">\(dp[2]\)</span> 还是 <span class="arithmatex">\(0\)</span>，所以最多取一件，价值为 <span class="arithmatex">\(3\)</span></p>
+<p>压成一维后，两种背包都写 <code>dp[c] = max(dp[c], dp[c-w[j]] + v[j])</code>。每处理一种物品，<code>dp</code> 就从上一行逐格变成当前行。因为 <span class="arithmatex">\(c-w_j&lt;c\)</span>，<strong>完全背包从小到大</strong>，读到的是已经更新过的小容量，属于当前行。<strong>0-1 背包从大到小</strong>，小容量还没更新，读到的就是上一行</p>
+<p>完全背包每多取一件同种物品，价值都增加 <span class="arithmatex">\(v_j\)</span>。ROI 中投 <span class="arithmatex">\(t\)</span> 枚的收益由 <span class="arithmatex">\(f_j(t)\)</span> 决定，通常需要枚举这个项目总共分到几枚</p>
 <p>完整版保留 <span class="arithmatex">\(F_j(c)\)</span> 或记录每个状态的决策，可以从 <span class="arithmatex">\(F_n(W)\)</span> 恢复选择。选中第 <span class="arithmatex">\(j\)</span> 件后都减去其重量，完全背包留在本行，0-1 背包退到上一行。不选则退到上一行。课件的完全背包例子 <span class="arithmatex">\(W=10\)</span>，物品的 <span class="arithmatex">\((w,v)\)</span> 为 <span class="arithmatex">\((2,1),(3,3),(4,5),(7,9)\)</span>，取第二和第四种各一件达到最优值 <span class="arithmatex">\(12\)</span></p>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%2010%20-%20Dynamic_Programming%20%28III%29.pdf" data-slide-page="44" data-slide-crop="0.2285,0.573,0.772,0.934">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%2010%20-%20Dynamic_Programming%20%28III%29.pdf#page=44" aria-label="完全背包的最优值表，右下角黄色格为 12">查看课件原图</a>
+<figcaption>图里的 w 就是容量 c。从右下角黄色格向上看一行，前 3 种物品在容量 10 时价值为 11。在同一行向左退七列，容量 3 的价值为 3</figcaption>
+</figure>
 <h3 id="_4">完全背包也能直接用容量做状态<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>设 <span class="arithmatex">\(G(c)\)</span> 为所有物品都可用、容量至多为 <span class="arithmatex">\(c\)</span> 时的最大价值。任意非空解都可以去掉一件重量为 <span class="arithmatex">\(w_j\)</span> 的物品，剩余部分仍可以使用所有物品，于是</p>
 <div class="arithmatex">\[
@@ -1501,7 +1505,64 @@ L(i-1,j-1)+1,&amp;x_i=y_j,\\
 \max\{L(i-1,j),L(i,j-1)\},&amp;x_i\ne y_j.
 \end{cases}
 \]</div>
-<p>从 <span class="arithmatex">\((m,n)\)</span> 回溯。字符相同时向左上并记录该字符，否则选择值相同的上方或左方前驱。记录顺序从尾到头，最后反转。课件取 <span class="arithmatex">\(X=\texttt{ABCBDAB}\)</span>、<span class="arithmatex">\(Y=\texttt{BDCABA}\)</span>，最长长度为 <span class="arithmatex">\(4\)</span>，其中一个解是 <span class="arithmatex">\(\texttt{BCBA}\)</span>。<span class="arithmatex">\(L(7,6)=4\)</span> 时两边尾字符分别是 <code>B</code> 和 <code>A</code>，可以先向上退到同样为 <span class="arithmatex">\(4\)</span> 的 <span class="arithmatex">\(L(6,6)\)</span>，再匹配 <code>A</code></p>
+<p>表里行号 <span class="arithmatex">\(i\)</span> 表示还在看的 <span class="arithmatex">\(X\)</span> 前缀长度，列号 <span class="arithmatex">\(j\)</span> 对应 <span class="arithmatex">\(Y\)</span>。因此<strong>向上</strong>只去掉 <span class="arithmatex">\(X\)</span> 的最后一个字符，<strong>向左</strong>只去掉 <span class="arithmatex">\(Y\)</span> 的最后一个字符。两边的尾字符相等时可以把它们配成一对，<strong>向左上</strong>各退一格，并记下这个字符。尾字符不同时，选上方或左方与当前格长度相同的一格</p>
+<p>用课件里的 <span class="arithmatex">\(X=\texttt{ABCBDAB}\)</span>、<span class="arithmatex">\(Y=\texttt{BDCABA}\)</span> 走一遍。右下角 <span class="arithmatex">\((7,6)\)</span> 的长度是 <span class="arithmatex">\(4\)</span>，上方和左方的长度也都是 <span class="arithmatex">\(4\)</span>，所以两边都能走。表中沿课件的路径，先向上跳过 <span class="arithmatex">\(X\)</span> 末尾的 <code>B</code></p>
+<table>
+<thead>
+<tr>
+<th>当前格</th>
+<th>怎么走</th>
+<th>这一步做了什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\((7,6)\)</span></td>
+<td>↑ 到 <span class="arithmatex">\((6,6)\)</span></td>
+<td>跳过 <span class="arithmatex">\(X\)</span> 末尾的 <code>B</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((6,6)\)</span></td>
+<td>↖ 到 <span class="arithmatex">\((5,5)\)</span></td>
+<td>两边的 <code>A</code> 配对，记下 <code>A</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((5,5)\)</span></td>
+<td>↑ 到 <span class="arithmatex">\((4,5)\)</span></td>
+<td>跳过 <span class="arithmatex">\(X\)</span> 末尾的 <code>D</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((4,5)\)</span></td>
+<td>↖ 到 <span class="arithmatex">\((3,4)\)</span></td>
+<td>两边的 <code>B</code> 配对，记下 <code>B</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((3,4)\)</span></td>
+<td>← 到 <span class="arithmatex">\((3,3)\)</span></td>
+<td>跳过 <span class="arithmatex">\(Y\)</span> 末尾的 <code>A</code>，<span class="arithmatex">\(X\)</span> 的 <code>C</code> 还可以继续配对</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((3,3)\)</span></td>
+<td>↖ 到 <span class="arithmatex">\((2,2)\)</span></td>
+<td>两边的 <code>C</code> 配对，记下 <code>C</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((2,2)\)</span></td>
+<td>← 到 <span class="arithmatex">\((2,1)\)</span></td>
+<td>跳过 <span class="arithmatex">\(Y\)</span> 末尾的 <code>D</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((2,1)\)</span></td>
+<td>↖ 到 <span class="arithmatex">\((1,0)\)</span></td>
+<td>两边的 <code>B</code> 配对，记下 <code>B</code></td>
+</tr>
+</tbody>
+</table>
+<p>某个前缀变空时就停下。回溯先找到结果末尾，所以把记下的 <code>A B C B</code> 反过来，得到一组最长公共子序列 <code>B C B A</code>，长度为 <span class="arithmatex">\(4\)</span></p>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%2010%20-%20Dynamic_Programming%20%28III%29.pdf" data-slide-page="83" data-slide-crop="0.165,0.381,0.835,0.667">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%2010%20-%20Dynamic_Programming%20%28III%29.pdf#page=83" aria-label="最长公共子序列的方向表，蓝色箭头标出回溯路径">查看课件原图</a>
+<figcaption>在图中找蓝色的四个左上箭头。每个箭头对应上表里记下一个字符的那一步</figcaption>
+</figure>
 <div class="algorithm-demo" data-algorithm="lcs" data-x="ABCBDAB" data-y="BDCABA"></div>
 <script defer src="https://infinitepwn.github.io/wiki/assets/algorithm-demo.js"></script>
 <p>填表花 <span class="arithmatex">\(\Theta(mn)\)</span> 时间及 <span class="arithmatex">\(\Theta(mn)\)</span> 空间，回溯至多走 <span class="arithmatex">\(m+n\)</span> 步。只需要长度时，可用滚动行把额外空间降为 <span class="arithmatex">\(\Theta(\min(m,n))\)</span></p>
@@ -1604,6 +1665,7 @@ D(i-1,j-1)+\mathbf 1[x_i\ne y_j]
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           
