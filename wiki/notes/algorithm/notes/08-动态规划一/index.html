@@ -1413,6 +1413,10 @@ d[v]=\min_{(u,v)\in E}\{d[u]+w(u,v)\}.
 <div class="arithmatex">\[
 D_k(i,j)=\min\{D_{k-1}(i,j),\,D_{k-1}(i,k)+D_{k-1}(k,j)\}.
 \]</div>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%208%20-%20Dynamic_Programming%20%28I%29.pdf" data-slide-page="22" data-slide-crop="0.20340681,0.31494662,0.79358717,0.61565836">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%208%20-%20Dynamic_Programming%20%28I%29.pdf#page=22" aria-label="Floyd–Warshall 比较旧路径和经新中间点 k 的两段路径">查看课件原图</a>
+<figcaption>下方曲线是上一轮从 i 到 j 的旧距离，上方经 k 的两段也都从上一轮取值，两段加起来更短时才更新距离</figcaption>
+</figure>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>for k = 1, ..., n:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    for i = 1, ..., n:
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        for j = 1, ..., n:
@@ -1518,6 +1522,7 @@ F[i]=\min_{1\le\ell\le\min(256,i)}
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           
