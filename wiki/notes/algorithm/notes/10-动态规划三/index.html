@@ -1502,6 +1502,8 @@ L(i-1,j-1)+1,&amp;x_i=y_j,\\
 \end{cases}
 \]</div>
 <p>从 <span class="arithmatex">\((m,n)\)</span> 回溯。字符相同时向左上并记录该字符，否则选择值相同的上方或左方前驱。记录顺序从尾到头，最后反转。课件取 <span class="arithmatex">\(X=\texttt{ABCBDAB}\)</span>、<span class="arithmatex">\(Y=\texttt{BDCABA}\)</span>，最长长度为 <span class="arithmatex">\(4\)</span>，其中一个解是 <span class="arithmatex">\(\texttt{BCBA}\)</span>。<span class="arithmatex">\(L(7,6)=4\)</span> 时两边尾字符分别是 <code>B</code> 和 <code>A</code>，可以先向上退到同样为 <span class="arithmatex">\(4\)</span> 的 <span class="arithmatex">\(L(6,6)\)</span>，再匹配 <code>A</code></p>
+<div class="algorithm-demo" data-algorithm="lcs" data-x="ABCBDAB" data-y="BDCABA"></div>
+<script defer src="https://infinitepwn.github.io/wiki/assets/algorithm-demo.js"></script>
 <p>填表花 <span class="arithmatex">\(\Theta(mn)\)</span> 时间及 <span class="arithmatex">\(\Theta(mn)\)</span> 空间，回溯至多走 <span class="arithmatex">\(m+n\)</span> 步。只需要长度时，可用滚动行把额外空间降为 <span class="arithmatex">\(\Theta(\min(m,n))\)</span></p>
 <p>若题目确实要<strong>最长公共子串</strong>，定义 <span class="arithmatex">\(S(i,j)\)</span> 为以 <span class="arithmatex">\(x_i\)</span> 和 <span class="arithmatex">\(y_j\)</span> 同时结尾的最长公共后缀长度。相等时令 <span class="arithmatex">\(S(i,j)=S(i-1,j-1)+1\)</span>，不相等时清零。全表最大值是答案，因为公共子串可以结束在任意位置</p>
 <h2 id="edit-distance">编辑距离（Edit Distance）<a class="headerlink" href="#edit-distance" title="Permanent link">&para;</a></h2>
