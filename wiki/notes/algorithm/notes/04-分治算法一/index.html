@@ -1608,6 +1608,8 @@ T(n)=\sum_{i=1}^{k}T(n_i)+f(n)
 </tbody>
 </table>
 <p>例如在 <span class="arithmatex">\([3,4,8,2,5,9,10]\)</span> 找第 <span class="arithmatex">\(4\)</span> 小，若枢轴是 <span class="arithmatex">\(4\)</span>，左边有两个元素，<span class="arithmatex">\(4\)</span> 占一个位置，所以要到 <span class="arithmatex">\([8,5,9,10]\)</span> 里找第 <span class="arithmatex">\(1\)</span> 小，得到 <span class="arithmatex">\(5\)</span></p>
+<div class="algorithm-demo" data-algorithm="quickselect" data-array="9, 2, 5, 2, 7, 2, 5, 1" data-k="5"></div>
+<script defer src="https://infinitepwn.github.io/wiki/assets/algorithm-demo.js"></script>
 <p>每次若恰好只排除一个元素，总成本为 <span class="arithmatex">\(\Theta(n^2)\)</span>。若随机选枢轴，至少约一半概率抽到中间一半的秩，这时递归规模至多约 <span class="arithmatex">\(3n/4\)</span>。在规模还没缩到 <span class="arithmatex">\(3n/4\)</span> 之前，每轮成本至多 <span class="arithmatex">\(O(n)\)</span>，期望至多常数轮就能达到这个规模。继续按几何级数加起来，期望总时间为 <span class="arithmatex">\(\Theta(n)\)</span></p>
 <h3 id="median-of-medians">Median of Medians：给划分比例一个确定性保证<a class="headerlink" href="#median-of-medians" title="Permanent link">&para;</a></h3>
 <ol>
