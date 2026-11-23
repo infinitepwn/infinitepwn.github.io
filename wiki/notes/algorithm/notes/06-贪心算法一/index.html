@@ -1479,6 +1479,8 @@
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>返回 chosen
 </code></pre></div>
 <p>在课件的例子里，先选 <span class="arithmatex">\(2=[1,4)\)</span>，再选 <span class="arithmatex">\(5=[4,7)\)</span>，最后选 <span class="arithmatex">\(8=[8,11)\)</span>。排序需要 <span class="arithmatex">\(O(n\log n)\)</span>，排序后只需 <span class="arithmatex">\(O(n)\)</span> 扫描</p>
+<div class="algorithm-demo" data-algorithm="interval" data-intervals="1-4, 3-5, 0-6, 4-7, 8-11"></div>
+<script defer src="https://infinitepwn.github.io/wiki/assets/algorithm-demo.js"></script>
 <h3 id="_2">归纳证明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>设贪心已经选出的 <span class="arithmatex">\(k\)</span> 个任务恰好构成某个最优解 <span class="arithmatex">\(O\)</span> 的前缀。<span class="arithmatex">\(k=0\)</span> 时任取一个最优解即可</p>
 <p>若贪心下一步选了任务 <span class="arithmatex">\(g\)</span>，<span class="arithmatex">\(O\)</span> 必须还有后续任务，否则可以直接把 <span class="arithmatex">\(g\)</span> 接到 <span class="arithmatex">\(O\)</span> 后面，得到更大的相容集。设 <span class="arithmatex">\(O\)</span> 的下一个任务是 <span class="arithmatex">\(j\)</span>。<span class="arithmatex">\(j\)</span> 和 <span class="arithmatex">\(g\)</span> 都能接在前缀后，且按贪心规则有 <span class="arithmatex">\(f_g\le f_j\)</span>。把 <span class="arithmatex">\(j\)</span> 换成 <span class="arithmatex">\(g\)</span> 后，原先能接在 <span class="arithmatex">\(j\)</span> 后面的任务也都能接在 <span class="arithmatex">\(g\)</span> 后面，所以任务数保持不变。于是，贪心选出的前 <span class="arithmatex">\(k+1\)</span> 个任务也是某个最优解的前缀</p>
