@@ -1569,6 +1569,10 @@ T(n)=\sum_{i=1}^{k}T(n_i)+f(n)
 </tbody>
 </table>
 <p>设三类配对数分别为 <span class="arithmatex">\(u,v,w\)</span>。配对前有 <span class="arithmatex">\(2u+v\)</span> 枚好芯片、<span class="arithmatex">\(2w+v\)</span> 枚坏芯片，所以 <span class="arithmatex">\(u&gt;w\)</span>。配对后恰好保留 <span class="arithmatex">\(u\)</span> 枚好芯片，最多保留 <span class="arithmatex">\(w\)</span> 枚坏芯片。这样递归进去时，输入依然满足好芯片严格过半</p>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%204%20-%20Divide_and_Conquer%20%28I%29.pdf" data-slide-page="56" data-slide-crop="0.16,0.208,0.85,0.615">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%204%20-%20Divide_and_Conquer%20%28I%29.pdf#page=56" aria-label="奇数枚芯片两两配对，最右侧的落单芯片单独测试">查看课件原图</a>
+<figcaption>蓝色虚线把芯片分成一对一对，最右边的问号是落单者，单独测试后再决定是返回它还是继续配对</figcaption>
+</figure>
 <p>如果剩余芯片数是奇数，先取落单芯片 <span class="arithmatex">\(x\)</span>，让其他所有芯片报告 <span class="arithmatex">\(x\)</span> 的好坏。<span class="arithmatex">\(x\)</span> 是好的时候，至少一半的报告为好。<span class="arithmatex">\(x\)</span> 是坏的时候，超过一半的报告为坏。所以前一种情况可以直接返回 <span class="arithmatex">\(x\)</span>，后一种情况丢掉 <span class="arithmatex">\(x\)</span> 再配对</p>
 <p>每轮花 <span class="arithmatex">\(O(n)\)</span> 次测试，最多保留约一半，最坏共 <span class="arithmatex">\(\Theta(n)\)</span> 次测试。只剩一两枚时，由严格过半可知它们都是好的</p>
 <h2 id="_6">选择问题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
@@ -1629,6 +1633,10 @@ T(n)\le T(\lceil n/5\rceil)+T(7n/10+O(1))+O(n)
 <h2 id="_10">平面最近点对：把跨中线比较控制在线性时间<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>给定平面上的 <span class="arithmatex">\(n\)</span> 个点，按 <span class="arithmatex">\(x\)</span> 坐标把点集平分，得到两半最近距离 <span class="arithmatex">\(\delta_L,\delta_R\)</span>，先取 <span class="arithmatex">\(\delta=\min(\delta_L,\delta_R)\)</span>。若有更近的跨边点对，其两个端点到中线的水平距离都必须小于 <span class="arithmatex">\(\delta\)</span>，且纵坐标差也小于 <span class="arithmatex">\(\delta\)</span></p>
 <h3 id="_11">为什么每个点只看后面七个<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<figure class="course-figure" data-slide-src="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%204%20-%20Divide_and_Conquer%20%28I%29.pdf" data-slide-page="148" data-slide-crop="0.11,0.161,0.88,0.701">
+<a href="https://yuchen1024.github.io/teaching/algorithm/lecture_slides/Lec%204%20-%20Divide_and_Conquer%20%28I%29.pdf#page=148" aria-label="最近点对的跨中线候选区域被分成小矩形，各格对角线短于当前距离 δ">查看课件原图</a>
+<figcaption>固定绿色点后，右侧六格覆盖可能与它组成更近点对的对侧区域，每格的对角线只有 5δ/6，所以同侧每格最多有一个点</figcaption>
+</figure>
 <p>取总宽 <span class="arithmatex">\(2\delta\)</span> 的竖带，按 <span class="arithmatex">\(y\)</span> 坐标排序。固定带内一点 <span class="arithmatex">\(p\)</span>，只考虑 <span class="arithmatex">\(p\)</span> 往上高度 <span class="arithmatex">\(\delta\)</span> 的区域</p>
 <ul>
 <li>中线两侧各得到一个边长 <span class="arithmatex">\(\delta\)</span> 的正方形，各自再分四个小方格</li>
@@ -1674,6 +1682,7 @@ T(n)\le T(\lceil n/5\rceil)+T(7n/10+O(1))+O(n)
 
 
                 
+              <script defer src="https://infinitepwn.github.io/wiki/assets/course-figures.js"></script>
               </article>
             </div>
           
